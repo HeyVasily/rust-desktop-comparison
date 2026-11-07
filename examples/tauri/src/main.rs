@@ -1,8 +1,10 @@
 //! Synthetic UI only. All fixture state lives in the embedded static frontend.
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+#[cfg(target_os = "macos")]
 use tauri::Manager;
 
+#[cfg(target_os = "macos")]
 fn log_geometry(window: &tauri::WebviewWindow, phase: &str) -> tauri::Result<()> {
     let scale = window.scale_factor()?;
     let inner = window.inner_size()?;
@@ -22,8 +24,9 @@ fn log_geometry(window: &tauri::WebviewWindow, phase: &str) -> tauri::Result<()>
 }
 
 fn main() {
-    tauri::Builder::default()
-        .setup(|app| {
+    let builder = tauri::Builder::default();
+    #[cfg(target_os = "macos")]
+    let builder = builder.setup(|app| {
             let window = app
                 .get_webview_window("main")
                 .ok_or_else(|| std::io::Error::other("main comparison window missing"))?;
@@ -40,10 +43,9 @@ fn main() {
             // asynchronously. The resize event above records the applied size.
             // The creation path on the hosted macOS runner included its titlebar
             // in the configured height, leaving only 612 points of client area.
-            #[cfg(target_os = "macos")]
             window.set_size(tauri::LogicalSize::new(960.0, 640.0))?;
             Ok(())
-        })
-        .run(tauri::generate_context!())
+        });
+    builder.run(tauri::generate_context!())
         .expect("run comparison UI");
 }
