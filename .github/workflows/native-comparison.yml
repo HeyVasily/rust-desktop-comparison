@@ -1,4 +1,5 @@
 name: Native desktop comparison
+run-name: 'Native desktop comparison: ${{ inputs.platforms }} / ${{ inputs.framework || "all" }}'
 
 on:
   workflow_dispatch:
@@ -7,6 +8,11 @@ on:
         description: 'Choose Windows, macOS, native pair, Linux X11, or all three'
         type: choice
         options: [native, windows, macos, linux, all]
+        default: all
+      framework:
+        description: 'Run all frameworks or one selected candidate'
+        type: choice
+        options: [all, egui, gtk, slint, qt, tauri]
         default: all
       comparison:
         description: 'Measure idle CPU/memory: 30s settling, 120 intervals; Linux also minimized'
@@ -30,6 +36,7 @@ jobs:
       CARGO_BUILD_JOBS: '2'
       CARGO_INCREMENTAL: '0'
       COMPARISON: ${{ inputs.comparison }}
+      FRAMEWORK: ${{ inputs.framework || 'all' }}
     defaults:
       run:
         shell: bash
@@ -40,9 +47,10 @@ jobs:
         with:
           python-version: '3.12'
       - uses: dtolnay/rust-toolchain@stable
+        if: contains(fromJSON('["all","egui","slint","tauri"]'), env.FRAMEWORK)
       - name: Prepare probe and evidence directory
         run: |
-          mkdir -p artifacts/build
+          mkdir -p artifacts/build target
           PROBE_PYTHON="${{ steps.probe_python.outputs.python-path }}"
           echo "PROBE_PYTHON=$PROBE_PYTHON" >> "$GITHUB_ENV"
           "$PROBE_PYTHON" -m pip install psutil==7.0.0 Pillow==11.2.1
@@ -50,9 +58,15 @@ jobs:
             "$PROBE_PYTHON" -m pip install pyobjc-framework-Quartz==11.0
           fi
           "$PROBE_PYTHON" -c 'import sys, psutil, PIL; print(sys.executable)' > artifacts/build/probe-python.txt
-          rustc -Vv > artifacts/build/rust-version.txt
-          cargo -V >> artifacts/build/rust-version.txt
-          cmake --version > artifacts/build/cmake-version.txt
+          case "$FRAMEWORK" in
+            all|egui|slint|tauri)
+              rustc -Vv > artifacts/build/rust-version.txt
+              cargo -V >> artifacts/build/rust-version.txt
+              ;;
+          esac
+          if [ "$FRAMEWORK" = all ] || [ "$FRAMEWORK" = qt ]; then
+            cmake --version > artifacts/build/cmake-version.txt
+          fi
       - name: Probe accounting and attribution checks
         run: '"$PROBE_PYTHON" -m unittest discover -s tools -p "test_*.py"'
       - name: Linux build and X11 runtime libraries
@@ -62,7 +76,7 @@ jobs:
           sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 mesa-utils
           pkg-config --modversion gtk4 webkit2gtk-4.1 Qt6Widgets > artifacts/build/native-versions.txt
       - name: Qt 6.8.3 for Windows
-        if: runner.os == 'Windows'
+        if: runner.os == 'Windows' && contains(fromJSON('["all","qt"]'), env.FRAMEWORK)
         continue-on-error: true
         uses: jurplel/install-qt-action@v4
         with:
@@ -70,7 +84,7 @@ jobs:
           arch: win64_msvc2022_64
           cache: false
       - name: GTK4 Windows toolchain
-        if: runner.os == 'Windows'
+        if: runner.os == 'Windows' && contains(fromJSON('["all","gtk"]'), env.FRAMEWORK)
         uses: msys2/setup-msys2@v2
         with:
           msystem: UCRT64
@@ -80,19 +94,24 @@ jobs:
             mingw-w64-ucrt-x86_64-pkgconf
             mingw-w64-ucrt-x86_64-gtk4
       - name: Build GTK4 C control on Windows
-        if: runner.os == 'Windows'
+        if: runner.os == 'Windows' && contains(fromJSON('["all","gtk"]'), env.FRAMEWORK)
         continue-on-error: true
         shell: msys2 {0}
         run: bash tools/windows-setup.sh
       - name: Native macOS libraries
-        if: runner.os == 'macOS'
+        if: runner.os == 'macOS' && contains(fromJSON('["all","qt","gtk"]'), env.FRAMEWORK)
         continue-on-error: true
         run: |
-          brew install qtbase gtk4 pkgconf 2>&1 | tee artifacts/build/brew.log
-          brew list --versions qtbase gtk4 pkgconf > artifacts/build/native-versions.txt
-          echo "Qt6_DIR=$(brew --prefix qtbase)/lib/cmake/Qt6" >> "$GITHUB_ENV"
+          packages=(pkgconf)
+          if [ "$FRAMEWORK" = all ] || [ "$FRAMEWORK" = qt ]; then packages+=(qtbase); fi
+          if [ "$FRAMEWORK" = all ] || [ "$FRAMEWORK" = gtk ]; then packages+=(gtk4); fi
+          brew install "${packages[@]}" 2>&1 | tee artifacts/build/brew.log
+          brew list --versions "${packages[@]}" > artifacts/build/native-versions.txt
+          if [ "$FRAMEWORK" = all ] || [ "$FRAMEWORK" = qt ]; then
+            echo "Qt6_DIR=$(brew --prefix qtbase)/lib/cmake/Qt6" >> "$GITHUB_ENV"
+          fi
       - name: Record Windows WebView2 installation
-        if: runner.os == 'Windows'
+        if: runner.os == 'Windows' && contains(fromJSON('["all","tauri"]'), env.FRAMEWORK)
         shell: pwsh
         run: |
           $runtime = Get-ChildItem "${env:ProgramFiles(x86)}\Microsoft\EdgeWebView\Application" -Filter msedgewebview2.exe -Recurse -ErrorAction SilentlyContinue
@@ -102,6 +121,7 @@ jobs:
             'WebView2 runtime not found in standard machine install directory; launch will validate availability.' | Out-File artifacts/build/webview2-version.txt
           }
       - name: Build egui release
+        if: contains(fromJSON('["all","egui"]'), env.FRAMEWORK)
         continue-on-error: true
         timeout-minutes: 15
         run: |
@@ -111,10 +131,12 @@ jobs:
           cp examples/egui/Cargo.lock artifacts/build/egui-Cargo.lock
           cargo build --release --locked --manifest-path examples/egui/Cargo.toml 2>&1 | tee artifacts/build/egui.log
       - name: Resolve missing new-example locks and preserve exact resolution
+        if: contains(fromJSON('["all","slint","tauri"]'), env.FRAMEWORK)
         continue-on-error: true
         run: |
           status=0
           for example in slint tauri; do
+            if [ "$FRAMEWORK" != all ] && [ "$FRAMEWORK" != "$example" ]; then continue; fi
             cargo fmt --manifest-path "examples/$example/Cargo.toml" 2>&1 | tee "artifacts/build/$example-format.log" || status=1
             mkdir -p "artifacts/build/formatted/$example/src"
             cp "examples/$example/src/main.rs" "artifacts/build/formatted/$example/src/main.rs"
@@ -130,14 +152,17 @@ jobs:
           done
           exit "$status"
       - name: Build Slint release
+        if: contains(fromJSON('["all","slint"]'), env.FRAMEWORK)
         continue-on-error: true
         timeout-minutes: 15
         run: cargo build --release --locked --manifest-path examples/slint/Cargo.toml 2>&1 | tee artifacts/build/slint.log
       - name: Build Tauri release
+        if: contains(fromJSON('["all","tauri"]'), env.FRAMEWORK)
         continue-on-error: true
         timeout-minutes: 15
         run: cargo build --release --locked --manifest-path examples/tauri/Cargo.toml 2>&1 | tee artifacts/build/tauri.log
       - name: Build Qt Widgets release
+        if: contains(fromJSON('["all","qt"]'), env.FRAMEWORK)
         continue-on-error: true
         run: |
           cmake -S examples/qt -B target/qt -DCMAKE_BUILD_TYPE=Release 2>&1 | tee artifacts/build/qt-configure.log
@@ -146,11 +171,11 @@ jobs:
             windeployqt --release --no-translations target/qt/Release/veranda-qt-comparison.exe 2>&1 | tee artifacts/build/qt-deploy.log
           fi
       - name: Build GTK4 C control on Unix
-        if: runner.os != 'Windows'
+        if: runner.os != 'Windows' && contains(fromJSON('["all","gtk"]'), env.FRAMEWORK)
         continue-on-error: true
         run: |
           cc -O2 -Wall -Wextra examples/gtk/main.c -o target/gtk-control $(pkg-config --cflags --libs gtk4) 2>&1 | tee artifacts/build/gtk.log
-      - name: Run every candidate sequentially on this runner
+      - name: Run selected candidates sequentially on this runner
         timeout-minutes: 35
         run: |
           "$PROBE_PYTHON" -c 'import sys, psutil, PIL; print(sys.executable)' >> artifacts/build/probe-python.txt
@@ -172,6 +197,10 @@ jobs:
               ('qt', 'Veranda Qt Widgets comparison', target / 'qt' / ('Release' if windows else '') / ('veranda-qt-comparison' + extension)),
               ('tauri', 'Veranda Tauri comparison', target / 'release' / ('veranda-tauri-comparison' + extension)),
           ]
+          framework = os.environ['FRAMEWORK']
+          assert framework in {'all', *(name for name, _, _ in candidates)}, f'Unknown framework: {framework}'
+          candidates = [candidate for candidate in candidates if framework == 'all' or candidate[0] == framework]
+          Path('artifacts/selected-candidates.json').write_text(json.dumps([name for name, _, _ in candidates]))
           failed = []
           for name, title, executable in candidates:
               command = [os.environ['PROBE_PYTHON'], 'tools/native_probe.py', '--name', name,
@@ -243,7 +272,15 @@ jobs:
           failures = json.loads(path.read_text())
           assert not failures, f'Diagnostics incomplete or failed: {failures}; inspect outcome.json and screenshots'
           expected = 'comparison_passed' if os.environ['COMPARISON'] == 'true' else 'diagnostic_passed'
-          for name in ('egui', 'gtk', 'slint', 'qt', 'tauri'):
+          framework = os.environ['FRAMEWORK']
+          names = ('egui', 'gtk', 'slint', 'qt', 'tauri')
+          assert framework in ('all', *names), f'Unknown framework: {framework}'
+          selected = [name for name in names if framework == 'all' or name == framework]
+          recorded = json.loads(Path('artifacts/selected-candidates.json').read_text())
+          assert recorded == selected, f'Candidate selection mismatch: {recorded} != {selected}'
+          outcomes = list(Path('artifacts').glob('*/outcome.json'))
+          assert len(outcomes) == len(selected), f'Expected {len(selected)} outcomes, found {len(outcomes)}'
+          for name in selected:
               outcome = json.loads(Path('artifacts', name, 'outcome.json').read_text())
               assert outcome['status'] == expected, f'{name}: expected {expected}, got {outcome["status"]}'
               assert outcome['cleanup_status'] == 'clean', f'{name}: cleanup was not verified'

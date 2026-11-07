@@ -27,5 +27,5 @@ gcc -O2 -Wall -Wextra "${gtk_cflags[@]}" examples/gtk/main.c \
 # Forward-slash Windows paths are accepted by the loader and JSON without
 # special escaping. The probe must apply this only to the GTK child process.
 runtime_bin="$(cygpath -am "$MINGW_PREFIX/bin")"
-printf '{"path_prepend":"%s","environment":{"GDK_BACKEND":"win32","GSK_RENDERER":"cairo"},"renderer_variant":"GTK4 Cairo software renderer; MSYS2 UCRT64"}\n' \
+printf '{"path_prepend":"%s","environment":{"GDK_BACKEND":"win32","GSK_RENDERER":"cairo","GTK_CSD":"0"},"renderer_variant":"GTK4 Cairo software renderer; native decorations; MSYS2 UCRT64"}\n' \
     "$runtime_bin" > artifacts/build/windows-gtk-runtime.json

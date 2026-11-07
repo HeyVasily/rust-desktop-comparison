@@ -4,7 +4,9 @@ The manually dispatched [workflow](../.github/workflows/native-comparison.yml) b
 release examples and attempts actual GUI launches on Windows, macOS and Linux.
 Its defaults request all three OS jobs and full memory/CPU sampling.
 The `platforms` input supports `native` (Windows and macOS), individual `windows`,
-`macos` or `linux` (`ubuntu-24.04`), and `all`.
+`macos` or `linux` (`ubuntu-24.04`), and `all`. The optional `framework` input
+selects one candidate for a focused retry; `all` remains the default. A selected
+run validates only that candidate, and its title/artifacts identify that scope.
 Each OS job runs its candidates sequentially on the same machine, with at most two
 jobs running concurrently. A successful build alone does not establish GUI access.
 The workflow is an experiment, not evidence that either runner supports every app.
@@ -53,7 +55,8 @@ window, verifies both `_NET_WM_STATE_HIDDEN` and `IsUnMapped`, and repeats the s
 and 120-interval phase with the minimized state verified again afterward. No interaction or peak-memory
 claim is made. A failed candidate remains a failed job after artifacts upload. All
 five candidates are configured on each OS, including GTK4 through MSYS2 UCRT64 on
-Windows. Other configured examples are attempted even if an earlier build
+Windows. Its controlled Windows variant also sets `GTK_CSD=0`, using native window
+decorations so the client capture excludes GTK titlebar/shadow pixels. Other configured examples are attempted even if an earlier build
 or diagnostic fails, provided cleanup is explicitly clean or no process was launched.
 Missing/unknown cleanup status, survivors or denied process access stop subsequent
 candidates. An overall watchdog expiry also stops subsequent candidates to avoid
