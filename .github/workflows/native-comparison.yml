@@ -7,15 +7,11 @@ on:
         description: 'Choose Windows, macOS, native pair, Linux X11, or all three'
         type: choice
         options: [native, windows, macos, linux, all]
-        default: native
+        default: all
       comparison:
-        description: 'After diagnostic, sample 120s/30s visible idle (Linux also verified minimized)'
+        description: 'Measure idle CPU/memory: 30s settling, 120 intervals; Linux also minimized'
         type: boolean
-        default: false
-      refresh_egui_lock:
-        description: 'One-time dependency resolution after the Windows renderer change; preserve lock artifact'
-        type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: read
@@ -105,9 +101,6 @@ jobs:
           } else {
             'WebView2 runtime not found in standard machine install directory; launch will validate availability.' | Out-File artifacts/build/webview2-version.txt
           }
-      - name: Resolve changed egui renderer dependencies
-        if: inputs.refresh_egui_lock
-        run: cargo generate-lockfile --manifest-path examples/egui/Cargo.toml
       - name: Build egui release
         continue-on-error: true
         timeout-minutes: 15
@@ -239,13 +232,21 @@ jobs:
           path: artifacts/
           if-no-files-found: warn
           retention-days: 14
-      - name: Require successful diagnostics for configured candidates
+      - name: Require every configured footprint result
         run: |
           "$PROBE_PYTHON" - <<'PY'
           import json
+          import os
           from pathlib import Path
           path = Path('artifacts/failed-candidates.json')
           assert path.exists(), 'Probe stage did not finish; inspect setup/build logs'
           failures = json.loads(path.read_text())
           assert not failures, f'Diagnostics incomplete or failed: {failures}; inspect outcome.json and screenshots'
+          expected = 'comparison_passed' if os.environ['COMPARISON'] == 'true' else 'diagnostic_passed'
+          for name in ('egui', 'gtk', 'slint', 'qt', 'tauri'):
+              outcome = json.loads(Path('artifacts', name, 'outcome.json').read_text())
+              assert outcome['status'] == expected, f'{name}: expected {expected}, got {outcome["status"]}'
+              assert outcome['cleanup_status'] == 'clean', f'{name}: cleanup was not verified'
+              if expected == 'comparison_passed':
+                  assert outcome['phases']['comparison']['summary']['sample_intervals'] == 120
           PY

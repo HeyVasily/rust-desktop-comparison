@@ -1,7 +1,8 @@
 # Native desktop diagnostics on GitHub-hosted runners
 
 The manually dispatched [workflow](../.github/workflows/native-comparison.yml) builds
-release examples and attempts actual GUI launches on `windows-2022` and `macos-15`.
+release examples and attempts actual GUI launches on Windows, macOS and Linux.
+Its defaults request all three OS jobs and full memory/CPU sampling.
 The `platforms` input supports `native` (Windows and macOS), individual `windows`,
 `macos` or `linux` (`ubuntu-24.04`), and `all`.
 Each OS job runs its candidates sequentially on the same machine, with at most two
@@ -19,7 +20,8 @@ child processes; tool installers can otherwise change which `python` is on `PATH
 ## Run and inspect
 
 In the repository's Actions tab, select **Native desktop comparison**, then **Run
-workflow**. Leave `comparison` disabled for the first run. The default diagnostic
+workflow**. Set `comparison` to false for a shorter setup diagnostic; leave it enabled
+for the full footprint matrix. The diagnostic
 waits up to 45 seconds for an owned window with the expected title, settles for five
 seconds, waits up to 45 additional seconds for a nonblank client capture, captures it, collects ten sampling intervals, and captures it again. Each candidate
 has a 480-second watchdog; the job has a 90-minute limit, including compilation.
@@ -30,8 +32,8 @@ Inspect downloaded `native-<runner>-<run-id>` artifacts before interpreting resu
   Cargo lockfiles when a new example did not yet have a committed lockfile. Subsequent
   builds should commit those locks; the workflow builds with `--locked` after resolution.
   Rust sources are formatted on the runner and copied under
-  `build/formatted/` for review. An explicit one-time `refresh_egui_lock` input
-  resolves the Windows renderer change and preserves its exact lock artifact.
+  `build/formatted/` for review. The Windows renderer dependency resolution is now
+  committed; subsequent builds use the preserved lock with `--locked`.
 - `<candidate>/outcome.json`: actual outcome, window owner/title/bounds, capture dimensions,
   environment, process scope, limitations, summary and cleanup status.
 - `<candidate>/application.log`: stdout/stderr, including an observed renderer when the

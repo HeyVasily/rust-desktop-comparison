@@ -1,7 +1,7 @@
 """Attribute WKWebView XPC services with macOS process responsibility metadata.
 
-Private interfaces are checked at runtime and failures prevent a complete scope.
-Coalition IDs are audit evidence only: a shell and its children can share a
+Private interfaces are checked at runtime; responsibility failures refuse a complete
+scope. Coalition lookup errors are recorded, but IDs are audit evidence only: a shell and its children can share a
 resource coalition, so coalition equality is not sufficient ownership evidence.
 
 ABI sources:

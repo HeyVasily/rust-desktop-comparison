@@ -10,8 +10,8 @@ The system webview is **WebKitGTK on Linux**, **WebView2 on Windows**, and
 Windows or macOS result is not a WebKitGTK result. Record the installed webview
 runtime version as well as Tauri's version.
 
-The initial 1120×768 logical-pixel window shows All projects, project-001 and
-snapshot 0. Ten yards and 100 projects support selection/details, an editable
+The initial 960×640 logical-pixel window shows All projects, project-001 and
+snapshot 0, with initial keyboard focus on Refresh. Ten yards and 100 projects support selection/details, an editable
 case-sensitive name filter, scrolling and a Refresh snapshot counter. State
 stays in JavaScript memory; there are no timers or network calls.
 
@@ -42,7 +42,9 @@ placeholder asset. Dependency licenses are separate from this example's MIT
 license; Tauri is [MIT/Apache-2.0](https://github.com/tauri-apps/tauri#licenses),
 and system webviews have their own terms.
 
-Resource measurements must include the GUI process **and its webview child
-processes**, including helpers with their threads. A single-PID measurement is
+Resource measurements must include the GUI process **and its application-owned
+webview processes**, including helpers outside ordinary ancestry on macOS. The
+[native probe](../../tools/native_probe.py) uses responsibility metadata for those
+WKWebView XPC services. A single-PID measurement is
 not a matched Tauri result. Shared system services and their exclusion must be
 documented separately. No historical measurement is claimed for this example.

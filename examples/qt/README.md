@@ -4,8 +4,8 @@ A standalone C++17 control using Qt 6 Widgets. No Qt Quick, QML, WebEngine or Ru
 bindings are involved. CMake accepts Qt 6.4 or newer; record the installed Qt version
 alongside any measurement instead of treating the minimum as the measured version.
 
-The initial 1120×768 logical-pixel window shows All projects, project-001 and
-snapshot 0. It includes ten yard buttons, 100 selectable project rows, details,
+The initial 960×640 logical-pixel window shows All projects, project-001 and
+snapshot 0, with initial keyboard focus on Refresh. It includes ten yard buttons, 100 selectable project rows, details,
 an editable case-sensitive name filter, scrolling and an in-memory Refresh counter.
 There is no backend or timer.
 

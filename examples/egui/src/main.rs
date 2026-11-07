@@ -122,8 +122,11 @@ fn main() -> eframe::Result {
         let mut setup = eframe::egui_wgpu::WgpuSetupCreateNew::without_display_handle();
         setup.instance_descriptor.backends = eframe::wgpu::Backends::DX12;
         // Use Windows' built-in shader compiler, avoiding an untracked DXC DLL.
-        setup.instance_descriptor.backend_options.dx12.shader_compiler =
-            eframe::wgpu::Dx12Compiler::Fxc;
+        setup
+            .instance_descriptor
+            .backend_options
+            .dx12
+            .shader_compiler = eframe::wgpu::Dx12Compiler::Fxc;
         eframe::NativeOptions {
             viewport: egui::ViewportBuilder::default().with_inner_size([960.0, 640.0]),
             renderer: eframe::Renderer::Wgpu,

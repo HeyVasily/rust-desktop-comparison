@@ -4,8 +4,8 @@ Stock Slint 1.18.1, Rust and a small declarative layout. The example selects the
 winit backend and software renderer explicitly. Accessibility is enabled; the
 Qt backend, GPU renderers and local dependency patches are absent.
 
-The initial 1120×768 logical-pixel window shows All projects, project-001 and
-snapshot 0. Ten yard buttons filter 100 synthetic projects. Project buttons update
+The initial 960×640 logical-pixel window shows All projects, project-001 and
+snapshot 0, with initial keyboard focus on Refresh. Ten yard buttons filter 100 synthetic projects. Project buttons update
 details, the editable filter matches project names, the list scrolls, and Refresh
 increments the in-memory snapshot. There is no backend or periodic work.
 
