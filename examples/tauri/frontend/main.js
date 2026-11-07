@@ -63,3 +63,4 @@ document.getElementById("refresh").addEventListener("click", () => {
   document.getElementById("snapshot").textContent = `Snapshot ${state.refreshes} · local fixture`;
 });
 selectProject(0);
+document.getElementById("refresh").focus();

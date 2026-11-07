@@ -8,7 +8,9 @@ series, with their process scope, renderer and platform recorded.
 The examples show 10 synthetic yards and 100 projects: navigation, project selection,
 scrolling, an editable filter and a Refresh button that advances an in-memory snapshot.
 There is no backend, inventory scan or periodic polling. The original workload is named
-Veranda; its labels are retained so the imported sources match the measured applications.
+Veranda. Historical captures retain the original 1120×768 fixture; current examples
+use 960×640 windows to fit native hosted desktops. Renderer variants and actual
+source commits are recorded per series.
 
 | Framework | Implementation here | Evidence |
 | --- | --- | --- |

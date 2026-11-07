@@ -4,8 +4,9 @@ export struct ProjectRow { id: int, name: string }
 
 export component Demo inherits Window {
     title: "Veranda Slint comparison";
-    width: 1120px;
-    height: 768px;
+    width: 960px;
+    height: 640px;
+    forward-focus: refresh-button;
     in property <[string]> yards;
     in property <[ProjectRow]> projects;
     in property <int> selected-yard: 0;
@@ -27,7 +28,7 @@ export component Demo inherits Window {
         Text { text: "Synthetic comparison · 10 yards · 100 projects · no backend"; }
         HorizontalBox {
             padding: 0px;
-            Button { text: "Refresh"; clicked => { root.refresh(); } }
+            refresh-button := Button { text: "Refresh"; clicked => { root.refresh(); } }
             Text { text: "Snapshot " + root.snapshot + " · local fixture"; }
             Text { text: "Filter:"; }
             LineEdit {
@@ -43,6 +44,7 @@ export component Demo inherits Window {
             vertical-stretch: 1;
             VerticalBox {
                 padding: 0px;
+                spacing: 4px;
                 width: 200px;
                 Text { text: "Yards"; font-weight: 700; }
                 for yard[index] in root.yards: Button {

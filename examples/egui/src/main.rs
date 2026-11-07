@@ -1,5 +1,6 @@
 //! Synthetic UI comparison only: no RPC, filesystem inventory or production actions.
 use eframe::egui;
+#[cfg(not(target_os = "windows"))]
 use eframe::glow::HasContext;
 
 struct Demo {
@@ -95,7 +96,7 @@ impl eframe::App for Demo {
                     {
                         if ui
                             .add_sized(
-                                [600.0, 38.0],
+                                [ui.available_width(), 38.0],
                                 egui::Button::selectable(
                                     self.project == project,
                                     format!("{name}                 NOT_CREATED"),
@@ -114,8 +115,28 @@ impl eframe::App for Demo {
 }
 
 fn main() -> eframe::Result {
+    #[cfg(target_os = "windows")]
+    let options = {
+        // Hosted Windows desktops expose OpenGL 1.1. DX12 supports their WARP
+        // software adapter and uses hardware when available; report the selection.
+        let mut setup = eframe::egui_wgpu::WgpuSetupCreateNew::without_display_handle();
+        setup.instance_descriptor.backends = eframe::wgpu::Backends::DX12;
+        // Use Windows' built-in shader compiler, avoiding an untracked DXC DLL.
+        setup.instance_descriptor.backend_options.dx12.shader_compiler =
+            eframe::wgpu::Dx12Compiler::Fxc;
+        eframe::NativeOptions {
+            viewport: egui::ViewportBuilder::default().with_inner_size([960.0, 640.0]),
+            renderer: eframe::Renderer::Wgpu,
+            wgpu_options: eframe::WgpuConfiguration {
+                wgpu_setup: setup.into(),
+                ..Default::default()
+            },
+            ..Default::default()
+        }
+    };
+    #[cfg(not(target_os = "windows"))]
     let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default().with_inner_size([1120.0, 768.0]),
+        viewport: egui::ViewportBuilder::default().with_inner_size([960.0, 640.0]),
         renderer: eframe::Renderer::Glow,
         ..Default::default()
     };
@@ -123,6 +144,15 @@ fn main() -> eframe::Result {
         "Veranda egui comparison",
         options,
         Box::new(|cc| {
+            #[cfg(target_os = "windows")]
+            if let Some(render_state) = &cc.wgpu_render_state {
+                let info = render_state.adapter.get_info();
+                println!(
+                    "renderer wgpu backend={:?} adapter={:?} device_type={:?} driver={:?} driver_info={:?} shader_compiler=Fxc",
+                    info.backend, info.name, info.device_type, info.driver, info.driver_info
+                );
+            }
+            #[cfg(not(target_os = "windows"))]
             if let Some(gl) = &cc.gl {
                 // The creation callback owns a current OpenGL context.
                 println!("renderer {}", unsafe {

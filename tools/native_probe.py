@@ -38,14 +38,20 @@ def environment():
 
 class Family:
     """Retain observed descendants after reparenting, keyed by PID and creation time."""
-    def __init__(self, pid):
+    def __init__(self, pid, external_scope=None):
         root = psutil.Process(pid)
         self.root = root
         self.known = {pid: root}
         self.observed = {}
         self.access_errors = set()
+        self.external_scope = external_scope
+        self.next_scope_refresh = 0.0
 
     def refresh(self):
+        if self.external_scope and time.monotonic() >= self.next_scope_refresh:
+            for process in self.external_scope.refresh():
+                self.known[process.pid] = process
+            self.next_scope_refresh = time.monotonic() + 1
         for process in list(self.known.values()):
             try:
                 if process.is_running():
@@ -84,7 +90,7 @@ class Family:
                 self.access_errors.add(process.pid)
         if not self.root.is_running() or self.root.status() == psutil.STATUS_ZOMBIE:
             raise RuntimeError("Application exited during sampling")
-        return dict(monotonic=time.monotonic(), processes=rows,
+        return dict(monotonic=time.monotonic(), wall_time=time.time(), processes=rows,
                     family_rss_bytes=sum(row["rss_bytes"] for row in rows))
 
     def cleanup(self):
@@ -192,7 +198,25 @@ def find_window(pids, title):
     raise RuntimeError("Unsupported host")
 
 
-def capture(window, path):
+def prepare_window(window):
+    """Place Windows clients inside the available desktop, above the taskbar."""
+    if sys.platform != "win32":
+        return
+    from ctypes import wintypes
+    user32 = ctypes.windll.user32
+    user32.SetWindowPos.argtypes = [wintypes.HWND, wintypes.HWND, ctypes.c_int,
+                                   ctypes.c_int, ctypes.c_int, ctypes.c_int, wintypes.UINT]
+    work = wintypes.RECT()
+    if not user32.SystemParametersInfoW(48, 0, ctypes.byref(work), 0):
+        raise RuntimeError("Cannot read Windows desktop work area")
+    # SWP_NOSIZE | SWP_SHOWWINDOW. The source fixture supplies a 960x640 client.
+    if not user32.SetWindowPos(window["id"], 0, work.left + 8, work.top + 8, 0, 0, 0x0041):
+        raise RuntimeError("Cannot position owned window within desktop")
+    user32.SetForegroundWindow.argtypes = [wintypes.HWND]
+    user32.SetForegroundWindow(window["id"])
+
+
+def capture_once(window, path):
     if sys.platform == "darwin":
         import Quartz
         if hasattr(Quartz, "CGPreflightScreenCaptureAccess") and not Quartz.CGPreflightScreenCaptureAccess():
@@ -203,12 +227,37 @@ def capture(window, path):
         subprocess.run(["import", "-window", str(window["id"]), str(path)],
                        check=True, timeout=15, capture_output=True)
     else:
+        from ctypes import wintypes
+        work = wintypes.RECT()
+        if not ctypes.windll.user32.SystemParametersInfoW(48, 0, ctypes.byref(work), 0):
+            raise RuntimeError("Cannot verify desktop capture bounds")
+        left, top, right, bottom = window["rectangle"]
+        if left < work.left or top < work.top or right > work.right or bottom > work.bottom:
+            raise RuntimeError(f"Client rectangle {window['rectangle']} extends outside desktop work area")
         ImageGrab.grab(bbox=tuple(window["rectangle"]), all_screens=True).save(path)
     with Image.open(path) as screenshot:
-        if min(screenshot.size) < 100 or max(ImageStat.Stat(screenshot.convert("RGB")).stddev) < 2:
+        # Exclude titlebar and outer borders: text in chrome must not make a black
+        # GTK client count as rendered. This remains a heuristic, requiring review.
+        content = screenshot.convert("RGB").crop((20, 60, screenshot.width - 20, screenshot.height - 20))
+        if min(screenshot.size) < 100 or max(ImageStat.Stat(content).stddev) < 2:
             raise RuntimeError("Capture is too small or near-uniform; desktop rendering not established")
         return dict(width=screenshot.width, height=screenshot.height,
                     inspection="Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion")
+
+
+def capture(window, path, readiness_timeout=0):
+    deadline = time.monotonic() + readiness_timeout
+    attempts = 0
+    while True:
+        attempts += 1
+        try:
+            evidence = capture_once(window, path)
+            evidence["readiness_attempts"] = attempts
+            return evidence
+        except RuntimeError:
+            if time.monotonic() >= deadline:
+                raise
+            time.sleep(1)
 
 
 def summarize(rows):
@@ -217,14 +266,21 @@ def summarize(rows):
     # lose their final fractional interval. Never subtract counters from different identities.
     previous = {f"{p['pid']}:{p['created']}": p["cpu_seconds"] for p in rows[0]["processes"]}
     total = 0.0
+    late = set()
     for row in rows[1:]:
         for process in row["processes"]:
             identity = f"{process['pid']}:{process['created']}"
             current = process["cpu_seconds"]
+            if identity not in previous and process["created"] <= rows[0].get("wall_time", -math.inf):
+                # Its CPU at the baseline is unknown. Do not charge startup work
+                # from before this phase to idle; refuse a complete CPU claim.
+                late.add(identity)
+                previous[identity] = current
             total += max(0, current - previous.get(identity, 0))
             previous[identity] = current
     memory = sorted(row["family_rss_bytes"] / 2**20 for row in rows[1:])
     return dict(seconds=elapsed, sample_intervals=len(rows) - 1,
+                observed_cpu_seconds=total, late_discovered_preexisting_processes=sorted(late),
                 observed_cpu_percent_one_core=100 * total / elapsed,
                 family_rss_mib=dict(median=statistics.median(memory),
                                     p95=memory[math.ceil(.95 * len(memory)) - 1],
@@ -251,7 +307,7 @@ def phase(family, title, output, name, settle, seconds, minimized_window=None):
         window = find_window({p.pid for p in family.refresh()}, title)
         if not window:
             raise RuntimeError("No matching visible non-minimized window after settling")
-        evidence = capture(window, output / f"{name}.png")
+        evidence = capture(window, output / f"{name}.png", readiness_timeout=45 if name == "diagnostic" else 0)
     rows = [family.sample()]
     write_json(output / f"{name}-samples.json", rows)
     for _ in range(seconds):
@@ -268,10 +324,18 @@ def phase(family, title, output, name, settle, seconds, minimized_window=None):
         if not final_window or final_window["id"] != window["id"]:
             raise RuntimeError("Window missing or replaced during sampling")
         capture(final_window, output / f"{name}-end.png")
-    return dict(status="passed", window=window, capture=evidence, summary=summarize(rows))
+    summary = summarize(rows)
+    if summary["late_discovered_preexisting_processes"]:
+        raise RuntimeError("Process predating CPU baseline was discovered late; complete idle CPU accounting unavailable")
+    return dict(status="passed", window=window, capture=evidence, summary=summary)
 
 
 def audit_scope(result, family, before_helpers):
+    family.refresh()
+    if family.external_scope:
+        result["macos_process_scope"] = family.external_scope.report(require_webcontent=True)
+        if not result["macos_process_scope"]["complete"] and result["status"] != "failed":
+            result.update(status="incomplete_process_scope", reason="macOS WebKit responsibility scope validation failed")
     unassigned = {key: value for key, value in web_helpers().items()
                   if key not in before_helpers and value["pid"] not in family.known}
     result["unassigned_new_web_helpers"] = list(unassigned.values())
@@ -292,7 +356,7 @@ def main():
     result = dict(name=args.name, status="failed", build_mode="release", environment=environment(),
                   memory_metric="Windows Working Set" if sys.platform == "win32" else ("macOS RSS" if sys.platform == "darwin" else "Linux RSS"),
                   limitations=["Summed RSS can double-count shared pages; this is not Linux PSS",
-                               "Observed process ancestry, polled at 5 Hz; very short-lived children may escape",
+                               "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
                                "CPU may omit an exiting process's final interval; no system-service allocation",
                                "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
                                "Screenshot content and occlusion require artifact inspection"], phases={})
@@ -306,15 +370,32 @@ def main():
         if not args.executable.is_file():
             raise RuntimeError("Release executable missing; inspect build log")
         before_helpers = web_helpers()
+        command = [str(args.executable.resolve())]
+        if sys.platform == "darwin" and args.name == "tauri":
+            from macos_process_scope import launch_command
+            command = launch_command(args.executable.resolve(), args.output)
+        app_env = os.environ.copy()
+        if sys.platform == "win32" and args.name == "gtk":
+            runtime_path = Path("artifacts/build/windows-gtk-runtime.json")
+            runtime = json.loads(runtime_path.read_text(encoding="utf-8"))
+            app_env["PATH"] = runtime["path_prepend"] + os.pathsep + app_env["PATH"]
+            app_env.update(runtime["environment"])
+            result["runtime_variant"] = runtime
         with (args.output / "application.log").open("w", encoding="utf-8") as log:
-            app = subprocess.Popen([str(args.executable.resolve())], stdout=log, stderr=subprocess.STDOUT)
+            app = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=app_env)
             result["cleanup_status"] = "unknown"
-            family = Family(app.pid)
+            external_scope = None
+            if sys.platform == "darwin" and args.name == "tauri":
+                from macos_process_scope import MacOSProcessScope
+                external_scope = MacOSProcessScope(psutil.Process(app.pid))
+            family = Family(app.pid, external_scope=external_scope)
             deadline = time.monotonic() + 45
             while time.monotonic() < deadline:
                 if app.poll() is not None:
                     raise RuntimeError(f"Application exited before window discovery: {app.returncode}")
-                if find_window({p.pid for p in family.refresh()}, args.title):
+                discovered = find_window({p.pid for p in family.refresh()}, args.title)
+                if discovered:
+                    prepare_window(discovered)
                     break
                 time.sleep(.2)
             else:
@@ -323,11 +404,12 @@ def main():
             unassigned = {key: value for key, value in web_helpers().items()
                           if key not in before_helpers and value["pid"] not in family.known}
             result["unassigned_new_web_helpers"] = list(unassigned.values())
-            if family.access_errors or unassigned or (sys.platform == "darwin" and args.name == "tauri"):
-                result.update(status="incomplete_process_scope", reason=(
-                    "WKWebView XPC ownership is not established by ancestry on macOS"
-                    if sys.platform == "darwin" and args.name == "tauri"
-                    else "Unattributed web helpers or denied process access"))
+            scope_complete = True
+            if external_scope:
+                result["macos_process_scope"] = external_scope.report(require_webcontent=True)
+                scope_complete = result["macos_process_scope"]["complete"]
+            if family.access_errors or unassigned or not scope_complete:
+                result.update(status="incomplete_process_scope", reason="Unattributed web helpers, invalid responsibility scope or denied process access")
             else:
                 result["status"] = "diagnostic_passed"
                 if args.comparison:
@@ -349,7 +431,8 @@ def main():
                 audit_scope(result, family, before_helpers)
             except Exception as error:
                 result["scope_audit_error"] = f"{type(error).__name__}: {error}"
-                result.update(status="incomplete_process_scope", reason="Final process scope audit failed")
+                if result["status"] != "failed":
+                    result.update(status="incomplete_process_scope", reason="Final process scope audit failed")
             result["observed_processes"] = list(family.observed.values())
             try:
                 result["cleanup_survivors"] = family.cleanup()
@@ -361,7 +444,9 @@ def main():
                 result.update(status="incomplete_process_scope", reason="Denied access to a tracked process")
             if result["cleanup_survivors"]:
                 result.update(status="failed", reason="Tracked processes survived cleanup")
-            elif not family.access_errors and not result.get("unassigned_new_web_helpers") and not result.get("scope_audit_error"):
+            elif (not family.access_errors and not result.get("unassigned_new_web_helpers")
+                  and not result.get("scope_audit_error")
+                  and result.get("macos_process_scope", {}).get("complete", True)):
                 result["cleanup_status"] = "clean"
         elif app:
             # Construction of the family tracker failed after launch. Reap the root,

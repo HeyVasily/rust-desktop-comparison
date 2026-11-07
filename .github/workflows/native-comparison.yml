@@ -12,6 +12,10 @@ on:
         description: 'After diagnostic, sample 120s/30s visible idle (Linux also verified minimized)'
         type: boolean
         default: false
+      refresh_egui_lock:
+        description: 'One-time dependency resolution after the Windows renderer change; preserve lock artifact'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -53,6 +57,8 @@ jobs:
           rustc -Vv > artifacts/build/rust-version.txt
           cargo -V >> artifacts/build/rust-version.txt
           cmake --version > artifacts/build/cmake-version.txt
+      - name: Probe accounting and attribution checks
+        run: '"$PROBE_PYTHON" -m unittest discover -s tools -p "test_*.py"'
       - name: Linux build and X11 runtime libraries
         if: runner.os == 'Linux'
         run: |
@@ -67,6 +73,21 @@ jobs:
           version: '6.8.3'
           arch: win64_msvc2022_64
           cache: false
+      - name: GTK4 Windows toolchain
+        if: runner.os == 'Windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-pkgconf
+            mingw-w64-ucrt-x86_64-gtk4
+      - name: Build GTK4 C control on Windows
+        if: runner.os == 'Windows'
+        continue-on-error: true
+        shell: msys2 {0}
+        run: bash tools/windows-setup.sh
       - name: Native macOS libraries
         if: runner.os == 'macOS'
         continue-on-error: true
@@ -84,10 +105,18 @@ jobs:
           } else {
             'WebView2 runtime not found in standard machine install directory; launch will validate availability.' | Out-File artifacts/build/webview2-version.txt
           }
+      - name: Resolve changed egui renderer dependencies
+        if: inputs.refresh_egui_lock
+        run: cargo generate-lockfile --manifest-path examples/egui/Cargo.toml
       - name: Build egui release
         continue-on-error: true
         timeout-minutes: 15
-        run: cargo build --release --locked --manifest-path examples/egui/Cargo.toml 2>&1 | tee artifacts/build/egui.log
+        run: |
+          cargo fmt --manifest-path examples/egui/Cargo.toml
+          mkdir -p artifacts/build/formatted/egui/src
+          cp examples/egui/src/main.rs artifacts/build/formatted/egui/src/main.rs
+          cp examples/egui/Cargo.lock artifacts/build/egui-Cargo.lock
+          cargo build --release --locked --manifest-path examples/egui/Cargo.toml 2>&1 | tee artifacts/build/egui.log
       - name: Resolve missing new-example locks and preserve exact resolution
         continue-on-error: true
         run: |
@@ -155,8 +184,6 @@ jobs:
               command = [os.environ['PROBE_PYTHON'], 'tools/native_probe.py', '--name', name,
                          '--title', title, '--executable', str(executable),
                          '--output', 'artifacts/' + name]
-              if windows and name == 'gtk':
-                  command += ['--unsupported-reason', 'Windows GTK4 toolchain/runtime not configured; MSYS2 integration remains unverified']
               if os.environ['COMPARISON'] == 'true':
                   command += ['--comparison']
               try:

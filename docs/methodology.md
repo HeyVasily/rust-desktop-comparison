@@ -59,9 +59,11 @@ failures. Both applications exited naturally with status zero; VM release succee
 Independent review recomputed the summaries and checked source/screenshot bindings.
 
 The [raw samples](../measurements/2026-11-07/README.md) are copied from the original
-run. The current examples and probe are byte-identical to the measured source files
-in Subyard commit `f0ff6f17f10cb9416fe3fe801a0b53b397bb5a14`; only their repository
-locations changed. No new benchmark is claimed for this import.
+run. At comparison repository commit `d1a45eb`, the imported examples and probe
+were byte-identical to Subyard commit `f0ff6f17f10cb9416fe3fe801a0b53b397bb5a14`.
+Later native-runner fixtures use 960×640 windows and Windows-specific rendering;
+those changes do not alter this original dataset. Check out `d1a45eb` to reproduce
+the original source and commands below.
 
 Original measured binary SHA-256 values:
 

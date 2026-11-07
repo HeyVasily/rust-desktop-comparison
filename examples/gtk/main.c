@@ -48,14 +48,15 @@ static void activate(GtkApplication *app, gpointer unused) {
     (void)unused;
     GtkWidget *window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(window), "Veranda GTK comparison");
-    gtk_window_set_default_size(GTK_WINDOW(window), 1120, 768);
+    gtk_window_set_default_size(GTK_WINDOW(window), 960, 640);
     GtkWidget *root = gtk_box_new(GTK_ORIENTATION_VERTICAL, 12);
     gtk_widget_set_margin_start(root, 12); gtk_widget_set_margin_end(root, 12);
     gtk_widget_set_margin_top(root, 12); gtk_widget_set_margin_bottom(root, 12);
     gtk_window_set_child(GTK_WINDOW(window), root);
     gtk_box_append(GTK_BOX(root), gtk_label_new("Veranda / GTK4 — Synthetic comparison · 10 yards · 100 projects · no backend"));
     GtkWidget *toolbar = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
-    GtkWidget *button = gtk_button_new_with_label("Refresh");
+    GtkWidget *refresh_button = gtk_button_new_with_label("Refresh");
+    GtkWidget *button = refresh_button;
     g_signal_connect(button, "clicked", G_CALLBACK(refresh), NULL);
     gtk_box_append(GTK_BOX(toolbar), button);
     snapshot = gtk_label_new("Snapshot 0 · local fixture"); gtk_box_append(GTK_BOX(toolbar), snapshot);
@@ -89,6 +90,7 @@ static void activate(GtkApplication *app, gpointer unused) {
     gtk_widget_set_size_request(details, 250, -1); gtk_box_append(GTK_BOX(body), details);
     g_signal_connect(projects, "row-selected", G_CALLBACK(select_project), NULL);
     gtk_list_box_select_row(GTK_LIST_BOX(projects), gtk_list_box_get_row_at_index(GTK_LIST_BOX(projects), 0));
+    gtk_window_set_focus(GTK_WINDOW(window), refresh_button);
     gtk_window_present(GTK_WINDOW(window));
 }
 

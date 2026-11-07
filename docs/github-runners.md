@@ -21,7 +21,7 @@ child processes; tool installers can otherwise change which `python` is on `PATH
 In the repository's Actions tab, select **Native desktop comparison**, then **Run
 workflow**. Leave `comparison` disabled for the first run. The default diagnostic
 waits up to 45 seconds for an owned window with the expected title, settles for five
-seconds, captures it, collects ten sampling intervals, and captures it again. Each candidate
+seconds, waits up to 45 additional seconds for a nonblank client capture, captures it, collects ten sampling intervals, and captures it again. Each candidate
 has a 480-second watchdog; the job has a 90-minute limit, including compilation.
 
 Inspect downloaded `native-<runner>-<run-id>` artifacts before interpreting results:
@@ -29,8 +29,9 @@ Inspect downloaded `native-<runner>-<run-id>` artifacts before interpreting resu
 - `build/`: compilation logs, compiler/native library versions, and the exact generated
   Cargo lockfiles when a new example did not yet have a committed lockfile. Subsequent
   builds should commit those locks; the workflow builds with `--locked` after resolution.
-  New Slint/Tauri Rust sources are formatted on the runner and copied under
-  `build/formatted/` for review; the original measured egui source is not formatted.
+  Rust sources are formatted on the runner and copied under
+  `build/formatted/` for review. An explicit one-time `refresh_egui_lock` input
+  resolves the Windows renderer change and preserves its exact lock artifact.
 - `<candidate>/outcome.json`: actual outcome, window owner/title/bounds, capture dimensions,
   environment, process scope, limitations, summary and cleanup status.
 - `<candidate>/application.log`: stdout/stderr, including an observed renderer when the
@@ -48,9 +49,9 @@ elapsed time is retained and used for CPU normalization. This phase runs only af
 pass. Windows/macOS measure visible idle state only. Linux additionally minimizes the
 window, verifies both `_NET_WM_STATE_HIDDEN` and `IsUnMapped`, and repeats the settling
 and 120-interval phase with the minimized state verified again afterward. No interaction or peak-memory
-claim is made. A failed candidate remains a failed job after artifacts upload. Windows
-GTK is explicitly `not_run`, because this workflow does not configure its MSYS2 GTK4
-compiler/runtime. Other configured examples are attempted even if an earlier build
+claim is made. A failed candidate remains a failed job after artifacts upload. All
+five candidates are configured on each OS, including GTK4 through MSYS2 UCRT64 on
+Windows. Other configured examples are attempted even if an earlier build
 or diagnostic fails, provided cleanup is explicitly clean or no process was launched.
 Missing/unknown cleanup status, survivors or denied process access stop subsequent
 candidates. An overall watchdog expiry also stops subsequent candidates to avoid
@@ -60,13 +61,15 @@ contaminating their measurements.
 
 Windows uses `EnumWindows`, process ownership, exact title, visible/non-minimized
 state, `GetClientRect` and `ClientToScreen`, then Pillow's real desktop capture of that
-client rectangle. Capture can contain an occluding window; visual artifact inspection
+client rectangle. The probe places the window inside the work area and refuses
+client bounds extending beyond it (including the taskbar). Capture can still contain
+an occluding window; visual artifact inspection
 is required. On macOS, Quartz lists on-screen windows by owner PID/title/layer/bounds;
 `screencapture -l` captures the actual window including its titlebar. macOS capture
 needs Screen Recording access. Missing permission, missing title/window metadata or
 capture failure is recorded as failure; the probe does not assume a GUI session or
-request an interactive TCC approval. A nonuniform-image check rejects obvious blank
-captures but cannot prove the interface is correct. Retina scaling can change PNG
+request an interactive TCC approval. A nonuniform-image check excludes the titlebar and outer borders to reject a black
+client with painted chrome, but cannot prove the interface is correct. Retina scaling can change PNG
 pixel dimensions relative to logical window bounds.
 
 Linux uses an Xvfb display, Openbox and a dedicated D-Bus session. Window discovery
@@ -91,8 +94,15 @@ physical desktop; do not infer hardware-GPU performance or a universal toolkit r
 
 ## Toolkit/runtime differences
 
-Egui requests Glow and reports the actual OpenGL renderer in its log. A Windows
-runner without a sufficient OpenGL context may fail at launch. Slint explicitly uses
+The current fixture requests 960×640 logical client pixels in every example, fitting
+the hosted desktops. Refresh receives initial keyboard focus in the persistent-widget
+examples, avoiding the prior Qt filter caret workload. Recorded actual geometry and
+manual screenshot inspection remain necessary; old 1120×768 runs are a separate series.
+
+Egui uses Glow on Linux/macOS and reports its actual OpenGL renderer. On Windows it
+uses WGPU/DX12 with the built-in FXC compiler, logging the actual adapter, backend and
+device type. This is a distinct renderer variant; a software WARP adapter is not
+hardware GPU evidence. Slint explicitly uses
 its software renderer through winit. Qt uses Qt Widgets, with Qt 6.8.3 installed by
 [install-qt-action](https://github.com/jurplel/install-qt-action) on Windows and Homebrew
 Qt on macOS. GTK4 uses the host's default renderer; the workflow does not claim to
@@ -105,14 +115,22 @@ system WebKit version on macOS. WebView2 is a runtime distinct from the installe
 browser; see Microsoft's [distribution guidance](https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution).
 Missing WebView2 is exposed by the launch diagnostic rather than treated as a pass.
 
-WebView2 descendants are included when observable. WKWebView can use XPC helpers
-outside the app's process ancestry. The probe records newly appearing unassigned
-WebKit helpers, but cannot reliably allocate existing/shared helpers to this app.
-**macOS Tauri is therefore always marked `incomplete_process_scope` after a successful
-GUI diagnostic, and its full comparison phase is refused.** Its screenshot and partial
-process samples remain useful evidence of GUI availability, not a total application
-memory measurement. This bounded probe does not attempt a general XPC attribution
-system or claim that invisible child costs are zero.
+WebView2 descendants are included when observable. WKWebView XPC services can sit
+outside ordinary ancestry. The macOS Tauri launch uses a tiny exec-in-place wrapper
+that requests separate process responsibility. The probe then verifies the app is
+its own responsible process and admits WebKit helpers only when their responsible
+PID matches that live app. It records PID/creation time, responsibility and resource
+coalition metadata; coalition equality alone never establishes ownership. Global
+responsibility discovery runs at most once per second alongside ancestry discovery.
+
+This uses private macOS APIs, checked on the actual runner. Missing APIs, an
+unverified root, missing attributable WebContent, access errors, or new unassigned
+WebKit helpers refuse a complete comparison. Cleanup is never marked verified when
+that external scope is incomplete. The helper and exact attribution evidence are
+preserved with the candidate artifacts. Shared system services are not allocated,
+and short-lived helpers can escape polling. See [the implementation and upstream
+ABI sources](../tools/macos_process_scope.py). Earlier macOS runs used ancestry only
+and remain explicitly incomplete in their historical report.
 
 The optional Linux job measures all five candidates on its own runner. Its Ubuntu
 packages, versions and initial UI state differ from the historical Debian experiment.

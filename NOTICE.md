@@ -18,7 +18,9 @@ Dependency licenses are separate; see each pinned dependency's package metadata.
 | `docs/veranda/native-framework-egui.png` | `screenshots/egui.png` |
 | `docs/veranda/native-framework-gtk.png` | `screenshots/gtk.png` |
 
-The five source files and both screenshots are byte-identical to the originals.
+The five source files and both screenshots were byte-identical at repository commit
+`d1a45eb`. Later native-runner fixtures adjust window size/focus and add a Windows
+egui renderer; the original measured source remains available at that commit.
 Names such as Veranda and `org.subyard.Comparison` are retained as provenance of
 the synthetic workload, not as a dependency on the Subyard application.
 Historical measurements and methodology were adapted from the

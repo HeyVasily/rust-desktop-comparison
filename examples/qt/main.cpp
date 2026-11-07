@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     QApplication::setApplicationName("Veranda Qt Widgets comparison");
     QWidget window;
     window.setWindowTitle("Veranda Qt Widgets comparison");
-    window.resize(1120, 768);
+    window.resize(960, 640);
     auto *root = new QVBoxLayout(&window);
     root->setContentsMargins(12, 12, 12, 12);
     root->setSpacing(12);
@@ -58,6 +58,7 @@ int main(int argc, char **argv) {
     yards->setFixedWidth(200);
     auto *yardLayout = new QVBoxLayout(yards);
     yardLayout->setContentsMargins(0, 0, 0, 0);
+    yardLayout->setSpacing(4);
     yardLayout->addWidget(new QLabel("Yards"));
     auto *yardButtons = new QButtonGroup(&window);
     for (int yard = 1; yard <= 10; ++yard) {
@@ -130,5 +131,6 @@ int main(int argc, char **argv) {
     });
     projects->setCurrentRow(0);
     window.show();
+    refresh->setFocus(Qt::OtherFocusReason);
     return app.exec();
 }
