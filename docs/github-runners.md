@@ -107,7 +107,8 @@ The current fixture requests 960×640 logical client pixels in every example, fi
 the hosted desktops. Refresh receives initial keyboard focus in the persistent-widget
 examples, avoiding the prior Qt filter caret workload. Windows Slint requests its
 position before the first native paint; macOS Tauri explicitly sets its inner size
-and logs the applied geometry. Recorded actual geometry and
+using Cocoa `contentLayoutRect` to account for a full-size content view whose
+Tauri size includes the titlebar, and logs the applied native geometry. Recorded actual geometry and
 manual screenshot inspection remain necessary; old 1120×768 runs are a separate series.
 
 Egui uses Glow on Linux/macOS and reports its actual OpenGL renderer. On Windows it

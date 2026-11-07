@@ -11,6 +11,10 @@ tauri-build = { version = "=2.7.4", features = [] }
 [dependencies]
 tauri = { version = "=2.12.5", features = [] }
 
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "=0.6.5"
+objc2-app-kit = { version = "=0.3.2", default-features = false, features = ["std", "NSResponder", "NSWindow", "objc2-core-foundation"] }
+
 [features]
 # Embed the static frontend when building directly with Cargo, without the Tauri CLI.
 default = ["custom-protocol"]
