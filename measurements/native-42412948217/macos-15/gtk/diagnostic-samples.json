@@ -1,0 +1,145 @@
+[
+  {
+    "monotonic": 1109.597999708,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 109330432,
+        "cpu_seconds": 5.82291984
+      }
+    ],
+    "family_rss_bytes": 109330432
+  },
+  {
+    "monotonic": 1111.123164541,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 109330432,
+        "cpu_seconds": 7.332132032
+      }
+    ],
+    "family_rss_bytes": 109330432
+  },
+  {
+    "monotonic": 1112.540250625,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 110428160,
+        "cpu_seconds": 8.555477312
+      }
+    ],
+    "family_rss_bytes": 110428160
+  },
+  {
+    "monotonic": 1113.894953708,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 110428160,
+        "cpu_seconds": 9.744200128
+      }
+    ],
+    "family_rss_bytes": 110428160
+  },
+  {
+    "monotonic": 1115.5157475,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 114868224,
+        "cpu_seconds": 11.338593984000001
+      }
+    ],
+    "family_rss_bytes": 114868224
+  },
+  {
+    "monotonic": 1116.972920625,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 114868224,
+        "cpu_seconds": 12.785534144000001
+      }
+    ],
+    "family_rss_bytes": 114868224
+  },
+  {
+    "monotonic": 1118.702741166,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 114868224,
+        "cpu_seconds": 14.490921056
+      }
+    ],
+    "family_rss_bytes": 114868224
+  },
+  {
+    "monotonic": 1120.115968,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 114851840,
+        "cpu_seconds": 15.885286016
+      }
+    ],
+    "family_rss_bytes": 114851840
+  },
+  {
+    "monotonic": 1121.564982583,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 115064832,
+        "cpu_seconds": 17.329913536
+      }
+    ],
+    "family_rss_bytes": 115064832
+  },
+  {
+    "monotonic": 1122.969939083,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 115081216,
+        "cpu_seconds": 18.713476928
+      }
+    ],
+    "family_rss_bytes": 115081216
+  },
+  {
+    "monotonic": 1124.680089625,
+    "processes": [
+      {
+        "pid": 29234,
+        "created": 1794085523.497559,
+        "name": "gtk-control",
+        "rss_bytes": 115490816,
+        "cpu_seconds": 20.302963264
+      }
+    ],
+    "family_rss_bytes": 115490816
+  }
+]

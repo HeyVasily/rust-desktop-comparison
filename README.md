@@ -36,6 +36,29 @@ snapshot 1 after Refresh. These illustrate the comparison workload, not a finish
 
 ![GTK4: the same synthetic data, controls and selected project details](screenshots/gtk.png)
 
+### Additional interfaces on a macOS GitHub runner
+
+These new examples were built and captured on macOS 15 ARM64. They show the initial
+fixture state, project-001 and snapshot 0. Native window sizes differ because of the
+hosted display; they are not the original Linux snapshot-1 captures above.
+
+**Slint — declarative widgets with a software renderer**
+
+![Stock Slint on macOS](screenshots/native-42412948217/macos-15/slint.png)
+
+**Qt Widgets — native C++ widget tree**
+
+![Qt Widgets on macOS](screenshots/native-42412948217/macos-15/qt.png)
+
+**Tauri / WKWebView — embedded HTML/CSS/JavaScript**
+
+![Tauri WKWebView on macOS](screenshots/native-42412948217/macos-15/tauri.png)
+
+The [native results](docs/native-results.md) contain the full five-interface gallery,
+raw-data links and memory/CPU observations. The Tauri screenshot establishes a useful
+UI; its total macOS memory remains unknown because XPC helpers are outside the probe's
+attributable scope. Linux uses WebKitGTK and Windows uses WebView2 instead.
+
 ## What the layout code looks like
 
 Egui declares panels and widgets inside `App::ui`; state updates sit beside click handling.
@@ -171,7 +194,9 @@ Read the [full methodology and verification](docs/methodology.md) or inspect the
 
 ## Build and run
 
-The examples and resource probe target Linux/X11. The measured build used Rust/Cargo
+The commands below and the original `tools/measure.py` probe target Linux/X11.
+The separate [native runner guide](docs/github-runners.md) covers Windows/macOS and
+the new examples. The original measured build used Rust/Cargo
 1.99.1 and GTK4 4.18.6 on Debian 13. You need Rust/Cargo, Python 3, a C compiler,
 `pkg-config`, GTK4 development libraries, and the X11/OpenGL development libraries.
 The [reproduction guide](docs/methodology.md#reproduce) lists the Debian packages.

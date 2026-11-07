@@ -21,7 +21,7 @@ child processes; tool installers can otherwise change which `python` is on `PATH
 In the repository's Actions tab, select **Native desktop comparison**, then **Run
 workflow**. Leave `comparison` disabled for the first run. The default diagnostic
 waits up to 45 seconds for an owned window with the expected title, settles for five
-seconds, captures it, samples for ten seconds, and captures it again. Each candidate
+seconds, captures it, collects ten sampling intervals, and captures it again. Each candidate
 has a 480-second watchdog; the job has a 90-minute limit, including compilation.
 
 Inspect downloaded `native-<runner>-<run-id>` artifacts before interpreting results:
@@ -42,11 +42,12 @@ Inspect downloaded `native-<runner>-<run-id>` artifacts before interpreting resu
 - `<candidate>/*-samples.json`: raw timestamps, process identities, CPU counters and RSS.
   Samples are written incrementally so a later failure retains earlier observations.
 
-Enable `comparison` for 30 seconds of settling followed by 120 one-second sampling
-intervals. This phase runs only after that candidate's diagnostic and scope checks
+Enable `comparison` for 30 seconds of settling followed by 120 sampling intervals.
+Each interval includes one second of delays plus process-monitoring overhead; actual
+elapsed time is retained and used for CPU normalization. This phase runs only after that candidate's diagnostic and scope checks
 pass. Windows/macOS measure visible idle state only. Linux additionally minimizes the
-window, verifies both `_NET_WM_STATE_HIDDEN` and `IsUnMapped`, and runs another 30/120-second
-phase with the minimized state verified again afterward. No interaction or peak-memory
+window, verifies both `_NET_WM_STATE_HIDDEN` and `IsUnMapped`, and repeats the settling
+and 120-interval phase with the minimized state verified again afterward. No interaction or peak-memory
 claim is made. A failed candidate remains a failed job after artifacts upload. Windows
 GTK is explicitly `not_run`, because this workflow does not configure its MSYS2 GTK4
 compiler/runtime. Other configured examples are attempted even if an earlier build
@@ -73,8 +74,9 @@ checks PID, title and `xwininfo` viewable state; ImageMagick captures the actual
 client window. `LIBGL_ALWAYS_SOFTWARE=1` requests software OpenGL and `glxinfo -B` records
 the display renderer. The applications' own renderer remains unknown unless reported.
 
-The probe tracks descendants every 200 ms and retains identities after reparenting.
-It records family RSS and observed CPU increments once per second. Short-lived children
+The probe refreshes descendants with 200 ms delays and retains identities after reparenting.
+It records family RSS and observed CPU increments once per sampling interval. Actual
+cadence includes monitoring overhead. Short-lived children
 between discovery polls and the final CPU interval of exiting processes may be missed.
 Denied access marks the scope incomplete. Cleanup terminates only tracked application
 processes and reports any survivors; the external watchdog also attempts descendant

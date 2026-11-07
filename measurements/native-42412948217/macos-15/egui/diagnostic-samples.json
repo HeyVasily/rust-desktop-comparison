@@ -1,0 +1,145 @@
+[
+  {
+    "monotonic": 885.842047375,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82165760,
+        "cpu_seconds": 1.182220624
+      }
+    ],
+    "family_rss_bytes": 82165760
+  },
+  {
+    "monotonic": 887.373763916,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82132992,
+        "cpu_seconds": 1.193274656
+      }
+    ],
+    "family_rss_bytes": 82132992
+  },
+  {
+    "monotonic": 888.791432416,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82132992,
+        "cpu_seconds": 1.20429264
+      }
+    ],
+    "family_rss_bytes": 82132992
+  },
+  {
+    "monotonic": 889.903932791,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82132992,
+        "cpu_seconds": 1.20429264
+      }
+    ],
+    "family_rss_bytes": 82132992
+  },
+  {
+    "monotonic": 891.368099041,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82132992,
+        "cpu_seconds": 1.20429264
+      }
+    ],
+    "family_rss_bytes": 82132992
+  },
+  {
+    "monotonic": 892.60630275,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82132992,
+        "cpu_seconds": 1.20429264
+      }
+    ],
+    "family_rss_bytes": 82132992
+  },
+  {
+    "monotonic": 894.035471625,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82083840,
+        "cpu_seconds": 1.2050830879999999
+      }
+    ],
+    "family_rss_bytes": 82083840
+  },
+  {
+    "monotonic": 895.456986541,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82083840,
+        "cpu_seconds": 1.2050830879999999
+      }
+    ],
+    "family_rss_bytes": 82083840
+  },
+  {
+    "monotonic": 896.909979708,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82083840,
+        "cpu_seconds": 1.2050830879999999
+      }
+    ],
+    "family_rss_bytes": 82083840
+  },
+  {
+    "monotonic": 898.336503958,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82083840,
+        "cpu_seconds": 1.2050830879999999
+      }
+    ],
+    "family_rss_bytes": 82083840
+  },
+  {
+    "monotonic": 899.903743375,
+    "processes": [
+      {
+        "pid": 23492,
+        "created": 1794085298.769809,
+        "name": "veranda-egui-comparison",
+        "rss_bytes": 82083840,
+        "cpu_seconds": 1.2050830879999999
+      }
+    ],
+    "family_rss_bytes": 82083840
+  }
+]

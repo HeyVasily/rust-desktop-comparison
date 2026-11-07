@@ -1,0 +1,83 @@
+{
+  "name": "tauri",
+  "status": "incomplete_process_scope",
+  "build_mode": "release",
+  "environment": {
+    "os": "macOS-15.8.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "logical_cpus": 3,
+    "memory_bytes": 7516192768,
+    "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "runner_image": "macos15",
+    "image_version": "20261104.0514.1",
+    "commit": "4dbcf9ca4eeb88f165a1c4363af6a6a44751ac02",
+    "run_id": "42412948217",
+    "renderer": "See each application.log; unknown unless reported by the app",
+    "cpu_model": "Apple M1 (Virtual)",
+    "system_webkit_version": "20621.3.11.11.3"
+  },
+  "memory_metric": "macOS RSS",
+  "limitations": [
+    "Summed RSS can double-count shared pages; this is not Linux PSS",
+    "Observed process ancestry, polled at 5 Hz; very short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 73,
+        "pid": 46204,
+        "title": "Veranda Tauri comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          0.0,
+          25.0,
+          1024.0,
+          709.0
+        ]
+      },
+      "capture": {
+        "width": 1024,
+        "height": 684,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion"
+      },
+      "summary": {
+        "seconds": 14.375300124999967,
+        "sample_intervals": 10,
+        "observed_cpu_percent_one_core": 0.020366044357630377,
+        "family_rss_mib": {
+          "median": 69.40625,
+          "p95": 69.5,
+          "observed_maximum": 69.5
+        }
+      }
+    }
+  },
+  "cleanup_status": "unknown",
+  "unassigned_new_web_helpers": [
+    {
+      "create_time": 1794086207.221239,
+      "pid": 46208,
+      "name": "com.apple.WebKit.WebContent"
+    },
+    {
+      "create_time": 1794086207.382042,
+      "pid": 46209,
+      "name": "com.apple.WebKit.Networking"
+    }
+  ],
+  "reason": "WKWebView XPC ownership is not established by ancestry on macOS",
+  "observed_processes": [
+    {
+      "pid": 46204,
+      "name": "veranda-tauri-comparison",
+      "created": 1794086206.882752
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

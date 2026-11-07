@@ -1,0 +1,145 @@
+[
+  {
+    "monotonic": 1792.397212666,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72925184,
+        "cpu_seconds": 0.458506464
+      }
+    ],
+    "family_rss_bytes": 72925184
+  },
+  {
+    "monotonic": 1794.052609291,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72876032,
+        "cpu_seconds": 0.458659216
+      }
+    ],
+    "family_rss_bytes": 72876032
+  },
+  {
+    "monotonic": 1795.462458,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72876032,
+        "cpu_seconds": 0.458659216
+      }
+    ],
+    "family_rss_bytes": 72876032
+  },
+  {
+    "monotonic": 1796.891895208,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72777728,
+        "cpu_seconds": 0.45895131200000006
+      }
+    ],
+    "family_rss_bytes": 72777728
+  },
+  {
+    "monotonic": 1798.38774575,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72777728,
+        "cpu_seconds": 0.45895131200000006
+      }
+    ],
+    "family_rss_bytes": 72777728
+  },
+  {
+    "monotonic": 1799.807344291,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72777728,
+        "cpu_seconds": 0.461020784
+      }
+    ],
+    "family_rss_bytes": 72777728
+  },
+  {
+    "monotonic": 1801.158205208,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72777728,
+        "cpu_seconds": 0.461020784
+      }
+    ],
+    "family_rss_bytes": 72777728
+  },
+  {
+    "monotonic": 1802.669490541,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72777728,
+        "cpu_seconds": 0.461020784
+      }
+    ],
+    "family_rss_bytes": 72777728
+  },
+  {
+    "monotonic": 1804.056034708,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72728576,
+        "cpu_seconds": 0.461434144
+      }
+    ],
+    "family_rss_bytes": 72728576
+  },
+  {
+    "monotonic": 1805.416353208,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72728576,
+        "cpu_seconds": 0.461434144
+      }
+    ],
+    "family_rss_bytes": 72728576
+  },
+  {
+    "monotonic": 1806.772512791,
+    "processes": [
+      {
+        "pid": 46204,
+        "created": 1794086206.882752,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 72728576,
+        "cpu_seconds": 0.461434144
+      }
+    ],
+    "family_rss_bytes": 72728576
+  }
+]
