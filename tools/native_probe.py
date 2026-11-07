@@ -336,14 +336,25 @@ def phase(family, title, output, name, settle, seconds, minimized_window=None, c
     return dict(status="passed", window=window, capture=evidence, summary=summary)
 
 
-def audit_scope(result, family, before_helpers):
+def scope_snapshot(family, before_helpers):
+    # Force a current responsibility query at phase boundaries. Global WebKit
+    # services with a verified different owner are not application descendants.
+    family.next_scope_refresh = 0
     family.refresh()
+    report = family.external_scope.report(require_webcontent=True) if family.external_scope else None
+    unrelated = {f"{row['pid']}:{row['created']}" for row in report.get("unrelated_helpers", [])
+                 if row["responsible_pid"] > 0 and row["responsible_pid"] != family.root.pid} if report else set()
+    unassigned = {key: value for key, value in web_helpers().items()
+                  if key not in before_helpers and key not in family.observed and key not in unrelated}
+    return unassigned, report
+
+
+def audit_scope(result, family, before_helpers):
+    unassigned, report = scope_snapshot(family, before_helpers)
     if family.external_scope:
-        result["macos_process_scope"] = family.external_scope.report(require_webcontent=True)
+        result["macos_process_scope"] = report
         if not result["macos_process_scope"]["complete"] and result["status"] != "failed":
             result.update(status="incomplete_process_scope", reason="macOS WebKit responsibility scope validation failed")
-    unassigned = {key: value for key, value in web_helpers().items()
-                  if key not in before_helpers and value["pid"] not in family.known}
     result["unassigned_new_web_helpers"] = list(unassigned.values())
     if (unassigned or family.access_errors) and result["status"] in ("diagnostic_passed", "comparison_passed"):
         result.update(status="incomplete_process_scope", reason="Unattributed web helpers or denied process access after sampling")
@@ -412,12 +423,11 @@ def main():
                 raise RuntimeError("No matching GUI window in 45s; GUI session/title visibility may be unavailable")
             result["phases"]["diagnostic"] = phase(family, args.title, args.output, "diagnostic", 5, 10,
                                                    client_size=args.client_size)
-            unassigned = {key: value for key, value in web_helpers().items()
-                          if key not in before_helpers and value["pid"] not in family.known}
+            unassigned, report = scope_snapshot(family, before_helpers)
             result["unassigned_new_web_helpers"] = list(unassigned.values())
             scope_complete = True
             if external_scope:
-                result["macos_process_scope"] = external_scope.report(require_webcontent=True)
+                result["macos_process_scope"] = report
                 scope_complete = result["macos_process_scope"]["complete"]
             if family.access_errors or unassigned or not scope_complete:
                 result.update(status="incomplete_process_scope", reason="Unattributed web helpers, invalid responsibility scope or denied process access")
@@ -426,10 +436,11 @@ def main():
                 if args.comparison:
                     result["phases"]["comparison"] = phase(family, args.title, args.output, "comparison", 30, 120,
                                                            client_size=args.client_size)
-                    unassigned = {key: value for key, value in web_helpers().items()
-                                  if key not in before_helpers and value["pid"] not in family.known}
+                    unassigned, report = scope_snapshot(family, before_helpers)
                     result["unassigned_new_web_helpers"] = list(unassigned.values())
-                    result["status"] = "comparison_passed" if not unassigned and not family.access_errors else "incomplete_process_scope"
+                    if report:
+                        result["macos_process_scope"] = report
+                    result["status"] = "comparison_passed" if not unassigned and not family.access_errors and (not report or report["complete"]) else "incomplete_process_scope"
                     if sys.platform.startswith("linux") and result["status"] == "comparison_passed":
                         window = result["phases"]["comparison"]["window"]
                         subprocess.run(["xdotool", "windowminimize", str(window["id"])], check=True, timeout=5)

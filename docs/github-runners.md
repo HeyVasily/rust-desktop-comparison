@@ -11,7 +11,8 @@ title/artifacts identify that scope. Empty, duplicate and unknown selections fai
 before SDK setup.
 Each OS job runs its candidates sequentially on the same machine, with at most two
 jobs running concurrently. A successful build alone does not establish GUI access.
-The workflow is an experiment, not evidence that either runner supports every app.
+The [full result matrix](full-native-results.md) records validated cases. Image
+changes require fresh launch and measurement checks.
 
 As of 2026-11-07, GitHub lists Windows Server 2022 x64 and macOS 15 ARM64 as available
 standard images. macOS 14 has retired from Actions. Image contents change, so artifacts
@@ -137,7 +138,12 @@ responsibility discovery runs at most once per second alongside ancestry discove
 
 This uses private macOS APIs, checked on the actual runner. Missing APIs, an
 unverified root, missing attributable WebContent, access errors, or new unassigned
-WebKit helpers refuse a complete comparison. Cleanup is never marked verified when
+WebKit helpers refuse a complete comparison. Global helpers with a verified different
+responsible PID are excluded as unrelated. Native lookup errors for unknown helpers
+are retried; an unresolved live helper still refuses completion. Helpers that exit
+or become zombies before attribution are retained as explicit
+`vanished_unattributed_helpers` evidence, subject to the short-lived polling limit.
+Access errors for already attributed app helpers remain fatal. Cleanup is never marked verified when
 that external scope is incomplete. The helper and exact attribution evidence are
 preserved with the candidate artifacts. Shared system services are not allocated,
 and short-lived helpers can escape polling. See [the implementation and upstream

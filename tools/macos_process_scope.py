@@ -140,6 +140,8 @@ class MacOSProcessScope:
         self.unrelated = {}
         self.errors = set()
         self.coalition_errors = set()
+        self.pending = {}
+        self.vanished = {}
 
     def _coalitions(self, pid):
         try:
@@ -147,6 +149,40 @@ class MacOSProcessScope:
         except OSError as error:
             self.coalition_errors.add(str(error))
             return None
+
+    def _defer_lookup(self, process, identity, name, error):
+        # A failure reading an already attributed helper remains fatal. Unknown
+        # identities cannot safely be retried across PID reuse either.
+        if identity is None or identity in self.attributed:
+            self.errors.add(error)
+            return
+        pending = self.pending.setdefault(identity, {
+            "process": process,
+            "evidence": {"identity": identity, "pid": process.pid,
+                         "created": float(identity.partition(":")[2]), "name": name,
+                         "lookup_attempts": 0, "lookup_errors": []}})
+        evidence = pending["evidence"]
+        evidence["lookup_attempts"] += 1
+        if error not in evidence["lookup_errors"]:
+            evidence["lookup_errors"].append(error)
+
+    def _prune_pending(self):
+        for identity, pending in list(self.pending.items()):
+            process = pending["process"]
+            reason = None
+            try:
+                if not process.is_running() or process.status() == psutil.STATUS_ZOMBIE:
+                    reason = "Process exited before ownership could be established"
+                elif _identity(process) != identity:
+                    reason = "PID reused before ownership could be established"
+            except (psutil.NoSuchProcess, psutil.ZombieProcess):
+                reason = "Process exited before ownership could be established"
+            except psutil.AccessDenied:
+                # A denied liveness/identity check is not proof of exit.
+                pass
+            if reason:
+                self.vanished[identity] = dict(pending["evidence"], reason=reason)
+                del self.pending[identity]
 
     def refresh(self):
         if not self.root.is_running() or _identity(self.root) != self.root_identity:
@@ -166,20 +202,27 @@ class MacOSProcessScope:
             # Popen can return before the launcher executes the app. A later
             # refresh may establish self-responsibility; do not latch this race.
             return []
+        self._prune_pending()
         own = []
-        for process in self.process_iter(["pid", "name"]):
+        candidates = {process.pid: process for process in self.process_iter(["pid", "name"])}
+        for pending in self.pending.values():
+            process = pending["process"]
+            candidates.setdefault(process.pid, process)
+        for process in candidates.values():
             name = process.info.get("name") or ""
             if "webkit" not in name.lower():
                 continue
+            identity = None
             try:
                 identity = _identity(process)
                 responsible = self.metadata.responsible(process.pid)
-                record = {"pid": process.pid, "name": name,
+                record = {"identity": identity, "pid": process.pid, "name": name,
                           "created": process.create_time(), "responsible_pid": responsible,
                           "coalitions": self._coalitions(process.pid)}
                 # PID reuse or exit during metadata lookup cannot grant ownership.
                 if not process.is_running() or _identity(process) != identity:
                     continue
+                self.pending.pop(identity, None)
                 if responsible == self.root.pid:
                     record["attribution"] = "responsible_pid_equals_live_application_pid"
                     self.attributed[identity] = record
@@ -192,18 +235,26 @@ class MacOSProcessScope:
             except (psutil.NoSuchProcess, psutil.ZombieProcess):
                 continue
             except psutil.AccessDenied:
-                self.errors.add(f"Denied access to WebKit helper PID {process.pid}")
+                self._defer_lookup(process, identity, name,
+                                   f"Denied access to WebKit helper PID {process.pid}")
             except OSError as error:
-                # A process disappearing between enumeration and native metadata
-                # retrieval is an ordinary race; all other errors are material.
-                if error.errno != errno.ESRCH:
-                    self.errors.add(str(error))
+                if error.errno == errno.ESRCH and identity in self.attributed:
+                    # An owned process exiting between polls is already covered
+                    # by the sampling limitation, unlike an access denial.
+                    continue
+                self._defer_lookup(process, identity, name, str(error))
+        self._prune_pending()
         return own
 
     def report(self, require_webcontent=True):
+        self._prune_pending()
         webcontent = any("webcontent" in row["name"].lower()
                          for row in self.attributed.values())
         errors = set(self.errors)
+        for pending in self.pending.values():
+            evidence = pending["evidence"]
+            errors.add(f"Unresolved live WebKit helper {evidence['identity']}: "
+                       + "; ".join(evidence["lookup_errors"]))
         if not self.root_self_responsible:
             errors.add("Application is not verified as its own responsible process")
         if require_webcontent and not webcontent:
@@ -214,6 +265,9 @@ class MacOSProcessScope:
                 "root": dict(self.root_evidence),
                 "attributed_helpers": list(self.attributed.values()),
                 "unrelated_helpers": list(self.unrelated.values()),
+                "pending_unattributed_helpers": [dict(item["evidence"])
+                                                  for item in self.pending.values()],
+                "vanished_unattributed_helpers": list(self.vanished.values()),
                 "errors": sorted(errors),
                 "coalition_metadata_errors": sorted(self.coalition_errors),
                 "limitations": [

@@ -11,6 +11,29 @@ import native_probe as probe
 
 
 class NativeProbeTests(unittest.TestCase):
+    def test_verified_other_owner_is_excluded_from_global_webkit_audit(self):
+        family = Mock()
+        family.root.pid = 10
+        family.observed = {}
+        report = dict(complete=True, unrelated_helpers=[dict(pid=20, created=2.0, responsible_pid=7)])
+        family.external_scope.report.return_value = report
+        helpers = {'20:2.0': dict(pid=20, create_time=2.0, name='WebKit')}
+        with patch.object(probe, 'web_helpers', return_value=helpers):
+            unassigned, snapshot = probe.scope_snapshot(family, {})
+        self.assertEqual(unassigned, {})
+        self.assertEqual(snapshot, report)
+
+    def test_unrelated_pid_reuse_does_not_hide_unattributed_helper(self):
+        family = Mock()
+        family.root.pid = 10
+        family.observed = {}
+        family.external_scope.report.return_value = dict(
+            complete=True, unrelated_helpers=[dict(pid=20, created=1.0, responsible_pid=7)])
+        helpers = {'20:2.0': dict(pid=20, create_time=2.0, name='WebKit')}
+        with patch.object(probe, 'web_helpers', return_value=helpers):
+            unassigned, _ = probe.scope_snapshot(family, {})
+        self.assertEqual(unassigned, helpers)
+
     def test_windows_csd_surface_is_not_accepted_as_requested_client(self):
         family = Mock()
         family.refresh.return_value = []

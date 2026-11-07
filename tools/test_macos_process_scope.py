@@ -13,6 +13,7 @@ class Process:
         self.pid = pid
         self.created = created
         self.alive = True
+        self.state = psutil.STATUS_RUNNING
         self.info = {"pid": pid, "name": name}
         self.identity_error = None
 
@@ -23,6 +24,9 @@ class Process:
 
     def is_running(self):
         return self.alive
+
+    def status(self):
+        return self.state
 
 
 class Metadata:
@@ -111,8 +115,80 @@ class MacOSProcessScopeTests(unittest.TestCase):
 
     def test_exiting_helper_does_not_create_false_access_failure(self):
         self.metadata.owners[30] = OSError(errno.ESRCH, "process exited")
+        self.metadata.on_query[30] = lambda: setattr(self.unrelated, "alive", False)
         self.assertEqual(self.scope.refresh(), [self.webcontent])
         self.assertTrue(self.scope.report()["complete"])
+
+    def test_unknown_helper_permission_failure_then_exit_is_audited(self):
+        self.metadata.owners[30] = OSError(errno.EPERM, "helper lookup denied")
+        self.scope.refresh()
+        self.assertFalse(self.scope.report()["complete"])
+        self.unrelated.alive = False
+        report = self.scope.report()
+        self.assertTrue(report["complete"])
+        self.assertEqual(report["pending_unattributed_helpers"], [])
+        vanished = report["vanished_unattributed_helpers"]
+        self.assertEqual(len(vanished), 1)
+        self.assertEqual(vanished[0]["identity"], "30:1")
+        self.assertEqual(vanished[0]["pid"], 30)
+        self.assertIn("helper lookup denied", vanished[0]["lookup_errors"][0])
+
+    def test_unknown_live_helper_permission_failure_still_refuses(self):
+        self.metadata.owners[30] = OSError(errno.EPERM, "helper lookup denied")
+        self.scope.refresh()
+        self.scope.refresh()
+        report = self.scope.report()
+        self.assertFalse(report["complete"])
+        self.assertEqual(report["pending_unattributed_helpers"][0]["lookup_attempts"], 2)
+        self.assertEqual(report["vanished_unattributed_helpers"], [])
+
+    def test_unknown_helper_permission_failure_then_zombie_is_audited(self):
+        self.metadata.owners[30] = OSError(errno.EPERM, "helper lookup denied")
+        self.scope.refresh()
+        self.assertFalse(self.scope.report()["complete"])
+        self.unrelated.state = psutil.STATUS_ZOMBIE
+        report = self.scope.report()
+        self.assertTrue(report["complete"])
+        self.assertEqual(report["pending_unattributed_helpers"], [])
+        self.assertEqual(report["vanished_unattributed_helpers"][0]["identity"], "30:1")
+
+    def test_unknown_permission_failure_then_verified_unrelated_clears_pending(self):
+        self.metadata.owners[30] = OSError(errno.EPERM, "helper lookup denied")
+        self.scope.refresh()
+        self.metadata.owners[30] = 999
+        self.assertEqual(self.scope.refresh(), [self.webcontent])
+        report = self.scope.report()
+        self.assertTrue(report["complete"])
+        self.assertEqual(report["pending_unattributed_helpers"], [])
+        self.assertEqual(report["unrelated_helpers"][0]["identity"], "30:1")
+        self.assertEqual(report["unrelated_helpers"][0]["responsible_pid"], 999)
+
+    def test_attributed_helper_permission_failure_remains_fatal_after_exit(self):
+        self.scope.refresh()
+        self.metadata.owners[20] = OSError(errno.EPERM, "owned helper lookup denied")
+        self.scope.refresh()
+        self.webcontent.alive = False
+        self.assertFalse(self.scope.report()["complete"])
+        self.assertEqual(self.scope.report()["pending_unattributed_helpers"], [])
+
+    def test_attributed_helper_exit_does_not_become_access_denial(self):
+        self.scope.refresh()
+        self.metadata.owners[20] = OSError(errno.ESRCH, "owned helper exited")
+        self.metadata.on_query[20] = lambda: setattr(self.webcontent, "alive", False)
+        self.scope.refresh()
+        self.assertTrue(self.scope.report()["complete"])
+
+    def test_pending_pid_reuse_does_not_transfer_ownership(self):
+        self.metadata.owners[30] = OSError(errno.EPERM, "helper lookup denied")
+        self.scope.refresh()
+        self.unrelated.created = 2
+        self.metadata.owners[30] = 999
+        self.scope.refresh()
+        report = self.scope.report()
+        self.assertTrue(report["complete"])
+        self.assertEqual(report["vanished_unattributed_helpers"][0]["identity"], "30:1")
+        self.assertEqual(report["unrelated_helpers"][0]["identity"], "30:2")
+        self.assertEqual([p["pid"] for p in report["attributed_helpers"]], [20])
 
     def test_root_pid_reuse_refuses_scope(self):
         self.scope.refresh()
