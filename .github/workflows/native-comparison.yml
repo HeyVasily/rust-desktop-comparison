@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       platforms:
-        description: 'Choose native Windows/macOS, Linux X11, or all three'
+        description: 'Choose Windows, macOS, native pair, Linux X11, or all three'
         type: choice
-        options: [native, linux, all]
+        options: [native, windows, macos, linux, all]
         default: native
       comparison:
         description: 'After diagnostic, sample 120s/30s visible idle (Linux also verified minimized)'
@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       max-parallel: 2
       matrix:
-        os: ${{ fromJSON(inputs.platforms == 'linux' && '["ubuntu-24.04"]' || inputs.platforms == 'all' && '["windows-2022","macos-15","ubuntu-24.04"]' || '["windows-2022","macos-15"]') }}
+        os: ${{ fromJSON(inputs.platforms == 'windows' && '["windows-2022"]' || inputs.platforms == 'macos' && '["macos-15"]' || inputs.platforms == 'linux' && '["ubuntu-24.04"]' || inputs.platforms == 'all' && '["windows-2022","macos-15","ubuntu-24.04"]' || '["windows-2022","macos-15"]') }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 90
     env:
@@ -36,16 +36,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
+        id: probe_python
         with:
           python-version: '3.12'
       - uses: dtolnay/rust-toolchain@stable
       - name: Prepare probe and evidence directory
         run: |
           mkdir -p artifacts/build
-          python -m pip install psutil==7.0.0 Pillow==11.2.1
+          PROBE_PYTHON="${{ steps.probe_python.outputs.python-path }}"
+          echo "PROBE_PYTHON=$PROBE_PYTHON" >> "$GITHUB_ENV"
+          "$PROBE_PYTHON" -m pip install psutil==7.0.0 Pillow==11.2.1
           if [ "$RUNNER_OS" = macOS ]; then
-            python -m pip install pyobjc-framework-Quartz==11.0
+            "$PROBE_PYTHON" -m pip install pyobjc-framework-Quartz==11.0
           fi
+          "$PROBE_PYTHON" -c 'import sys, psutil, PIL; print(sys.executable)' > artifacts/build/probe-python.txt
           rustc -Vv > artifacts/build/rust-version.txt
           cargo -V >> artifacts/build/rust-version.txt
           cmake --version > artifacts/build/cmake-version.txt
@@ -67,9 +71,9 @@ jobs:
         if: runner.os == 'macOS'
         continue-on-error: true
         run: |
-          brew install qt gtk4 pkgconf 2>&1 | tee artifacts/build/brew.log
-          brew list --versions qt gtk4 pkgconf > artifacts/build/native-versions.txt
-          echo "Qt6_DIR=$(brew --prefix qt)/lib/cmake/Qt6" >> "$GITHUB_ENV"
+          brew install qtbase gtk4 pkgconf 2>&1 | tee artifacts/build/brew.log
+          brew list --versions qtbase gtk4 pkgconf > artifacts/build/native-versions.txt
+          echo "Qt6_DIR=$(brew --prefix qtbase)/lib/cmake/Qt6" >> "$GITHUB_ENV"
       - name: Record Windows WebView2 installation
         if: runner.os == 'Windows'
         shell: pwsh
@@ -127,6 +131,7 @@ jobs:
       - name: Run every candidate sequentially on this runner
         timeout-minutes: 35
         run: |
+          "$PROBE_PYTHON" -c 'import sys, psutil, PIL; print(sys.executable)' >> artifacts/build/probe-python.txt
           cat > artifacts/run_candidates.py <<'PY'
           import json
           import os
@@ -147,7 +152,7 @@ jobs:
           ]
           failed = []
           for name, title, executable in candidates:
-              command = [sys.executable, 'tools/native_probe.py', '--name', name,
+              command = [os.environ['PROBE_PYTHON'], 'tools/native_probe.py', '--name', name,
                          '--title', title, '--executable', str(executable),
                          '--output', 'artifacts/' + name]
               if windows and name == 'gtk':
@@ -195,9 +200,9 @@ jobs:
           PY
           if [ "$RUNNER_OS" = Linux ]; then
             export LIBGL_ALWAYS_SOFTWARE=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb XDG_SESSION_TYPE=x11
-            dbus-run-session -- xvfb-run -a -s '-screen 0 1600x1000x24' bash -c 'openbox > artifacts/build/openbox.log 2>&1 & glxinfo -B > artifacts/build/glxinfo.txt; python artifacts/run_candidates.py'
+            dbus-run-session -- xvfb-run -a -s '-screen 0 1600x1000x24' bash -c 'openbox > artifacts/build/openbox.log 2>&1 & glxinfo -B > artifacts/build/glxinfo.txt; "$PROBE_PYTHON" artifacts/run_candidates.py'
           else
-            python artifacts/run_candidates.py
+            "$PROBE_PYTHON" artifacts/run_candidates.py
           fi
       - name: Upload evidence, including failures
         if: always()
@@ -209,7 +214,7 @@ jobs:
           retention-days: 14
       - name: Require successful diagnostics for configured candidates
         run: |
-          python - <<'PY'
+          "$PROBE_PYTHON" - <<'PY'
           import json
           from pathlib import Path
           path = Path('artifacts/failed-candidates.json')

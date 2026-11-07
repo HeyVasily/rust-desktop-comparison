@@ -12,8 +12,8 @@ increments the in-memory snapshot. There is no backend or periodic work.
 From the repository root, with a current Rust toolchain and native compiler:
 
 ```sh
-cargo build --release --manifest-path examples/slint/Cargo.toml
-cargo run --release --manifest-path examples/slint/Cargo.toml
+cargo build --release --locked --manifest-path examples/slint/Cargo.toml
+cargo run --release --locked --manifest-path examples/slint/Cargo.toml
 ```
 
 The binary is `veranda-slint-comparison` (`.exe` on Windows), under

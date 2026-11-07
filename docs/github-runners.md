@@ -2,7 +2,8 @@
 
 The manually dispatched [workflow](../.github/workflows/native-comparison.yml) builds
 release examples and attempts actual GUI launches on `windows-2022` and `macos-15`.
-The `platforms` input also supports `linux` (`ubuntu-24.04`) and `all`.
+The `platforms` input supports `native` (Windows and macOS), individual `windows`,
+`macos` or `linux` (`ubuntu-24.04`), and `all`.
 Each OS job runs its candidates sequentially on the same machine, with at most two
 jobs running concurrently. A successful build alone does not establish GUI access.
 The workflow is an experiment, not evidence that either runner supports every app.
@@ -12,6 +13,8 @@ standard images. macOS 14 has retired from Actions. Image contents change, so ar
 record the image version, OS, architecture, CPU, memory, Rust compiler and native
 library versions. See the official [runner image inventory](https://github.com/actions/runner-images#available-images).
 Different operating systems and architectures must be analyzed separately.
+The probe uses the captured Python 3.12 executable throughout the job, including
+child processes; tool installers can otherwise change which `python` is on `PATH`.
 
 ## Run and inspect
 

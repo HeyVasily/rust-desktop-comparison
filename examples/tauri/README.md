@@ -20,8 +20,8 @@ Install Rust and the platform's
 repository root:
 
 ```sh
-cargo build --release --manifest-path examples/tauri/Cargo.toml
-cargo run --release --manifest-path examples/tauri/Cargo.toml
+cargo build --release --locked --manifest-path examples/tauri/Cargo.toml
+cargo run --release --locked --manifest-path examples/tauri/Cargo.toml
 ```
 
 Neither the Tauri CLI nor npm is needed. The executable is
