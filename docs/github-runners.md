@@ -5,8 +5,10 @@ release examples and attempts actual GUI launches on Windows, macOS and Linux.
 Its defaults request all three OS jobs and full memory/CPU sampling.
 The `platforms` input supports `native` (Windows and macOS), individual `windows`,
 `macos` or `linux` (`ubuntu-24.04`), and `all`. The optional `framework` input
-selects one candidate for a focused retry; `all` remains the default. A selected
-run validates only that candidate, and its title/artifacts identify that scope.
+accepts `all` or a comma-separated subset such as `gtk,slint` for focused retries.
+`all` remains the default. A subset run validates only those candidates, and its
+title/artifacts identify that scope. Empty, duplicate and unknown selections fail
+before SDK setup.
 Each OS job runs its candidates sequentially on the same machine, with at most two
 jobs running concurrently. A successful build alone does not establish GUI access.
 The workflow is an experiment, not evidence that either runner supports every app.
@@ -103,7 +105,9 @@ physical desktop; do not infer hardware-GPU performance or a universal toolkit r
 
 The current fixture requests 960×640 logical client pixels in every example, fitting
 the hosted desktops. Refresh receives initial keyboard focus in the persistent-widget
-examples, avoiding the prior Qt filter caret workload. Recorded actual geometry and
+examples, avoiding the prior Qt filter caret workload. Windows Slint requests its
+position before the first native paint; macOS Tauri explicitly sets its inner size
+and logs the applied geometry. Recorded actual geometry and
 manual screenshot inspection remain necessary; old 1120×768 runs are a separate series.
 
 Egui uses Glow on Linux/macOS and reports its actual OpenGL renderer. On Windows it

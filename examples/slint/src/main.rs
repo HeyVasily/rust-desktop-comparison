@@ -76,5 +76,28 @@ fn main() -> Result<(), slint::PlatformError> {
         ui.set_snapshot(ui.get_snapshot() + 1);
         println!("refresh {}", ui.get_snapshot());
     });
+    #[cfg(target_os = "windows")]
+    {
+        // Place the entire client on the hosted desktop before the first paint.
+        // Winit stores this in its creation attributes while the window is lazy.
+        ui.window().set_position(slint::PhysicalPosition::new(8, 8));
+        let weak = ui.as_weak();
+        // One startup observation after native creation, not an idle timer.
+        slint::Timer::single_shot(std::time::Duration::from_millis(100), move || {
+            if let Some(ui) = weak.upgrade() {
+                let window = ui.window();
+                let position = window.position();
+                let size = window.size();
+                println!(
+                    "geometry requested_outer_position=8,8 outer_position={},{} inner_physical={}x{} scale_factor={}",
+                    position.x,
+                    position.y,
+                    size.width,
+                    size.height,
+                    window.scale_factor()
+                );
+            }
+        });
+    }
     ui.run()
 }
