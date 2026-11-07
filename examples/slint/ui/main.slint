@@ -1,0 +1,94 @@
+import { Button, LineEdit, ListView, VerticalBox, HorizontalBox } from "std-widgets.slint";
+
+export struct ProjectRow { id: int, name: string }
+
+export component Demo inherits Window {
+    title: "Veranda Slint comparison";
+    width: 1120px;
+    height: 768px;
+    in property <[string]> yards;
+    in property <[ProjectRow]> projects;
+    in property <int> selected-yard: 0;
+    in property <int> selected-project: 0;
+    in property <string> list-title;
+    in property <string> project-name;
+    in property <string> project-yard;
+    in-out property <string> filter;
+    in property <int> snapshot: 0;
+    callback choose-yard(int);
+    callback choose-project(int);
+    callback filter-changed(string);
+    callback refresh();
+
+    VerticalBox {
+        padding: 12px;
+        spacing: 12px;
+        Text { text: "Veranda / Slint"; font-size: 22px; font-weight: 700; }
+        Text { text: "Synthetic comparison · 10 yards · 100 projects · no backend"; }
+        HorizontalBox {
+            padding: 0px;
+            Button { text: "Refresh"; clicked => { root.refresh(); } }
+            Text { text: "Snapshot " + root.snapshot + " · local fixture"; }
+            Text { text: "Filter:"; }
+            LineEdit {
+                preferred-width: 240px;
+                text <=> root.filter;
+                edited(value) => { root.filter-changed(value); }
+            }
+            Rectangle { horizontal-stretch: 1; }
+        }
+        HorizontalBox {
+            padding: 0px;
+            spacing: 12px;
+            vertical-stretch: 1;
+            VerticalBox {
+                padding: 0px;
+                width: 200px;
+                Text { text: "Yards"; font-weight: 700; }
+                for yard[index] in root.yards: Button {
+                    text: yard;
+                    height: 38px;
+                    checkable: true;
+                    checked: root.selected-yard == index + 1;
+                    clicked => { root.choose-yard(index + 1); }
+                }
+                Button {
+                    text: "All projects";
+                    checkable: true;
+                    checked: root.selected-yard == 0;
+                    clicked => { root.choose-yard(0); }
+                }
+                Rectangle { vertical-stretch: 1; }
+            }
+            VerticalBox {
+                padding: 0px;
+                horizontal-stretch: 1;
+                Text { text: root.list-title; font-weight: 700; }
+                Text { text: "Project                                      State"; }
+                ListView {
+                    for project in root.projects: Button {
+                        text: project.name + "                 NOT_CREATED";
+                        height: 38px;
+                        checkable: true;
+                        checked: root.selected-project == project.id;
+                        clicked => { root.choose-project(project.id); }
+                    }
+                }
+            }
+            VerticalBox {
+                padding: 0px;
+                width: 250px;
+                Text { text: "Project details"; font-weight: 700; }
+                Text { text: root.project-name; }
+                Text { text: root.project-yard; }
+                Text { text: "NOT_CREATED"; }
+                Text { text: "Synthetic data in memory."; }
+                Text {
+                    text: "Select a yard or project. Edit the filter. Refresh advances the fixture snapshot.";
+                    wrap: word-wrap;
+                }
+                Rectangle { vertical-stretch: 1; }
+            }
+        }
+    }
+}

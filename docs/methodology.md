@@ -1,5 +1,10 @@
 # Measurement method
 
+This page describes the original egui/GTK Linux pair. The new Slint, Qt Widgets
+and Tauri implementations use the separate [native runner procedure](github-runners.md).
+Their build and measurement outcomes must be recorded per run; they do not inherit
+the historical results below.
+
 ## Recorded environment
 
 The 2026-11-07 matched comparison used one disposable Debian 13 amd64 VM with four

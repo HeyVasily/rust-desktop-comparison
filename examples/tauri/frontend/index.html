@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veranda Tauri comparison</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Veranda / Tauri</h1>
+    <p>Synthetic comparison · 10 yards · 100 projects · no backend</p>
+    <div class="toolbar">
+      <button id="refresh" type="button">Refresh</button>
+      <span id="snapshot" aria-live="polite">Snapshot 0 · local fixture</span>
+      <label for="filter">Filter:</label>
+      <input id="filter" type="text" autocomplete="off" spellcheck="false">
+    </div>
+  </header>
+  <main>
+    <nav aria-label="Yards">
+      <h2>Yards</h2>
+      <div id="yards"></div>
+      <button id="all-projects" type="button" aria-pressed="true">All projects</button>
+    </nav>
+    <section class="project-pane" aria-labelledby="list-title">
+      <h2 id="list-title">All projects</h2>
+      <div class="columns"><span>Project</span><span>State</span></div>
+      <div id="projects" aria-label="Projects"></div>
+    </section>
+    <aside aria-labelledby="details-title">
+      <h2 id="details-title">Project details</h2>
+      <p id="project-name">project-001</p>
+      <p id="project-yard">yard-01</p>
+      <p>NOT_CREATED</p>
+      <p class="description">Synthetic data in memory.</p>
+      <p>Select a yard or project. Edit the filter. Refresh advances the fixture snapshot.</p>
+    </aside>
+  </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Veranda Tauri comparison",
+  "version": "0.1.0",
+  "identifier": "org.rustdesktopcomparison.tauri",
+  "build": {
+    "frontendDist": "frontend"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Veranda Tauri comparison",
+        "width": 1120,
+        "height": 768,
+        "minWidth": 800,
+        "minHeight": 540
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' asset: http://asset.localhost; connect-src ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": false,
+    "icon": ["icons/icon.png", "icons/icon.ico"]
+  }
+}

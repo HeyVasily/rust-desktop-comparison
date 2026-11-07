@@ -1,0 +1,30 @@
+:root {
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  color: #20242a;
+  background: #f5f6f8;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; height: 100vh; padding: 12px; display: flex; flex-direction: column; gap: 12px; }
+h1 { font-size: 22px; margin: 0 0 8px; }
+h2 { font-size: 16px; margin: 0 0 12px; }
+p { margin: 0 0 10px; line-height: 1.5; }
+button, input { font: inherit; border: 1px solid #b8bec8; border-radius: 4px; background: white; color: inherit; }
+button { cursor: pointer; min-height: 34px; padding: 6px 12px; }
+button:hover { background: #e9eef5; }
+button[aria-pressed="true"] { background: #dbeafe; border-color: #5681bd; }
+button:focus-visible, input:focus-visible { outline: 2px solid #2867b3; outline-offset: 1px; }
+input { width: 240px; min-height: 34px; padding: 6px 8px; }
+.toolbar { display: flex; align-items: center; gap: 12px; }
+main { display: grid; grid-template-columns: 200px minmax(0, 1fr) 250px; gap: 12px; flex: 1; min-height: 0; }
+nav { overflow-y: auto; }
+nav button { width: 100%; min-height: 38px; margin-bottom: 4px; }
+.project-pane { display: flex; flex-direction: column; min-height: 0; }
+.columns, .project { display: grid; grid-template-columns: 1fr 1fr; text-align: left; gap: 12px; }
+.columns { padding: 0 12px 8px; border-bottom: 1px solid #cbd0d8; }
+#projects { flex: 1; min-height: 0; overflow-y: auto; margin-top: 6px; }
+.project { width: 100%; min-height: 38px; margin-bottom: 2px; }
+.project[hidden] { display: none; }
+aside { border-left: 1px solid #cbd0d8; padding-left: 12px; overflow-y: auto; }
+.description { margin-top: 24px; }

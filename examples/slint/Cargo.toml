@@ -1,0 +1,15 @@
+[package]
+name = "veranda-slint-comparison"
+version = "0.1.0"
+edition = "2024"
+publish = false
+build = "build.rs"
+
+[dependencies]
+slint = { version = "=1.18.1", default-features = false, features = ["std", "compat-1-18", "backend-winit", "renderer-software", "accessibility"] }
+
+[build-dependencies]
+slint-build = "=1.18.1"
+
+[profile.release]
+strip = true

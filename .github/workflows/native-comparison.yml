@@ -1,0 +1,219 @@
+name: Native desktop comparison
+
+on:
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: 'Choose native Windows/macOS, Linux X11, or all three'
+        type: choice
+        options: [native, linux, all]
+        default: native
+      comparison:
+        description: 'After diagnostic, sample 120s/30s visible idle (Linux also verified minimized)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        os: ${{ fromJSON(inputs.platforms == 'linux' && '["ubuntu-24.04"]' || inputs.platforms == 'all' && '["windows-2022","macos-15","ubuntu-24.04"]' || '["windows-2022","macos-15"]') }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    env:
+      CARGO_TARGET_DIR: ${{ github.workspace }}/target
+      CARGO_BUILD_JOBS: '2'
+      CARGO_INCREMENTAL: '0'
+      COMPARISON: ${{ inputs.comparison }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Prepare probe and evidence directory
+        run: |
+          mkdir -p artifacts/build
+          python -m pip install psutil==7.0.0 Pillow==11.2.1
+          if [ "$RUNNER_OS" = macOS ]; then
+            python -m pip install pyobjc-framework-Quartz==11.0
+          fi
+          rustc -Vv > artifacts/build/rust-version.txt
+          cargo -V >> artifacts/build/rust-version.txt
+          cmake --version > artifacts/build/cmake-version.txt
+      - name: Linux build and X11 runtime libraries
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 mesa-utils
+          pkg-config --modversion gtk4 webkit2gtk-4.1 Qt6Widgets > artifacts/build/native-versions.txt
+      - name: Qt 6.8.3 for Windows
+        if: runner.os == 'Windows'
+        continue-on-error: true
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          arch: win64_msvc2022_64
+          cache: false
+      - name: Native macOS libraries
+        if: runner.os == 'macOS'
+        continue-on-error: true
+        run: |
+          brew install qt gtk4 pkgconf 2>&1 | tee artifacts/build/brew.log
+          brew list --versions qt gtk4 pkgconf > artifacts/build/native-versions.txt
+          echo "Qt6_DIR=$(brew --prefix qt)/lib/cmake/Qt6" >> "$GITHUB_ENV"
+      - name: Record Windows WebView2 installation
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $runtime = Get-ChildItem "${env:ProgramFiles(x86)}\Microsoft\EdgeWebView\Application" -Filter msedgewebview2.exe -Recurse -ErrorAction SilentlyContinue
+          if ($runtime) {
+            $runtime | ForEach-Object { $_.VersionInfo.FileVersion } | Out-File artifacts/build/webview2-version.txt
+          } else {
+            'WebView2 runtime not found in standard machine install directory; launch will validate availability.' | Out-File artifacts/build/webview2-version.txt
+          }
+      - name: Build egui release
+        continue-on-error: true
+        timeout-minutes: 15
+        run: cargo build --release --locked --manifest-path examples/egui/Cargo.toml 2>&1 | tee artifacts/build/egui.log
+      - name: Resolve missing new-example locks and preserve exact resolution
+        continue-on-error: true
+        run: |
+          status=0
+          for example in slint tauri; do
+            cargo fmt --manifest-path "examples/$example/Cargo.toml" 2>&1 | tee "artifacts/build/$example-format.log" || status=1
+            mkdir -p "artifacts/build/formatted/$example/src"
+            cp "examples/$example/src/main.rs" "artifacts/build/formatted/$example/src/main.rs"
+            cp "examples/$example/build.rs" "artifacts/build/formatted/$example/build.rs"
+            if [ ! -f "examples/$example/Cargo.lock" ]; then
+              cargo generate-lockfile --manifest-path "examples/$example/Cargo.toml" 2>&1 | tee "artifacts/build/$example-resolution.log" || status=1
+            fi
+            if [ -f "examples/$example/Cargo.lock" ]; then
+              cp "examples/$example/Cargo.lock" "artifacts/build/$example-Cargo.lock"
+            else
+              status=1
+            fi
+          done
+          exit "$status"
+      - name: Build Slint release
+        continue-on-error: true
+        timeout-minutes: 15
+        run: cargo build --release --locked --manifest-path examples/slint/Cargo.toml 2>&1 | tee artifacts/build/slint.log
+      - name: Build Tauri release
+        continue-on-error: true
+        timeout-minutes: 15
+        run: cargo build --release --locked --manifest-path examples/tauri/Cargo.toml 2>&1 | tee artifacts/build/tauri.log
+      - name: Build Qt Widgets release
+        continue-on-error: true
+        run: |
+          cmake -S examples/qt -B target/qt -DCMAKE_BUILD_TYPE=Release 2>&1 | tee artifacts/build/qt-configure.log
+          cmake --build target/qt --config Release 2>&1 | tee artifacts/build/qt-build.log
+          if [ "$RUNNER_OS" = Windows ]; then
+            windeployqt --release --no-translations target/qt/Release/veranda-qt-comparison.exe 2>&1 | tee artifacts/build/qt-deploy.log
+          fi
+      - name: Build GTK4 C control on Unix
+        if: runner.os != 'Windows'
+        continue-on-error: true
+        run: |
+          cc -O2 -Wall -Wextra examples/gtk/main.c -o target/gtk-control $(pkg-config --cflags --libs gtk4) 2>&1 | tee artifacts/build/gtk.log
+      - name: Run every candidate sequentially on this runner
+        timeout-minutes: 35
+        run: |
+          cat > artifacts/run_candidates.py <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import subprocess
+          import sys
+          import psutil
+
+          windows = sys.platform == 'win32'
+          extension = '.exe' if windows else ''
+          target = Path(os.environ['CARGO_TARGET_DIR'])
+          candidates = [
+              ('egui', 'Veranda egui comparison', target / 'release' / ('veranda-egui-comparison' + extension)),
+              ('gtk', 'Veranda GTK comparison', target / ('gtk-control' + extension)),
+              ('slint', 'Veranda Slint comparison', target / 'release' / ('veranda-slint-comparison' + extension)),
+              ('qt', 'Veranda Qt Widgets comparison', target / 'qt' / ('Release' if windows else '') / ('veranda-qt-comparison' + extension)),
+              ('tauri', 'Veranda Tauri comparison', target / 'release' / ('veranda-tauri-comparison' + extension)),
+          ]
+          failed = []
+          for name, title, executable in candidates:
+              command = [sys.executable, 'tools/native_probe.py', '--name', name,
+                         '--title', title, '--executable', str(executable),
+                         '--output', 'artifacts/' + name]
+              if windows and name == 'gtk':
+                  command += ['--unsupported-reason', 'Windows GTK4 toolchain/runtime not configured; MSYS2 integration remains unverified']
+              if os.environ['COMPARISON'] == 'true':
+                  command += ['--comparison']
+              try:
+                  probe = subprocess.Popen(command)
+                  if probe.wait(timeout=480):
+                      failed.append(name)
+                  try:
+                      outcome = json.loads(Path('artifacts/' + name + '/outcome.json').read_text())
+                  except (OSError, ValueError):
+                      outcome = {}
+                  if (outcome.get('cleanup_status') not in ('clean', 'not_needed')
+                          or outcome.get('cleanup_survivors') or outcome.get('process_access_denied_pids')):
+                      if name not in failed:
+                          failed.append(name)
+                      Path('artifacts/stopped-after.json').write_text(json.dumps(
+                          {'name': name, 'reason': 'Cleanup failed, unknown or missing; later candidates refused'}))
+                      break
+              except subprocess.TimeoutExpired:
+                  family = psutil.Process(probe.pid).children(recursive=True)
+                  for process in reversed(family):
+                      try:
+                          process.terminate()
+                      except psutil.NoSuchProcess:
+                          pass
+                  probe.terminate()
+                  _, alive = psutil.wait_procs(family, timeout=3)
+                  for process in alive:
+                      try:
+                          process.kill()
+                      except psutil.NoSuchProcess:
+                          pass
+                  probe.wait(timeout=5)
+                  failed.append(name)
+                  Path('artifacts/' + name).mkdir(exist_ok=True)
+                  Path('artifacts/' + name + '/outcome.json').write_text(json.dumps(
+                      {'name': name, 'status': 'failed', 'cleanup_status': 'unknown', 'reason': 'Probe exceeded 480s watchdog; subsequent candidates refused to avoid contamination'}))
+                  # The probe normally cleans its own process family. A watchdog expiry
+                  # leaves scope unknown, so do not run another candidate on this runner.
+                  break
+          Path('artifacts/failed-candidates.json').write_text(json.dumps(failed))
+          PY
+          if [ "$RUNNER_OS" = Linux ]; then
+            export LIBGL_ALWAYS_SOFTWARE=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb XDG_SESSION_TYPE=x11
+            dbus-run-session -- xvfb-run -a -s '-screen 0 1600x1000x24' bash -c 'openbox > artifacts/build/openbox.log 2>&1 & glxinfo -B > artifacts/build/glxinfo.txt; python artifacts/run_candidates.py'
+          else
+            python artifacts/run_candidates.py
+          fi
+      - name: Upload evidence, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-${{ matrix.os }}-${{ github.run_id }}
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Require successful diagnostics for configured candidates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('artifacts/failed-candidates.json')
+          assert path.exists(), 'Probe stage did not finish; inspect setup/build logs'
+          failures = json.loads(path.read_text())
+          assert not failures, f'Diagnostics incomplete or failed: {failures}; inspect outcome.json and screenshots'
+          PY

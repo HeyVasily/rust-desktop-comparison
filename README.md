@@ -1,8 +1,9 @@
 # Rust desktop GUI comparison
 
 Small, inspectable desktop interfaces with **real screenshots, layout code and measured
-resource use**. Start with the matched egui/eframe and GTK4 examples below. Earlier
-Qt Widgets and Slint measurements are preserved separately with their original scope.
+resource use**. Runnable examples cover egui/eframe, GTK4, Slint, Qt Widgets and Tauri.
+The original Linux measurements and later native runner results are kept in separate
+series, with their process scope, renderer and platform recorded.
 
 The examples show 10 synthetic yards and 100 projects: navigation, project selection,
 scrolling, an editable filter and a Refresh button that advances an in-memory snapshot.
@@ -13,8 +14,14 @@ Veranda; its labels are retained so the imported sources match the measured appl
 | --- | --- | --- |
 | egui/eframe 0.37.0 | [Rust example](examples/egui/src/main.rs), pinned dependencies | Screenshot and matched UI-only measurements |
 | GTK4 4.18.6 | [C control](examples/gtk/main.c) | Screenshot and matched UI-only measurements; gtk4-rs is not measured |
-| Qt Widgets 6.8.2 | Historical C++ frontend | [Earlier measurements with backend](docs/historical-comparison.md) |
-| Slint 1.18.1 | Historical Rust frontend with local patches | [Earlier measurements with backend](docs/historical-comparison.md) |
+| Slint 1.18.1 | [Stock Rust + declarative layout](examples/slint/README.md), winit/software | New native runs; [historical patched frontend](docs/historical-comparison.md) is separate |
+| Qt Widgets | [C++17 + CMake example](examples/qt/README.md) | Installed Qt version recorded per run; [historical 6.8.2 frontend](docs/historical-comparison.md) is separate |
+| Tauri 2.12.5 | [Rust + static HTML/CSS/JavaScript](examples/tauri/README.md) | WebKitGTK on Linux, WebView2 on Windows, WKWebView on macOS |
+
+The three additional examples are new implementations of the same workload. Their
+earlier full-backend measurements do not measure these new binaries. Native build,
+screenshot and measurement outcomes are recorded by the
+[GitHub runner diagnostic](docs/github-runners.md); adding source is not a passing run.
 
 ## What the interfaces look like
 
@@ -67,6 +74,69 @@ g_signal_connect(projects, "row-selected", G_CALLBACK(select_project), NULL);
 
 These are shortened layout excerpts. The linked files contain the runnable applications.
 The GTK control is written in C; these numbers do not measure Rust GTK bindings.
+
+### Slint: declarative widgets and Rust callbacks
+
+The [layout](examples/slint/ui/main.slint) declares widgets and exposes callbacks;
+[Rust](examples/slint/src/main.rs) supplies the filtered model and updates properties:
+
+```slint
+ListView {
+    for project in root.projects: Button {
+        text: project.name + "                 NOT_CREATED";
+        height: 38px;
+        checkable: true;
+        checked: root.selected-project == project.id;
+        clicked => { root.choose-project(project.id); }
+    }
+}
+```
+
+This stock Slint example explicitly selects winit/software and enables accessibility.
+It does not import the four correctness forks used by the old Slint prototype.
+
+### Qt Widgets: persistent C++ widgets and signals
+
+The [C++ example](examples/qt/main.cpp) creates a widget tree and connects signals:
+
+```cpp
+auto *projects = new QListWidget;
+projects->setAccessibleName("Projects");
+projects->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+QObject::connect(filter, &QLineEdit::textChanged, &window, [&](const QString &text) {
+    updateFilter();
+    std::cout << "filter " << text.toStdString() << std::endl;
+});
+```
+
+Qt Widgets uses native widget/layout APIs here; QML, Qt Quick and WebEngine are absent.
+
+### Tauri: a web layout in a native system webview
+
+The [HTML](examples/tauri/frontend/index.html) and
+[CSS](examples/tauri/frontend/style.css) define the panels; ordinary DOM event handlers
+in [JavaScript](examples/tauri/frontend/main.js) update the in-memory fixture:
+
+```css
+main {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) 250px;
+    gap: 12px;
+}
+```
+
+```javascript
+filter.addEventListener("input", updateFilter);
+document.getElementById("all-projects").addEventListener("click", () => selectYard(0));
+document.getElementById("refresh").addEventListener("click", () => {
+  state.refreshes += 1;
+  document.getElementById("snapshot").textContent = `Snapshot ${state.refreshes} · local fixture`;
+});
+```
+
+There is no frontend framework, development server or application backend. Tauri uses
+different system webviews on each OS, so a Windows result is not a WebKitGTK result.
+See [Tauri's webview documentation](https://v2.tauri.app/reference/webview-versions/).
 
 ## Matched measurements — 2026-11-07
 
@@ -129,6 +199,11 @@ The binary name and GTK application ID retain the original experiment's names.
 The examples require no Subyard installation, cache helper, account or service.
 To reproduce the recorded software-rendering environment and sampling procedure,
 follow [the measurement guide](docs/methodology.md#reproduce).
+
+For the additional applications, follow their standalone instructions:
+[Slint](examples/slint/README.md), [Qt Widgets](examples/qt/README.md), and
+[Tauri](examples/tauri/README.md). Windows/macOS runner setup and GUI availability
+checks are described in [the native runner guide](docs/github-runners.md).
 
 ## Adding another framework
 
