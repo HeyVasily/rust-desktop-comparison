@@ -1,0 +1,156 @@
+[
+  {
+    "monotonic": 2266.593,
+    "wall_time": 1794094745.36215,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2267.625,
+    "wall_time": 1794094746.3947246,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2268.64,
+    "wall_time": 1794094747.4120293,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2269.671,
+    "wall_time": 1794094748.4316025,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2270.687,
+    "wall_time": 1794094749.4537091,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2271.703,
+    "wall_time": 1794094750.475325,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2272.734,
+    "wall_time": 1794094751.4925942,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2273.75,
+    "wall_time": 1794094752.512343,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2274.765,
+    "wall_time": 1794094753.532059,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2275.796,
+    "wall_time": 1794094754.5546377,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  },
+  {
+    "monotonic": 2276.812,
+    "wall_time": 1794094755.5721726,
+    "processes": [
+      {
+        "pid": 6036,
+        "created": 1794094740.009262,
+        "name": "veranda-slint-comparison.exe",
+        "rss_bytes": 22724608,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 22724608
+  }
+]

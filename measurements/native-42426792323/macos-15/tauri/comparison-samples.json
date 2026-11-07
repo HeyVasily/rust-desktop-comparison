@@ -1,0 +1,3390 @@
+[
+  {
+    "monotonic": 516.342444208,
+    "wall_time": 1794095533.037716,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73564160,
+        "cpu_seconds": 0.709211264
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.67857664
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 518.050557958,
+    "wall_time": 1794095534.7466838,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73564160,
+        "cpu_seconds": 0.709211264
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.67857664
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 519.538141083,
+    "wall_time": 1794095536.2350101,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73564160,
+        "cpu_seconds": 0.709211264
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.67857664
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 521.068087625,
+    "wall_time": 1794095537.765722,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73564160,
+        "cpu_seconds": 0.709211264
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.67857664
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 522.558660666,
+    "wall_time": 1794095539.2570398,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73564160,
+        "cpu_seconds": 0.709211264
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.67857664
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 524.608978333,
+    "wall_time": 1794095541.308384,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73596928,
+        "cpu_seconds": 0.713742688
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.680728352
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141492224
+  },
+  {
+    "monotonic": 526.295594041,
+    "wall_time": 1794095542.9958432,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73596928,
+        "cpu_seconds": 0.713742688
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.681633536
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141492224
+  },
+  {
+    "monotonic": 527.935806583,
+    "wall_time": 1794095544.636875,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73596928,
+        "cpu_seconds": 0.713742688
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.681633536
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141492224
+  },
+  {
+    "monotonic": 529.199699875,
+    "wall_time": 1794095545.9014,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73596928,
+        "cpu_seconds": 0.713742688
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.681633536
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141492224
+  },
+  {
+    "monotonic": 530.638332875,
+    "wall_time": 1794095547.340752,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.714496064
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.681633536
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 532.179107458,
+    "wall_time": 1794095548.882297,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.714496064
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.681633536
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 533.612607166,
+    "wall_time": 1794095550.316513,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.714496064
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.681633536
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 535.062373916,
+    "wall_time": 1794095551.767005,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73564160,
+        "cpu_seconds": 0.719678208
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.6832136
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141459456
+  },
+  {
+    "monotonic": 536.598806333,
+    "wall_time": 1794095553.3042061,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73564160,
+        "cpu_seconds": 0.719678208
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.683613152
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141459456
+  },
+  {
+    "monotonic": 538.157085291,
+    "wall_time": 1794095554.863264,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73564160,
+        "cpu_seconds": 0.719678208
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.683613152
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141459456
+  },
+  {
+    "monotonic": 539.657183125,
+    "wall_time": 1794095556.364112,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.7201
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.683613152
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 541.055343458,
+    "wall_time": 1794095557.762971,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.7201
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.683613152
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 542.550849333,
+    "wall_time": 1794095559.2592251,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.7201
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.683613152
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 544.150342791,
+    "wall_time": 1794095560.859518,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.7201
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.683613152
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141443072
+  },
+  {
+    "monotonic": 545.669982708,
+    "wall_time": 1794095562.3799171,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.683837568
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 547.354884791,
+    "wall_time": 1794095564.065662,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.683837568
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 548.836560083,
+    "wall_time": 1794095565.548079,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.683837568
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 550.354821541,
+    "wall_time": 1794095567.0670989,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.683837568
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 551.66570175,
+    "wall_time": 1794095568.378635,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.683837568
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 553.340442958,
+    "wall_time": 1794095570.054214,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.683837568
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 554.912020708,
+    "wall_time": 1794095571.626577,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.683837568
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 556.416753458,
+    "wall_time": 1794095573.132062,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 557.940102833,
+    "wall_time": 1794095574.656173,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.720323488
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 559.317924541,
+    "wall_time": 1794095576.034684,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.72151216
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141426688
+  },
+  {
+    "monotonic": 560.760287125,
+    "wall_time": 1794095577.477767,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.72151216
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141426688
+  },
+  {
+    "monotonic": 562.337270958,
+    "wall_time": 1794095579.055539,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73547776,
+        "cpu_seconds": 0.72151216
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141426688
+  },
+  {
+    "monotonic": 563.745758375,
+    "wall_time": 1794095580.464731,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 565.157206458,
+    "wall_time": 1794095581.876885,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 566.534389208,
+    "wall_time": 1794095583.2547562,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 568.11824675,
+    "wall_time": 1794095584.839406,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.6844590720000001
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 569.409714958,
+    "wall_time": 1794095586.131521,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48840704,
+        "cpu_seconds": 1.692886048
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141475840
+  },
+  {
+    "monotonic": 571.128891916,
+    "wall_time": 1794095587.851557,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48840704,
+        "cpu_seconds": 1.6935112319999999
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141475840
+  },
+  {
+    "monotonic": 572.479647375,
+    "wall_time": 1794095589.2029881,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48840704,
+        "cpu_seconds": 1.6935112319999999
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141475840
+  },
+  {
+    "monotonic": 573.885579375,
+    "wall_time": 1794095590.609622,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48840704,
+        "cpu_seconds": 1.6935112319999999
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141475840
+  },
+  {
+    "monotonic": 575.313168458,
+    "wall_time": 1794095592.037925,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48840704,
+        "cpu_seconds": 1.6935112319999999
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141475840
+  },
+  {
+    "monotonic": 576.902850291,
+    "wall_time": 1794095593.628402,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48840704,
+        "cpu_seconds": 1.6935112319999999
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141475840
+  },
+  {
+    "monotonic": 578.165994,
+    "wall_time": 1794095594.8921769,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48840704,
+        "cpu_seconds": 1.6935112319999999
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141475840
+  },
+  {
+    "monotonic": 579.618248875,
+    "wall_time": 1794095596.3451579,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48791552,
+        "cpu_seconds": 1.694051008
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141426688
+  },
+  {
+    "monotonic": 580.927764125,
+    "wall_time": 1794095597.655328,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694091296
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 582.136400083,
+    "wall_time": 1794095598.8645692,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694091296
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 583.781682208,
+    "wall_time": 1794095600.5106728,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694091296
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 585.033167083,
+    "wall_time": 1794095601.762784,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694091296
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 586.549147125,
+    "wall_time": 1794095603.279521,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 587.865102833,
+    "wall_time": 1794095604.596135,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 589.195603333,
+    "wall_time": 1794095605.9273012,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 590.502434083,
+    "wall_time": 1794095607.234786,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 592.009720333,
+    "wall_time": 1794095608.742825,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 593.435694208,
+    "wall_time": 1794095610.169512,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 594.695678,
+    "wall_time": 1794095611.4301262,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 595.910765083,
+    "wall_time": 1794095612.64582,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 597.531463958,
+    "wall_time": 1794095614.26733,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 598.847863916,
+    "wall_time": 1794095615.584388,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 600.149922375,
+    "wall_time": 1794095616.887098,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 601.774038708,
+    "wall_time": 1794095618.512026,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 603.035779125,
+    "wall_time": 1794095619.774397,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 604.417527625,
+    "wall_time": 1794095621.156836,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 605.904111958,
+    "wall_time": 1794095622.6441631,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 607.375308708,
+    "wall_time": 1794095624.116096,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 608.920668458,
+    "wall_time": 1794095625.6622279,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 610.310223208,
+    "wall_time": 1794095627.0524778,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 611.937751541,
+    "wall_time": 1794095628.68082,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 613.321644791,
+    "wall_time": 1794095630.065405,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 614.832949583,
+    "wall_time": 1794095631.577466,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.694553312
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 616.289496916,
+    "wall_time": 1794095633.034742,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 617.886887375,
+    "wall_time": 1794095634.6329322,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 619.424219625,
+    "wall_time": 1794095636.171032,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 621.030769916,
+    "wall_time": 1794095637.778385,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 622.403931875,
+    "wall_time": 1794095639.152233,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 623.665229958,
+    "wall_time": 1794095640.414162,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 624.99490625,
+    "wall_time": 1794095641.744504,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 626.66820075,
+    "wall_time": 1794095643.418634,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 628.14923025,
+    "wall_time": 1794095644.900404,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 629.666633458,
+    "wall_time": 1794095646.418566,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 631.230411291,
+    "wall_time": 1794095647.983126,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 632.917365791,
+    "wall_time": 1794095649.670924,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 634.459275541,
+    "wall_time": 1794095651.2136052,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 636.011387708,
+    "wall_time": 1794095652.7664928,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 637.401256125,
+    "wall_time": 1794095654.157056,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 638.819258666,
+    "wall_time": 1794095655.575768,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 640.290639708,
+    "wall_time": 1794095657.047884,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 641.64930575,
+    "wall_time": 1794095658.40723,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 642.973920791,
+    "wall_time": 1794095659.732508,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 644.494737916,
+    "wall_time": 1794095661.254085,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695112544
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 645.76117525,
+    "wall_time": 1794095662.521155,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 647.03173025,
+    "wall_time": 1794095663.792346,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 648.543201583,
+    "wall_time": 1794095665.3045728,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 650.125802458,
+    "wall_time": 1794095666.887965,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 651.585574666,
+    "wall_time": 1794095668.3484669,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 652.827815,
+    "wall_time": 1794095669.591328,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 654.326566291,
+    "wall_time": 1794095671.0908291,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 656.047892083,
+    "wall_time": 1794095672.8130162,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 657.510561125,
+    "wall_time": 1794095674.276416,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 659.135202041,
+    "wall_time": 1794095675.901869,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 660.644635083,
+    "wall_time": 1794095677.4120572,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 661.884217041,
+    "wall_time": 1794095678.652259,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 663.326716375,
+    "wall_time": 1794095680.09548,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 664.864076875,
+    "wall_time": 1794095681.6336079,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 666.142230833,
+    "wall_time": 1794095682.912401,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 667.571758458,
+    "wall_time": 1794095684.342645,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 668.94389075,
+    "wall_time": 1794095685.715462,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 670.5385025,
+    "wall_time": 1794095687.310872,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 73531392,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 48775168,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 19103744,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 141410304
+  },
+  {
+    "monotonic": 671.979796166,
+    "wall_time": 1794095688.752886,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 70631424,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 41680896,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 18235392,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 130547712
+  },
+  {
+    "monotonic": 673.2624215,
+    "wall_time": 1794095690.0361521,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 70631424,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 41680896,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 18235392,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 130547712
+  },
+  {
+    "monotonic": 674.742807208,
+    "wall_time": 1794095691.517279,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 70516736,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 37584896,
+        "cpu_seconds": 1.695611232
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 18055168,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 126156800
+  },
+  {
+    "monotonic": 676.155431708,
+    "wall_time": 1794095692.930609,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 70090752,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 34537472,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16957440,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 121585664
+  },
+  {
+    "monotonic": 677.752434541,
+    "wall_time": 1794095694.5284102,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 679.080089708,
+    "wall_time": 1794095695.856729,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 680.551984625,
+    "wall_time": 1794095697.3293598,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 682.057860041,
+    "wall_time": 1794095698.835989,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 683.568777041,
+    "wall_time": 1794095700.347661,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 684.870970958,
+    "wall_time": 1794095701.650506,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 686.614793583,
+    "wall_time": 1794095703.395201,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 688.176381,
+    "wall_time": 1794095704.9575691,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 689.77694725,
+    "wall_time": 1794095706.558936,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 691.335621875,
+    "wall_time": 1794095708.11839,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  },
+  {
+    "monotonic": 693.047233333,
+    "wall_time": 1794095709.830857,
+    "processes": [
+      {
+        "pid": 8535,
+        "created": 1794095480.436265,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 69582848,
+        "cpu_seconds": 0.721590336
+      },
+      {
+        "pid": 8539,
+        "created": 1794095481.503224,
+        "name": "com.apple.WebKit.WebContent",
+        "rss_bytes": 33030144,
+        "cpu_seconds": 1.696457184
+      },
+      {
+        "pid": 8543,
+        "created": 1794095481.767751,
+        "name": "com.apple.WebKit.Networking",
+        "rss_bytes": 16891904,
+        "cpu_seconds": 0.12852166399999998
+      }
+    ],
+    "family_rss_bytes": 119504896
+  }
+]

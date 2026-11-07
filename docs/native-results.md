@@ -1,4 +1,7 @@
-# Native runner observations
+# Earlier native runner observations
+
+The [current full matrix](full-native-results.md) supersedes the incomplete/native
+desktop attempts below. Their original evidence and limitations remain intact.
 
 These are small synthetic UI observations from actual GitHub-hosted desktop runs.
 They are separate from the original Debian/X11 and historical full-backend results.

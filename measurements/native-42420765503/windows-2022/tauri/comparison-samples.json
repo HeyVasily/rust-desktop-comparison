@@ -1,0 +1,6778 @@
+[
+  {
+    "monotonic": 1781.078,
+    "wall_time": 1794092194.3538463,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102563840,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41984000,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283873280
+  },
+  {
+    "monotonic": 1782.171,
+    "wall_time": 1794092195.4493263,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41984000,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283881472
+  },
+  {
+    "monotonic": 1783.281,
+    "wall_time": 1794092196.5460753,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41984000,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283881472
+  },
+  {
+    "monotonic": 1784.375,
+    "wall_time": 1794092197.6392097,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41984000,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283881472
+  },
+  {
+    "monotonic": 1785.453,
+    "wall_time": 1794092198.726196,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41943040,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283840512
+  },
+  {
+    "monotonic": 1786.562,
+    "wall_time": 1794092199.8275137,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41709568,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283607040
+  },
+  {
+    "monotonic": 1787.64,
+    "wall_time": 1794092200.9183276,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41709568,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283607040
+  },
+  {
+    "monotonic": 1788.734,
+    "wall_time": 1794092202.0133765,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41541632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283439104
+  },
+  {
+    "monotonic": 1789.828,
+    "wall_time": 1794092203.1024725,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41496576,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283394048
+  },
+  {
+    "monotonic": 1790.921,
+    "wall_time": 1794092204.196546,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41496576,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283394048
+  },
+  {
+    "monotonic": 1792.0,
+    "wall_time": 1794092205.2795768,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41496576,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283394048
+  },
+  {
+    "monotonic": 1793.093,
+    "wall_time": 1794092206.3705328,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21999616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102572032,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41496576,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283394048
+  },
+  {
+    "monotonic": 1794.187,
+    "wall_time": 1794092207.4608312,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21983232,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102514688,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 8003584,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41496576,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283320320
+  },
+  {
+    "monotonic": 1795.296,
+    "wall_time": 1794092208.5723305,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21983232,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102514688,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7962624,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41496576,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283279360
+  },
+  {
+    "monotonic": 1796.39,
+    "wall_time": 1794092209.6576862,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21983232,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102514688,
+        "cpu_seconds": 0.421875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7962624,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41496576,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30912512,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283279360
+  },
+  {
+    "monotonic": 1797.468,
+    "wall_time": 1794092210.7411017,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21983232,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102551552,
+        "cpu_seconds": 0.453125
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7962624,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41480192,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30887936,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18268160,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60141568,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283275264
+  },
+  {
+    "monotonic": 1798.578,
+    "wall_time": 1794092211.844296,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21983232,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 103452672,
+        "cpu_seconds": 0.453125
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7962624,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41480192,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31215616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60125184,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 284504064
+  },
+  {
+    "monotonic": 1799.656,
+    "wall_time": 1794092212.9288507,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21983232,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 103473152,
+        "cpu_seconds": 0.453125
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7962624,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31215616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60129280,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 284549120
+  },
+  {
+    "monotonic": 1800.75,
+    "wall_time": 1794092214.0205765,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 103473152,
+        "cpu_seconds": 0.453125
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7962624,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31215616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60129280,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 284536832
+  },
+  {
+    "monotonic": 1801.843,
+    "wall_time": 1794092215.1086473,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 103473152,
+        "cpu_seconds": 0.453125
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7962624,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31215616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60129280,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 284536832
+  },
+  {
+    "monotonic": 1802.937,
+    "wall_time": 1794092216.2152245,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104370176,
+        "cpu_seconds": 0.46875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31219712,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285892608
+  },
+  {
+    "monotonic": 1804.031,
+    "wall_time": 1794092217.306084,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104370176,
+        "cpu_seconds": 0.46875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31219712,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285892608
+  },
+  {
+    "monotonic": 1805.125,
+    "wall_time": 1794092218.397069,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 103964672,
+        "cpu_seconds": 0.46875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31219712,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285487104
+  },
+  {
+    "monotonic": 1806.218,
+    "wall_time": 1794092219.4855423,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 103964672,
+        "cpu_seconds": 0.46875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31059968,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285327360
+  },
+  {
+    "monotonic": 1807.296,
+    "wall_time": 1794092220.570935,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 103964672,
+        "cpu_seconds": 0.46875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31059968,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285327360
+  },
+  {
+    "monotonic": 1808.406,
+    "wall_time": 1794092221.6749833,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104030208,
+        "cpu_seconds": 0.46875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41500672,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31059968,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285392896
+  },
+  {
+    "monotonic": 1809.5,
+    "wall_time": 1794092222.765037,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104030208,
+        "cpu_seconds": 0.46875
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41521152,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31059968,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285413376
+  },
+  {
+    "monotonic": 1810.578,
+    "wall_time": 1794092223.8556454,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104488960,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41521152,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31145984,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285958144
+  },
+  {
+    "monotonic": 1811.671,
+    "wall_time": 1794092224.944041,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104472576,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41521152,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31145984,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285941760
+  },
+  {
+    "monotonic": 1812.765,
+    "wall_time": 1794092226.0412838,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104140800,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41521152,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31145984,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285609984
+  },
+  {
+    "monotonic": 1813.859,
+    "wall_time": 1794092227.1341403,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104140800,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41521152,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31145984,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285609984
+  },
+  {
+    "monotonic": 1814.953,
+    "wall_time": 1794092228.22616,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104140800,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41521152,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31145984,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18284544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60559360,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285609984
+  },
+  {
+    "monotonic": 1816.046,
+    "wall_time": 1794092229.321138,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 105140224,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31420416,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287887360
+  },
+  {
+    "monotonic": 1817.14,
+    "wall_time": 1794092230.4148326,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104493056,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31420416,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287240192
+  },
+  {
+    "monotonic": 1818.25,
+    "wall_time": 1794092231.5158515,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104497152,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31420416,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287244288
+  },
+  {
+    "monotonic": 1819.343,
+    "wall_time": 1794092232.6130977,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104501248,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31420416,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287248384
+  },
+  {
+    "monotonic": 1820.421,
+    "wall_time": 1794092233.7012339,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104501248,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31420416,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287248384
+  },
+  {
+    "monotonic": 1821.531,
+    "wall_time": 1794092234.8031988,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104501248,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31354880,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287182848
+  },
+  {
+    "monotonic": 1822.625,
+    "wall_time": 1794092235.8985922,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21970944,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104501248,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31354880,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287182848
+  },
+  {
+    "monotonic": 1823.718,
+    "wall_time": 1794092236.991319,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104509440,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31354880,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287166464
+  },
+  {
+    "monotonic": 1824.828,
+    "wall_time": 1794092238.0943797,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104476672,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31354880,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287133696
+  },
+  {
+    "monotonic": 1825.906,
+    "wall_time": 1794092239.180168,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104476672,
+        "cpu_seconds": 0.484375
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42053632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31354880,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287133696
+  },
+  {
+    "monotonic": 1827.015,
+    "wall_time": 1794092240.2861142,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104583168,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31444992,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287420416
+  },
+  {
+    "monotonic": 1828.109,
+    "wall_time": 1794092241.3731055,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104583168,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31535104,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287510528
+  },
+  {
+    "monotonic": 1829.203,
+    "wall_time": 1794092242.4783924,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104583168,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31535104,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287510528
+  },
+  {
+    "monotonic": 1830.296,
+    "wall_time": 1794092243.573814,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104583168,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60563456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287408128
+  },
+  {
+    "monotonic": 1831.39,
+    "wall_time": 1794092244.6584663,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104583168,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287223808
+  },
+  {
+    "monotonic": 1832.484,
+    "wall_time": 1794092245.7592664,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104583168,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287223808
+  },
+  {
+    "monotonic": 1833.578,
+    "wall_time": 1794092246.8507879,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104382464,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287023104
+  },
+  {
+    "monotonic": 1834.671,
+    "wall_time": 1794092247.9450786,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104382464,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287023104
+  },
+  {
+    "monotonic": 1835.765,
+    "wall_time": 1794092249.041663,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104382464,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287023104
+  },
+  {
+    "monotonic": 1836.875,
+    "wall_time": 1794092250.143979,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104382464,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287023104
+  },
+  {
+    "monotonic": 1837.953,
+    "wall_time": 1794092251.228822,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104382464,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287023104
+  },
+  {
+    "monotonic": 1839.046,
+    "wall_time": 1794092252.3233547,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104382464,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287023104
+  },
+  {
+    "monotonic": 1840.14,
+    "wall_time": 1794092253.4143288,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104382464,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287023104
+  },
+  {
+    "monotonic": 1841.25,
+    "wall_time": 1794092254.5211372,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104382464,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287023104
+  },
+  {
+    "monotonic": 1842.343,
+    "wall_time": 1794092255.6167204,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104386560,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287027200
+  },
+  {
+    "monotonic": 1843.437,
+    "wall_time": 1794092256.712602,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104386560,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287027200
+  },
+  {
+    "monotonic": 1844.531,
+    "wall_time": 1794092257.7993019,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104407040,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287047680
+  },
+  {
+    "monotonic": 1845.625,
+    "wall_time": 1794092258.892273,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104407040,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287047680
+  },
+  {
+    "monotonic": 1846.718,
+    "wall_time": 1794092259.9893677,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21946368,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104407040,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31432704,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287047680
+  },
+  {
+    "monotonic": 1847.828,
+    "wall_time": 1794092261.0933313,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21942272,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104443904,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31477760,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287125504
+  },
+  {
+    "monotonic": 1848.906,
+    "wall_time": 1794092262.1801524,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21942272,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104435712,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31477760,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18751488,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287117312
+  },
+  {
+    "monotonic": 1850.0,
+    "wall_time": 1794092263.2710488,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21901312,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104439808,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31477760,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18743296,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287072256
+  },
+  {
+    "monotonic": 1851.093,
+    "wall_time": 1794092264.367186,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21860352,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104439808,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31477760,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18731008,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 287019008
+  },
+  {
+    "monotonic": 1852.203,
+    "wall_time": 1794092265.4676406,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21688320,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104439808,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31477760,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18677760,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 286793728
+  },
+  {
+    "monotonic": 1853.296,
+    "wall_time": 1794092266.563987,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21655552,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104443904,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42143744,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31469568,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18665472,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60379136,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 286744576
+  },
+  {
+    "monotonic": 1854.375,
+    "wall_time": 1794092267.6503747,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21647360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104443904,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42135552,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31440896,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18530304,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60329984,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 286515200
+  },
+  {
+    "monotonic": 1855.484,
+    "wall_time": 1794092268.7540946,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21606400,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104443904,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42110976,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31354880,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18444288,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60125184,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 286072832
+  },
+  {
+    "monotonic": 1856.578,
+    "wall_time": 1794092269.8461533,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21598208,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104443904,
+        "cpu_seconds": 0.5
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42110976,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31354880,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18444288,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60125184,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 286064640
+  },
+  {
+    "monotonic": 1857.671,
+    "wall_time": 1794092270.936285,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21540864,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104636416,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 42029056,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31145984,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18423808,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60055552,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285818880
+  },
+  {
+    "monotonic": 1858.765,
+    "wall_time": 1794092272.0308979,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21516288,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104591360,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41963520,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31105024,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18366464,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60055552,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 285585408
+  },
+  {
+    "monotonic": 1859.859,
+    "wall_time": 1794092273.1346498,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21389312,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104333312,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41746432,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30998528,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18272256,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60055552,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 284782592
+  },
+  {
+    "monotonic": 1860.953,
+    "wall_time": 1794092274.221872,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21274624,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 104058880,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41439232,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30765056,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 18092032,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 60055552,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 283672576
+  },
+  {
+    "monotonic": 1862.046,
+    "wall_time": 1794092275.3194659,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 21143552,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 103448576,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 41148416,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30597120,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17915904,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 59953152,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 282193920
+  },
+  {
+    "monotonic": 1863.156,
+    "wall_time": 1794092276.4248009,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 20930560,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102842368,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 40755200,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30552064,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17739776,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 59392000,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 280199168
+  },
+  {
+    "monotonic": 1864.234,
+    "wall_time": 1794092277.5100305,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 20729856,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 102305792,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 40292352,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30277632,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17584128,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 58929152,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 278106112
+  },
+  {
+    "monotonic": 1865.328,
+    "wall_time": 1794092278.6005812,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 20557824,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 101367808,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 39915520,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30081024,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17432576,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 58662912,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 276004864
+  },
+  {
+    "monotonic": 1866.437,
+    "wall_time": 1794092279.7082114,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 20357120,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 100712448,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 39546880,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29933568,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17281024,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 58077184,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 273895424
+  },
+  {
+    "monotonic": 1867.515,
+    "wall_time": 1794092280.7906396,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 20221952,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 100548608,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 39260160,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29917184,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 57491456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 272531456
+  },
+  {
+    "monotonic": 1868.625,
+    "wall_time": 1794092281.8887525,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 20058112,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 99557376,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 38907904,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29786112,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 56922112,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 270323712
+  },
+  {
+    "monotonic": 1869.718,
+    "wall_time": 1794092282.992527,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 20058112,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 99389440,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 38907904,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29786112,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 56922112,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 270155776
+  },
+  {
+    "monotonic": 1870.812,
+    "wall_time": 1794092284.0853593,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 19947520,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 98390016,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 38510592,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29741056,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 56389632,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 268070912
+  },
+  {
+    "monotonic": 1871.906,
+    "wall_time": 1794092285.1757684,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 19562496,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 96763904,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 37728256,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29523968,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 55250944,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 263921664
+  },
+  {
+    "monotonic": 1873.0,
+    "wall_time": 1794092286.2699919,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 19374080,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 96591872,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 37343232,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29368320,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 54710272,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 262479872
+  },
+  {
+    "monotonic": 1874.093,
+    "wall_time": 1794092287.3669758,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 19374080,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 96591872,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 37425152,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29368320,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 54710272,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 262561792
+  },
+  {
+    "monotonic": 1875.187,
+    "wall_time": 1794092288.4629166,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 19181568,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 96157696,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 37040128,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29081600,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 54304768,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 260857856
+  },
+  {
+    "monotonic": 1876.281,
+    "wall_time": 1794092289.5527775,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 18989056,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 95719424,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 36663296,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28839936,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 54034432,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 259338240
+  },
+  {
+    "monotonic": 1877.39,
+    "wall_time": 1794092290.654935,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 18796544,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 94998528,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 36290560,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28790784,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 54013952,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 257982464
+  },
+  {
+    "monotonic": 1878.468,
+    "wall_time": 1794092291.7451823,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 18604032,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 94474240,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 35917824,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28643328,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 53714944,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 256446464
+  },
+  {
+    "monotonic": 1879.578,
+    "wall_time": 1794092292.8501008,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 18415616,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 93970432,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 35549184,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28508160,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 53575680,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 255111168
+  },
+  {
+    "monotonic": 1880.671,
+    "wall_time": 1794092293.9414182,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 18227200,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 93290496,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 35184640,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28377088,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 53395456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 253566976
+  },
+  {
+    "monotonic": 1881.765,
+    "wall_time": 1794092295.0379748,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 18042880,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 93065216,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 34824192,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28098560,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 53149696,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 252272640
+  },
+  {
+    "monotonic": 1882.859,
+    "wall_time": 1794092296.1374714,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17866752,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 92958720,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 34471936,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27828224,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 52875264,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 251092992
+  },
+  {
+    "monotonic": 1883.968,
+    "wall_time": 1794092297.234495,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17690624,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 92377088,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 34119680,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27676672,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 52678656,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 249634816
+  },
+  {
+    "monotonic": 1885.062,
+    "wall_time": 1794092298.340068,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17514496,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 91504640,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 33771520,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27602944,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 52371456,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 247857152
+  },
+  {
+    "monotonic": 1886.156,
+    "wall_time": 1794092299.4221153,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17346560,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 90996736,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 33423360,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27496448,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 51900416,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 246255616
+  },
+  {
+    "monotonic": 1887.25,
+    "wall_time": 1794092300.5218303,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17195008,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 90460160,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 33079296,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27426816,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 51564544,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 244817920
+  },
+  {
+    "monotonic": 1888.359,
+    "wall_time": 1794092301.6267376,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 89833472,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 32747520,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27357184,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 51449856,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 243519488
+  },
+  {
+    "monotonic": 1889.453,
+    "wall_time": 1794092302.7169697,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 89526272,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 32411648,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27283456,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 51269632,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 242622464
+  },
+  {
+    "monotonic": 1890.531,
+    "wall_time": 1794092303.807171,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 89526272,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 32411648,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27283456,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 51269632,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 242622464
+  },
+  {
+    "monotonic": 1891.625,
+    "wall_time": 1794092304.899551,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 89190400,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 32079872,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27234304,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 51007488,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 241643520
+  },
+  {
+    "monotonic": 1892.734,
+    "wall_time": 1794092306.0048413,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 88846336,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31752192,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 27095040,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 50630656,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 240455680
+  },
+  {
+    "monotonic": 1893.812,
+    "wall_time": 1794092307.090618,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 88588288,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31424512,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26877952,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 50180096,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 239202304
+  },
+  {
+    "monotonic": 1894.921,
+    "wall_time": 1794092308.191277,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 87977984,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 31100928,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26669056,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 49672192,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 237551616
+  },
+  {
+    "monotonic": 1896.015,
+    "wall_time": 1794092309.2869933,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 87543808,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30781440,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26513408,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 49192960,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 236163072
+  },
+  {
+    "monotonic": 1897.109,
+    "wall_time": 1794092310.377842,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 87130112,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30470144,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26402816,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 48852992,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 234987520
+  },
+  {
+    "monotonic": 1898.218,
+    "wall_time": 1794092311.4841878,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 86552576,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 30158848,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26378240,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 48480256,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 233701376
+  },
+  {
+    "monotonic": 1899.296,
+    "wall_time": 1794092312.5748925,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 85979136,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29847552,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26304512,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 48111616,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 232374272
+  },
+  {
+    "monotonic": 1900.406,
+    "wall_time": 1794092313.6707065,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 85512192,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29540352,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26226688,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 47685632,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 231096320
+  },
+  {
+    "monotonic": 1901.484,
+    "wall_time": 1794092314.7604034,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 85311488,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29405184,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26288128,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 47288320,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 230424576
+  },
+  {
+    "monotonic": 1902.593,
+    "wall_time": 1794092315.867427,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 84811776,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29310976,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26210304,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 46841856,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 229306368
+  },
+  {
+    "monotonic": 1903.687,
+    "wall_time": 1794092316.9524393,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 84811776,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29310976,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26210304,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 46841856,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 229306368
+  },
+  {
+    "monotonic": 1904.781,
+    "wall_time": 1794092318.058828,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 84303872,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29216768,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 26017792,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 46395392,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 228065280
+  },
+  {
+    "monotonic": 1905.875,
+    "wall_time": 1794092319.1486905,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 83943424,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 29011968,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 25853952,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 46039040,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 226979840
+  },
+  {
+    "monotonic": 1906.968,
+    "wall_time": 1794092320.2386854,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 83480576,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28794880,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 25792512,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 45686784,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 225886208
+  },
+  {
+    "monotonic": 1908.078,
+    "wall_time": 1794092321.3426602,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 82894848,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28602368,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 25645056,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 45256704,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 224530432
+  },
+  {
+    "monotonic": 1909.171,
+    "wall_time": 1794092322.4349983,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 82317312,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28389376,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 25477120,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 44830720,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 223145984
+  },
+  {
+    "monotonic": 1910.25,
+    "wall_time": 1794092323.526694,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 81784832,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28229632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 25260032,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 44384256,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 221790208
+  },
+  {
+    "monotonic": 1911.343,
+    "wall_time": 1794092324.621007,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 81846272,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28229632,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 25260032,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 44384256,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 221851648
+  },
+  {
+    "monotonic": 1912.453,
+    "wall_time": 1794092325.7181268,
+    "processes": [
+      {
+        "pid": 3340,
+        "created": 1794092146.59111,
+        "name": "veranda-tauri-comparison.exe",
+        "rss_bytes": 17039360,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 7872,
+        "created": 1794092147.1561544,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 81219584,
+        "cpu_seconds": 0.515625
+      },
+      {
+        "pid": 2104,
+        "created": 1794092147.4842193,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 7987200,
+        "cpu_seconds": 0.0
+      },
+      {
+        "pid": 6940,
+        "created": 1794092150.0066316,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 28041216,
+        "cpu_seconds": 0.109375
+      },
+      {
+        "pid": 524,
+        "created": 1794092150.4195013,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 25157632,
+        "cpu_seconds": 0.09375
+      },
+      {
+        "pid": 1844,
+        "created": 1794092150.676084,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 17104896,
+        "cpu_seconds": 0.046875
+      },
+      {
+        "pid": 6800,
+        "created": 1794092151.0490537,
+        "name": "msedgewebview2.exe",
+        "rss_bytes": 43945984,
+        "cpu_seconds": 0.09375
+      }
+    ],
+    "family_rss_bytes": 220495872
+  }
+]

@@ -1,0 +1,119 @@
+{
+  "name": "gtk",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Windows-2022Server-10.0.20348-SP0",
+    "architecture": "AMD64",
+    "processor": "Intel64 Family 6 Model 207 Stepping 2, GenuineIntel",
+    "logical_cpus": 4,
+    "memory_bytes": 17174360064,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "runner_image": "win22",
+    "image_version": "20261101.353.1",
+    "commit": "c875c659147e5edb30f614ac085163f451b2eb63",
+    "run_id": "42425371788",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "memory_metric": "Windows Working Set",
+  "limitations": [
+    "Summed RSS can double-count shared pages; this is not Linux PSS",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 131530,
+        "pid": 7744,
+        "title": "Veranda GTK comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 10.327999999999975,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 77.69921875,
+          "p95": 77.69921875,
+          "observed_maximum": 77.69921875
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 131530,
+        "pid": 7744,
+        "title": "Veranda GTK comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 124.07799999999997,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 75.447265625,
+          "p95": 75.5390625,
+          "observed_maximum": 75.5390625
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "runtime_variant": {
+    "path_prepend": "D:/a/_temp/msys64/ucrt64/bin",
+    "environment": {
+      "GDK_BACKEND": "win32",
+      "GSK_RENDERER": "cairo",
+      "GTK_CSD": "0"
+    },
+    "renderer_variant": "GTK4 Cairo software renderer; native decorations; MSYS2 UCRT64"
+  },
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 7744,
+      "name": "gtk-control.exe",
+      "created": 1794094568.290697
+    },
+    {
+      "pid": 6056,
+      "name": "gdbus.exe",
+      "created": 1794094568.3709867
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

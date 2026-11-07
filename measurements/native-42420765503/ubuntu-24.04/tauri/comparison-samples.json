@@ -1,0 +1,3390 @@
+[
+  {
+    "monotonic": 1954.49959064,
+    "wall_time": 1794094041.0792935,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1955.528530055,
+    "wall_time": 1794094042.1082332,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1956.5580798,
+    "wall_time": 1794094043.1377826,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1957.587350394,
+    "wall_time": 1794094044.167053,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1958.615839435,
+    "wall_time": 1794094045.195542,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1959.645233082,
+    "wall_time": 1794094046.224936,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1960.67458638,
+    "wall_time": 1794094047.2542892,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1961.704643835,
+    "wall_time": 1794094048.2843466,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1962.733411215,
+    "wall_time": 1794094049.3131142,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1963.761408685,
+    "wall_time": 1794094050.3411117,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1964.790511378,
+    "wall_time": 1794094051.3702145,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1965.819711685,
+    "wall_time": 1794094052.3994148,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1966.84920368,
+    "wall_time": 1794094053.4289064,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1967.879773193,
+    "wall_time": 1794094054.4594762,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1968.909665904,
+    "wall_time": 1794094055.4893687,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1969.939564516,
+    "wall_time": 1794094056.5192673,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1970.970051274,
+    "wall_time": 1794094057.5497544,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1972.002233186,
+    "wall_time": 1794094058.5819364,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1973.032801457,
+    "wall_time": 1794094059.6125042,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1974.062410902,
+    "wall_time": 1794094060.6421142,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1975.093569442,
+    "wall_time": 1794094061.6732726,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1976.123644381,
+    "wall_time": 1794094062.7033474,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1977.153917989,
+    "wall_time": 1794094063.733621,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1978.183251865,
+    "wall_time": 1794094064.7629547,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1979.212494918,
+    "wall_time": 1794094065.7921977,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1980.24169635,
+    "wall_time": 1794094066.8213992,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1981.271746628,
+    "wall_time": 1794094067.8514493,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1982.302437801,
+    "wall_time": 1794094068.8821409,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1983.332906129,
+    "wall_time": 1794094069.9126089,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1984.362612942,
+    "wall_time": 1794094070.9423158,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1985.392999346,
+    "wall_time": 1794094071.9727023,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1986.422633969,
+    "wall_time": 1794094073.002337,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1987.454266639,
+    "wall_time": 1794094074.0339694,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1988.485197984,
+    "wall_time": 1794094075.064901,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1989.515563366,
+    "wall_time": 1794094076.0952663,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1990.546905164,
+    "wall_time": 1794094077.126608,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1991.575763146,
+    "wall_time": 1794094078.1554663,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1992.607195324,
+    "wall_time": 1794094079.1868985,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1993.636532795,
+    "wall_time": 1794094080.2162359,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1994.665535162,
+    "wall_time": 1794094081.245238,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1995.69419969,
+    "wall_time": 1794094082.2739024,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1996.722691539,
+    "wall_time": 1794094083.3023946,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1997.751915468,
+    "wall_time": 1794094084.3316183,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1998.779680825,
+    "wall_time": 1794094085.3593836,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 1999.809065986,
+    "wall_time": 1794094086.3887696,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2000.838551471,
+    "wall_time": 1794094087.4182544,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2001.867739133,
+    "wall_time": 1794094088.4474418,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2002.896685038,
+    "wall_time": 1794094089.4763877,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2003.925466402,
+    "wall_time": 1794094090.505169,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2004.954630886,
+    "wall_time": 1794094091.5343337,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2005.985563277,
+    "wall_time": 1794094092.5652664,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2007.015036238,
+    "wall_time": 1794094093.594739,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2008.043808184,
+    "wall_time": 1794094094.623511,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2009.073382602,
+    "wall_time": 1794094095.6530855,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2010.102104321,
+    "wall_time": 1794094096.681807,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2011.131441983,
+    "wall_time": 1794094097.711145,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2012.160186188,
+    "wall_time": 1794094098.739889,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2013.189217731,
+    "wall_time": 1794094099.7689207,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2014.220727548,
+    "wall_time": 1794094100.8004303,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2015.254091453,
+    "wall_time": 1794094101.8337946,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2016.284463564,
+    "wall_time": 1794094102.8641665,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2017.315836682,
+    "wall_time": 1794094103.8955398,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2018.345772764,
+    "wall_time": 1794094104.9254754,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.24
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313700352,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523448320
+  },
+  {
+    "monotonic": 2019.374901825,
+    "wall_time": 1794094105.9546046,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2020.40390238,
+    "wall_time": 1794094106.983605,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2021.434544209,
+    "wall_time": 1794094108.014247,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2022.466057282,
+    "wall_time": 1794094109.0457602,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2023.49707211,
+    "wall_time": 1794094110.076775,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2024.528248047,
+    "wall_time": 1794094111.107951,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2025.558652985,
+    "wall_time": 1794094112.138356,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2026.589184026,
+    "wall_time": 1794094113.1688871,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2027.61880391,
+    "wall_time": 1794094114.1985068,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2028.649077156,
+    "wall_time": 1794094115.22878,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313733120,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523481088
+  },
+  {
+    "monotonic": 2029.681325454,
+    "wall_time": 1794094116.261028,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313708544,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523456512
+  },
+  {
+    "monotonic": 2030.714643606,
+    "wall_time": 1794094117.2943466,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2031.745359384,
+    "wall_time": 1794094118.325062,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2032.774492094,
+    "wall_time": 1794094119.3541949,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2033.803364048,
+    "wall_time": 1794094120.383067,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.24
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2034.834343368,
+    "wall_time": 1794094121.4140463,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2035.862841141,
+    "wall_time": 1794094122.442544,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2036.891823151,
+    "wall_time": 1794094123.4715261,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2037.921349404,
+    "wall_time": 1794094124.5010521,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2038.950038626,
+    "wall_time": 1794094125.5297413,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2039.980130681,
+    "wall_time": 1794094126.559834,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2041.00956442,
+    "wall_time": 1794094127.5892673,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2042.039708303,
+    "wall_time": 1794094128.6194115,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2043.069231209,
+    "wall_time": 1794094129.648934,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2044.100919921,
+    "wall_time": 1794094130.6806228,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2045.132634902,
+    "wall_time": 1794094131.7123377,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2046.163587407,
+    "wall_time": 1794094132.7432902,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2047.194515815,
+    "wall_time": 1794094133.7742188,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2048.223930743,
+    "wall_time": 1794094134.8036335,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2049.25367141,
+    "wall_time": 1794094135.8333745,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2050.28507704,
+    "wall_time": 1794094136.8647797,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2051.314383201,
+    "wall_time": 1794094137.894086,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.25
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2052.344060071,
+    "wall_time": 1794094138.9237628,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2053.37322118,
+    "wall_time": 1794094139.952924,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2054.402516879,
+    "wall_time": 1794094140.98222,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2055.436541647,
+    "wall_time": 1794094142.0162446,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2056.466267223,
+    "wall_time": 1794094143.0459704,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2057.495958032,
+    "wall_time": 1794094144.0756607,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2058.526167593,
+    "wall_time": 1794094145.1058702,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2059.55664909,
+    "wall_time": 1794094146.136352,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2060.586349728,
+    "wall_time": 1794094147.1660526,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2061.615109849,
+    "wall_time": 1794094148.194813,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2062.644807924,
+    "wall_time": 1794094149.2245107,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2063.674951913,
+    "wall_time": 1794094150.2546546,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2064.704665488,
+    "wall_time": 1794094151.284368,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2065.734311832,
+    "wall_time": 1794094152.314015,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2066.766158027,
+    "wall_time": 1794094153.345861,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2067.796428472,
+    "wall_time": 1794094154.3761313,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2068.826266056,
+    "wall_time": 1794094155.4059691,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2069.856975596,
+    "wall_time": 1794094156.4366786,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2070.886903878,
+    "wall_time": 1794094157.4666066,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2071.915248255,
+    "wall_time": 1794094158.4949515,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2072.945130489,
+    "wall_time": 1794094159.5248332,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2073.974149363,
+    "wall_time": 1794094160.553852,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2075.005227377,
+    "wall_time": 1794094161.58493,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2076.034115432,
+    "wall_time": 1794094162.6138186,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2077.063030195,
+    "wall_time": 1794094163.6427333,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  },
+  {
+    "monotonic": 2078.092942441,
+    "wall_time": 1794094164.6726453,
+    "processes": [
+      {
+        "pid": 20930,
+        "created": 1794093994.01,
+        "name": "veranda-tauri-comparison",
+        "rss_bytes": 158834688,
+        "cpu_seconds": 0.25
+      },
+      {
+        "pid": 20943,
+        "created": 1794093994.44,
+        "name": "WebKitNetworkProcess",
+        "rss_bytes": 50913280,
+        "cpu_seconds": 0.03
+      },
+      {
+        "pid": 20970,
+        "created": 1794093994.51,
+        "name": "WebKitWebProcess",
+        "rss_bytes": 313683968,
+        "cpu_seconds": 3.26
+      }
+    ],
+    "family_rss_bytes": 523431936
+  }
+]

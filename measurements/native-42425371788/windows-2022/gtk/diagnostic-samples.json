@@ -1,0 +1,233 @@
+[
+  {
+    "monotonic": 2096.39,
+    "wall_time": 1794094575.1624098,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2097.421,
+    "wall_time": 1794094576.1867726,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2098.453,
+    "wall_time": 1794094577.2197058,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2099.484,
+    "wall_time": 1794094578.2526739,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2100.515,
+    "wall_time": 1794094579.2860136,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2101.562,
+    "wall_time": 1794094580.3258984,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2102.593,
+    "wall_time": 1794094581.3594465,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2103.625,
+    "wall_time": 1794094582.3854096,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2104.656,
+    "wall_time": 1794094583.4208155,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22339584,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81473536
+  },
+  {
+    "monotonic": 2105.687,
+    "wall_time": 1794094584.4513156,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59133952,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22319104,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81453056
+  },
+  {
+    "monotonic": 2106.718,
+    "wall_time": 1794094585.4903517,
+    "processes": [
+      {
+        "pid": 7744,
+        "created": 1794094568.290697,
+        "name": "gtk-control.exe",
+        "rss_bytes": 59121664,
+        "cpu_seconds": 1.0625
+      },
+      {
+        "pid": 6056,
+        "created": 1794094568.3709867,
+        "name": "gdbus.exe",
+        "rss_bytes": 22319104,
+        "cpu_seconds": 0.65625
+      }
+    ],
+    "family_rss_bytes": 81440768
+  }
+]

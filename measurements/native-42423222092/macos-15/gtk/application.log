@@ -1,0 +1,3 @@
+project 1
+
+(gtk-control:17718): Gdk-WARNING **: 23:11:28.615: gdk_frame_timings_presented() called on skipped frame.

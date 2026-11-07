@@ -1,2 +1,2 @@
 # Retain the original LF/CRLF bytes of native measurement exports.
-measurements/**/*.json -text whitespace=cr-at-eol
+measurements/** -text whitespace=cr-at-eol,-blank-at-eof

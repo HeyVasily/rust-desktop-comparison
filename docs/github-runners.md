@@ -91,7 +91,8 @@ The probe refreshes descendants with 200 ms delays and retains identities after 
 It records family RSS and observed CPU increments once per sampling interval. Actual
 cadence includes monitoring overhead. Short-lived children
 between discovery polls and the final CPU interval of exiting processes may be missed.
-Denied access marks the scope incomplete. Cleanup terminates only tracked application
+Denied access to a tracked application process marks the scope incomplete. Cleanup
+terminates only tracked application
 processes and reports any survivors; the external watchdog also attempts descendant
 cleanup before stopping the run. Unrelated desktop and system services are excluded.
 
@@ -137,7 +138,7 @@ coalition metadata; coalition equality alone never establishes ownership. Global
 responsibility discovery runs at most once per second alongside ancestry discovery.
 
 This uses private macOS APIs, checked on the actual runner. Missing APIs, an
-unverified root, missing attributable WebContent, access errors, or new unassigned
+unverified root, missing attributable WebContent, app-process access errors, or new live unassigned
 WebKit helpers refuse a complete comparison. Global helpers with a verified different
 responsible PID are excluded as unrelated. Native lookup errors for unknown helpers
 are retried; an unresolved live helper still refuses completion. Helpers that exit

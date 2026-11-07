@@ -15,7 +15,7 @@ source commits are recorded per series.
 | Framework | Implementation here | Evidence |
 | --- | --- | --- |
 | egui/eframe 0.37.0 | [Rust example](examples/egui/src/main.rs), pinned dependencies | Screenshot and matched UI-only measurements |
-| GTK4 4.18.6 | [C control](examples/gtk/main.c) | Screenshot and matched UI-only measurements; gtk4-rs is not measured |
+| GTK4 | [C control](examples/gtk/main.c) | Screenshot and matched UI-only measurements; gtk4-rs is not measured |
 | Slint 1.18.1 | [Stock Rust + declarative layout](examples/slint/README.md), winit/software | New native runs; [historical patched frontend](docs/historical-comparison.md) is separate |
 | Qt Widgets | [C++17 + CMake example](examples/qt/README.md) | Installed Qt version recorded per run; [historical 6.8.2 frontend](docs/historical-comparison.md) is separate |
 | Tauri 2.12.5 | [Rust + static HTML/CSS/JavaScript](examples/tauri/README.md) | WebKitGTK on Linux, WebView2 on Windows, WKWebView on macOS |
@@ -25,49 +25,63 @@ earlier full-backend measurements do not measure these new binaries. Native buil
 screenshot and measurement outcomes are recorded by the
 [GitHub runner diagnostic](docs/github-runners.md); adding source is not a passing run.
 
+## Memory and CPU on GitHub runners
+
+All five release examples were measured on Linux, Windows and macOS, with a
+960×640 visible content target and the same synthetic initial data. Memory is the
+median application-family RSS/Working Set. CPU is observed idle usage as percent
+of one logical core; no-counter-increment values are labeled explicitly.
+
+| Framework | Linux RSS, MiB | CPU, % | Windows Working Set, MiB | CPU, % | macOS RSS, MiB | CPU, % |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| egui / eframe | 120.71 | 0.01645 | 51.79 | 0 recorded | 76.70 | 0.00047 |
+| GTK4 (C) | 240.27 | 0 recorded | 75.45 | 0 recorded | 119.55 | 0.00052 |
+| Slint | 22.99 | 0.01645 | 21.57 | 0 recorded | 67.58 | 0 recorded |
+| Qt Widgets | 33.60 | 0 recorded | 31.67 | 0 recorded | 88.70 | 0.00023 |
+| Tauri | 499.20 | 0.02427 | 270.71 | 0.10704 | 134.86 | 0.01712 |
+
+The [full report](docs/full-native-results.md) includes all 15 native interfaces,
+actual elapsed times, process scope, renderer/runtime versions and the verified
+Linux minimized phases. [Raw samples and the derived CSV](measurements/native-matrix-2026-11-07/README.md)
+retain each case's actual run and source commit. Windows Working Set and macOS/Linux
+RSS have different accounting; shared pages are not deduplicated. Tiny idle CPU
+values do not establish a performance ranking.
+
 ## What the interfaces look like
 
-Actual 1120×768 captures of the running examples, with the same project selected and
-snapshot 1 after Refresh. These illustrate the comparison workload, not a finished product.
+These are real **960×640 Linux client captures** of the current examples: all projects,
+project-001 selected, empty filter and snapshot 0. The [full platform gallery](docs/full-native-results.md#interfaces-captured-during-measurement)
+compares the same interfaces on Windows and macOS, including their native appearance.
 
 ### egui / eframe
 
-![egui: yard navigation, project list, filter and selected project details](screenshots/egui.png)
+![egui / eframe on Linux](screenshots/native-42420765503/ubuntu-24.04/egui.png)
 
-### GTK4 control
+### GTK4 C control
 
-![GTK4: the same synthetic data, controls and selected project details](screenshots/gtk.png)
+![GTK4 C control on Linux](screenshots/native-42420765503/ubuntu-24.04/gtk.png)
 
-### Additional interfaces on a Linux GitHub runner
+### Slint
 
-These new examples were built and captured on Ubuntu 24.04. Their complete client
-areas are 1120×768, showing project-001 and snapshot 0. They are from the new stock
-five-framework series, not the original Debian snapshot-1 captures above.
+![Slint on Linux](screenshots/native-42420765503/ubuntu-24.04/slint.png)
 
-**Slint — declarative widgets with a software renderer**
+### Qt Widgets
 
-![Stock Slint on Linux](screenshots/native-42412948217/ubuntu-24.04/slint.png)
+![Qt Widgets on Linux](screenshots/native-42420765503/ubuntu-24.04/qt.png)
 
-**Qt Widgets — native C++ widget tree**
+### Tauri / WebKitGTK
 
-![Qt Widgets on Linux](screenshots/native-42412948217/ubuntu-24.04/qt.png)
-
-**Tauri / WebKitGTK — embedded HTML/CSS/JavaScript**
-
-![Tauri WebKitGTK on Linux](screenshots/native-42412948217/ubuntu-24.04/tauri.png)
-
-The [native results](docs/native-results.md) contain full Linux and macOS galleries,
-constrained Windows captures, raw data and memory/CPU observations. Tauri's total
-macOS memory remains unknown because XPC helpers are outside the probe's attributable
-scope. Linux uses WebKitGTK, Windows uses WebView2, and macOS uses WKWebView.
-
-| Native runner | Build / useful capture evidence | Measurement limits |
-| --- | --- | --- |
-| Ubuntu 24.04 x64 | All five built; complete inspected captures; job passed | Visible/minimized family RSS/CPU; shared pages not deduplicated |
-| macOS 15 ARM64 | All five built; useful inspected captures | Four full sample sets; Tauri XPC scope incomplete; unequal window sizes |
-| Windows Server 2022 x64 | Three new examples sampled; captures clipped/occluded | Egui/Glow lacks sufficient OpenGL; GTK4 not configured; Working Set differs from Linux PSS |
+![Tauri / WebKitGTK on Linux](screenshots/native-42420765503/ubuntu-24.04/tauri.png)
 
 ## What the layout code looks like
+
+| Framework | Layout in these examples | State and events |
+| --- | --- | --- |
+| egui/eframe | Rust panel/widget calls inside `App::ui` | Rust fields; widget responses update state |
+| GTK4 | C code builds persistent `GtkBox`/`GtkListBox` widgets | GTK signals call C callbacks |
+| Slint | Declarative `.slint` boxes, properties and repeated rows | Rust models and callbacks update properties |
+| Qt Widgets | C++ builds `QWidget`, `QVBoxLayout` and `QHBoxLayout` objects | Qt signals connect to C++ lambdas |
+| Tauri | HTML panels, CSS Grid and persistent DOM buttons | JavaScript event handlers; Rust starts the system webview |
 
 Egui declares panels and widgets inside `App::ui`; state updates sit beside click handling.
 This example does not request continuous repainting. An excerpt from the
@@ -131,13 +145,20 @@ It does not import the four correctness forks used by the old Slint prototype.
 The [C++ example](examples/qt/main.cpp) creates a widget tree and connects signals:
 
 ```cpp
+auto *root = new QVBoxLayout(&window);
+auto *body = new QHBoxLayout;
+body->setSpacing(12);
+auto *yards = new QWidget;
+yards->setFixedWidth(200);
+body->addWidget(yards);
+auto *projectLayout = new QVBoxLayout;
 auto *projects = new QListWidget;
-projects->setAccessibleName("Projects");
-projects->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-QObject::connect(filter, &QLineEdit::textChanged, &window, [&](const QString &text) {
-    updateFilter();
-    std::cout << "filter " << text.toStdString() << std::endl;
-});
+projectLayout->addWidget(projects);
+body->addLayout(projectLayout, 1);  // Expand the center column.
+auto *details = new QLabel;
+details->setFixedWidth(250);
+body->addWidget(details);
+root->addLayout(body, 1);
 ```
 
 Qt Widgets uses native widget/layout APIs here; QML, Qt Quick and WebEngine are absent.
@@ -169,7 +190,10 @@ There is no frontend framework, development server or application backend. Tauri
 different system webviews on each OS, so a Windows result is not a WebKitGTK result.
 See [Tauri's webview documentation](https://v2.tauri.app/reference/webview-versions/).
 
-## Matched measurements — 2026-11-07
+## Original matched Linux measurements — 2026-11-07
+
+Original 1120×768 captures: [egui](screenshots/egui.png) and [GTK4](screenshots/gtk.png).
+These historical results use the original source and renderer configuration.
 
 One Debian 13 amd64 disposable VM, four logical CPUs, 4 GiB RAM, Xvfb/Openbox and
 software rendering. Both examples ran sequentially on the same display and used the

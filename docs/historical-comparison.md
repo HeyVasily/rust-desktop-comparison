@@ -2,7 +2,7 @@
 
 These results were measured on **2026-10-10** for Subyard's Veranda frontend.
 They include a real local backend and use a Wayland environment. They are separate
-from the [2026-11-07 synthetic UI-only comparison](../README.md#matched-measurements--2026-11-07).
+from the [2026-11-07 synthetic UI-only comparison](../README.md#original-matched-linux-measurements--2026-11-07).
 Qt and Slint prototype sources and screenshots are not included in this repository.
 
 ## Results

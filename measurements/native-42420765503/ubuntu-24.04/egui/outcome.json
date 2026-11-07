@@ -1,0 +1,135 @@
+{
+  "name": "egui",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "architecture": "x86_64",
+    "processor": "x86_64",
+    "logical_cpus": 4,
+    "memory_bytes": 16759308288,
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "runner_image": "ubuntu24",
+    "image_version": "20261101.360.1",
+    "commit": "553141927c1fdeefee655a5288432aa76c44bac1",
+    "run_id": "42420765503",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "memory_metric": "Linux RSS",
+  "limitations": [
+    "Summed RSS can double-count shared pages; this is not Linux PSS",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": "2097155",
+        "pid": 20440,
+        "title": "Veranda egui comparison",
+        "rectangle": [
+          321,
+          207,
+          1281,
+          847
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 10.122249551999971,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 120.71484375,
+          "p95": 120.71484375,
+          "observed_maximum": 120.71484375
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": "2097155",
+        "pid": 20440,
+        "title": "Veranda egui comparison",
+        "rectangle": [
+          321,
+          207,
+          1281,
+          847
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 121.60027441299997,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.020000000000000018,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.01644733130459274,
+        "family_rss_mib": {
+          "median": 120.71484375,
+          "p95": 120.71484375,
+          "observed_maximum": 120.71484375
+        }
+      }
+    },
+    "minimized": {
+      "status": "passed",
+      "window": {
+        "id": "2097155",
+        "pid": 20440,
+        "title": "Veranda egui comparison",
+        "rectangle": [
+          321,
+          207,
+          1281,
+          847
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "state": "minimized verified with _NET_WM_STATE_HIDDEN and IsUnMapped"
+      },
+      "summary": {
+        "seconds": 121.64657146700006,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 120.71484375,
+          "p95": 120.71484375,
+          "observed_maximum": 120.71484375
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 20440,
+      "name": "veranda-egui-comparison",
+      "created": 1794092715.71
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}
