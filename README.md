@@ -244,9 +244,4 @@ candidates in the same environment. Publish raw samples and distinguish a UI-onl
 experiment from an application with a real backend. Keep historical results separate
 when the workload or environment differs.
 
-## Origin and license
-
-The runnable sources, screenshots and measurements were imported from the
-[Subyard comparison](https://github.com/subyard/subyard/blob/f0ff6f17f10cb9416fe3fe801a0b53b397bb5a14/docs/veranda/native-framework-comparison.md).
-Source code and screenshot bytes are preserved. See [NOTICE](NOTICE.md) for provenance
-and the original MIT notice, and [LICENSE](LICENSE) for this repository's MIT license.
+The original Linux measurements were taken from [Subyard](https://github.com/subyard/subyard).
