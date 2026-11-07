@@ -294,7 +294,7 @@ def check_minimized(window):
         raise RuntimeError("Minimized state was not established by X11 state and map checks")
 
 
-def phase(family, title, output, name, settle, seconds, minimized_window=None):
+def phase(family, title, output, name, settle, seconds, minimized_window=None, client_size=None):
     end = time.monotonic() + settle
     while time.monotonic() < end:
         family.refresh()
@@ -307,6 +307,10 @@ def phase(family, title, output, name, settle, seconds, minimized_window=None):
         window = find_window({p.pid for p in family.refresh()}, title)
         if not window:
             raise RuntimeError("No matching visible non-minimized window after settling")
+        if client_size:
+            left, top, right, bottom = window["rectangle"]
+            if [right - left, bottom - top] != client_size:
+                raise RuntimeError(f"Client size {[right-left, bottom-top]} differs from expected {client_size}")
         evidence = capture(window, output / f"{name}.png", readiness_timeout=45 if name == "diagnostic" else 0)
     rows = [family.sample()]
     write_json(output / f"{name}-samples.json", rows)
@@ -323,6 +327,8 @@ def phase(family, title, output, name, settle, seconds, minimized_window=None):
         final_window = find_window({p.pid for p in family.refresh()}, title)
         if not final_window or final_window["id"] != window["id"]:
             raise RuntimeError("Window missing or replaced during sampling")
+        if final_window["rectangle"] != window["rectangle"]:
+            raise RuntimeError("Window geometry changed during sampling")
         capture(final_window, output / f"{name}-end.png")
     summary = summarize(rows)
     if summary["late_discovered_preexisting_processes"]:
@@ -350,6 +356,8 @@ def main():
     parser.add_argument("--executable", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--comparison", action="store_true")
+    parser.add_argument("--client-size", type=int, nargs=2, metavar=("WIDTH", "HEIGHT"),
+                        help="Require physical client dimensions on Windows/Linux; unavailable for Quartz titlebar captures")
     parser.add_argument("--unsupported-reason")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
@@ -367,6 +375,8 @@ def main():
         if args.unsupported_reason:
             result.update(status="not_run", reason=args.unsupported_reason)
             return 0
+        if args.client_size and sys.platform == "darwin":
+            raise RuntimeError("Quartz exposes outer bounds; client-size validation is Windows/Linux only")
         if not args.executable.is_file():
             raise RuntimeError("Release executable missing; inspect build log")
         before_helpers = web_helpers()
@@ -400,7 +410,8 @@ def main():
                 time.sleep(.2)
             else:
                 raise RuntimeError("No matching GUI window in 45s; GUI session/title visibility may be unavailable")
-            result["phases"]["diagnostic"] = phase(family, args.title, args.output, "diagnostic", 5, 10)
+            result["phases"]["diagnostic"] = phase(family, args.title, args.output, "diagnostic", 5, 10,
+                                                   client_size=args.client_size)
             unassigned = {key: value for key, value in web_helpers().items()
                           if key not in before_helpers and value["pid"] not in family.known}
             result["unassigned_new_web_helpers"] = list(unassigned.values())
@@ -413,7 +424,8 @@ def main():
             else:
                 result["status"] = "diagnostic_passed"
                 if args.comparison:
-                    result["phases"]["comparison"] = phase(family, args.title, args.output, "comparison", 30, 120)
+                    result["phases"]["comparison"] = phase(family, args.title, args.output, "comparison", 30, 120,
+                                                           client_size=args.client_size)
                     unassigned = {key: value for key, value in web_helpers().items()
                                   if key not in before_helpers and value["pid"] not in family.known}
                     result["unassigned_new_web_helpers"] = list(unassigned.values())

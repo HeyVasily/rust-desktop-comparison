@@ -67,7 +67,9 @@ contaminating their measurements.
 Windows uses `EnumWindows`, process ownership, exact title, visible/non-minimized
 state, `GetClientRect` and `ClientToScreen`, then Pillow's real desktop capture of that
 client rectangle. The probe places the window inside the work area and refuses
-client bounds extending beyond it (including the taskbar). Capture can still contain
+client bounds extending beyond it (including the taskbar). Windows/Linux phases
+also require an actual 960×640 physical client; geometry must stay fixed during
+sampling. Capture can still contain
 an occluding window; visual artifact inspection
 is required. On macOS, Quartz lists on-screen windows by owner PID/title/layer/bounds;
 `screencapture -l` captures the actual window including its titlebar. macOS capture

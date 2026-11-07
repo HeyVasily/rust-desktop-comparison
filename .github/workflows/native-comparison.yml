@@ -206,6 +206,8 @@ jobs:
               command = [os.environ['PROBE_PYTHON'], 'tools/native_probe.py', '--name', name,
                          '--title', title, '--executable', str(executable),
                          '--output', 'artifacts/' + name]
+              if sys.platform != 'darwin':
+                  command += ['--client-size', '960', '640']
               if os.environ['COMPARISON'] == 'true':
                   command += ['--comparison']
               try:
