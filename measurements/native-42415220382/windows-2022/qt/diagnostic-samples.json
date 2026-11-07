@@ -1,0 +1,145 @@
+[
+  {
+    "monotonic": 1476.203,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1477.218,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1478.25,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1479.265,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1480.281,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1481.296,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1482.312,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1483.328,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1484.343,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1485.359,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  },
+  {
+    "monotonic": 1486.375,
+    "processes": [
+      {
+        "pid": 4564,
+        "created": 1794087262.523824,
+        "name": "veranda-qt-comparison.exe",
+        "rss_bytes": 35180544,
+        "cpu_seconds": 0.0625
+      }
+    ],
+    "family_rss_bytes": 35180544
+  }
+]

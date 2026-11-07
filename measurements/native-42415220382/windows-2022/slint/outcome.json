@@ -1,0 +1,99 @@
+{
+  "name": "slint",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Windows-2022Server-10.0.20348-SP0",
+    "architecture": "AMD64",
+    "processor": "Intel64 Family 6 Model 207 Stepping 2, GenuineIntel",
+    "logical_cpus": 4,
+    "memory_bytes": 17174360064,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "runner_image": "win22",
+    "image_version": "20261101.353.1",
+    "commit": "a829767517c50b839d7496d009eea815cfac3949",
+    "run_id": "42415220382",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "memory_metric": "Windows Working Set",
+  "limitations": [
+    "Summed RSS can double-count shared pages; this is not Linux PSS",
+    "Observed process ancestry, polled at 5 Hz; very short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 1245738,
+        "pid": 6596,
+        "title": "Veranda Slint comparison",
+        "rectangle": [
+          138,
+          161,
+          1258,
+          929
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 1120,
+        "height": 768,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion"
+      },
+      "summary": {
+        "seconds": 10.171999999999798,
+        "sample_intervals": 10,
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 23.796875,
+          "p95": 23.796875,
+          "observed_maximum": 23.796875
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 1245738,
+        "pid": 6596,
+        "title": "Veranda Slint comparison",
+        "rectangle": [
+          138,
+          161,
+          1258,
+          929
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 1120,
+        "height": 768,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion"
+      },
+      "summary": {
+        "seconds": 122.03099999999995,
+        "sample_intervals": 120,
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 23.6953125,
+          "p95": 23.76171875,
+          "observed_maximum": 23.76171875
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 6596,
+      "name": "veranda-slint-comparison.exe",
+      "created": 1794087094.6716225
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

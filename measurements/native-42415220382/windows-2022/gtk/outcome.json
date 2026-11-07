@@ -1,0 +1,29 @@
+{
+  "name": "gtk",
+  "status": "not_run",
+  "build_mode": "release",
+  "environment": {
+    "os": "Windows-2022Server-10.0.20348-SP0",
+    "architecture": "AMD64",
+    "processor": "Intel64 Family 6 Model 207 Stepping 2, GenuineIntel",
+    "logical_cpus": 4,
+    "memory_bytes": 17174360064,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "runner_image": "win22",
+    "image_version": "20261101.353.1",
+    "commit": "a829767517c50b839d7496d009eea815cfac3949",
+    "run_id": "42415220382",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "memory_metric": "Windows Working Set",
+  "limitations": [
+    "Summed RSS can double-count shared pages; this is not Linux PSS",
+    "Observed process ancestry, polled at 5 Hz; very short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {},
+  "cleanup_status": "not_needed",
+  "reason": "Windows GTK4 toolchain/runtime not configured; MSYS2 integration remains unverified"
+}

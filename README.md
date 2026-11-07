@@ -36,28 +36,34 @@ snapshot 1 after Refresh. These illustrate the comparison workload, not a finish
 
 ![GTK4: the same synthetic data, controls and selected project details](screenshots/gtk.png)
 
-### Additional interfaces on a macOS GitHub runner
+### Additional interfaces on a Linux GitHub runner
 
-These new examples were built and captured on macOS 15 ARM64. They show the initial
-fixture state, project-001 and snapshot 0. Native window sizes differ because of the
-hosted display; they are not the original Linux snapshot-1 captures above.
+These new examples were built and captured on Ubuntu 24.04. Their complete client
+areas are 1120×768, showing project-001 and snapshot 0. They are from the new stock
+five-framework series, not the original Debian snapshot-1 captures above.
 
 **Slint — declarative widgets with a software renderer**
 
-![Stock Slint on macOS](screenshots/native-42412948217/macos-15/slint.png)
+![Stock Slint on Linux](screenshots/native-42412948217/ubuntu-24.04/slint.png)
 
 **Qt Widgets — native C++ widget tree**
 
-![Qt Widgets on macOS](screenshots/native-42412948217/macos-15/qt.png)
+![Qt Widgets on Linux](screenshots/native-42412948217/ubuntu-24.04/qt.png)
 
-**Tauri / WKWebView — embedded HTML/CSS/JavaScript**
+**Tauri / WebKitGTK — embedded HTML/CSS/JavaScript**
 
-![Tauri WKWebView on macOS](screenshots/native-42412948217/macos-15/tauri.png)
+![Tauri WebKitGTK on Linux](screenshots/native-42412948217/ubuntu-24.04/tauri.png)
 
-The [native results](docs/native-results.md) contain the full five-interface gallery,
-raw-data links and memory/CPU observations. The Tauri screenshot establishes a useful
-UI; its total macOS memory remains unknown because XPC helpers are outside the probe's
-attributable scope. Linux uses WebKitGTK and Windows uses WebView2 instead.
+The [native results](docs/native-results.md) contain full Linux and macOS galleries,
+constrained Windows captures, raw data and memory/CPU observations. Tauri's total
+macOS memory remains unknown because XPC helpers are outside the probe's attributable
+scope. Linux uses WebKitGTK, Windows uses WebView2, and macOS uses WKWebView.
+
+| Native runner | Build / useful capture evidence | Measurement limits |
+| --- | --- | --- |
+| Ubuntu 24.04 x64 | All five built; complete inspected captures; job passed | Visible/minimized family RSS/CPU; shared pages not deduplicated |
+| macOS 15 ARM64 | All five built; useful inspected captures | Four full sample sets; Tauri XPC scope incomplete; unequal window sizes |
+| Windows Server 2022 x64 | Three new examples sampled; captures clipped/occluded | Egui/Glow lacks sufficient OpenGL; GTK4 not configured; Working Set differs from Linux PSS |
 
 ## What the layout code looks like
 

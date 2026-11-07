@@ -1,0 +1,127 @@
+{
+  "name": "qt",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "architecture": "x86_64",
+    "processor": "x86_64",
+    "logical_cpus": 4,
+    "memory_bytes": 16760344576,
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "runner_image": "ubuntu24",
+    "image_version": "20261101.360.1",
+    "commit": "4dbcf9ca4eeb88f165a1c4363af6a6a44751ac02",
+    "run_id": "42412948217",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "memory_metric": "Linux RSS",
+  "limitations": [
+    "Summed RSS can double-count shared pages; this is not Linux PSS",
+    "Observed process ancestry, polled at 5 Hz; very short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": "2097158",
+        "pid": 21517,
+        "title": "Veranda Qt Widgets comparison",
+        "rectangle": [
+          241,
+          143,
+          1361,
+          911
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "width": 1120,
+        "height": 768,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion"
+      },
+      "summary": {
+        "seconds": 10.196463848000121,
+        "sample_intervals": 10,
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 34.33984375,
+          "p95": 34.33984375,
+          "observed_maximum": 34.33984375
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": "2097158",
+        "pid": 21517,
+        "title": "Veranda Qt Widgets comparison",
+        "rectangle": [
+          241,
+          143,
+          1361,
+          911
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "width": 1120,
+        "height": 768,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion"
+      },
+      "summary": {
+        "seconds": 122.42170347499996,
+        "sample_intervals": 120,
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 34.52734375,
+          "p95": 34.52734375,
+          "observed_maximum": 34.52734375
+        }
+      }
+    },
+    "minimized": {
+      "status": "passed",
+      "window": {
+        "id": "2097158",
+        "pid": 21517,
+        "title": "Veranda Qt Widgets comparison",
+        "rectangle": [
+          241,
+          143,
+          1361,
+          911
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "state": "minimized verified with _NET_WM_STATE_HIDDEN and IsUnMapped"
+      },
+      "summary": {
+        "seconds": 122.44170575099997,
+        "sample_intervals": 120,
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 34.52734375,
+          "p95": 34.52734375,
+          "observed_maximum": 34.52734375
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 21517,
+      "name": "veranda-qt-comparison",
+      "created": 1794087226.76
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}
