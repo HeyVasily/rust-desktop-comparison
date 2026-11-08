@@ -1,88 +1,103 @@
 # Rust desktop GUI comparison
 
-Small, inspectable desktop interfaces with **real screenshots, layout code and measured
-resource use**. Runnable examples cover egui/eframe, GTK4, Slint, Qt Widgets and Tauri.
-The original Linux measurements and later native runner results are kept in separate
-series, with their process scope, renderer and platform recorded.
+**[Open the interactive comparison →](https://heyvasily.github.io/rust-desktop-comparison/)**
+&nbsp;·&nbsp; [Native features](docs/features.md)
+&nbsp;·&nbsp; [Full measurements](docs/full-native-results.md)
+&nbsp;·&nbsp; [Raw data](measurements/native-matrix-2026-11-07/README.md)
+&nbsp;·&nbsp; [Methodology](docs/methodology.md)
 
-The examples show 10 synthetic yards and 100 projects: navigation, project selection,
-scrolling, an editable filter and a Refresh button that advances an in-memory snapshot.
-There is no backend, inventory scan or periodic polling. The original workload is named
-Veranda. Historical captures retain the original 1120×768 fixture; current examples
-use 960×640 windows to fit native hosted desktops. Renderer variants and actual
-source commits are recorded per series.
+The same small desktop interface built five times — **egui/eframe, GTK4, Slint,
+Qt Widgets and Tauri** — then measured on GitHub-hosted Windows, macOS and Linux
+runners, with real screenshots, the layout code and a sourced matrix of native OS
+features.
 
-| Framework | Implementation here | Evidence |
-| --- | --- | --- |
-| egui/eframe 0.37.0 | [Rust example](examples/egui/src/main.rs), pinned dependencies | Screenshot and matched UI-only measurements |
-| GTK4 | [C control](examples/gtk/main.c) | Screenshot and matched UI-only measurements; gtk4-rs is not measured |
-| Slint 1.18.1 | [Stock Rust + declarative layout](examples/slint/README.md), winit/software | New native runs; [historical patched frontend](docs/historical-comparison.md) is separate |
-| Qt Widgets | [C++17 + CMake example](examples/qt/README.md) | Installed Qt version recorded per run; [historical 6.8.2 frontend](docs/historical-comparison.md) is separate |
-| Tauri 2.12.5 | [Rust + static HTML/CSS/JavaScript](examples/tauri/README.md) | WebKitGTK on Linux, WebView2 on Windows, WKWebView on macOS |
+Every example shows 10 synthetic yards and 100 projects: navigation, selection,
+scrolling, an editable filter and a Refresh button that advances an in-memory
+snapshot. There is no backend or periodic work, so the numbers show what a toolkit
+costs before your application does anything.
 
-The three additional examples are new implementations of the same workload. Their
-earlier full-backend measurements do not measure these new binaries. Native build,
-screenshot and measurement outcomes are recorded by the
-[GitHub runner diagnostic](docs/github-runners.md); adding source is not a passing run.
+| Framework | Language here | UI model | Example |
+| --- | --- | --- | --- |
+| egui/eframe 0.37.0 | Rust | Immediate mode, own drawing (OpenGL/wgpu) | [main.rs](examples/egui/src/main.rs) |
+| GTK4 | C (Rust apps use gtk4-rs, not measured) | Retained widget tree, GTK theme | [main.c](examples/gtk/main.c) |
+| Slint 1.18.1 | Rust + `.slint` markup | Declarative, own renderer (software here) | [main.slint](examples/slint/ui/main.slint) |
+| Qt Widgets | C++17 | Retained widget tree, platform styles | [main.cpp](examples/qt/main.cpp) |
+| Tauri 2.12.5 | Rust + HTML/CSS/JS | System webview | [index.html](examples/tauri/frontend/index.html) |
 
-## Memory and CPU on GitHub runners
+## Idle memory on three operating systems
 
-All five release examples were measured on Linux, Windows and macOS, with a
-960×640 visible content target and the same synthetic initial data. Memory is the
-median application-family RSS/Working Set. CPU is observed idle usage as percent
-of one logical core; no-counter-increment values are labeled explicitly.
+Median memory of the whole application process family (including webview helpers)
+with a 960×640 window, after 30 s of settling and 120 one-second samples.
+**Lower is better.** Compare rows within a column: each OS reports memory differently.
 
-| Framework | Linux RSS, MiB | CPU, % | Windows Working Set, MiB | CPU, % | macOS RSS, MiB | CPU, % |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| egui / eframe | 120.71 | 0.01645 | 51.79 | 0 recorded | 76.70 | 0.00047 |
-| GTK4 (C) | 240.27 | 0 recorded | 75.45 | 0 recorded | 119.55 | 0.00052 |
-| Slint | 22.99 | 0.01645 | 21.57 | 0 recorded | 67.58 | 0 recorded |
-| Qt Widgets | 33.60 | 0 recorded | 31.67 | 0 recorded | 88.70 | 0.00023 |
-| Tauri | 499.20 | 0.02427 | 270.71 | 0.10704 | 134.86 | 0.01712 |
+| Framework | Linux RSS, MiB | Windows Working Set, MiB | macOS RSS, MiB |
+| --- | ---: | ---: | ---: |
+| egui / eframe | 120.71 | 51.79 | 76.70 |
+| GTK4 (C) | 240.27 | 75.45 | 119.55 |
+| Slint | **22.99** | **21.57** | **67.58** |
+| Qt Widgets | 33.60 | 31.67 | 88.70 |
+| Tauri | 499.20 | 270.71 | 134.86 |
 
-The [full report](docs/full-native-results.md) includes all 15 native interfaces,
-actual elapsed times, process scope, renderer/runtime versions and the verified
-Linux minimized phases. [Raw samples and the derived CSV](measurements/native-matrix-2026-11-07/README.md)
-retain each case's actual run and source commit. Windows Working Set and macOS/Linux
-RSS have different accounting; shared pages are not deduplicated. Tiny idle CPU
-values do not establish a performance ranking.
+Idle CPU stayed below 0.11 % of one core in every case, too small to rank;
+per-case CPU, elapsed time and toolkit versions are in the
+[full report](docs/full-native-results.md).
 
-### Relation to the earlier Veranda measurements
+> [!NOTE]
+> **How to read these numbers.** RSS and Working Set sum every process in the
+> family, so shared pages are counted more than once — this inflates multi-process
+> apps such as Tauri on Linux (WebKitGTK). These are idle UI-only observations,
+> not startup, interaction or frame-rate measurements. Linux used Ubuntu's GTK 4.14
+> and Qt 6.4 packages under X11 without a pinned GSK renderer, so its GTK figure is
+> not comparable with the [earlier Wayland/Cairo measurements](docs/historical-comparison.md#why-the-current-linux-numbers-differ)
+> (Slint 35.00, GTK 41.98, Qt 51.91 MiB GUI RSS, backend-connected).
 
-This table is a **new UI-only demo series**, not a rerun of the earlier
-backend-connected frontends. That earlier comparison measured GUI RSS of
-35.00 MiB (Slint), 41.98 MiB (GTK/Cairo) and 51.91 MiB (Qt), with backend/bridge
-memory reported separately. The current GTK case uses a different frontend,
-GTK version and X11 environment, without fixing or observing its GSK renderer.
-Its 240.27 MiB does not establish a regression from the earlier Wayland/Cairo
-result. The [side-by-side explanation](docs/historical-comparison.md#why-the-current-linux-numbers-differ)
-details scope, renderers, versions and the limits of causal attribution.
+## Native features and OS integration
+
+How much of the operating system each toolkit reaches without extra work.
+Every cell links to its source in the [detailed matrix](docs/features.md).
+
+<!-- features:start -->
+<!-- Generated by tools/render_features.py from data/features.json. -->
+| Capability | egui / eframe | GTK4 | Slint | Qt Widgets | Tauri |
+| --- | :---: | :---: | :---: | :---: | :---: |
+| Native-looking controls | ❌ | 🟡 Win<br>🟡 mac<br>✅ Linux | 🟡 | ✅ Win<br>✅ mac<br>🟡 Linux | 🟡 |
+| Follows system light/dark | ✅ | ❔ Win<br>❔ mac<br>✅ Linux | ✅ | ✅ Win<br>✅ mac<br>🟡 Linux | ✅ |
+| Native Wayland and X11 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Screen readers | ✅ | 🟡 Win<br>🟡 mac<br>✅ Linux | ✅ | ✅ | ✅ |
+| Input methods (CJK, dead keys) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Right-to-left and bidi text | ❌ | ✅ | 🟡 | ✅ | ✅ |
+| Native menu bar | 📦 | 🟡 Win<br>✅ mac<br>🟡 Linux | ✅ Win<br>✅ mac<br>🟡 Linux | ✅ | ✅ |
+| System tray icon | 📦 | ❌ | ✅ | ✅ | ✅ |
+| Native file dialogs | 📦 | ✅ | 📦 | ✅ | 🧩 |
+| Desktop notifications | 📦 | ❔ Win<br>❔ mac<br>✅ Linux | 📦 | 🟡 | 🧩 |
+| Drag and drop with other apps | 🟡 | ✅ | 🟡 | ✅ | 🟡 |
+| Multiple windows | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Installers and updates | 📦 | 🟡 Win<br>🟡 mac<br>✅ Linux | 📦 | 🟡 | ✅ |
+
+✅ Built in · 🟡 Partial · 🧩 Official plugin · 📦 Third-party crate · ❌ Not available · ❔ Not verified. Checked 2026-11-08.
+<!-- features:end -->
 
 ## What the interfaces look like
 
-These are real **960×640 Linux client captures** of the current examples: all projects,
-project-001 selected, empty filter and snapshot 0. The [full platform gallery](docs/full-native-results.md#interfaces-captured-during-measurement)
-compares the same interfaces on Windows and macOS, including their native appearance.
+Real **960×640 Linux client captures**: all projects, project-001 selected,
+empty filter. The [interactive page](https://heyvasily.github.io/rust-desktop-comparison/#screenshots)
+and the [full gallery](docs/full-native-results.md#interfaces-captured-during-measurement)
+show the same interfaces on Windows and macOS.
 
-### egui / eframe
-
-![egui / eframe on Linux](screenshots/native-42420765503/ubuntu-24.04/egui.png)
-
-### GTK4 C control
-
-![GTK4 C control on Linux](screenshots/native-42420765503/ubuntu-24.04/gtk.png)
-
-### Slint
-
-![Slint on Linux](screenshots/native-42420765503/ubuntu-24.04/slint.png)
-
-### Qt Widgets
-
-![Qt Widgets on Linux](screenshots/native-42420765503/ubuntu-24.04/qt.png)
-
-### Tauri / WebKitGTK
-
-![Tauri / WebKitGTK on Linux](screenshots/native-42420765503/ubuntu-24.04/tauri.png)
+<table>
+  <tr>
+    <td width="50%"><b>egui / eframe</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/egui.png" alt="egui / eframe on Linux"></td>
+    <td width="50%"><b>GTK4 (C)</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/gtk.png" alt="GTK4 C control on Linux"></td>
+  </tr>
+  <tr>
+    <td><b>Slint</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/slint.png" alt="Slint on Linux"></td>
+    <td><b>Qt Widgets</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/qt.png" alt="Qt Widgets on Linux"></td>
+  </tr>
+  <tr>
+    <td><b>Tauri / WebKitGTK</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/tauri.png" alt="Tauri / WebKitGTK on Linux"></td>
+    <td></td>
+  </tr>
+</table>
 
 ## What the layout code looks like
 
@@ -280,5 +295,11 @@ and record the framework version, renderer, build mode and process scope. Compar
 candidates in the same environment. Publish raw samples and distinguish a UI-only
 experiment from an application with a real backend. Keep historical results separate
 when the workload or environment differs.
+
+Native-feature claims live in [`data/features.json`](data/features.json): add the
+framework there with a source for every cell, then run
+`python3 tools/render_features.py` to regenerate [docs/features.md](docs/features.md)
+and the README summary. The [GitHub Pages site](https://heyvasily.github.io/rust-desktop-comparison/)
+(`index.html` and `site/`) reads the same JSON and the measurement CSV directly.
 
 The original Linux measurements were taken from [Subyard](https://github.com/subyard/subyard).

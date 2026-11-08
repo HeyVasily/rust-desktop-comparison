@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rust Desktop GUI Comparison</title>
+  <meta name="description" content="egui, GTK4, Slint, Qt Widgets and Tauri: the same desktop interface measured on Windows, macOS and Linux, with screenshots, layout code and a sourced matrix of native OS features.">
+  <meta property="og:title" content="Rust Desktop GUI Comparison">
+  <meta property="og:description" content="Five toolkits, three operating systems: idle memory, real screenshots and native OS integration.">
+  <meta property="og:image" content="https://heyvasily.github.io/rust-desktop-comparison/screenshots/native-42420765503/ubuntu-24.04/slint.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='5' width='26' height='22' rx='4' fill='%232a78d6'/%3E%3Crect x='7' y='10' width='6' height='13' rx='1.5' fill='%23fff'/%3E%3Crect x='15' y='10' width='10' height='3' rx='1.5' fill='%23fff'/%3E%3Crect x='15' y='15' width='10' height='3' rx='1.5' fill='%23fff' opacity='.7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="site/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Open data · measured on GitHub-hosted runners · November 2026</p>
+      <h1>Rust desktop GUI comparison</h1>
+      <p class="lede">The same small desktop interface built with <strong>egui</strong>, <strong>GTK4</strong>, <strong>Slint</strong>, <strong>Qt Widgets</strong> and <strong>Tauri</strong>, measured on Windows, macOS and Linux. Real screenshots, the layout code, idle memory and how much of each operating system the toolkit reaches.</p>
+      <ul class="facts">
+        <li><b>5</b>toolkits</li>
+        <li><b>3</b>operating systems</li>
+        <li><b>15</b>measured interfaces</li>
+        <li><b>13</b>native capabilities with sources</li>
+      </ul>
+      <div class="links">
+        <a class="button primary" href="https://github.com/HeyVasily/rust-desktop-comparison">View on GitHub</a>
+        <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison/tree/main/measurements/native-matrix-2026-11-07">Raw data</a>
+        <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/methodology.md">Methodology</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav" aria-label="Sections">
+    <div class="wrap">
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#memory">Memory</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#features">Native features</a></li>
+        <li><a href="#code">Code</a></li>
+        <li><a href="#method">Method</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="overview" aria-labelledby="overview-title">
+      <h2 id="overview-title">Overview</h2>
+      <p class="section-lede">What each toolkit is, its measured idle memory per system, and where it is strong or limited. Memory is lower-is-better; the bold value is the lowest on that system.</p>
+      <div class="overview" id="overview-cards"><p>Loading…</p></div>
+    </section>
+
+    <section id="memory" aria-labelledby="memory-title">
+      <h2 id="memory-title">Idle memory</h2>
+      <p class="section-lede">Median memory of the application's whole process family (webview helpers included) with a 960×640 window, after 30&nbsp;s settling and 120 one-second samples. All three panels share one scale.</p>
+      <div class="charts" id="memory-charts"></div>
+      <p class="note"><strong>How to read this.</strong> Each OS reports memory differently (Linux/macOS RSS, Windows Working Set), so compare toolkits within a panel. Summing RSS counts shared pages more than once, which inflates multi-process apps such as Tauri on Linux. Idle CPU stayed below 0.11&nbsp;% of one core for every case — too small to rank. These are idle UI-only observations, not startup, interaction or frame-rate measurements.</p>
+      <details class="table-view">
+        <summary>Show as a table, with CPU</summary>
+        <div class="scroll-x" id="memory-table"></div>
+      </details>
+    </section>
+
+    <section id="screenshots" aria-labelledby="screenshots-title">
+      <h2 id="screenshots-title">What the interfaces look like</h2>
+      <p class="section-lede">Captured during the measured runs: all projects, project-001 selected, empty filter. macOS captures include the titlebar. Select an image to view it at full size.</p>
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Operating system" id="shot-os"></div>
+      </div>
+      <div class="gallery" id="gallery"></div>
+      <dialog class="lightbox" id="lightbox" aria-label="Screenshot">
+        <img id="lightbox-img" alt="">
+        <div class="bar-row">
+          <span id="lightbox-caption"></span>
+          <div>
+            <button class="icon-btn" type="button" data-step="-1" aria-label="Previous screenshot">←</button>
+            <button class="icon-btn" type="button" data-step="1" aria-label="Next screenshot">→</button>
+            <button class="icon-btn" type="button" id="lightbox-close">Close</button>
+          </div>
+        </div>
+      </dialog>
+    </section>
+
+    <section id="features" aria-labelledby="features-title">
+      <h2 id="features-title">Native features and OS integration</h2>
+      <p class="section-lede" id="features-lede">How much of the operating system each toolkit reaches without extra work. Select a cell for the details and its source.</p>
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Show support for" id="feature-os"></div>
+      </div>
+      <ul class="legend" id="legend"></ul>
+      <div class="card matrix-wrap">
+        <table class="matrix" id="matrix"></table>
+      </div>
+      <div class="card detail" id="detail" aria-live="polite">
+        <p class="placeholder">Select a cell to see the note, per-system support and its source.</p>
+      </div>
+      <p class="note">Spotted something outdated? Edit <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/data/features.json">data/features.json</a> with a source; the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/features.md">Markdown matrix</a> and this page are generated from it.</p>
+    </section>
+
+    <section id="code" aria-labelledby="code-title">
+      <h2 id="code-title">What the layout code looks like</h2>
+      <p class="section-lede">Shortened excerpts of the same three-column layout. Each links to the complete runnable example.</p>
+      <div class="toolbar">
+        <div class="seg" role="tablist" aria-label="Framework" id="code-tabs">
+          <button type="button" role="tab" aria-pressed="true" aria-selected="true" data-code="egui">egui</button>
+          <button type="button" role="tab" aria-pressed="false" aria-selected="false" data-code="gtk">GTK4</button>
+          <button type="button" role="tab" aria-pressed="false" aria-selected="false" data-code="slint">Slint</button>
+          <button type="button" role="tab" aria-pressed="false" aria-selected="false" data-code="qt">Qt Widgets</button>
+          <button type="button" role="tab" aria-pressed="false" aria-selected="false" data-code="tauri">Tauri</button>
+        </div>
+      </div>
+
+      <article class="card code-card" data-panel="egui" role="tabpanel">
+        <header><span>Rust panel and widget calls inside <code>App::ui</code>; state lives in Rust fields.</span><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/examples/egui/src/main.rs">main.rs</a></header>
+<pre><code>egui::Panel::left("yards").exact_size(210.0).show(ui, |ui| {
+    ui.heading("Yards");
+    if ui.button("All projects").clicked() {
+        self.yard = 0;
+    }
+});
+egui::CentralPanel::default().show(ui, |ui| {
+    ui.heading("All projects");
+    egui::ScrollArea::vertical().show(ui, |ui| {
+        // Project buttons update self.project when clicked.
+    });
+});</code></pre>
+      </article>
+
+      <article class="card code-card" data-panel="gtk" role="tabpanel" hidden>
+        <header><span>C builds a persistent widget tree; GTK signals call C callbacks.</span><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/examples/gtk/main.c">main.c</a></header>
+<pre><code>GtkWidget *body = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
+GtkWidget *yards = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
+GtkWidget *scroll = gtk_scrolled_window_new();
+projects = gtk_list_box_new();
+gtk_widget_set_hexpand(scroll, TRUE);
+gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroll), projects);
+gtk_box_append(GTK_BOX(body), yards);
+gtk_box_append(GTK_BOX(body), scroll);
+g_signal_connect(projects, "row-selected", G_CALLBACK(select_project), NULL);</code></pre>
+      </article>
+
+      <article class="card code-card" data-panel="slint" role="tabpanel" hidden>
+        <header><span>Declarative <code>.slint</code> markup; Rust supplies models and handles callbacks.</span><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/examples/slint/ui/main.slint">main.slint</a></header>
+<pre><code>ListView {
+    for project in root.projects: Button {
+        text: project.name + "                 NOT_CREATED";
+        height: 38px;
+        checkable: true;
+        checked: root.selected-project == project.id;
+        clicked =&gt; { root.choose-project(project.id); }
+    }
+}</code></pre>
+      </article>
+
+      <article class="card code-card" data-panel="qt" role="tabpanel" hidden>
+        <header><span>C++ creates <code>QWidget</code> layouts; Qt signals connect to lambdas.</span><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/examples/qt/main.cpp">main.cpp</a></header>
+<pre><code>auto *root = new QVBoxLayout(&amp;window);
+auto *body = new QHBoxLayout;
+body-&gt;setSpacing(12);
+auto *yards = new QWidget;
+yards-&gt;setFixedWidth(200);
+body-&gt;addWidget(yards);
+auto *projectLayout = new QVBoxLayout;
+auto *projects = new QListWidget;
+projectLayout-&gt;addWidget(projects);
+body-&gt;addLayout(projectLayout, 1);  // Expand the center column.
+auto *details = new QLabel;
+details-&gt;setFixedWidth(250);
+body-&gt;addWidget(details);
+root-&gt;addLayout(body, 1);</code></pre>
+      </article>
+
+      <article class="card code-card" data-panel="tauri" role="tabpanel" hidden>
+        <header><span>HTML panels and CSS Grid; plain DOM handlers; Rust starts the system webview.</span><a href="https://github.com/HeyVasily/rust-desktop-comparison/tree/main/examples/tauri/frontend">frontend/</a></header>
+<pre><code>main {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) 250px;
+    gap: 12px;
+}
+
+filter.addEventListener("input", updateFilter);
+document.getElementById("refresh").addEventListener("click", () =&gt; {
+  state.refreshes += 1;
+  document.getElementById("snapshot").textContent =
+    `Snapshot ${state.refreshes} · local fixture`;
+});</code></pre>
+      </article>
+    </section>
+
+    <section id="method" aria-labelledby="method-title">
+      <h2 id="method-title">Method and limits</h2>
+      <div class="method">
+        <div class="card">
+          <h3>Workload</h3>
+          <ul>
+            <li>10 synthetic yards, 100 projects, filter and Refresh — no backend, no polling.</li>
+            <li>960×640 visible content, release builds, one app at a time.</li>
+            <li>30&nbsp;s settling, then 120 samples; CPU uses actual elapsed time.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>What it does not show</h3>
+          <ul>
+            <li>Startup time, interaction cost, frame rate or GPU rendering.</li>
+            <li>A controlled cross-OS ranking: runners, CPUs and toolkit builds differ.</li>
+            <li>Rust bindings for GTK or Qt: those examples are written in C and C++.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Read more</h3>
+          <ul>
+            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/full-native-results.md">Full native results</a> with versions and run IDs</li>
+            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/github-runners.md">Runner procedure</a> and process scope</li>
+            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/historical-comparison.md">Earlier Wayland measurements</a> and why they differ</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      MIT licensed. Data, screenshots and examples live in the <a href="https://github.com/HeyVasily/rust-desktop-comparison">repository</a>; this page reads them directly. The original workload comes from <a href="https://github.com/subyard/subyard">Subyard</a>.
+    </div>
+  </footer>
+
+  <script src="site/app.js" defer></script>
+</body>
+</html>

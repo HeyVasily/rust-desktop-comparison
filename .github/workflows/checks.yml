@@ -1,0 +1,19 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  generated-docs:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Feature matrix Markdown matches data/features.json
+        run: python3 tools/render_features.py --check
+      - name: Page script parses
+        run: node --check site/app.js
