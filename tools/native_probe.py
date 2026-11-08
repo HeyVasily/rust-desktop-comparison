@@ -124,7 +124,7 @@ def web_helpers():
     return found
 
 
-def find_window(pids, title):
+def find_window(pids, title, env=None):
     if sys.platform == "win32":
         from ctypes import wintypes
         user32 = ctypes.windll.user32
@@ -180,15 +180,15 @@ def find_window(pids, title):
     if sys.platform.startswith("linux"):
         for pid in pids:
             search = subprocess.run(["xdotool", "search", "--onlyvisible", "--pid", str(pid)],
-                                    capture_output=True, text=True, timeout=5)
+                                    capture_output=True, text=True, timeout=5, env=env)
             for handle in search.stdout.split():
-                actual_title = subprocess.check_output(["xdotool", "getwindowname", handle], text=True).strip()
+                actual_title = subprocess.check_output(["xdotool", "getwindowname", handle], text=True, env=env).strip()
                 if actual_title != title:
                     continue
-                info = subprocess.check_output(["xwininfo", "-id", handle], text=True)
+                info = subprocess.check_output(["xwininfo", "-id", handle], text=True, env=env)
                 if "Map State: IsViewable" not in info:
                     continue
-                geometry = subprocess.check_output(["xdotool", "getwindowgeometry", "--shell", handle], text=True)
+                geometry = subprocess.check_output(["xdotool", "getwindowgeometry", "--shell", handle], text=True, env=env)
                 values = dict(line.split("=", 1) for line in geometry.splitlines() if "=" in line)
                 x, y, width, height = (int(values[key]) for key in ("X", "Y", "WIDTH", "HEIGHT"))
                 if width > 0 and height > 0:

@@ -195,7 +195,7 @@ def run_case(args):
                   for child in children[:-1] for p in psutil.Process(child.pid).children(recursive=True)]
             poll_for(args.settle)
             if backend == 'x11':
-                result['window'] = find_window({p.pid for p in family.refresh()}, TITLES[name])
+                result['window'] = find_window({p.pid for p in family.refresh()}, TITLES[name], env=env)
                 if not result['window']:
                     raise RuntimeError('No visible X11 window matching app PID/title')
             unassigned, _ = scope_snapshot(family, before_helpers)
@@ -260,6 +260,39 @@ def run_case(args):
     return 0 if result['status'] == 'passed' else 1
 
 
+
+def run_matrix(args):
+    outcomes, failures = {}, []
+    def finish(reason=None):
+        write_json(args.output/'summary.json', outcomes)
+        write_json(args.output/'matrix-outcome.json', dict(
+            status='failed' if failures or reason else 'passed', failed_cases=failures,
+            completed_cases=list(outcomes), stopped_reason=reason))
+        return 1 if failures or reason else 0
+    for name in (NAMES if args.framework == 'all' else (args.framework,)):
+        for backend in (('x11','wayland') if args.backend == 'both' else (args.backend,)):
+            case = f'{name}-{backend}'
+            command = [sys.executable,__file__,'--target',str(args.target),'--output',str(args.output),
+                       '--user',args.user,'--case',case,'--settle',str(args.settle),'--intervals',str(args.intervals)]
+            print(f'BEGIN {case}',flush=True)
+            completed = subprocess.run(command,check=False,timeout=args.settle+args.intervals+180)
+            path = args.output/case/'outcome.json'
+            if not path.is_file():
+                return finish(f'{case}: missing outcome and cleanup evidence')
+            outcome = json.loads(path.read_text())
+            outcome['native_case_exit_code'] = completed.returncode
+            outcomes[case] = outcome
+            if outcome.get('cleanup_status') != 'clean' or outcome.get('cleanup_survivors') != []:
+                return finish(f'{case}: cleanup failed or unknown; later cases refused')
+            if completed.returncode or outcome.get('status') != 'passed':
+                failures.append(case)
+                if not args.keep_going:
+                    return finish()
+        if args.backend == 'both' and outcomes[f'{name}-x11']['binary_sha256'] != outcomes[f'{name}-wayland']['binary_sha256']:
+            return finish(f'{name}: binary changed between paired cases')
+    return finish()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--target', type=Path, required=True)
@@ -269,28 +302,20 @@ def main():
     parser.add_argument('--intervals', type=int, default=120)
     parser.add_argument('--framework', choices=('all', *NAMES), default='all')
     parser.add_argument('--backend', choices=('both', 'x11', 'wayland'), default='both')
+    parser.add_argument('--keep-going', action='store_true', help='Continue cleanly failed preflight cases; requires settle<=2 and intervals=1')
     parser.add_argument('--case', choices=[f'{n}-{b}' for n in NAMES for b in ('x11','wayland')])
     args = parser.parse_args()
     args.target,args.output = args.target.resolve(),args.output.resolve()
     if args.settle < 0 or args.intervals < 1:
         parser.error('Invalid sample duration')
+    if args.keep_going and (args.settle > 2 or args.intervals != 1):
+        parser.error('--keep-going is only available for short preflight cases')
     if args.case:
         return run_case(args)
     args.output.mkdir(parents=True,exist_ok=True)
     args.output.chmod(0o755)
-    outcomes = {}
-    for name in (NAMES if args.framework == 'all' else (args.framework,)):
-        for backend in (('x11','wayland') if args.backend == 'both' else (args.backend,)):
-            case = f'{name}-{backend}'
-            command = [sys.executable,__file__,'--target',str(args.target),'--output',str(args.output),
-                       '--user',args.user,'--case',case,'--settle',str(args.settle),'--intervals',str(args.intervals)]
-            print(f'BEGIN {case}',flush=True)
-            subprocess.run(command,check=True,timeout=args.settle+args.intervals+180)
-            outcomes[case] = json.loads((args.output/case/'outcome.json').read_text())
-        if args.backend == 'both' and outcomes[f'{name}-x11']['binary_sha256'] != outcomes[f'{name}-wayland']['binary_sha256']:
-            raise RuntimeError(f'{name}: binary changed between paired cases')
-    write_json(args.output/'summary.json',outcomes)
-    return 0
+    return run_matrix(args)
+
 
 
 if __name__ == '__main__':

@@ -3,11 +3,43 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
-from linux_display_probe import display_environment, read_diagnostic, summary
+from linux_display_probe import display_environment, read_diagnostic, summary, run_matrix
 
 
 class DisplayProbeTests(unittest.TestCase):
+    def exercise_preflight_failure(self, cleanup):
+        with tempfile.TemporaryDirectory(dir='/tmp') as directory:
+            output = Path(directory)
+            args = SimpleNamespace(output=output, target=output, user='fixture',
+                                   framework='egui', backend='both', settle=2, intervals=1, keep_going=True)
+            def launch(command, **kwargs):
+                case = command[command.index('--case') + 1]
+                folder = output/case
+                folder.mkdir()
+                failed = case.endswith('x11')
+                outcome = dict(status='failed' if failed else 'passed', cleanup_status=cleanup if failed else 'clean',
+                               cleanup_survivors=[], binary_sha256='same-binary')
+                (folder/'outcome.json').write_text(json.dumps(outcome))
+                return SimpleNamespace(returncode=1 if failed else 0)
+            with patch('linux_display_probe.subprocess.run', side_effect=launch) as run:
+                self.assertEqual(run_matrix(args), 1)
+            return run.call_count, json.loads((output/'matrix-outcome.json').read_text())
+
+    def test_preflight_collects_independent_failure_after_clean_cleanup(self):
+        calls, outcome = self.exercise_preflight_failure('clean')
+        self.assertEqual(calls, 2)
+        self.assertEqual(outcome['failed_cases'], ['egui-x11'])
+        self.assertEqual(outcome['completed_cases'], ['egui-x11', 'egui-wayland'])
+        self.assertEqual(outcome['status'], 'failed')
+
+    def test_preflight_refuses_next_case_when_cleanup_unknown(self):
+        calls, outcome = self.exercise_preflight_failure('unknown')
+        self.assertEqual(calls, 1)
+        self.assertIn('cleanup failed or unknown', outcome['stopped_reason'])
+
     def test_other_display_and_renderer_override_are_removed(self):
         env = display_environment(dict(DISPLAY=':7', WAYLAND_DISPLAY='wayland-7', WAYLAND_SOCKET='8',
                                       GSK_RENDERER='cairo', WLR_XWAYLAND='0'), 'wayland')
