@@ -73,6 +73,20 @@ class NativeProbeTests(unittest.TestCase):
         self.assertEqual(summary['family_rss_mib']['median'], 2)
         self.assertEqual(summary['family_rss_mib']['p95'], 3)
 
+    def test_primary_memory_is_summarized_beside_rss(self):
+        rows = [dict(monotonic=t, processes=[], family_rss_bytes=8 * 2**20,
+                     family_primary_bytes=t * 2**20) for t in (1, 2, 3, 4)]
+        summary = probe.summarize(rows)
+        self.assertEqual(summary['family_rss_mib']['median'], 8)
+        self.assertEqual(summary['family_primary_mib']['median'], 3)
+        self.assertEqual(summary['family_primary_mib']['observed_maximum'], 4)
+
+    def test_primary_metric_is_named_per_platform(self):
+        for platform, name in (('linux', 'Linux PSS'), ('darwin', 'macOS physical footprint'),
+                               ('win32', 'Windows private working set')):
+            with patch.object(probe.sys, 'platform', platform):
+                self.assertEqual(probe.primary_metric_name(), name)
+
     def test_late_discovery_does_not_charge_pre_phase_cpu(self):
         rows = [dict(monotonic=1, wall_time=100, processes=[], family_rss_bytes=1),
                 dict(monotonic=2, wall_time=101, family_rss_bytes=1,

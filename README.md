@@ -19,7 +19,7 @@ costs before your application does anything.
 | Framework | Language here | UI model | Example |
 | --- | --- | --- | --- |
 | egui/eframe 0.37.0 | Rust | Immediate mode, own drawing (OpenGL/wgpu) | [main.rs](examples/egui/src/main.rs) |
-| GTK4 | C (Rust apps use gtk4-rs, not measured) | Retained widget tree, GTK theme | [main.c](examples/gtk/main.c) |
+| GTK4 | C (Rust apps use gtk4-rs, not measured) | Retained widget tree, GTK theme | [main.c](examples/gtk-c/main.c) |
 | Slint 1.18.1 | Rust + `.slint` markup | Declarative, own renderer (software here) | [main.slint](examples/slint/ui/main.slint) |
 | Qt Widgets | C++17 | Retained widget tree, platform styles | [main.cpp](examples/qt/main.cpp) |
 | Tauri 2.12.5 | Rust + HTML/CSS/JS | System webview | [index.html](examples/tauri/frontend/index.html) |
@@ -129,7 +129,7 @@ egui::CentralPanel::default().show(ui, |ui| {
 ```
 
 GTK constructs a persistent widget tree and connects signals to callbacks. The
-[C control](examples/gtk/main.c) uses this layout shape:
+[C control](examples/gtk-c/main.c) uses this layout shape:
 
 ```c
 GtkWidget *body = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
@@ -266,7 +266,7 @@ export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/target}"
 mkdir -p "$CARGO_TARGET_DIR"
 cargo fmt --manifest-path examples/egui/Cargo.toml --check
 cargo build --release --locked --manifest-path examples/egui/Cargo.toml
-cc -O2 -Wall -Wextra -Werror examples/gtk/main.c \
+cc -O2 -Wall -Wextra -Werror examples/gtk-c/main.c \
     -o "$CARGO_TARGET_DIR/gtk-control" $(pkg-config --cflags --libs gtk4)
 ```
 

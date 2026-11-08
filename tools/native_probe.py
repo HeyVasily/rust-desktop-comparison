@@ -17,6 +17,48 @@ import psutil
 from PIL import Image, ImageGrab, ImageStat
 
 
+PRIMARY_METRIC = {
+    "linux": "Linux PSS",
+    "darwin": "macOS physical footprint",
+    "win32": "Windows private working set",
+}
+
+
+def primary_metric_name():
+    return PRIMARY_METRIC["linux" if sys.platform.startswith("linux") else sys.platform]
+
+
+_proc_pid_rusage = None
+
+
+def macos_phys_footprint(pid):
+    """ri_phys_footprint from proc_pid_rusage(RUSAGE_INFO_V0): Activity Monitor's Memory."""
+    global _proc_pid_rusage
+    if _proc_pid_rusage is None:
+        libc = ctypes.CDLL("/usr/lib/libSystem.B.dylib", use_errno=True)
+        _proc_pid_rusage = libc.proc_pid_rusage
+        _proc_pid_rusage.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_void_p]
+        _proc_pid_rusage.restype = ctypes.c_int
+    # rusage_info_v0: 16-byte UUID, then uint64 user_time, system_time, pkg_idle_wkups,
+    # interrupt_wkups, pageins, wired_size, resident_size, phys_footprint, ...
+    buffer = (ctypes.c_uint64 * 12)()
+    if _proc_pid_rusage(pid, 0, ctypes.byref(buffer)) != 0:
+        error = ctypes.get_errno()
+        if error == 3:  # ESRCH
+            raise psutil.NoSuchProcess(pid)
+        raise psutil.AccessDenied(pid)
+    return int(buffer[2 + 7])
+
+
+def primary_bytes(process):
+    """Memory attributable to one process without counting shared pages in full."""
+    if sys.platform.startswith("linux"):
+        return process.memory_full_info().pss
+    if sys.platform == "darwin":
+        return macos_phys_footprint(process.pid)
+    return process.memory_full_info().uss
+
+
 def write_json(path, value):
     path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
 
@@ -83,6 +125,7 @@ class Family:
                     cpu = process.cpu_times()
                     rows.append(dict(pid=process.pid, created=process.create_time(),
                                      name=process.name(), rss_bytes=process.memory_info().rss,
+                                     primary_bytes=primary_bytes(process),
                                      cpu_seconds=cpu.user + cpu.system))
             except psutil.NoSuchProcess:
                 continue
@@ -91,7 +134,8 @@ class Family:
         if not self.root.is_running() or self.root.status() == psutil.STATUS_ZOMBIE:
             raise RuntimeError("Application exited during sampling")
         return dict(monotonic=time.monotonic(), wall_time=time.time(), processes=rows,
-                    family_rss_bytes=sum(row["rss_bytes"] for row in rows))
+                    family_rss_bytes=sum(row["rss_bytes"] for row in rows),
+                    family_primary_bytes=sum(row["primary_bytes"] for row in rows))
 
     def cleanup(self):
         processes = self.refresh()
@@ -278,13 +322,18 @@ def summarize(rows):
                 previous[identity] = current
             total += max(0, current - previous.get(identity, 0))
             previous[identity] = current
-    memory = sorted(row["family_rss_bytes"] / 2**20 for row in rows[1:])
-    return dict(seconds=elapsed, sample_intervals=len(rows) - 1,
-                observed_cpu_seconds=total, late_discovered_preexisting_processes=sorted(late),
-                observed_cpu_percent_one_core=100 * total / elapsed,
-                family_rss_mib=dict(median=statistics.median(memory),
-                                    p95=memory[math.ceil(.95 * len(memory)) - 1],
-                                    observed_maximum=max(memory)))
+    def distribution(key):
+        values = sorted(row[key] / 2**20 for row in rows[1:])
+        return dict(median=statistics.median(values), p95=values[math.ceil(.95 * len(values)) - 1],
+                    observed_maximum=max(values))
+
+    result = dict(seconds=elapsed, sample_intervals=len(rows) - 1,
+                  observed_cpu_seconds=total, late_discovered_preexisting_processes=sorted(late),
+                  observed_cpu_percent_one_core=100 * total / elapsed,
+                  family_rss_mib=distribution("family_rss_bytes"))
+    if all("family_primary_bytes" in row for row in rows[1:]):
+        result["family_primary_mib"] = distribution("family_primary_bytes")
+    return result
 
 
 def check_minimized(window):
@@ -374,7 +423,8 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     result = dict(name=args.name, status="failed", build_mode="release", environment=environment(),
                   memory_metric="Windows Working Set" if sys.platform == "win32" else ("macOS RSS" if sys.platform == "darwin" else "Linux RSS"),
-                  limitations=["Summed RSS can double-count shared pages; this is not Linux PSS",
+                  primary_memory_metric=primary_metric_name(),
+                  limitations=["Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
                                "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
                                "CPU may omit an exiting process's final interval; no system-service allocation",
                                "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",

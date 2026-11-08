@@ -94,7 +94,7 @@ egui::CentralPanel::default().show(ui, |ui| {
 ```
 
 GTK constructs a persistent widget tree and connects signals to callbacks. The
-[C control](../examples/gtk/main.c) uses this layout shape:
+[C control](../examples/gtk-c/main.c) uses this layout shape:
 
 ```c
 GtkWidget *body = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);

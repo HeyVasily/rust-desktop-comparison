@@ -13,7 +13,7 @@ Dependency licenses are separate; see each pinned dependency's package metadata.
 | `dev/experiments/veranda-gui-comparison/Cargo.toml` | `examples/egui/Cargo.toml` |
 | `dev/experiments/veranda-gui-comparison/Cargo.lock` | `examples/egui/Cargo.lock` |
 | `dev/experiments/veranda-gui-comparison/src/main.rs` | `examples/egui/src/main.rs` |
-| `dev/experiments/veranda-gui-comparison/gtk-control.c` | `examples/gtk/main.c` |
+| `dev/experiments/veranda-gui-comparison/gtk-control.c` | `examples/gtk-c/main.c` |
 | `dev/experiments/veranda-gui-comparison/measure.py` | `tools/measure.py` |
 | `docs/veranda/native-framework-egui.png` | `screenshots/egui.png` |
 | `docs/veranda/native-framework-gtk.png` | `screenshots/gtk.png` |

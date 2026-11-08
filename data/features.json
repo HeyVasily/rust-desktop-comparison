@@ -41,7 +41,7 @@
       "language": "C here; Rust via gtk4-rs",
       "model": "Retained widget tree styled by the GTK theme (Adwaita)",
       "license": "LGPL-2.1-or-later",
-      "source": "examples/gtk/main.c",
+      "source": "examples/gtk-c/main.c",
       "home": "https://www.gtk.org/",
       "strengths": [
         "Native look and system integration on GNOME/Linux",

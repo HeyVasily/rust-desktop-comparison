@@ -17,6 +17,10 @@ on:
         description: 'Measure idle CPU/memory: 30s settling, 120 intervals; Linux also minimized'
         type: boolean
         default: true
+      appearance:
+        description: 'Relaunch each app with the OS switched to dark mode and capture it'
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -29,13 +33,14 @@ jobs:
       matrix:
         os: ${{ fromJSON(inputs.platforms == 'windows' && '["windows-2022"]' || inputs.platforms == 'macos' && '["macos-15"]' || inputs.platforms == 'linux' && '["ubuntu-24.04"]' || inputs.platforms == 'all' && '["windows-2022","macos-15","ubuntu-24.04"]' || '["windows-2022","macos-15"]') }}
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 90
+    timeout-minutes: 120
     env:
       CARGO_TARGET_DIR: ${{ github.workspace }}/target
       CARGO_BUILD_JOBS: '2'
       CARGO_INCREMENTAL: '0'
       COMPARISON: ${{ inputs.comparison }}
       FRAMEWORK: ${{ inputs.framework }}
+      APPEARANCE: ${{ inputs.appearance }}
     defaults:
       run:
         shell: bash
@@ -63,7 +68,7 @@ jobs:
           with Path(os.environ['GITHUB_ENV']).open('a', encoding='utf-8') as output:
               output.write('SELECTED_FRAMEWORKS=' + json.dumps(selected) + '\n')
               output.write('FRAMEWORK=' + ','.join(selected) + '\n')
-              output.write('NEED_RUST=' + str(bool(set(selected) & {'egui', 'slint', 'tauri'})).lower() + '\n')
+              output.write('NEED_RUST=' + str(bool(set(selected) & {'egui', 'gtk', 'slint', 'tauri'})).lower() + '\n')
           print('Selected frameworks: ' + ', '.join(selected))
           PY
       - uses: dtolnay/rust-toolchain@stable
@@ -91,7 +96,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 mesa-utils
+          sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 mesa-utils xdg-desktop-portal xdg-desktop-portal-gtk gsettings-desktop-schemas dconf-service dconf-cli libglib2.0-bin
           pkg-config --modversion gtk4 webkit2gtk-4.1 Qt6Widgets > artifacts/build/native-versions.txt
       - name: Qt 6.8.3 for Windows
         if: runner.os == 'Windows' && contains(env.SELECTED_FRAMEWORKS, 'qt')
@@ -111,7 +116,8 @@ jobs:
             mingw-w64-ucrt-x86_64-gcc
             mingw-w64-ucrt-x86_64-pkgconf
             mingw-w64-ucrt-x86_64-gtk4
-      - name: Build GTK4 C control on Windows
+            mingw-w64-ucrt-x86_64-rust
+      - name: Build gtk4-rs example on Windows
         if: runner.os == 'Windows' && contains(env.SELECTED_FRAMEWORKS, 'gtk')
         continue-on-error: true
         shell: msys2 {0}
@@ -149,16 +155,18 @@ jobs:
           cp examples/egui/Cargo.lock artifacts/build/egui-Cargo.lock
           cargo build --release --locked --manifest-path examples/egui/Cargo.toml 2>&1 | tee artifacts/build/egui.log
       - name: Resolve missing new-example locks and preserve exact resolution
-        if: contains(env.SELECTED_FRAMEWORKS, 'slint') || contains(env.SELECTED_FRAMEWORKS, 'tauri')
+        if: contains(env.SELECTED_FRAMEWORKS, 'gtk') || contains(env.SELECTED_FRAMEWORKS, 'slint') || contains(env.SELECTED_FRAMEWORKS, 'tauri')
         continue-on-error: true
         run: |
           status=0
-          for example in slint tauri; do
+          for example in gtk slint tauri; do
             if [[ ",$FRAMEWORK," != *,"$example",* ]]; then continue; fi
             cargo fmt --manifest-path "examples/$example/Cargo.toml" 2>&1 | tee "artifacts/build/$example-format.log" || status=1
             mkdir -p "artifacts/build/formatted/$example/src"
             cp "examples/$example/src/main.rs" "artifacts/build/formatted/$example/src/main.rs"
-            cp "examples/$example/build.rs" "artifacts/build/formatted/$example/build.rs"
+            if [ -f "examples/$example/build.rs" ]; then
+              cp "examples/$example/build.rs" "artifacts/build/formatted/$example/build.rs"
+            fi
             if [ ! -f "examples/$example/Cargo.lock" ]; then
               cargo generate-lockfile --manifest-path "examples/$example/Cargo.toml" 2>&1 | tee "artifacts/build/$example-resolution.log" || status=1
             fi
@@ -187,12 +195,17 @@ jobs:
           cmake --build target/qt --config Release 2>&1 | tee artifacts/build/qt-build.log
           if [ "$RUNNER_OS" = Windows ]; then
             windeployqt --release --no-translations target/qt/Release/veranda-qt-comparison.exe 2>&1 | tee artifacts/build/qt-deploy.log
+          else
+            # The Rust examples use strip = true; strip Qt too so executable sizes compare.
+            strip target/qt/veranda-qt-comparison
           fi
-      - name: Build GTK4 C control on Unix
+      - name: Build gtk4-rs example on Unix
         if: runner.os != 'Windows' && contains(env.SELECTED_FRAMEWORKS, 'gtk')
         continue-on-error: true
+        timeout-minutes: 15
         run: |
-          cc -O2 -Wall -Wextra examples/gtk/main.c -o target/gtk-control $(pkg-config --cflags --libs gtk4) 2>&1 | tee artifacts/build/gtk.log
+          pkg-config --modversion gtk4 > artifacts/build/gtk-version.txt
+          cargo build --release --locked --manifest-path examples/gtk/Cargo.toml 2>&1 | tee artifacts/build/gtk.log
       - name: Run selected candidates sequentially on this runner
         timeout-minutes: 35
         run: |
@@ -210,7 +223,7 @@ jobs:
           target = Path(os.environ['CARGO_TARGET_DIR'])
           candidates = [
               ('egui', 'Veranda egui comparison', target / 'release' / ('veranda-egui-comparison' + extension)),
-              ('gtk', 'Veranda GTK comparison', target / ('gtk-control' + extension)),
+              ('gtk', 'Veranda GTK comparison', (Path('target/msys2') if windows else target) / 'release' / ('veranda-gtk-comparison' + extension)),
               ('slint', 'Veranda Slint comparison', target / 'release' / ('veranda-slint-comparison' + extension)),
               ('qt', 'Veranda Qt Widgets comparison', target / 'qt' / ('Release' if windows else '') / ('veranda-qt-comparison' + extension)),
               ('tauri', 'Veranda Tauri comparison', target / 'release' / ('veranda-tauri-comparison' + extension)),
@@ -218,29 +231,40 @@ jobs:
           selected = json.loads(os.environ['SELECTED_FRAMEWORKS'])
           candidates = [candidate for candidate in candidates if candidate[0] in selected]
           assert [name for name, _, _ in candidates] == selected, 'Invalid selected framework list'
-          Path('artifacts/selected-candidates.json').write_text(json.dumps([name for name, _, _ in candidates]))
+          root = os.environ.get('OUTPUT_ROOT', 'artifacts')
+          Path(root).mkdir(parents=True, exist_ok=True)
+          Path(root, 'selected-candidates.json').write_text(json.dumps([name for name, _, _ in candidates]))
+          if root == 'artifacts':
+              sizes = {}
+              for name, _, executable in candidates:
+                  if executable.is_file():
+                      entry = dict(executable=str(executable), executable_bytes=executable.stat().st_size)
+                      if windows and name == 'qt':
+                          entry['deployed_directory_bytes'] = sum(p.stat().st_size for p in executable.parent.rglob('*') if p.is_file())
+                      sizes[name] = entry
+              Path('artifacts/build/binary-sizes.json').write_text(json.dumps(sizes, indent=2) + '\n')
           failed = []
           for name, title, executable in candidates:
               command = [os.environ['PROBE_PYTHON'], 'tools/native_probe.py', '--name', name,
                          '--title', title, '--executable', str(executable),
-                         '--output', 'artifacts/' + name]
+                         '--output', root + '/' + name]
               if sys.platform != 'darwin':
                   command += ['--client-size', '960', '640']
-              if os.environ['COMPARISON'] == 'true':
+              if os.environ['COMPARISON'] == 'true' and root == 'artifacts':
                   command += ['--comparison']
               try:
                   probe = subprocess.Popen(command)
                   if probe.wait(timeout=480):
                       failed.append(name)
                   try:
-                      outcome = json.loads(Path('artifacts/' + name + '/outcome.json').read_text())
+                      outcome = json.loads(Path(root, name, 'outcome.json').read_text())
                   except (OSError, ValueError):
                       outcome = {}
                   if (outcome.get('cleanup_status') not in ('clean', 'not_needed')
                           or outcome.get('cleanup_survivors') or outcome.get('process_access_denied_pids')):
                       if name not in failed:
                           failed.append(name)
-                      Path('artifacts/stopped-after.json').write_text(json.dumps(
+                      Path(root, 'stopped-after.json').write_text(json.dumps(
                           {'name': name, 'reason': 'Cleanup failed, unknown or missing; later candidates refused'}))
                       break
               except subprocess.TimeoutExpired:
@@ -259,13 +283,13 @@ jobs:
                           pass
                   probe.wait(timeout=5)
                   failed.append(name)
-                  Path('artifacts/' + name).mkdir(exist_ok=True)
-                  Path('artifacts/' + name + '/outcome.json').write_text(json.dumps(
+                  Path(root, name).mkdir(exist_ok=True)
+                  Path(root, name, 'outcome.json').write_text(json.dumps(
                       {'name': name, 'status': 'failed', 'cleanup_status': 'unknown', 'reason': 'Probe exceeded 480s watchdog; subsequent candidates refused to avoid contamination'}))
                   # The probe normally cleans its own process family. A watchdog expiry
                   # leaves scope unknown, so do not run another candidate on this runner.
                   break
-          Path('artifacts/failed-candidates.json').write_text(json.dumps(failed))
+          Path(root, 'failed-candidates.json').write_text(json.dumps(failed))
           PY
           if [ "$RUNNER_OS" = Linux ]; then
             export LIBGL_ALWAYS_SOFTWARE=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb XDG_SESSION_TYPE=x11
@@ -273,6 +297,72 @@ jobs:
           else
             "$PROBE_PYTHON" artifacts/run_candidates.py
           fi
+      - name: Relaunch in system dark mode
+        if: env.APPEARANCE == 'true' && hashFiles('artifacts/failed-candidates.json') != ''
+        continue-on-error: true
+        timeout-minutes: 20
+        env:
+          OUTPUT_ROOT: artifacts/dark
+          COMPARISON: 'false'
+        run: |
+          mkdir -p artifacts/dark
+          case "$RUNNER_OS" in
+            Windows)
+              reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' //v AppsUseLightTheme //t REG_DWORD //d 0 //f
+              reg add 'HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' //v SystemUsesLightTheme //t REG_DWORD //d 0 //f
+              reg query 'HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize' > artifacts/dark/system-setting.txt
+              "$PROBE_PYTHON" artifacts/run_candidates.py
+              ;;
+            macOS)
+              # perl alarm bounds a possible Automation permission wait.
+              perl -e 'alarm 30; exec @ARGV' osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true' \
+                > artifacts/dark/osascript.log 2>&1 || defaults write -g AppleInterfaceStyle -string Dark
+              defaults read -g AppleInterfaceStyle > artifacts/dark/system-setting.txt 2>&1
+              "$PROBE_PYTHON" artifacts/run_candidates.py
+              ;;
+            Linux)
+              # The freedesktop "system" preference: Settings portal color-scheme 1 (prefer dark).
+              mkdir -p "$HOME/.config/xdg-desktop-portal"
+              printf '[preferred]\ndefault=gtk\n' > "$HOME/.config/xdg-desktop-portal/portals.conf"
+              export LIBGL_ALWAYS_SOFTWARE=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb XDG_SESSION_TYPE=x11 XDG_CURRENT_DESKTOP=GNOME
+              dbus-run-session -- xvfb-run -a -s '-screen 0 1600x1000x24' bash -c '
+                openbox > artifacts/dark/openbox.log 2>&1 &
+                gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+                /usr/libexec/xdg-desktop-portal-gtk > artifacts/dark/portal-gtk.log 2>&1 &
+                /usr/libexec/xdg-desktop-portal --replace > artifacts/dark/portal.log 2>&1 &
+                sleep 3
+                gdbus call --session --dest org.freedesktop.portal.Desktop --object-path /org/freedesktop/portal/desktop \
+                  --method org.freedesktop.portal.Settings.ReadOne org.freedesktop.appearance color-scheme \
+                  > artifacts/dark/system-setting.txt 2>&1
+                "$PROBE_PYTHON" artifacts/run_candidates.py'
+              ;;
+          esac
+      - name: Compare light and dark captures
+        if: env.APPEARANCE == 'true' && hashFiles('artifacts/dark/selected-candidates.json') != ''
+        continue-on-error: true
+        run: |
+          "$PROBE_PYTHON" - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image, ImageStat
+
+          def luminance(path):
+              # Skip the macOS titlebar and outer border; mean of the client's luma, 0-255.
+              with Image.open(path) as image:
+                  gray = image.convert('L')
+                  return round(ImageStat.Stat(gray.crop((20, 60, gray.width - 20, gray.height - 20))).mean[0], 1)
+
+          result = {}
+          for name in json.loads(Path('artifacts/dark/selected-candidates.json').read_text()):
+              light, dark = Path('artifacts', name, 'diagnostic.png'), Path('artifacts/dark', name, 'diagnostic.png')
+              entry = dict(light_mean_luma=luminance(light) if light.exists() else None,
+                           dark_mean_luma=luminance(dark) if dark.exists() else None)
+              if entry['light_mean_luma'] is not None and entry['dark_mean_luma'] is not None:
+                  entry['follows_dark_mode'] = entry['dark_mean_luma'] < 110 and entry['light_mean_luma'] - entry['dark_mean_luma'] > 60
+              result[name] = entry
+          Path('artifacts/dark/appearance-summary.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          PY
       - name: Upload evidence, including failures
         if: always()
         uses: actions/upload-artifact@v4
