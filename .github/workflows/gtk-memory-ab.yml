@@ -1,0 +1,62 @@
+name: GTK Linux memory A/B
+
+on:
+  push:
+    branches: [investigate/linux-gtk-memory]
+    paths:
+      - .github/workflows/gtk-memory-ab.yml
+      - examples/gtk/main.c
+      - tools/gtk_memory_probe.py
+      - tools/test_gtk_memory_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gtk-x11:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install diagnostic desktop
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential pkg-config libgtk-4-dev xvfb openbox python3-psutil python3-pil python3-tk dbus-x11 at-spi2-core fonts-dejavu-core xauth
+      - name: Preflight and build one binary
+        run: |
+          mkdir -p out/gtk-memory-ab/build out/gtk-memory-ab/results
+          /usr/bin/python3 -m unittest discover -s tools -p test_gtk_memory_probe.py -v 2>&1 | tee out/gtk-memory-ab/build/tests.log
+          cc -O2 -Wall -Wextra examples/gtk/main.c -o out/gtk-memory-ab/gtk-control $(pkg-config --cflags --libs gtk4) 2>&1 | tee out/gtk-memory-ab/build/compile.log
+          sha256sum examples/gtk/main.c tools/gtk_memory_probe.py out/gtk-memory-ab/gtk-control > out/gtk-memory-ab/build/hashes.txt
+          {
+            cat /etc/os-release
+            uname -srmo
+            pkg-config --modversion gtk4
+            cc --version
+            for package in libgtk-4-1 libgl1-mesa-dri libegl-mesa0 mesa-vulkan-drivers openbox xvfb fonts-dejavu-core at-spi2-core; do
+              dpkg-query -W "$package" 2>/dev/null || printf '%s not-installed\n' "$package"
+            done
+            printf 'logical_cpus='; nproc
+            awk '/MemTotal:/{print}' /proc/meminfo
+            git rev-parse HEAD
+          } > out/gtk-memory-ab/build/environment.txt
+      - name: Compare default and Cairo on X11
+        run: |
+          started=$(date +%s)
+          finish() {
+            result=$?
+            elapsed=$(( $(date +%s) - started ))
+            printf '{"exit_code":%d,"elapsed_seconds":%d}\n' "$result" "$elapsed" >out/gtk-memory-ab/guest-receipt.json
+          }
+          trap finish EXIT
+          for variant in x11-default x11-cairo; do
+            dbus-run-session -- /usr/bin/python3 tools/gtk_memory_probe.py --binary out/gtk-memory-ab/gtk-control --output out/gtk-memory-ab/results --case "$variant" --settle 30 --intervals 120
+          done
+      - name: Retain original evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gtk-memory-ab-ubuntu-24.04
+          path: out/gtk-memory-ab/
+          if-no-files-found: error
