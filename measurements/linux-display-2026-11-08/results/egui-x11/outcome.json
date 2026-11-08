@@ -1,0 +1,110 @@
+{
+  "name": "egui",
+  "backend": "x11",
+  "status": "passed",
+  "cleanup_status": "clean",
+  "binary_sha256": "e62cf4a1d08bc83fe003bcc14dec5acff418244d717ed697b74cef692d086333",
+  "probe_uid": 0,
+  "expected_app_uid": 1001,
+  "limitations": [
+    "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+    "RSS counts shared pages per process; PSS apportions current sharing",
+    "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+  ],
+  "diagnostic": {
+    "name": "egui",
+    "backend": "x11",
+    "content_width": 960,
+    "content_height": 640,
+    "ready": true
+  },
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "QT_QPA_PLATFORM": "xcb",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "GSK_RENDERER": null,
+    "GDK_DISABLE": null,
+    "WLR_BACKENDS": null,
+    "WLR_RENDERER": null,
+    "WLR_XWAYLAND": null,
+    "GDK_SCALE": "1",
+    "GDK_DPI_SCALE": "1"
+  },
+  "desktop_processes": [
+    {
+      "pid": 20688,
+      "name": "dbus-daemon",
+      "uid": 1001
+    },
+    {
+      "pid": 20690,
+      "name": "Xvfb",
+      "uid": 1001
+    },
+    {
+      "pid": 20694,
+      "name": "openbox",
+      "uid": 1001
+    }
+  ],
+  "window": {
+    "id": "4194307",
+    "pid": 20698,
+    "title": "Veranda egui comparison",
+    "rectangle": [
+      161,
+      67,
+      1121,
+      707
+    ],
+    "bounds_kind": "X11 client"
+  },
+  "screenshots": {
+    "start": {
+      "sha256": "34ae561d8072d577bb5b50d3e2208ddee7239c7e1fa183335d094859e3d9dd68",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    },
+    "end": {
+      "sha256": "34ae561d8072d577bb5b50d3e2208ddee7239c7e1fa183335d094859e3d9dd68",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    }
+  },
+  "summary": {
+    "seconds": 120.51818462699998,
+    "sample_intervals": 120,
+    "observed_cpu_seconds": 0.010000000000000009,
+    "late_discovered_preexisting_processes": [],
+    "observed_cpu_percent_one_core": 0.008297503012470439,
+    "family_rss_mib": {
+      "median": 117.24609375,
+      "p95": 117.24609375,
+      "observed_maximum": 117.24609375
+    },
+    "family_pss_mib": {
+      "median": 91.8125
+    },
+    "family_stat_rss_mib": {
+      "median": 117.24609375
+    },
+    "max_processes": 1,
+    "max_threads": 13,
+    "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+  },
+  "observed_processes": [
+    {
+      "pid": 20698,
+      "name": "veranda-egui-comparison",
+      "created": 1794158051.26
+    }
+  ],
+  "xwayland_processes": [],
+  "cleanup_survivors": []
+}

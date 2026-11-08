@@ -1,0 +1,110 @@
+{
+  "name": "gtk",
+  "backend": "x11",
+  "status": "passed",
+  "cleanup_status": "clean",
+  "binary_sha256": "bddd48a148e1d98bb85e49c2a63fb8aa52689385e8c2f91e536fba7214a0bc9a",
+  "probe_uid": 0,
+  "expected_app_uid": 1001,
+  "limitations": [
+    "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+    "RSS counts shared pages per process; PSS apportions current sharing",
+    "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+  ],
+  "diagnostic": {
+    "name": "gtk",
+    "backend": "x11",
+    "content_width": 960,
+    "content_height": 640,
+    "ready": true
+  },
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "QT_QPA_PLATFORM": "xcb",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "GSK_RENDERER": null,
+    "GDK_DISABLE": null,
+    "WLR_BACKENDS": null,
+    "WLR_RENDERER": null,
+    "WLR_XWAYLAND": null,
+    "GDK_SCALE": "1",
+    "GDK_DPI_SCALE": "1"
+  },
+  "desktop_processes": [
+    {
+      "pid": 20816,
+      "name": "dbus-daemon",
+      "uid": 1001
+    },
+    {
+      "pid": 20818,
+      "name": "Xvfb",
+      "uid": 1001
+    },
+    {
+      "pid": 20822,
+      "name": "openbox",
+      "uid": 1001
+    }
+  ],
+  "window": {
+    "id": "4194308",
+    "pid": 20826,
+    "title": "Veranda GTK comparison",
+    "rectangle": [
+      161,
+      67,
+      1121,
+      707
+    ],
+    "bounds_kind": "X11 client"
+  },
+  "screenshots": {
+    "start": {
+      "sha256": "cff6bc133336b99d61222fd56ed26f40ed50da753c8285823dd027a08296a0b6",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    },
+    "end": {
+      "sha256": "cff6bc133336b99d61222fd56ed26f40ed50da753c8285823dd027a08296a0b6",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    }
+  },
+  "summary": {
+    "seconds": 120.57380426700001,
+    "sample_intervals": 120,
+    "observed_cpu_seconds": 0.0,
+    "late_discovered_preexisting_processes": [],
+    "observed_cpu_percent_one_core": 0.0,
+    "family_rss_mib": {
+      "median": 181.1796875,
+      "p95": 181.1796875,
+      "observed_maximum": 181.1796875
+    },
+    "family_pss_mib": {
+      "median": 151.287109375
+    },
+    "family_stat_rss_mib": {
+      "median": 181.1796875
+    },
+    "max_processes": 1,
+    "max_threads": 14,
+    "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+  },
+  "observed_processes": [
+    {
+      "pid": 20826,
+      "name": "gtk-control",
+      "created": 1794158364.41
+    }
+  ],
+  "xwayland_processes": [],
+  "cleanup_survivors": []
+}

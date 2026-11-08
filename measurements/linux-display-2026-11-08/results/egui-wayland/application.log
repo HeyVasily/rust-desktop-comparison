@@ -1,0 +1,3 @@
+renderer llvmpipe (LLVM 20.1.2, 256 bits)
+DISPLAY_DIAGNOSTIC {"name":"egui","backend":"wayland","content_width":960,"content_height":640,"ready":true}
+Terminated

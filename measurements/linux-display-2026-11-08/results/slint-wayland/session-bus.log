@@ -1,0 +1,7 @@
+unix:path=/tmp/dbus-re8cwvXYM4,guid=66e145ed56b9227d402625b96af0b0f3
+dbus-daemon[21000]: [session uid=1001 pid=21000] Activating service name='org.freedesktop.systemd1' requested by ':1.1' (uid=1001 pid=21007 comm="systemctl --user import-environment DISPLAY WAYLAN" label="unconfined")
+dbus-daemon[21000]: [session uid=1001 pid=21000] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[21000]: [session uid=1001 pid=21000] Activating service name='org.a11y.Bus' requested by ':1.3' (uid=1001 pid=21018 comm="/home/runner/work/rust-desktop-comparison/rust-des" label="unconfined")
+dbus-daemon[21000]: [session uid=1001 pid=21000] Successfully activated service 'org.a11y.Bus'
+
+Session terminated, killing shell... ...killed.

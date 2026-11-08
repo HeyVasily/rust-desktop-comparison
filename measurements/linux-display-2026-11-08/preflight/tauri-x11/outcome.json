@@ -1,0 +1,120 @@
+{
+  "name": "tauri",
+  "backend": "x11",
+  "status": "passed",
+  "cleanup_status": "clean",
+  "binary_sha256": "21738a6b86ac0055a2812261f938aa7f1422a846fc4ca4223847b4f07da2ab9a",
+  "probe_uid": 0,
+  "expected_app_uid": 1001,
+  "limitations": [
+    "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+    "RSS counts shared pages per process; PSS apportions current sharing",
+    "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+  ],
+  "diagnostic": {
+    "name": "tauri",
+    "backend": "x11",
+    "content_width": 960,
+    "content_height": 640,
+    "ready": true
+  },
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "QT_QPA_PLATFORM": "xcb",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "GSK_RENDERER": null,
+    "GDK_DISABLE": null,
+    "WLR_BACKENDS": null,
+    "WLR_RENDERER": null,
+    "WLR_XWAYLAND": null,
+    "GDK_SCALE": "1",
+    "GDK_DPI_SCALE": "1"
+  },
+  "desktop_processes": [
+    {
+      "pid": 20459,
+      "name": "dbus-daemon",
+      "uid": 1001
+    },
+    {
+      "pid": 20461,
+      "name": "Xvfb",
+      "uid": 1001
+    },
+    {
+      "pid": 20465,
+      "name": "openbox",
+      "uid": 1001
+    }
+  ],
+  "window": {
+    "id": "4194307",
+    "pid": 20469,
+    "title": "Veranda Tauri comparison",
+    "rectangle": [
+      161,
+      67,
+      1121,
+      707
+    ],
+    "bounds_kind": "X11 client"
+  },
+  "screenshots": {
+    "start": {
+      "sha256": "f07fb59436446cb5be9a877fc313ecda2d739631e7964f0ac8c9d3103d64fadd",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    },
+    "end": {
+      "sha256": "97559977f22ccf0f9aa25ca8e5e5a92f514f353e4207ed44363479cd4c29c618",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    }
+  },
+  "summary": {
+    "seconds": 1.0141400500000373,
+    "sample_intervals": 1,
+    "observed_cpu_seconds": 0.6100000000000001,
+    "late_discovered_preexisting_processes": [],
+    "observed_cpu_percent_one_core": 60.14948329868026,
+    "family_rss_mib": {
+      "median": 511.06640625,
+      "p95": 511.06640625,
+      "observed_maximum": 511.06640625
+    },
+    "family_pss_mib": {
+      "median": 340.1298828125
+    },
+    "family_stat_rss_mib": {
+      "median": 511.06640625
+    },
+    "max_processes": 3,
+    "max_threads": 65,
+    "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+  },
+  "observed_processes": [
+    {
+      "pid": 20469,
+      "name": "veranda-tauri-comparison",
+      "created": 1794158030.51
+    },
+    {
+      "pid": 20492,
+      "name": "WebKitNetworkProcess",
+      "created": 1794158030.86
+    },
+    {
+      "pid": 20519,
+      "name": "WebKitWebProcess",
+      "created": 1794158030.94
+    }
+  ],
+  "xwayland_processes": [],
+  "cleanup_survivors": []
+}

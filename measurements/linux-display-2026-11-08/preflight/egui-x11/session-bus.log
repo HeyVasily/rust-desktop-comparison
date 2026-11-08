@@ -1,0 +1,5 @@
+unix:path=/tmp/dbus-bxsadeHohW,guid=3294e108a78df1bbc23a6ce16af0ad83
+dbus-daemon[20140]: [session uid=1001 pid=20140] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1001 pid=20150 comm="/home/runner/work/rust-desktop-comparison/rust-des" label="unconfined")
+dbus-daemon[20140]: [session uid=1001 pid=20140] Successfully activated service 'org.a11y.Bus'
+
+Session terminated, killing shell... ...killed.

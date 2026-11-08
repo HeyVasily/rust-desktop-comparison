@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "failed_cases": [],
+  "completed_cases": [
+    "egui-x11",
+    "egui-wayland",
+    "gtk-x11",
+    "gtk-wayland",
+    "slint-x11",
+    "slint-wayland",
+    "qt-x11",
+    "qt-wayland",
+    "tauri-x11",
+    "tauri-wayland"
+  ],
+  "stopped_reason": null
+}

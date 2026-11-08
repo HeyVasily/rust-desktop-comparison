@@ -1,0 +1,93 @@
+{
+  "name": "qt",
+  "backend": "wayland",
+  "status": "passed",
+  "cleanup_status": "clean",
+  "binary_sha256": "8d4686fdb974b68998340feeb116fcf2110056ca47da647e873feed412dad721",
+  "probe_uid": 0,
+  "expected_app_uid": 1001,
+  "limitations": [
+    "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+    "RSS counts shared pages per process; PSS apportions current sharing",
+    "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+  ],
+  "diagnostic": {
+    "name": "qt",
+    "backend": "wayland",
+    "content_width": 960,
+    "content_height": 640,
+    "ready": true
+  },
+  "environment": {
+    "GDK_BACKEND": "wayland",
+    "QT_QPA_PLATFORM": "wayland",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "GSK_RENDERER": null,
+    "GDK_DISABLE": null,
+    "WLR_BACKENDS": "headless",
+    "WLR_RENDERER": "pixman",
+    "WLR_XWAYLAND": null,
+    "GDK_SCALE": "1",
+    "GDK_DPI_SCALE": "1"
+  },
+  "desktop_processes": [
+    {
+      "pid": 20427,
+      "name": "dbus-daemon",
+      "uid": 1001
+    },
+    {
+      "pid": 20429,
+      "name": "labwc",
+      "uid": 1001
+    }
+  ],
+  "screenshots": {
+    "start": {
+      "sha256": "b9513045545d0232cd292bd325a13eb6ab33561c699cb0d58da7ee130e11fe22",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    },
+    "end": {
+      "sha256": "b9513045545d0232cd292bd325a13eb6ab33561c699cb0d58da7ee130e11fe22",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    }
+  },
+  "summary": {
+    "seconds": 1.003049113999964,
+    "sample_intervals": 1,
+    "observed_cpu_seconds": 0.0,
+    "late_discovered_preexisting_processes": [],
+    "observed_cpu_percent_one_core": 0.0,
+    "family_rss_mib": {
+      "median": 84.30859375,
+      "p95": 84.30859375,
+      "observed_maximum": 84.30859375
+    },
+    "family_pss_mib": {
+      "median": 72.8935546875
+    },
+    "family_stat_rss_mib": {
+      "median": 84.30859375
+    },
+    "max_processes": 1,
+    "max_threads": 8,
+    "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+  },
+  "observed_processes": [
+    {
+      "pid": 20445,
+      "name": "veranda-qt-comparison",
+      "created": 1794158021.82
+    }
+  ],
+  "xwayland_processes": [],
+  "cleanup_survivors": []
+}

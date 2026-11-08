@@ -1,0 +1,56 @@
+[
+  {
+    "monotonic": 821.748482464,
+    "wall_time": 1794158006.6556685,
+    "processes": [
+      {
+        "pid": 20381,
+        "created": 1794158003.48,
+        "name": "veranda-slint-comparison",
+        "uid": 1001,
+        "cpu_seconds": 0.0,
+        "threads": 5,
+        "rollup_kib": {
+          "Rss": 23668,
+          "Pss": 17941,
+          "Shared_Clean": 3952,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 12708,
+          "Private_Dirty": 2208,
+          "Anonymous": 2208,
+          "Swap": 0
+        },
+        "rss_bytes": 24236032,
+        "stat_rss_bytes": 24236032
+      }
+    ],
+    "family_rss_bytes": 24236032
+  },
+  {
+    "monotonic": 822.750696859,
+    "wall_time": 1794158007.657883,
+    "processes": [
+      {
+        "pid": 20381,
+        "created": 1794158003.48,
+        "name": "veranda-slint-comparison",
+        "uid": 1001,
+        "cpu_seconds": 0.0,
+        "threads": 5,
+        "rollup_kib": {
+          "Rss": 23668,
+          "Pss": 17941,
+          "Shared_Clean": 3952,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 12708,
+          "Private_Dirty": 2208,
+          "Anonymous": 2208,
+          "Swap": 0
+        },
+        "rss_bytes": 24236032,
+        "stat_rss_bytes": 24236032
+      }
+    ],
+    "family_rss_bytes": 24236032
+  }
+]

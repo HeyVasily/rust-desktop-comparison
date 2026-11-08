@@ -1,0 +1,1047 @@
+{
+  "egui-x11": {
+    "name": "egui",
+    "backend": "x11",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "e62cf4a1d08bc83fe003bcc14dec5acff418244d717ed697b74cef692d086333",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "egui",
+      "backend": "x11",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "x11",
+      "QT_QPA_PLATFORM": "xcb",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": null,
+      "WLR_RENDERER": null,
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20140,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20142,
+        "name": "Xvfb",
+        "uid": 1001
+      },
+      {
+        "pid": 20144,
+        "name": "openbox",
+        "uid": 1001
+      }
+    ],
+    "window": {
+      "id": "4194307",
+      "pid": 20150,
+      "title": "Veranda egui comparison",
+      "rectangle": [
+        161,
+        67,
+        1121,
+        707
+      ],
+      "bounds_kind": "X11 client"
+    },
+    "screenshots": {
+      "start": {
+        "sha256": "34ae561d8072d577bb5b50d3e2208ddee7239c7e1fa183335d094859e3d9dd68",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "34ae561d8072d577bb5b50d3e2208ddee7239c7e1fa183335d094859e3d9dd68",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.0039619590000939,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.0,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 0.0,
+      "family_rss_mib": {
+        "median": 121.578125,
+        "p95": 121.578125,
+        "observed_maximum": 121.578125
+      },
+      "family_pss_mib": {
+        "median": 97.4580078125
+      },
+      "family_stat_rss_mib": {
+        "median": 121.578125
+      },
+      "max_processes": 1,
+      "max_threads": 13,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20150,
+        "name": "veranda-egui-comparison",
+        "created": 1794157956.22
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "egui-wayland": {
+    "name": "egui",
+    "backend": "wayland",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "e62cf4a1d08bc83fe003bcc14dec5acff418244d717ed697b74cef692d086333",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "egui",
+      "backend": "wayland",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "wayland",
+      "QT_QPA_PLATFORM": "wayland",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": "headless",
+      "WLR_RENDERER": "pixman",
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20179,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20181,
+        "name": "labwc",
+        "uid": 1001
+      }
+    ],
+    "screenshots": {
+      "start": {
+        "sha256": "0df44b600c31932fb2014f248092e23a800a70a3a86dbd0e2b482b44efc3e59b",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "0df44b600c31932fb2014f248092e23a800a70a3a86dbd0e2b482b44efc3e59b",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.0036244520000537,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.0,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 0.0,
+      "family_rss_mib": {
+        "median": 118.5625,
+        "p95": 118.5625,
+        "observed_maximum": 118.5625
+      },
+      "family_pss_mib": {
+        "median": 110.7978515625
+      },
+      "family_stat_rss_mib": {
+        "median": 118.5625
+      },
+      "max_processes": 1,
+      "max_threads": 13,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20197,
+        "name": "veranda-egui-comparison",
+        "created": 1794157966.04
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "gtk-x11": {
+    "name": "gtk",
+    "backend": "x11",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "bddd48a148e1d98bb85e49c2a63fb8aa52689385e8c2f91e536fba7214a0bc9a",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "gtk",
+      "backend": "x11",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "x11",
+      "QT_QPA_PLATFORM": "xcb",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": null,
+      "WLR_RENDERER": null,
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20224,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20226,
+        "name": "Xvfb",
+        "uid": 1001
+      },
+      {
+        "pid": 20230,
+        "name": "openbox",
+        "uid": 1001
+      }
+    ],
+    "window": {
+      "id": "4194308",
+      "pid": 20234,
+      "title": "Veranda GTK comparison",
+      "rectangle": [
+        161,
+        67,
+        1121,
+        707
+      ],
+      "bounds_kind": "X11 client"
+    },
+    "screenshots": {
+      "start": {
+        "sha256": "cff6bc133336b99d61222fd56ed26f40ed50da753c8285823dd027a08296a0b6",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "cff6bc133336b99d61222fd56ed26f40ed50da753c8285823dd027a08296a0b6",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.0057489149999128,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.0,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 0.0,
+      "family_rss_mib": {
+        "median": 237.48828125,
+        "p95": 237.48828125,
+        "observed_maximum": 237.48828125
+      },
+      "family_pss_mib": {
+        "median": 207.7744140625
+      },
+      "family_stat_rss_mib": {
+        "median": 237.48828125
+      },
+      "max_processes": 1,
+      "max_threads": 15,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20234,
+        "name": "gtk-control",
+        "created": 1794157974.61
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "gtk-wayland": {
+    "name": "gtk",
+    "backend": "wayland",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "bddd48a148e1d98bb85e49c2a63fb8aa52689385e8c2f91e536fba7214a0bc9a",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "gtk",
+      "backend": "wayland",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "wayland",
+      "QT_QPA_PLATFORM": "wayland",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": "headless",
+      "WLR_RENDERER": "pixman",
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20274,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20276,
+        "name": "labwc",
+        "uid": 1001
+      }
+    ],
+    "screenshots": {
+      "start": {
+        "sha256": "ad72d6f0b3bdf958168586dc33c834cb56ec2932e8bb0bbe36f39e2451e40563",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "ad72d6f0b3bdf958168586dc33c834cb56ec2932e8bb0bbe36f39e2451e40563",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.0050780210000312,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.0,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 0.0,
+      "family_rss_mib": {
+        "median": 184.75,
+        "p95": 184.75,
+        "observed_maximum": 184.75
+      },
+      "family_pss_mib": {
+        "median": 171.4462890625
+      },
+      "family_stat_rss_mib": {
+        "median": 184.75
+      },
+      "max_processes": 1,
+      "max_threads": 16,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20293,
+        "name": "gtk-control",
+        "created": 1794157985.04
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "slint-x11": {
+    "name": "slint",
+    "backend": "x11",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "d51049db0db966c3c3b0df0ec363be28c4c220cd3cda3993ab1382ecd4715c04",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "slint",
+      "backend": "x11",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "x11",
+      "QT_QPA_PLATFORM": "xcb",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": null,
+      "WLR_RENDERER": null,
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20330,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20332,
+        "name": "Xvfb",
+        "uid": 1001
+      },
+      {
+        "pid": 20336,
+        "name": "openbox",
+        "uid": 1001
+      }
+    ],
+    "window": {
+      "id": "4194307",
+      "pid": 20340,
+      "title": "Veranda Slint comparison",
+      "rectangle": [
+        161,
+        69,
+        1121,
+        709
+      ],
+      "bounds_kind": "X11 client"
+    },
+    "screenshots": {
+      "start": {
+        "sha256": "3bb88d6570f67f2fcd3c1eb12dd7a50dd5b95abe18d7e22f36462781b941c28d",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "3bb88d6570f67f2fcd3c1eb12dd7a50dd5b95abe18d7e22f36462781b941c28d",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.0024641889999657,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.0,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 0.0,
+      "family_rss_mib": {
+        "median": 22.69140625,
+        "p95": 22.69140625,
+        "observed_maximum": 22.69140625
+      },
+      "family_pss_mib": {
+        "median": 17.412109375
+      },
+      "family_stat_rss_mib": {
+        "median": 22.69140625
+      },
+      "max_processes": 1,
+      "max_threads": 6,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20340,
+        "name": "veranda-slint-comparison",
+        "created": 1794157993.8
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "slint-wayland": {
+    "name": "slint",
+    "backend": "wayland",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "d51049db0db966c3c3b0df0ec363be28c4c220cd3cda3993ab1382ecd4715c04",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "slint",
+      "backend": "wayland",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "wayland",
+      "QT_QPA_PLATFORM": "wayland",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": "headless",
+      "WLR_RENDERER": "pixman",
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20363,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20365,
+        "name": "labwc",
+        "uid": 1001
+      }
+    ],
+    "screenshots": {
+      "start": {
+        "sha256": "21f72e5183ea25de6c345df696ec3756f7a4d8d5472d66b0851d7539d2cba367",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "21f72e5183ea25de6c345df696ec3756f7a4d8d5472d66b0851d7539d2cba367",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.00221439500001,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.0,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 0.0,
+      "family_rss_mib": {
+        "median": 23.11328125,
+        "p95": 23.11328125,
+        "observed_maximum": 23.11328125
+      },
+      "family_pss_mib": {
+        "median": 17.5205078125
+      },
+      "family_stat_rss_mib": {
+        "median": 23.11328125
+      },
+      "max_processes": 1,
+      "max_threads": 5,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20381,
+        "name": "veranda-slint-comparison",
+        "created": 1794158003.48
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "qt-x11": {
+    "name": "qt",
+    "backend": "x11",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "8d4686fdb974b68998340feeb116fcf2110056ca47da647e873feed412dad721",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "qt",
+      "backend": "x11",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "x11",
+      "QT_QPA_PLATFORM": "xcb",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": null,
+      "WLR_RENDERER": null,
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20400,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20402,
+        "name": "Xvfb",
+        "uid": 1001
+      },
+      {
+        "pid": 20406,
+        "name": "openbox",
+        "uid": 1001
+      }
+    ],
+    "window": {
+      "id": "4194310",
+      "pid": 20410,
+      "title": "Veranda Qt Widgets comparison",
+      "rectangle": [
+        161,
+        67,
+        1121,
+        707
+      ],
+      "bounds_kind": "X11 client"
+    },
+    "screenshots": {
+      "start": {
+        "sha256": "b75874540f297ee44889e39ccee99061ec67ec2df9dd849d728f704e39348810",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "b75874540f297ee44889e39ccee99061ec67ec2df9dd849d728f704e39348810",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.0023744769999894,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.0,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 0.0,
+      "family_rss_mib": {
+        "median": 33.296875,
+        "p95": 33.296875,
+        "observed_maximum": 33.296875
+      },
+      "family_pss_mib": {
+        "median": 22.798828125
+      },
+      "family_stat_rss_mib": {
+        "median": 33.296875
+      },
+      "max_processes": 1,
+      "max_threads": 7,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20410,
+        "name": "veranda-qt-comparison",
+        "created": 1794158012.14
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "qt-wayland": {
+    "name": "qt",
+    "backend": "wayland",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "8d4686fdb974b68998340feeb116fcf2110056ca47da647e873feed412dad721",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "qt",
+      "backend": "wayland",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "wayland",
+      "QT_QPA_PLATFORM": "wayland",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": "headless",
+      "WLR_RENDERER": "pixman",
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20427,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20429,
+        "name": "labwc",
+        "uid": 1001
+      }
+    ],
+    "screenshots": {
+      "start": {
+        "sha256": "b9513045545d0232cd292bd325a13eb6ab33561c699cb0d58da7ee130e11fe22",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "b9513045545d0232cd292bd325a13eb6ab33561c699cb0d58da7ee130e11fe22",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.003049113999964,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.0,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 0.0,
+      "family_rss_mib": {
+        "median": 84.30859375,
+        "p95": 84.30859375,
+        "observed_maximum": 84.30859375
+      },
+      "family_pss_mib": {
+        "median": 72.8935546875
+      },
+      "family_stat_rss_mib": {
+        "median": 84.30859375
+      },
+      "max_processes": 1,
+      "max_threads": 8,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20445,
+        "name": "veranda-qt-comparison",
+        "created": 1794158021.82
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "tauri-x11": {
+    "name": "tauri",
+    "backend": "x11",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "21738a6b86ac0055a2812261f938aa7f1422a846fc4ca4223847b4f07da2ab9a",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "tauri",
+      "backend": "x11",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "x11",
+      "QT_QPA_PLATFORM": "xcb",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": null,
+      "WLR_RENDERER": null,
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20459,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20461,
+        "name": "Xvfb",
+        "uid": 1001
+      },
+      {
+        "pid": 20465,
+        "name": "openbox",
+        "uid": 1001
+      }
+    ],
+    "window": {
+      "id": "4194307",
+      "pid": 20469,
+      "title": "Veranda Tauri comparison",
+      "rectangle": [
+        161,
+        67,
+        1121,
+        707
+      ],
+      "bounds_kind": "X11 client"
+    },
+    "screenshots": {
+      "start": {
+        "sha256": "f07fb59436446cb5be9a877fc313ecda2d739631e7964f0ac8c9d3103d64fadd",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "97559977f22ccf0f9aa25ca8e5e5a92f514f353e4207ed44363479cd4c29c618",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.0141400500000373,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.6100000000000001,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 60.14948329868026,
+      "family_rss_mib": {
+        "median": 511.06640625,
+        "p95": 511.06640625,
+        "observed_maximum": 511.06640625
+      },
+      "family_pss_mib": {
+        "median": 340.1298828125
+      },
+      "family_stat_rss_mib": {
+        "median": 511.06640625
+      },
+      "max_processes": 3,
+      "max_threads": 65,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20469,
+        "name": "veranda-tauri-comparison",
+        "created": 1794158030.51
+      },
+      {
+        "pid": 20492,
+        "name": "WebKitNetworkProcess",
+        "created": 1794158030.86
+      },
+      {
+        "pid": 20519,
+        "name": "WebKitWebProcess",
+        "created": 1794158030.94
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  },
+  "tauri-wayland": {
+    "name": "tauri",
+    "backend": "wayland",
+    "status": "passed",
+    "cleanup_status": "clean",
+    "binary_sha256": "21738a6b86ac0055a2812261f938aa7f1422a846fc4ca4223847b4f07da2ab9a",
+    "probe_uid": 0,
+    "expected_app_uid": 1001,
+    "limitations": [
+      "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+      "RSS counts shared pages per process; PSS apportions current sharing",
+      "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+    ],
+    "diagnostic": {
+      "name": "tauri",
+      "backend": "wayland",
+      "content_width": 960,
+      "content_height": 640,
+      "ready": true
+    },
+    "environment": {
+      "GDK_BACKEND": "wayland",
+      "QT_QPA_PLATFORM": "wayland",
+      "LIBGL_ALWAYS_SOFTWARE": "1",
+      "GSK_RENDERER": null,
+      "GDK_DISABLE": null,
+      "WLR_BACKENDS": "headless",
+      "WLR_RENDERER": "pixman",
+      "WLR_XWAYLAND": null,
+      "GDK_SCALE": "1",
+      "GDK_DPI_SCALE": "1"
+    },
+    "desktop_processes": [
+      {
+        "pid": 20568,
+        "name": "dbus-daemon",
+        "uid": 1001
+      },
+      {
+        "pid": 20570,
+        "name": "labwc",
+        "uid": 1001
+      }
+    ],
+    "screenshots": {
+      "start": {
+        "sha256": "91f88ff9396b3aa3e08cf6ebc5a94e66d11345360f3dfca5cb4cd2c79e32556a",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      },
+      "end": {
+        "sha256": "07863feda8e566f2a54686f617814344fd7e6cbce474f2833ed1338ebc7e0a6e",
+        "desktop_size": [
+          1280,
+          720
+        ],
+        "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+      }
+    },
+    "summary": {
+      "seconds": 1.0156061719999343,
+      "sample_intervals": 1,
+      "observed_cpu_seconds": 0.7100000000000002,
+      "late_discovered_preexisting_processes": [],
+      "observed_cpu_percent_one_core": 69.90898830418352,
+      "family_rss_mib": {
+        "median": 506.78125,
+        "p95": 506.78125,
+        "observed_maximum": 506.78125
+      },
+      "family_pss_mib": {
+        "median": 349.5078125
+      },
+      "family_stat_rss_mib": {
+        "median": 506.78125
+      },
+      "max_processes": 3,
+      "max_threads": 65,
+      "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+    },
+    "observed_processes": [
+      {
+        "pid": 20586,
+        "name": "veranda-tauri-comparison",
+        "created": 1794158041.59
+      },
+      {
+        "pid": 20607,
+        "name": "WebKitNetworkProcess",
+        "created": 1794158041.67
+      },
+      {
+        "pid": 20636,
+        "name": "WebKitWebProcess",
+        "created": 1794158041.73
+      }
+    ],
+    "xwayland_processes": [],
+    "cleanup_survivors": [],
+    "native_case_exit_code": 0
+  }
+}

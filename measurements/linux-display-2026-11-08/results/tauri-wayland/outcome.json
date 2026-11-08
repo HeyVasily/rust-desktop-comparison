@@ -1,0 +1,103 @@
+{
+  "name": "tauri",
+  "backend": "wayland",
+  "status": "passed",
+  "cleanup_status": "clean",
+  "binary_sha256": "21738a6b86ac0055a2812261f938aa7f1422a846fc4ca4223847b4f07da2ab9a",
+  "probe_uid": 0,
+  "expected_app_uid": 1001,
+  "limitations": [
+    "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+    "RSS counts shared pages per process; PSS apportions current sharing",
+    "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+  ],
+  "diagnostic": {
+    "name": "tauri",
+    "backend": "wayland",
+    "content_width": 960,
+    "content_height": 640,
+    "ready": true
+  },
+  "environment": {
+    "GDK_BACKEND": "wayland",
+    "QT_QPA_PLATFORM": "wayland",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "GSK_RENDERER": null,
+    "GDK_DISABLE": null,
+    "WLR_BACKENDS": "headless",
+    "WLR_RENDERER": "pixman",
+    "WLR_XWAYLAND": null,
+    "GDK_SCALE": "1",
+    "GDK_DPI_SCALE": "1"
+  },
+  "desktop_processes": [
+    {
+      "pid": 21277,
+      "name": "dbus-daemon",
+      "uid": 1001
+    },
+    {
+      "pid": 21279,
+      "name": "labwc",
+      "uid": 1001
+    }
+  ],
+  "screenshots": {
+    "start": {
+      "sha256": "c20090d127525f2f4d0833d39935a5fc6bbcc9b49bd7c051524e1e4127fa9d18",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    },
+    "end": {
+      "sha256": "c20090d127525f2f4d0833d39935a5fc6bbcc9b49bd7c051524e1e4127fa9d18",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    }
+  },
+  "summary": {
+    "seconds": 121.63076195700023,
+    "sample_intervals": 120,
+    "observed_cpu_seconds": 0.020000000000000018,
+    "late_discovered_preexisting_processes": [],
+    "observed_cpu_percent_one_core": 0.016443208673699305,
+    "family_rss_mib": {
+      "median": 500.18359375,
+      "p95": 500.20703125,
+      "observed_maximum": 500.20703125
+    },
+    "family_pss_mib": {
+      "median": 342.6103515625
+    },
+    "family_stat_rss_mib": {
+      "median": 500.18359375
+    },
+    "max_processes": 3,
+    "max_threads": 61,
+    "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+  },
+  "observed_processes": [
+    {
+      "pid": 21295,
+      "name": "veranda-tauri-comparison",
+      "created": 1794159462.83
+    },
+    {
+      "pid": 21316,
+      "name": "WebKitNetworkProcess",
+      "created": 1794159462.88
+    },
+    {
+      "pid": 21345,
+      "name": "WebKitWebProcess",
+      "created": 1794159462.95
+    }
+  ],
+  "xwayland_processes": [],
+  "cleanup_survivors": []
+}

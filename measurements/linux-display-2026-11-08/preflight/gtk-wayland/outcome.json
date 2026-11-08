@@ -1,0 +1,93 @@
+{
+  "name": "gtk",
+  "backend": "wayland",
+  "status": "passed",
+  "cleanup_status": "clean",
+  "binary_sha256": "bddd48a148e1d98bb85e49c2a63fb8aa52689385e8c2f91e536fba7214a0bc9a",
+  "probe_uid": 0,
+  "expected_app_uid": 1001,
+  "limitations": [
+    "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+    "RSS counts shared pages per process; PSS apportions current sharing",
+    "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+  ],
+  "diagnostic": {
+    "name": "gtk",
+    "backend": "wayland",
+    "content_width": 960,
+    "content_height": 640,
+    "ready": true
+  },
+  "environment": {
+    "GDK_BACKEND": "wayland",
+    "QT_QPA_PLATFORM": "wayland",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "GSK_RENDERER": null,
+    "GDK_DISABLE": null,
+    "WLR_BACKENDS": "headless",
+    "WLR_RENDERER": "pixman",
+    "WLR_XWAYLAND": null,
+    "GDK_SCALE": "1",
+    "GDK_DPI_SCALE": "1"
+  },
+  "desktop_processes": [
+    {
+      "pid": 20274,
+      "name": "dbus-daemon",
+      "uid": 1001
+    },
+    {
+      "pid": 20276,
+      "name": "labwc",
+      "uid": 1001
+    }
+  ],
+  "screenshots": {
+    "start": {
+      "sha256": "ad72d6f0b3bdf958168586dc33c834cb56ec2932e8bb0bbe36f39e2451e40563",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    },
+    "end": {
+      "sha256": "ad72d6f0b3bdf958168586dc33c834cb56ec2932e8bb0bbe36f39e2451e40563",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    }
+  },
+  "summary": {
+    "seconds": 1.0050780210000312,
+    "sample_intervals": 1,
+    "observed_cpu_seconds": 0.0,
+    "late_discovered_preexisting_processes": [],
+    "observed_cpu_percent_one_core": 0.0,
+    "family_rss_mib": {
+      "median": 184.75,
+      "p95": 184.75,
+      "observed_maximum": 184.75
+    },
+    "family_pss_mib": {
+      "median": 171.4462890625
+    },
+    "family_stat_rss_mib": {
+      "median": 184.75
+    },
+    "max_processes": 1,
+    "max_threads": 16,
+    "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+  },
+  "observed_processes": [
+    {
+      "pid": 20293,
+      "name": "gtk-control",
+      "created": 1794157985.04
+    }
+  ],
+  "xwayland_processes": [],
+  "cleanup_survivors": []
+}

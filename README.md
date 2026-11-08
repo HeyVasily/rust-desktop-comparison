@@ -30,6 +30,28 @@ Windows, macOS, Linux X11 and Wayland capabilities: accessibility, IME, clipboar
 drag-and-drop, menus, tray, multiple windows and HiDPI. It distinguishes framework
 APIs, additional integrations and unverified platform behavior from this demo's scope.
 
+## Paired Linux X11 and native Wayland
+
+All five examples also passed a paired run on one Ubuntu 24.04 runner, using one
+binary per framework and the same 960×640 content target. Values below are median
+application-family MiB after settling; Tauri includes its WebKit helpers.
+
+| Framework | X11 RSS | Wayland RSS | X11 PSS | Wayland PSS |
+| --- | ---: | ---: | ---: | ---: |
+| egui / eframe | 117.25 | 119.25 | 91.81 | 111.45 |
+| GTK4 (C) | 181.18 | 185.89 | 151.29 | 172.42 |
+| Slint | 22.77 | 23.25 | 17.50 | 17.61 |
+| Qt Widgets | 33.69 | 84.50 | 22.92 | 72.92 |
+| Tauri | 492.98 | 500.18 | 323.45 | 342.61 |
+
+The [paired report and side-by-side gallery](docs/linux-display-comparison.md)
+include native backend proof, CPU, actual interfaces, Qt's resident-library
+breakdown and [original samples](measurements/linux-display-2026-11-08/README.md).
+This is a software-rendered, post-preflight idle series; sharing with the desktop
+affects PSS. It remains separate from the older OS table and GTK/Cairo controls.
+Broader platform integrations can change memory use; these figures cover the
+configured demos.
+
 ## Memory and CPU on GitHub runners
 
 All five release examples were measured on Linux, Windows and macOS, with a
