@@ -162,7 +162,10 @@ fn main() -> eframe::Result {
                     gl.get_parameter_string(eframe::glow::RENDERER)
                 });
             }
-            cc.egui_ctx.set_visuals(egui::Visuals::light());
+            // Follow the OS light/dark preference (egui's default ThemePreference::System);
+            // when the OS reports none, use light instead of egui's dark fallback.
+            cc.egui_ctx
+                .options_mut(|options| options.fallback_theme = egui::Theme::Light);
             Ok(Box::new(Demo::default()))
         }),
     )
