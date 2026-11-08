@@ -54,6 +54,25 @@ jobs:
           } > out/linux-display/build/environment.txt
       - name: Focused host-free checks
         run: /usr/bin/python3 -m unittest discover -s tools -p 'test_*probe.py' -v
+      - name: Resolve feature graphs and freeze exact build inputs
+        timeout-minutes: 10
+        run: |
+          for framework in egui slint tauri; do
+            if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == "$framework" ]]; then
+              cargo metadata --format-version 1 --manifest-path "examples/$framework/Cargo.toml" > "out/linux-display/build/$framework-metadata.json" 2> "out/linux-display/build/$framework-resolution.log"
+              cp "examples/$framework/Cargo.lock" "out/linux-display/build/$framework-Cargo.lock"
+            fi
+          done
+          /usr/bin/python3 - <<'PYTHON'
+          import subprocess
+          allowed = {f'examples/{name}/Cargo.lock' for name in ('egui', 'slint', 'tauri')}
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only', '--', 'examples'], text=True).splitlines())
+          untracked = subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard', '--', 'examples'], text=True).splitlines()
+          if changed - allowed or untracked:
+              raise SystemExit(f'Unexpected source changes during resolution: {sorted(changed - allowed) + untracked}')
+          PYTHON
+          git diff --binary -- examples > out/linux-display/build/source-resolution.patch
+          git ls-files -z examples tools/linux_display_probe.py tools/test_linux_display_probe.py tools/native_probe.py tools/gtk_memory_probe.py .github/workflows/linux-display-comparison.yml | xargs -0 sha256sum > out/linux-display/build/source-hashes.txt
       - name: Build each selected binary once
         timeout-minutes: 45
         run: |
@@ -69,8 +88,7 @@ jobs:
             cmake -S examples/qt -B target/qt -DCMAKE_BUILD_TYPE=Release 2>&1 | tee out/linux-display/build/qt-configure.log
             cmake --build target/qt --config Release 2>&1 | tee out/linux-display/build/qt-build.log
           fi
-          git diff --exit-code -- examples
-          git ls-files -z examples tools/linux_display_probe.py tools/native_probe.py tools/gtk_memory_probe.py | xargs -0 sha256sum > out/linux-display/build/source-hashes.txt
+          sha256sum --check out/linux-display/build/source-hashes.txt > out/linux-display/build/source-verification.log
       - name: Native backend and content preflight
         timeout-minutes: 8
         run: |
