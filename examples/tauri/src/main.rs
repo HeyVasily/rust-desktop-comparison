@@ -3,6 +3,16 @@
 
 #[cfg(target_os = "macos")]
 use tauri::Manager;
+#[cfg(target_os = "linux")]
+include!("../../linux_display_diagnostics.rs");
+
+#[cfg(target_os = "linux")]
+#[tauri::command]
+fn comparison_ready(window: tauri::WebviewWindow, width: u32, height: u32, projects: u32, yards: u32) {
+    if std::env::var_os("COMPARISON_DISPLAY_DIAGNOSTICS").is_some() && projects == 100 && yards == 10 {
+        report_display("tauri", &window, width, height);
+    }
+}
 
 #[cfg(target_os = "macos")]
 fn log_geometry(
@@ -42,6 +52,25 @@ fn log_geometry(
 
 fn main() {
     let builder = tauri::Builder::default();
+    #[cfg(target_os = "linux")]
+    let builder = builder
+        .invoke_handler(tauri::generate_handler![comparison_ready])
+        .on_page_load(|webview, payload| {
+            if std::env::var_os("COMPARISON_DISPLAY_DIAGNOSTICS").is_some()
+                && matches!(payload.event(), tauri::webview::PageLoadEvent::Finished)
+            {
+                // Two startup frames establish a rendered, populated DOM. The IPC is
+                // diagnostic-only; normal launches execute no additional JavaScript.
+                let _ = webview.eval(r#"requestAnimationFrame(() => requestAnimationFrame(() => {
+                    window.__TAURI_INTERNALS__.invoke('comparison_ready', {
+                        width: Math.round(innerWidth * devicePixelRatio),
+                        height: Math.round(innerHeight * devicePixelRatio),
+                        projects: document.querySelectorAll('#projects > button').length,
+                        yards: document.querySelectorAll('#yards > button').length
+                    });
+                }));"#);
+            }
+        });
     #[cfg(target_os = "macos")]
     let builder = builder.setup(|app| {
         let window = app

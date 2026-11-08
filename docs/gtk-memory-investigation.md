@@ -145,7 +145,9 @@ and the existing display/surface. It neither creates a GL context for inspection
 nor runs a recurring diagnostic timer. It records GTK's runtime version (GTK and
 GDK ship together), display type, renderer type, mapping state and dimensions.
 Every case reported a 960×640 widget and surface, at scale 1. Wayland cases report
-`GdkWaylandDisplay`; Xwayland is disabled.
+`GdkWaylandDisplay`, establishing native Wayland for the application. The archived
+`WLR_XWAYLAND=0` setting is a binary-path override, not a supported off switch;
+it does not independently establish that Xwayland was disabled.
 
 Each case settles for 30 seconds, then records a baseline and **120 one-second
 intervals**, giving 121 observations over 120.56–120.85 seconds. Headline RSS and

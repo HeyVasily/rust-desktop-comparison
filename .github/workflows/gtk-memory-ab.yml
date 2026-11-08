@@ -1,13 +1,6 @@
 name: GTK Linux memory A/B
 
 on:
-  push:
-    branches: [investigate/linux-gtk-memory]
-    paths:
-      - .github/workflows/gtk-memory-ab.yml
-      - examples/gtk/main.c
-      - tools/gtk_memory_probe.py
-      - tools/test_gtk_memory_probe.py
   workflow_dispatch:
 
 permissions:

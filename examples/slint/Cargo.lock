@@ -4498,6 +4498,7 @@ dependencies = [
 name = "veranda-slint-comparison"
 version = "0.1.0"
 dependencies = [
+ "raw-window-handle",
  "slint",
  "slint-build",
 ]

@@ -2821,6 +2821,7 @@ dependencies = [
 name = "veranda-egui-comparison"
 version = "0.1.0"
 dependencies = [
+ "raw-window-handle",
  "eframe",
 ]
 
