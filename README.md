@@ -47,6 +47,17 @@ retain each case's actual run and source commit. Windows Working Set and macOS/L
 RSS have different accounting; shared pages are not deduplicated. Tiny idle CPU
 values do not establish a performance ranking.
 
+### Relation to the earlier Veranda measurements
+
+This table is a **new UI-only demo series**, not a rerun of the earlier
+backend-connected frontends. That earlier comparison measured GUI RSS of
+35.00 MiB (Slint), 41.98 MiB (GTK/Cairo) and 51.91 MiB (Qt), with backend/bridge
+memory reported separately. The current GTK case uses a different frontend,
+GTK version and X11 environment, without fixing or observing its GSK renderer.
+Its 240.27 MiB does not establish a regression from the earlier Wayland/Cairo
+result. The [side-by-side explanation](docs/historical-comparison.md#why-the-current-linux-numbers-differ)
+details scope, renderers, versions and the limits of causal attribution.
+
 ## What the interfaces look like
 
 These are real **960×640 Linux client captures** of the current examples: all projects,

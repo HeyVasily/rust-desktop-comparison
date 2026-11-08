@@ -11,6 +11,12 @@ project-001 selected, empty filter and snapshot 0, without a backend, periodic a
 scripted interaction. The measured visible content is **960×640 logical pixels**;
 this series is separate from the earlier 1120×768 and constrained-desktop runs.
 
+The [historical comparison](historical-comparison.md#why-the-current-linux-numbers-differ)
+used backend-connected frontends on Debian/Wayland, with GTK/Cairo. Its GUI and
+desktop RSS figures are not repeated by these new demos. In particular, the current
+Linux GTK run does not pin or observe its GSK renderer; the larger RSS does
+not isolate a renderer cost or establish a framework regression.
+
 ## Visible idle footprint
 
 Memory is the median sum over the application's observed process family, including

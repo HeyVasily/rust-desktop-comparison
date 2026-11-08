@@ -47,6 +47,47 @@ for each visible/minimized state. Identities were stable, process/PSS samples we
 complete, and memory sums were recomputed from retained raw samples. App-cgroup
 pressure counters were zero; root-cgroup pressure telemetry was unavailable.
 
+## Why the current Linux numbers differ
+
+The current runner table measures newly implemented, backend-free demos. It does
+not repeat the historical frontend experiment. These are all RSS values in MiB;
+PSS must not be substituted for either RSS column:
+
+| Framework | Historical GUI RSS | Historical GUI + backend/bridge RSS | Current Linux demo RSS |
+| --- | ---: | ---: | ---: |
+| Slint | 35.00 | 62.48 | 22.99 |
+| Qt Widgets | 51.91 | 86.93 | 33.60 |
+| GTK4 C | 41.98 | 76.72 | 240.27 |
+
+The historical desktop scope had two processes for Slint and three for Qt/GTK.
+The new Qt/GTK/Slint cases each have one GUI process and no Go backend or Rust
+bridge. Even the GUI-only columns describe different frontend implementations,
+models and integrations, rather than the same binaries with their backend removed.
+Historical Slint also used the correctness forks described below; their memory
+effect was not established.
+
+The old environment was Debian/Wayland/labwc/Pixman, with GTK explicitly using
+Cairo. The new environment is Ubuntu/X11/Xvfb/Openbox. It requests software OpenGL,
+but **does not set `GSK_RENDERER` or record GTK's selected renderer class**. Egui's
+llvmpipe log does not establish GTK's renderer. GTK changed from 4.18.6 to 4.14.5,
+Qt from 6.8.2 to 6.4.2, and the client size from 1120×768 to 960×640. The new GTK
+log also reports an unavailable accessibility bus, so the integration environment
+differs as well.
+
+A changed GTK rendering path is a possible contributor to its larger footprint,
+not a measured allocation breakdown. The separate imported Cairo/X11 UI-only GTK
+run already measured **120.75 MiB RSS / 95.27 MiB PSS**, rather than the historical
+Wayland GUI's 41.98 MiB RSS. See the [original methodology](methodology.md) and
+[raw sample](../measurements/2026-11-07/gtk-visible.json).
+
+The existing data cannot isolate the memory cost of the renderer, display backend,
+library version or frontend code. That requires a controlled run of the same
+binary/environment with the renderer recorded and varied independently. The new
+numbers describe their recorded demo configurations; they do not establish a GTK
+regression or reverse the historical project decision. Historical CPU covers the
+desktop process scope; current CPU covers only each demo family, with tiny idle
+increments subject to counter resolution.
+
 ## Maintenance caveats
 
 The Slint result included four local correctness forks: `accesskit_unix` 0.22.1,
