@@ -25,6 +25,11 @@ earlier full-backend measurements do not measure these new binaries. Native buil
 screenshot and measurement outcomes are recorded by the
 [GitHub runner diagnostic](docs/github-runners.md); adding source is not a passing run.
 
+The separate [desktop platform support matrix](docs/platform-support.md) covers
+Windows, macOS, Linux X11 and Wayland capabilities: accessibility, IME, clipboard,
+drag-and-drop, menus, tray, multiple windows and HiDPI. It distinguishes framework
+APIs, additional integrations and unverified platform behavior from this demo's scope.
+
 ## Memory and CPU on GitHub runners
 
 All five release examples were measured on Linux, Windows and macOS, with a
