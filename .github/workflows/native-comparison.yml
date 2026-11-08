@@ -1,5 +1,5 @@
 name: Native desktop comparison
-run-name: "Native desktop comparison: ${{ inputs.platforms }} / ${{ inputs.framework || 'all' }}"
+run-name: "Native desktop comparison: ${{ inputs.platforms }} / ${{ inputs.framework || 'all' }} × ${{ inputs.repetitions }}"
 
 on:
   workflow_dispatch:
@@ -18,9 +18,14 @@ on:
         type: boolean
         default: true
       appearance:
-        description: 'Relaunch each app with the OS switched to dark mode and capture it'
+        description: 'Relaunch each app with the OS switched to dark mode and capture it (first repetition only)'
         type: boolean
         default: true
+      repetitions:
+        description: 'Independent repetitions per OS, each on a fresh runner VM, to expose outliers'
+        type: choice
+        options: ['1', '3', '5']
+        default: '5'
 
 permissions:
   contents: read
@@ -29,8 +34,9 @@ jobs:
   native:
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 6
       matrix:
+        repetition: ${{ fromJSON(inputs.repetitions == '1' && '[1]' || inputs.repetitions == '3' && '[1,2,3]' || '[1,2,3,4,5]') }}
         os: ${{ fromJSON(inputs.platforms == 'windows' && '["windows-2022"]' || inputs.platforms == 'macos' && '["macos-15"]' || inputs.platforms == 'linux' && '["ubuntu-24.04"]' || inputs.platforms == 'all' && '["windows-2022","macos-15","ubuntu-24.04"]' || '["windows-2022","macos-15"]') }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 120
@@ -40,7 +46,8 @@ jobs:
       CARGO_INCREMENTAL: '0'
       COMPARISON: ${{ inputs.comparison }}
       FRAMEWORK: ${{ inputs.framework }}
-      APPEARANCE: ${{ inputs.appearance }}
+      APPEARANCE: ${{ inputs.appearance == true && matrix.repetition == 1 }}
+      REPETITION: ${{ matrix.repetition }}
     defaults:
       run:
         shell: bash
@@ -367,7 +374,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-${{ matrix.os }}-${{ github.run_id }}
+          name: native-${{ matrix.os }}-${{ github.run_id }}-r${{ matrix.repetition }}
           path: artifacts/
           if-no-files-found: warn
           retention-days: 14

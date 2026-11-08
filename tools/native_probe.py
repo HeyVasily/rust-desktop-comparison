@@ -69,6 +69,7 @@ def environment():
                   memory_bytes=psutil.virtual_memory().total, python=sys.version,
                   runner_image=os.getenv("ImageOS"), image_version=os.getenv("ImageVersion"),
                   commit=os.getenv("GITHUB_SHA"), run_id=os.getenv("GITHUB_RUN_ID"),
+                  repetition=os.getenv("REPETITION"),
                   renderer="See each application.log; unknown unless reported by the app")
     if sys.platform == "darwin":
         result["cpu_model"] = subprocess.check_output(
