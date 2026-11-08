@@ -1,0 +1,8 @@
+E2E_PHASE phase=allocation state=start duration_seconds=0 exit_code=0
+E2E_PHASE phase=allocation state=end duration_seconds=50 exit_code=0
+E2E_PHASE phase=guest state=start duration_seconds=0 exit_code=0 vm=1
+E2E_PHASE phase=guest state=end duration_seconds=794 exit_code=0 vm=1
+E2E_PHASE phase=cleanup/release state=start duration_seconds=0 exit_code=0
+E2E_RELEASE state=start duration_seconds=0 budget_seconds=180 grace_seconds=5 exit_code=0
+E2E_RELEASE state=end duration_seconds=4 budget_seconds=180 grace_seconds=5 exit_code=0
+E2E_PHASE phase=cleanup/release state=end duration_seconds=4 exit_code=0

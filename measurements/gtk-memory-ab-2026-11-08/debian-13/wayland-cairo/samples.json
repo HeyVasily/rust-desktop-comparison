@@ -1,0 +1,2785 @@
+[
+  {
+    "monotonic": 533.756595046,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 534.760224766,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 535.763817021,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 536.767720037,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 537.772179582,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 538.776313246,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 539.780517728,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 540.784456334,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 541.788889013,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 542.7930902,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 543.79730666,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 544.906423425,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 545.925654068,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 546.930392298,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 547.934418684,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 548.942273553,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 549.946199869,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 550.950013452,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 551.953924807,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 552.958080421,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 553.961937544,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 554.96574752,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 555.970715119,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 556.974473845,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 557.978926422,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 558.983299718,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 559.988425895,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 560.992728183,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 561.99824193,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 563.001921916,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 564.006854267,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 565.011273005,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 566.015257584,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 567.019151977,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 568.022912204,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 569.027077542,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 570.030778598,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 571.034594443,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 572.039496651,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 573.043160685,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 574.047838933,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 575.052691163,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 576.062554573,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 577.066988881,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 578.071236496,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 579.076051402,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 580.082752544,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 581.087102216,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 582.091345633,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 583.095921169,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 584.100141734,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 585.105412214,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 586.10954099,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 587.113507814,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 588.118529117,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 589.122960536,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 590.134110035,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 591.138096295,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 592.142430718,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 593.150486823,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 594.155029964,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 595.161076417,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 596.165545717,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 597.16915122,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 598.173836298,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 599.178054719,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 600.183526738,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 601.188535223,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 602.192670411,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 603.197793745,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 604.2014225,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 605.20602962,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 606.209771583,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 607.213625139,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 608.217873953,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 609.22181384,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 610.22561276,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 611.229236008,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 612.233006841,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 613.237412851,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 614.241381508,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 615.245430324,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 616.249277873,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 617.253054013,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 618.257267808,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 619.261059559,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 620.265330564,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 621.269011081,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 622.274566665,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 623.280254953,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 624.28394343,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 625.287771731,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 626.291963687,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 627.295689797,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 628.299856558,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 629.303976342,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 630.307581415,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 631.311439509,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 632.319286766,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 633.323381735,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 634.327230044,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 635.331199431,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 636.336684478,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 637.340631093,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 638.345011829,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 639.350066208,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 640.354228092,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 641.359799146,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 642.364428708,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 643.375539276,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 644.383718232,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 645.387944793,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 646.392468518,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 647.396743268,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 648.401202884,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 649.404997199,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 650.409042541,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 651.412758116,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 652.416466452,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 653.420126732,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  },
+  {
+    "monotonic": 654.423891083,
+    "processes": [
+      {
+        "pid": 4730,
+        "created": 1794100510.26,
+        "name": "gtk-control",
+        "cpu_seconds": 0.28,
+        "threads": 6,
+        "stat_rss_bytes": 34676736,
+        "rollup_kib": {
+          "Rss": 33864,
+          "Pss": 21238,
+          "Shared_Clean": 14796,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 8596,
+          "Private_Dirty": 5672,
+          "Anonymous": 5652,
+          "Swap": 0
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+Linux 7.0.0-1017-azure x86_64 GNU/Linux
+4.14.5
+cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+libgtk-4-1:amd64	4.14.5+ds-0ubuntu0.10
+libgl1-mesa-dri:amd64	25.2.8-0ubuntu0.24.04.4
+libegl-mesa0:amd64	25.2.8-0ubuntu0.24.04.4
+mesa-vulkan-drivers	
+openbox	3.6.1-12build5
+xvfb	2:21.1.12-1ubuntu1.9
+fonts-dejavu-core	2.37-8
+at-spi2-core	2.52.0-1build1
+logical_cpus=4
+MemTotal:       16367528 kB
+5096df7e82cd374a98772722f594abd4cfb05398

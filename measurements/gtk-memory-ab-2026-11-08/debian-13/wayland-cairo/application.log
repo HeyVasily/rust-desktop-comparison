@@ -1,0 +1,2 @@
+project 1
+GTK_DIAGNOSTIC {"gtk":"4.18.6","display":"GdkWaylandDisplay","renderer":"GskCairoRenderer","width":960,"height":640,"surface_width":960,"surface_height":640,"scale":1,"mapped":true}

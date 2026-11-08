@@ -1,0 +1,4 @@
+{
+  "llvm_resident_kib": 46504,
+  "hypothesis": "Cairo still loads graphics driver code during X11 display initialization; disable GL and Vulkan to test its contribution."
+}

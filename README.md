@@ -56,7 +56,11 @@ memory reported separately. The current GTK case uses a different frontend,
 GTK version and X11 environment, without fixing or observing its GSK renderer.
 Its 240.27 MiB does not establish a regression from the earlier Wayland/Cairo
 result. The [side-by-side explanation](docs/historical-comparison.md#why-the-current-linux-numbers-differ)
-details scope, renderers, versions and the limits of causal attribution.
+details scope, renderers, versions and the limits of causal attribution. A subsequent
+[controlled GTK experiment](docs/gtk-memory-investigation.md) closely reproduces
+that Ubuntu footprint: 238.36 MiB with observed default OpenGL versus 97.87 MiB
+with Cairo. Separate Debian controls isolate X11 driver initialization: Cairo
+uses 119.45 MiB normally and 31.68 MiB with GL/Vulkan disabled, with identical images.
 
 ## What the interfaces look like
 
