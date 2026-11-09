@@ -540,7 +540,9 @@ def main():
             # unmapped (iconified) window as demanding attention.
             attention["window"] = linux_window(app.pids())
             focus = subprocess.Popen(["xmessage", "-geometry", "+1200+820", "focus holder"])
-            holder = run(["xdotool", "search", "--sync", "--pid", str(focus.pid)]).stdout.split()
+            # xmessage sets no _NET_WM_PID, so find it by its WM_CLASS.
+            holder = run(["xdotool", "search", "--sync", "--onlyvisible", "--classname", "xmessage"],
+                         timeout=10).stdout.split()
             if holder:
                 run(["xdotool", "windowactivate", "--sync", holder[0]])
             attention["deactivated"] = "focus moved to another window" if holder else "no focus holder"
