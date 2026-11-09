@@ -108,6 +108,7 @@ Every cell links to its source in the [detailed matrix](docs/features.md); the
 | Native-looking controls | ❌ | 🟡 Win<br>🟡 mac<br>✅ Linux | 🟡 | ✅ Win<br>✅ mac<br>🟡 Linux | 🟡 |
 | Follows system light/dark | ✅ Win<br>✅ mac<br>❌ Linux | ❌ | ✅ | ❌ Win<br>✅ mac<br>❌ Linux | ✅ |
 | Native Wayland and X11 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Translucent window materials | 📦 Win<br>📦 mac<br>❌ Linux | ❌ | 📦 Win<br>📦 mac<br>❌ Linux | 🛠️ | ✅ Win<br>✅ mac<br>❌ Linux |
 | Screen readers | ✅ | 🟡 Win<br>🟡 mac<br>✅ Linux | ✅ | ✅ | ✅ |
 | Input methods (CJK, dead keys) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Right-to-left and bidi text | ❌ | ✅ | 🟡 | ✅ | ✅ |
@@ -117,9 +118,20 @@ Every cell links to its source in the [detailed matrix](docs/features.md); the
 | Desktop notifications | 📦 | ❔ Win<br>❔ mac<br>✅ Linux | 📦 | 🟡 | 🧩 |
 | Drag and drop with other apps | 🟡 | ✅ | 🟡 | ✅ | 🟡 |
 | Multiple windows | ✅ | ✅ | ✅ | ✅ | ✅ |
+| System credential store | 📦 | 📦 | 📦 | 📦 | 📦 |
+| Badge on the app icon | 🛠️ | 🛠️ | 🛠️ | ✅ Win<br>✅ mac<br>🟡 Linux | 🟡 Win<br>✅ mac<br>🟡 Linux |
+| Progress on the app icon | 🛠️ | 🛠️ | 🛠️ | 🛠️ | ✅ Win<br>✅ mac<br>🟡 Linux |
+| Request attention | ✅ | 🛠️ Win<br>🛠️ mac<br>🟡 Linux | 🟡 | ✅ | ✅ |
+| Dock menu or jump list | 🛠️ | 🛠️ | 🛠️ | 🛠️ Win<br>✅ mac<br>🛠️ Linux | 🛠️ |
+| Menu-bar or background-only app | ✅ Win<br>🟡 mac<br>❌ Linux | 🛠️ | 🟡 Win<br>🟡 mac<br>❌ Linux | 🟡 | ✅ |
+| Tray clicks and menu | 📦 | 📦 | ✅ Win<br>🟡 mac<br>✅ Linux | ✅ | ✅ Win<br>✅ mac<br>🟡 Linux |
+| Global keyboard shortcuts | 📦 Win<br>📦 mac<br>🟡 Linux | 📦 | 📦 Win<br>📦 mac<br>🟡 Linux | 📦 Win<br>📦 mac<br>🟡 Linux | 🧩 Win<br>🧩 mac<br>🟡 Linux |
+| Start at login | 📦 | 📦 | 📦 | 🛠️ | 🧩 |
+| Single instance | 📦 | ❔ Win<br>❔ mac<br>✅ Linux | 📦 | 📦 | 🧩 |
+| URL schemes and file associations | 🛠️ | 🟡 Win<br>❔ mac<br>✅ Linux | 🛠️ | 🟡 Win<br>✅ mac<br>🟡 Linux | 🧩 |
 | Installers and updates | 📦 | 🟡 Win<br>🟡 mac<br>✅ Linux | 📦 | 🟡 | ✅ |
 
-✅ Built in · 🟡 Partial · 🧩 Official plugin · 📦 Third-party crate · ❌ Not available · ❔ Not verified. Checked 2026-11-09.
+✅ Built in · 🟡 Partial · 🧩 Official plugin · 📦 Third-party crate · 🛠️ Own platform code · ❌ Not available · ❔ Not verified. Checked 2026-11-09.
 <!-- features:end -->
 
 ## What the interfaces look like

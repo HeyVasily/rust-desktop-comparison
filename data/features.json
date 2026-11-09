@@ -1,6 +1,6 @@
 {
   "checked": "2026-11-09",
-  "about": "Native-integration capabilities of the framework versions used in this repository. 'docs' cells cite upstream documentation or release notes; 'repo' cells are backed by this repository's lockfiles, examples, captures or runner checks. Light/dark following was tested on GitHub runners by switching the OS to dark mode and relaunching each example. Other capabilities describe the current upstream release line; the Linux runs used Ubuntu 24.04's GTK 4.14 and Qt 6.4.",
+  "about": "Native-integration capabilities of the framework versions used in this repository. 'docs' cells cite upstream documentation or release notes; 'repo' cells are backed by this repository's lockfiles, examples, captures or runner checks. Light/dark following was tested on GitHub runners by switching the OS to dark mode and relaunching each example. Other capabilities describe the current upstream release line; the Linux runs used Ubuntu 24.04's GTK 4.14 and Qt 6.4. The Dock, taskbar, tray, shortcut and launch rows are from documentation and crate sources.",
   "levels": {
     "yes": {
       "label": "Built in",
@@ -17,6 +17,10 @@
     "crate": {
       "label": "Third-party crate",
       "symbol": "📦"
+    },
+    "manual": {
+      "label": "Own platform code",
+      "symbol": "🛠️"
     },
     "no": {
       "label": "Not available",
@@ -272,6 +276,58 @@
               "note": "Through GTK3 and WebKitGTK.",
               "evidence": "docs",
               "source": "https://v2.tauri.app/reference/webview-versions/"
+            }
+          }
+        },
+        {
+          "id": "window-material",
+          "title": "Translucent window materials",
+          "description": "Mica or Acrylic on Windows, vibrancy or Liquid Glass on macOS.",
+          "support": {
+            "egui": {
+              "level": "crate",
+              "os": {
+                "windows": "crate",
+                "macos": "crate",
+                "linux": "no"
+              },
+              "note": "window-vibrancy crate on a transparent viewport. Linux blur is up to the compositor.",
+              "evidence": "docs",
+              "source": "https://github.com/tauri-apps/window-vibrancy"
+            },
+            "gtk": {
+              "level": "no",
+              "note": "No API; GTK draws an opaque surface. Linux blur is up to the compositor.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/"
+            },
+            "slint": {
+              "level": "crate",
+              "os": {
+                "windows": "crate",
+                "macos": "crate",
+                "linux": "no"
+              },
+              "note": "window-vibrancy through the winit window handle.",
+              "evidence": "docs",
+              "source": "https://github.com/tauri-apps/window-vibrancy"
+            },
+            "qt": {
+              "level": "manual",
+              "note": "No Qt API; DwmSetWindowAttribute or NSVisualEffectView from native code.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qwidget.html#winId"
+            },
+            "tauri": {
+              "level": "yes",
+              "os": {
+                "windows": "yes",
+                "macos": "yes",
+                "linux": "no"
+              },
+              "note": "windowEffects: Mica, Acrylic, Tabbed on Windows; vibrancy materials and Liquid Glass on macOS; unsupported on Linux.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/reference/config/#windoweffectsconfig"
             }
           }
         }
@@ -637,6 +693,505 @@
               "note": "WebviewWindow; each window hosts a webview.",
               "evidence": "docs",
               "source": "https://v2.tauri.app/reference/javascript/api/namespacewebviewwindow/"
+            }
+          }
+        },
+        {
+          "id": "secure-storage",
+          "title": "System credential store",
+          "description": "Keychain, Windows Credential Manager or Secret Service for tokens and passwords.",
+          "support": {
+            "egui": {
+              "level": "crate",
+              "note": "keyring crate.",
+              "evidence": "docs",
+              "source": "https://docs.rs/keyring/latest/keyring/"
+            },
+            "gtk": {
+              "level": "crate",
+              "note": "keyring or oo7 (Secret Service; libsecret's protocol).",
+              "evidence": "docs",
+              "source": "https://docs.rs/keyring/latest/keyring/"
+            },
+            "slint": {
+              "level": "crate",
+              "note": "keyring crate.",
+              "evidence": "docs",
+              "source": "https://docs.rs/keyring/latest/keyring/"
+            },
+            "qt": {
+              "level": "crate",
+              "note": "Third-party QtKeychain.",
+              "evidence": "docs",
+              "source": "https://github.com/frankosterfeld/qtkeychain"
+            },
+            "tauri": {
+              "level": "crate",
+              "note": "keyring crate; the official Stronghold plugin is its own encrypted vault, not the OS store.",
+              "evidence": "docs",
+              "source": "https://docs.rs/keyring/latest/keyring/"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dock",
+      "title": "Dock and taskbar",
+      "features": [
+        {
+          "id": "badge",
+          "title": "Badge on the app icon",
+          "description": "A count or label on the app's icon in the macOS Dock, the Windows taskbar or a Linux dock.",
+          "support": {
+            "egui": {
+              "level": "manual",
+              "note": "No eframe API. Needs NSDockTile (objc2), ITaskbarList3 overlay icons (windows crate) or the Unity LauncherEntry D-Bus signal on Linux.",
+              "evidence": "docs",
+              "source": "https://docs.rs/egui/0.37.0/egui/viewport/enum.ViewportCommand.html"
+            },
+            "gtk": {
+              "level": "manual",
+              "note": "No GTK API. On Linux, docks such as Dash to Dock and KDE Plasma read the com.canonical.Unity.LauncherEntry D-Bus signal, which gio can emit; Windows and macOS need native calls.",
+              "evidence": "docs",
+              "source": "https://wiki.ubuntu.com/Unity/LauncherAPI"
+            },
+            "slint": {
+              "level": "manual",
+              "note": "No Slint API; native code can use the window handle from the winit accessor.",
+              "evidence": "docs",
+              "source": "https://docs.rs/slint/1.18.1/slint/winit_030/index.html"
+            },
+            "qt": {
+              "level": "partial",
+              "os": {
+                "windows": "yes",
+                "macos": "yes",
+                "linux": "partial"
+              },
+              "note": "QGuiApplication::setBadgeNumber since Qt 6.5 (Dock, taskbar). Measured here: Windows 6.8 and macOS 6.12 have it; Ubuntu 24.04's Qt 6.4 does not.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qguiapplication.html#setBadgeNumber"
+            },
+            "tauri": {
+              "level": "partial",
+              "os": {
+                "windows": "partial",
+                "macos": "yes",
+                "linux": "partial"
+              },
+              "note": "set_badge_count on macOS and Linux (Unity LauncherEntry, needs the .desktop name and a dock that reads it), set_badge_label on macOS; Windows has set_overlay_icon (an icon, not a number).",
+              "evidence": "docs",
+              "source": "https://docs.rs/tauri/2.12.5/tauri/webview/struct.WebviewWindow.html"
+            }
+          }
+        },
+        {
+          "id": "progress",
+          "title": "Progress on the app icon",
+          "description": "A progress bar drawn over the taskbar button or Dock icon, for downloads or exports.",
+          "support": {
+            "egui": {
+              "level": "manual",
+              "note": "No eframe API; ITaskbarList3, NSDockTile or the Unity LauncherEntry signal.",
+              "evidence": "docs",
+              "source": "https://docs.rs/egui/0.37.0/egui/viewport/enum.ViewportCommand.html"
+            },
+            "gtk": {
+              "level": "manual",
+              "note": "No GTK API; on Linux the Unity LauncherEntry signal carries progress.",
+              "evidence": "docs",
+              "source": "https://wiki.ubuntu.com/Unity/LauncherAPI"
+            },
+            "slint": {
+              "level": "manual",
+              "note": "No Slint API; native code through the winit window handle.",
+              "evidence": "docs",
+              "source": "https://docs.rs/slint/1.18.1/slint/winit_030/index.html"
+            },
+            "qt": {
+              "level": "manual",
+              "note": "QWinTaskbarProgress went away with Qt Windows Extras in Qt 6; use ITaskbarList3 or NSDockTile directly.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/extras-changes-qt6.html"
+            },
+            "tauri": {
+              "level": "partial",
+              "os": {
+                "windows": "yes",
+                "macos": "yes",
+                "linux": "partial"
+              },
+              "note": "set_progress_bar. On macOS and Linux the bar is app-wide; Linux needs a libunity-aware dock.",
+              "evidence": "docs",
+              "source": "https://docs.rs/tauri/2.12.5/tauri/webview/struct.WebviewWindow.html"
+            }
+          }
+        },
+        {
+          "id": "attention",
+          "title": "Request attention",
+          "description": "Bounce the Dock icon, flash the taskbar button or mark the window urgent.",
+          "support": {
+            "egui": {
+              "level": "yes",
+              "note": "ViewportCommand::RequestUserAttention (winit). Wayland needs the compositor's xdg_activation_v1.",
+              "evidence": "docs",
+              "source": "https://docs.rs/egui/0.37.0/egui/viewport/enum.ViewportCommand.html"
+            },
+            "gtk": {
+              "level": "partial",
+              "os": {
+                "windows": "manual",
+                "macos": "manual",
+                "linux": "partial"
+              },
+              "note": "No cross-platform GTK 4 call. X11 has gdk_x11_surface_set_urgency_hint (deprecated in 4.18); Windows and macOS need FlashWindowEx or NSApplication from native code.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gdk4-x11/method.X11Surface.set_urgency_hint.html"
+            },
+            "slint": {
+              "level": "partial",
+              "note": "No Slint property; winit's request_user_attention is reachable through the unstable winit accessor (unstable-winit-030 feature).",
+              "evidence": "docs",
+              "source": "https://docs.rs/slint/1.18.1/slint/winit_030/index.html"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "QApplication::alert: Dock bounce on macOS, taskbar flash on Windows, 'demands attention' on X11.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qapplication.html#alert"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "request_user_attention (critical or informational on macOS; one level on Linux).",
+              "evidence": "docs",
+              "source": "https://docs.rs/tauri/2.12.5/tauri/webview/struct.WebviewWindow.html"
+            }
+          }
+        },
+        {
+          "id": "dock-menu",
+          "title": "Dock menu or jump list",
+          "description": "Extra entries when right-clicking the app's Dock icon or taskbar button.",
+          "support": {
+            "egui": {
+              "level": "manual",
+              "note": "No eframe API. macOS needs an NSApplicationDelegate (applicationDockMenu:); Windows jump lists need ICustomDestinationList. Linux .desktop Actions are static packaging.",
+              "evidence": "docs",
+              "source": "https://docs.rs/winit/0.30.13/winit/platform/macos/index.html"
+            },
+            "gtk": {
+              "level": "manual",
+              "note": "No GTK 4 API. Linux .desktop Actions are static packaging.",
+              "evidence": "docs",
+              "source": "https://specifications.freedesktop.org/desktop-entry-spec/latest/extra-actions.html"
+            },
+            "slint": {
+              "level": "manual",
+              "note": "No Slint API.",
+              "evidence": "docs",
+              "source": "https://docs.rs/slint/1.18.1/slint/winit_030/index.html"
+            },
+            "qt": {
+              "level": "partial",
+              "os": {
+                "windows": "manual",
+                "macos": "yes",
+                "linux": "manual"
+              },
+              "note": "QMenu::setAsDockMenu on macOS. Windows jump lists (QWinJumpList) were removed with Qt Windows Extras in Qt 6.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qmenu.html#setAsDockMenu"
+            },
+            "tauri": {
+              "level": "manual",
+              "note": "No Dock menu or jump list API in Tauri 2.12; Linux .desktop Actions via the bundler.",
+              "evidence": "docs",
+              "source": "https://docs.rs/tauri/2.12.5/tauri/webview/struct.WebviewWindow.html"
+            }
+          }
+        },
+        {
+          "id": "background-app",
+          "title": "Menu-bar or background-only app",
+          "description": "Run without a Dock icon or taskbar button, e.g. an app that lives in the tray.",
+          "support": {
+            "egui": {
+              "level": "partial",
+              "os": {
+                "windows": "yes",
+                "macos": "partial",
+                "linux": "no"
+              },
+              "note": "macOS: winit ActivationPolicy::Accessory through NativeOptions::event_loop_builder; Windows: ViewportBuilder::with_taskbar(false); Linux has no equivalent.",
+              "evidence": "docs",
+              "source": "https://docs.rs/winit/0.30.13/winit/platform/macos/index.html"
+            },
+            "gtk": {
+              "level": "manual",
+              "note": "No GTK API. macOS: LSUIElement in Info.plist; Windows: extended window styles from native code.",
+              "evidence": "docs",
+              "source": "https://developer.apple.com/documentation/bundleresources/information-property-list/lsuielement"
+            },
+            "slint": {
+              "level": "partial",
+              "os": {
+                "windows": "partial",
+                "macos": "partial",
+                "linux": "no"
+              },
+              "note": "Through winit: BackendSelector::with_winit_event_loop_builder for the macOS activation policy; window attributes for Windows.",
+              "evidence": "docs",
+              "source": "https://docs.rs/slint/1.18.1/slint/winit_030/index.html"
+            },
+            "qt": {
+              "level": "partial",
+              "note": "Qt::Tool windows have no taskbar button; macOS hides the Dock icon with LSUIElement in Info.plist.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qt.html#WindowType-enum"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "set_activation_policy / set_dock_visibility on macOS; skipTaskbar on Windows and Linux.",
+              "evidence": "docs",
+              "source": "https://docs.rs/tauri/2.12.5/tauri/struct.AppHandle.html"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "launch",
+      "title": "Tray, shortcuts and launch",
+      "features": [
+        {
+          "id": "tray-events",
+          "title": "Tray clicks and menu",
+          "description": "React to clicks on the tray icon, not only to its menu.",
+          "support": {
+            "egui": {
+              "level": "crate",
+              "note": "tray-icon crate. Its ksni backend (no GTK 3) reports clicks on Linux; the default AppIndicator backend does not. Needs a StatusNotifier host on Linux.",
+              "evidence": "docs",
+              "source": "https://docs.rs/tray-icon/0.25.1/tray_icon/"
+            },
+            "gtk": {
+              "level": "crate",
+              "note": "tray-icon with the ksni and muda-gtk4 features, or ksni directly; GTK 3-based AppIndicator libraries cannot load into a GTK 4 process.",
+              "evidence": "docs",
+              "source": "https://docs.rs/tray-icon/0.25.1/tray_icon/"
+            },
+            "slint": {
+              "level": "partial",
+              "os": {
+                "windows": "yes",
+                "macos": "partial",
+                "linux": "yes"
+              },
+              "note": "SystemTrayIcon clicked(): left-click on Windows; on macOS only when no menu is attached; Linux via StatusNotifierItem Activate.",
+              "evidence": "docs",
+              "source": "https://docs.slint.dev/latest/docs/slint/reference/window/systemtrayicon/"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "QSystemTrayIcon::activated with the click reason; Linux uses StatusNotifierItem or XEmbed.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qsystemtrayicon.html#activated"
+            },
+            "tauri": {
+              "level": "partial",
+              "os": {
+                "windows": "yes",
+                "macos": "yes",
+                "linux": "partial"
+              },
+              "note": "Tray events on Windows and macOS; on Linux the AppIndicator backend emits no click events, only the menu works.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/learn/system-tray/"
+            }
+          }
+        },
+        {
+          "id": "global-shortcut",
+          "title": "Global keyboard shortcuts",
+          "description": "A hotkey that reaches the app while another app is focused.",
+          "support": {
+            "egui": {
+              "level": "crate",
+              "os": {
+                "windows": "crate",
+                "macos": "crate",
+                "linux": "partial"
+              },
+              "note": "global-hotkey crate: Windows, macOS, Linux X11 only. Wayland needs the GlobalShortcuts portal.",
+              "evidence": "docs",
+              "source": "https://docs.rs/global-hotkey/latest/global_hotkey/"
+            },
+            "gtk": {
+              "level": "crate",
+              "note": "global-hotkey on Windows/macOS/X11; on Wayland the GlobalShortcuts portal (e.g. ashpd crate).",
+              "evidence": "docs",
+              "source": "https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.GlobalShortcuts.html"
+            },
+            "slint": {
+              "level": "crate",
+              "os": {
+                "windows": "crate",
+                "macos": "crate",
+                "linux": "partial"
+              },
+              "note": "global-hotkey crate: Windows, macOS, Linux X11 only.",
+              "evidence": "docs",
+              "source": "https://docs.rs/global-hotkey/latest/global_hotkey/"
+            },
+            "qt": {
+              "level": "crate",
+              "os": {
+                "windows": "crate",
+                "macos": "crate",
+                "linux": "partial"
+              },
+              "note": "No Qt API; third-party QHotkey (X11 only on Linux).",
+              "evidence": "docs",
+              "source": "https://github.com/Skycoder42/QHotkey"
+            },
+            "tauri": {
+              "level": "plugin",
+              "os": {
+                "windows": "plugin",
+                "macos": "plugin",
+                "linux": "partial"
+              },
+              "note": "global-shortcut plugin, built on global-hotkey: Linux X11 only.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/plugin/global-shortcut/"
+            }
+          }
+        },
+        {
+          "id": "autostart",
+          "title": "Start at login",
+          "description": "Register the app to start when the user logs in.",
+          "support": {
+            "egui": {
+              "level": "crate",
+              "note": "auto-launch crate: Run registry key, LaunchAgent or login item, XDG autostart or systemd.",
+              "evidence": "docs",
+              "source": "https://docs.rs/auto-launch/latest/auto_launch/"
+            },
+            "gtk": {
+              "level": "crate",
+              "note": "auto-launch crate; sandboxed Linux apps use the Background portal.",
+              "evidence": "docs",
+              "source": "https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.Background.html"
+            },
+            "slint": {
+              "level": "crate",
+              "note": "auto-launch crate.",
+              "evidence": "docs",
+              "source": "https://docs.rs/auto-launch/latest/auto_launch/"
+            },
+            "qt": {
+              "level": "manual",
+              "note": "No Qt API; write the Run key, a LaunchAgent plist or an XDG autostart .desktop file.",
+              "evidence": "docs",
+              "source": "https://specifications.freedesktop.org/autostart-spec/latest/"
+            },
+            "tauri": {
+              "level": "plugin",
+              "note": "autostart plugin (wraps auto-launch).",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/plugin/autostart/"
+            }
+          }
+        },
+        {
+          "id": "single-instance",
+          "title": "Single instance",
+          "description": "A second launch hands its arguments to the running app and exits.",
+          "support": {
+            "egui": {
+              "level": "crate",
+              "note": "Not built in; e.g. the single-instance or interprocess crates.",
+              "evidence": "docs",
+              "source": "https://docs.rs/single-instance"
+            },
+            "gtk": {
+              "level": "partial",
+              "os": {
+                "windows": "unknown",
+                "macos": "unknown",
+                "linux": "yes"
+              },
+              "note": "GApplication is unique per application ID and forwards arguments; documented through the D-Bus session bus on Linux, not documented for Windows and macOS.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gio/class.Application.html"
+            },
+            "slint": {
+              "level": "crate",
+              "note": "Not built in; e.g. the single-instance or interprocess crates.",
+              "evidence": "docs",
+              "source": "https://docs.rs/single-instance"
+            },
+            "qt": {
+              "level": "crate",
+              "note": "Not in Qt 6; third-party SingleApplication, or QLocalServer by hand.",
+              "evidence": "docs",
+              "source": "https://github.com/itay-grudev/SingleApplication"
+            },
+            "tauri": {
+              "level": "plugin",
+              "note": "single-instance plugin, which also routes deep links.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/plugin/single-instance/"
+            }
+          }
+        },
+        {
+          "id": "open-urls",
+          "title": "URL schemes and file associations",
+          "description": "Open myapp:// links and double-clicked documents in the app.",
+          "support": {
+            "egui": {
+              "level": "manual",
+              "note": "Registration is packaging (Info.plist, registry, .desktop). Windows and Linux pass the URL as an argument; macOS delivers an Apple Event that needs your own NSApplicationDelegate.",
+              "evidence": "docs",
+              "source": "https://docs.rs/winit/0.30.13/winit/platform/macos/index.html"
+            },
+            "gtk": {
+              "level": "partial",
+              "os": {
+                "windows": "partial",
+                "macos": "unknown",
+                "linux": "yes"
+              },
+              "note": "GApplication open signal with the HANDLES_OPEN flag; registration through the .desktop file on Linux. Not documented for macOS.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gio/class.Application.html"
+            },
+            "slint": {
+              "level": "manual",
+              "note": "As for egui: packaging plus arguments; macOS needs a custom application delegate.",
+              "evidence": "docs",
+              "source": "https://docs.rs/winit/0.30.13/winit/platform/macos/index.html"
+            },
+            "qt": {
+              "level": "partial",
+              "os": {
+                "windows": "partial",
+                "macos": "yes",
+                "linux": "partial"
+              },
+              "note": "macOS: QFileOpenEvent for files and URLs. Windows/Linux: registration by the installer, URL arrives as an argument.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qfileopenevent.html"
+            },
+            "tauri": {
+              "level": "plugin",
+              "note": "deep-link plugin (runtime registration on Windows/Linux, bundle-only on macOS) plus bundler fileAssociations.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/plugin/deep-linking/"
             }
           }
         }

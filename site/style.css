@@ -245,6 +245,8 @@ table.matrix { border-collapse: separate; border-spacing: 0; width: 100%; min-wi
 .dot.plugin::after { content: "+"; }
 .dot.crate { background: var(--crate); }
 .dot.crate::after { content: "+"; }
+.dot.manual { background: transparent; border: 1.5px solid var(--crate); color: var(--ink-2); }
+.dot.manual::after { content: "⚒"; font-size: 9px; }
 .dot.no { background: var(--critical); }
 .dot.no::after { content: "×"; }
 .dot.unknown { background: transparent; border: 1.5px dashed var(--muted); color: var(--muted); }
