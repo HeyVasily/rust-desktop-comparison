@@ -8,7 +8,7 @@ use tauri::image::Image;
 use tauri::menu::{Menu, MenuItem};
 use tauri::plugin::Builder as PluginBuilder;
 use tauri::tray::{MouseButtonState, TrayIconBuilder, TrayIconEvent};
-use tauri::{AppHandle, Manager, Runtime, UserAttentionType};
+use tauri::{AppHandle, Runtime, UserAttentionType, Window};
 use tauri_plugin_global_shortcut::{GlobalShortcutExt, ShortcutState};
 
 const SHORTCUT: &str = "ctrl+alt+shift+F9";
@@ -42,6 +42,8 @@ pub fn install<R: Runtime>(builder: tauri::Builder<R>) -> tauri::Builder<R> {
                     setup(app);
                     Ok(())
                 })
+                // Windows are created after plugin setup; badge and attention need one.
+                .on_window_ready(window_ready)
                 .build(),
         )
 }
@@ -60,10 +62,12 @@ fn setup<R: Runtime>(app: &AppHandle<R>) {
     if let Err(error) = tray(app) {
         report("tray", "error", &error.to_string());
     }
-    let Some(window) = app.get_webview_window("main") else {
-        report("badge", "error", "main window missing");
+}
+
+fn window_ready<R: Runtime>(window: Window<R>) {
+    if window.label() != "main" {
         return;
-    };
+    }
     #[cfg(target_os = "windows")]
     let badge = window
         .set_overlay_icon(Some(icon()))

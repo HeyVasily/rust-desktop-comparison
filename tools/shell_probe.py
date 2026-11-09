@@ -9,13 +9,15 @@ looks for the effect where the operating system exposes it:
 
   tray       Linux: StatusNotifierItem registration and a D-Bus Activate click;
              macOS: a status-bar window (layer 25) owned by the app;
-             Windows: a notification-area button found and invoked via UI Automation
+             Windows: a notification-area toolbar button owned by the app, then a
+             real mouse click on it (the workflow shows all icons, EnableAutoTray=0)
   badge      macOS: the Dock tile label (lsappinfo StatusLabel);
              Linux: a com.canonical.Unity.LauncherEntry signal; Windows: not observable
   hotkey     a synthetic key press (xdotool / keybd_event / System Events) must reach the app
   single     a second launch must exit; forwarding to the first is recorded separately
-  attention  Linux X11: urgency hint or _NET_WM_STATE_DEMANDS_ATTENTION;
-             Windows: an HSHELL_FLASH shell-hook message; macOS: not observable
+  attention  Linux X11 (focus moved to another window): urgency hint or
+             _NET_WM_STATE_DEMANDS_ATTENTION; Windows (window minimized):
+             an HSHELL_FLASH shell-hook message; macOS: not observable
 
 Each check gets a verdict: pass (effect observed), api-only (the app reported success
 but the OS gives no outside view), no-api (the framework has no API; not built with a
@@ -137,7 +139,7 @@ def linux_window(pids):
 def bus_pid(name):
     out = run(["gdbus", "call", "--session", "--dest", "org.freedesktop.DBus", "--object-path",
                "/org/freedesktop/DBus", "--method", "org.freedesktop.DBus.GetConnectionUnixProcessID", name]).stdout
-    match = re.search(r"(\d+)", out)
+    match = re.search(r"uint32 (\d+)", out)
     return int(match.group(1)) if match else None
 
 
@@ -269,16 +271,80 @@ def windows_top_level(pids):
     return found
 
 
-def windows_tray(invoke=False):
-    command = ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
-               str(Path(__file__).with_name("windows_tray.ps1")), "-Name", TOOLTIP]
-    if invoke:
-        command.append("-Invoke")
-    result = run(command, timeout=60)
-    try:
-        return json.loads(result.stdout)
-    except ValueError:
-        return dict(error=(result.stdout + result.stderr)[-1500:])
+def windows_tray_buttons(pids):
+    """Read the notification-area toolbars inside Explorer.
+
+    Each button's data is a TRAYDATA record whose first field is the icon owner's
+    window; its process tells which app the icon belongs to.
+    """
+    import ctypes
+    from ctypes import wintypes
+    user32, kernel32 = ctypes.windll.user32, ctypes.windll.kernel32
+    user32.FindWindowExW.restype = wintypes.HWND
+    user32.FindWindowExW.argtypes = [wintypes.HWND, wintypes.HWND, wintypes.LPCWSTR, wintypes.LPCWSTR]
+    user32.SendMessageW.restype = ctypes.c_ssize_t
+    user32.SendMessageW.argtypes = [wintypes.HWND, wintypes.UINT, wintypes.WPARAM, wintypes.LPARAM]
+    kernel32.OpenProcess.restype = wintypes.HANDLE
+    kernel32.VirtualAllocEx.restype = ctypes.c_void_p
+    kernel32.VirtualAllocEx.argtypes = [wintypes.HANDLE, ctypes.c_void_p, ctypes.c_size_t, wintypes.DWORD, wintypes.DWORD]
+    kernel32.VirtualFreeEx.argtypes = [wintypes.HANDLE, ctypes.c_void_p, ctypes.c_size_t, wintypes.DWORD]
+    kernel32.ReadProcessMemory.argtypes = [wintypes.HANDLE, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_size_t,
+                                           ctypes.POINTER(ctypes.c_size_t)]
+
+    def child(parent, cls):
+        return user32.FindWindowExW(parent, None, cls, None)
+
+    tray = child(None, "Shell_TrayWnd")
+    pager = child(child(tray, "TrayNotifyWnd"), "SysPager") if tray else None
+    toolbars = [("promoted", child(pager, "ToolbarWindow32") if pager else None),
+                ("overflow", child(child(None, "NotifyIconOverflowWindow"), "ToolbarWindow32"))]
+    buttons = []
+    for area, toolbar in toolbars:
+        if not toolbar:
+            continue
+        explorer = wintypes.DWORD()
+        user32.GetWindowThreadProcessId(toolbar, ctypes.byref(explorer))
+        process = kernel32.OpenProcess(0x0008 | 0x0010 | 0x0020 | 0x0400, False, explorer.value)
+        if not process:
+            continue
+        remote = kernel32.VirtualAllocEx(process, None, 4096, 0x1000, 0x04)
+        try:
+            for index in range(user32.SendMessageW(toolbar, 0x418, 0, 0)):  # TB_BUTTONCOUNT
+                raw = (ctypes.c_ubyte * 32)()
+                user32.SendMessageW(toolbar, 0x417, index, remote)  # TB_GETBUTTON
+                kernel32.ReadProcessMemory(process, remote, raw, 32, None)
+                data = int.from_bytes(bytes(raw[16:24]), "little")
+                record = (ctypes.c_ubyte * 16)()
+                if not data or not kernel32.ReadProcessMemory(process, ctypes.c_void_p(data), record, 16, None):
+                    continue
+                owner = int.from_bytes(bytes(record[0:8]), "little")
+                pid = wintypes.DWORD()
+                user32.GetWindowThreadProcessId(wintypes.HWND(owner), ctypes.byref(pid))
+                rect = wintypes.RECT()
+                user32.SendMessageW(toolbar, 0x41D, index, remote)  # TB_GETITEMRECT
+                kernel32.ReadProcessMemory(process, remote, ctypes.byref(rect), ctypes.sizeof(rect), None)
+                corner = wintypes.POINT(rect.left, rect.top)
+                user32.ClientToScreen(toolbar, ctypes.byref(corner))
+                buttons.append(dict(area=area, pid=pid.value, ours=pid.value in pids,
+                                    center=[corner.x + (rect.right - rect.left) // 2,
+                                            corner.y + (rect.bottom - rect.top) // 2]))
+        finally:
+            kernel32.VirtualFreeEx(process, ctypes.c_void_p(remote), 0, 0x8000)
+            kernel32.CloseHandle(process)
+    return buttons
+
+
+def windows_click(point):
+    import ctypes
+    user32 = ctypes.windll.user32
+    user32.SetCursorPos(*point)
+    time.sleep(0.3)
+    user32.mouse_event(0x0002, 0, 0, 0, 0)  # left down
+    time.sleep(0.05)
+    user32.mouse_event(0x0004, 0, 0, 0, 0)  # left up
+    time.sleep(0.5)
+    user32.keybd_event(0x1B, 0, 0, 0)  # Escape closes a menu opened by the click
+    user32.keybd_event(0x1B, 0, 2, 0)
 
 
 def windows_hotkey():
@@ -402,13 +468,16 @@ def main():
                 tray.update(observed=bool(found), how="status-bar window (layer 25) owned by the app",
                             windows=found)
             else:
-                found = windows_tray()
-                tray.update(observed=bool(found.get("matches")), how="UI Automation notification-area button",
-                            uia=found)
-                if tray["observed"]:
+                buttons = windows_tray_buttons(app.pids())
+                ours = [b for b in buttons if b["ours"]]
+                tray.update(observed=bool(ours), how="notification-area toolbar button owned by the app",
+                            buttons=buttons)
+                promoted = [b for b in ours if b["area"] == "promoted"]
+                if promoted:
                     since = time.monotonic()
-                    tray["invoke"] = windows_tray(invoke=True).get("matches")
+                    windows_click(promoted[0]["center"])
                     tray["clicked"] = bool(app.wait_for("tray", "click", timeout=4, since=since))
+                    tray["click_how"] = "left mouse click on the icon"
         tray["verdict"] = verdict(event, tray.get("observed"))
         checks["tray"] = tray
 
@@ -465,16 +534,21 @@ def main():
 
         # Attention: minimize first so the request reaches an inactive window.
         attention = {}
+        focus = None
         if linux:
-            wid = linux_window(app.pids())
-            attention["window"] = wid
-            if wid:
-                run(["xdotool", "windowminimize", wid])
+            # Activate another window instead of minimizing: Qt does not mark an
+            # unmapped (iconified) window as demanding attention.
+            attention["window"] = linux_window(app.pids())
+            focus = subprocess.Popen(["xmessage", "-geometry", "+1200+820", "focus holder"])
+            holder = run(["xdotool", "search", "--sync", "--pid", str(focus.pid)]).stdout.split()
+            if holder:
+                run(["xdotool", "windowactivate", "--sync", holder[0]])
+            attention["deactivated"] = "focus moved to another window" if holder else "no focus holder"
         elif windows:
             import ctypes
             for hwnd in windows_top_level(app.pids()):
                 ctypes.windll.user32.ShowWindow(hwnd, 6)  # SW_MINIMIZE
-        attention["minimized"] = not macos
+            attention["deactivated"] = "window minimized"
         remaining = ATTENTION_DELAY + 20 - (time.monotonic() - app.started)
         event = app.wait_for("attention", timeout=max(remaining, 5))
         attention["app"] = event
@@ -489,6 +563,8 @@ def main():
                 attention.update(observed=None, how="Dock bounce is not exposed to other processes")
         attention["verdict"] = verdict(event, attention.get("observed"))
         checks["attention"] = attention
+        if focus:
+            focus.terminate()
         return 0
     finally:
         result["exit_code"] = app.proc.poll()

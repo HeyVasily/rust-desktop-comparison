@@ -65,7 +65,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 python3-gi gir1.2-glib-2.0 libglib2.0-bin
+          sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 python3-gi gir1.2-glib-2.0 libglib2.0-bin libunity9
           pkg-config --modversion gtk4 webkit2gtk-4.1 Qt6Widgets > artifacts/build/native-versions.txt
       - name: Qt 6.8.3 for Windows
         if: runner.os == 'Windows' && contains(env.FRAMEWORK, 'qt')
@@ -119,6 +119,16 @@ jobs:
           if [ "$RUNNER_OS" = Windows ]; then
             windeployqt --release --no-translations target/qt/Release/veranda-qt-comparison.exe 2>&1 | tee artifacts/build/qt-deploy.log
           fi
+      - name: Show every notification-area icon on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          # New icons otherwise land in the hidden overflow and cannot be clicked.
+          Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer' -Name EnableAutoTray -Value 0 -Type DWord
+          Stop-Process -Name explorer -Force
+          Start-Sleep -Seconds 3
+          if (-not (Get-Process explorer -ErrorAction SilentlyContinue)) { Start-Process explorer.exe }
+          Start-Sleep -Seconds 5
       - name: Run the shell checks
         timeout-minutes: 30
         run: |

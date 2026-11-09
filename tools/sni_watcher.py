@@ -5,7 +5,9 @@ Run with the system Python (python3-gi). It plays the role a desktop panel norma
 plays: tray libraries register their StatusNotifierItem here, and every registration
 is appended to the log given as the first argument as `REGISTER <sender> <argument>`.
 It reports a registered host, so clients that wait for one (Qt, AppIndicator) create
-their item instead of falling back to XEmbed.
+their item instead of falling back to XEmbed. It also owns com.canonical.Unity, the
+name libunity checks before sending launcher badges, as Unity-compatible docks do;
+the badges themselves are observed separately with dbus-monitor.
 """
 import sys
 
@@ -62,5 +64,7 @@ def name_lost(connection, name):
 
 
 Gio.bus_own_name(Gio.BusType.SESSION, IFACE, Gio.BusNameOwnerFlags.NONE, bus_acquired, name_acquired, name_lost)
+Gio.bus_own_name(Gio.BusType.SESSION, "com.canonical.Unity", Gio.BusNameOwnerFlags.NONE,
+                 None, name_acquired, None)
 loop = GLib.MainLoop()
 loop.run()
