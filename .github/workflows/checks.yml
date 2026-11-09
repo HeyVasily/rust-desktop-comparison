@@ -2,7 +2,7 @@ name: Checks
 
 on:
   push:
-    branches: [main]
+    branches: [main, 'codex/**']
   pull_request:
 
 permissions:
@@ -17,3 +17,10 @@ jobs:
         run: python3 tools/render_features.py --check
       - name: Page script parses
         run: node --check site/app.js
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install probe test dependencies
+        run: python -m pip install psutil==7.0.0 Pillow==11.2.1
+      - name: Probe and desktop-integration regressions
+        run: python -m unittest discover -s tools -p 'test_*.py'
