@@ -18,7 +18,7 @@ title/artifacts identify that scope. Empty, duplicate and unknown selections fai
 before SDK setup. `egui_reduced` is not an accepted primary-framework name: the
 `reduced_control` option adds it separately only when egui is selected.
 Each OS/repetition job runs its candidates sequentially on one runner, with at
-most six jobs running concurrently. A successful build alone establishes neither
+most nine jobs running concurrently. A successful build alone establishes neither
 GUI access nor desktop acceptance.
 
 The configured runner labels are `windows-2022`, `macos-15` and `ubuntu-24.04`.
@@ -76,9 +76,16 @@ are moved away, and probe-owned clipboard helpers are reaped before settling and
 idle sampling. Integration resources in the application remain enabled and counted.
 
 Windows changes and reads the user appearance settings and broadcasts
-`WM_SETTINGCHANGE`; macOS uses the system appearance preference. Linux changes
-`org.gnome.desktop.interface color-scheme` and independently reads the Settings
-portal in the same D-Bus session. A setting label, painted titlebar or successful
+`WM_SETTINGCHANGE`; macOS uses the system appearance preference. Linux uses the
+explicitly named `gnome-adwaita-dual-preference-v1` session profile: it changes the
+shared `color-scheme` and legacy `gtk-theme` preferences together (`prefer-light`
+with `Adwaita`, or `prefer-dark` with `Adwaita-dark`). This applies to every candidate and
+the control, not a Qt-only/app-specific palette override. The driver independently
+reads both the Settings portal and the effective GTK3/XSettings `gtk-theme-name`
+through `gtk-query-settings`; mismatches refuse acceptance. Both original
+preferences are restored. This controlled Adwaita setup is not a claim that every
+GNOME version or Linux desktop synchronizes legacy themes identically.
+A setting label, painted titlebar or successful
 `gsettings` exit is not sufficient: captures and client-luminance changes are
 retained. A missing portal, permission or supported input driver is recorded as
 an environment/coverage problem, not proof that a framework lacks the feature.
@@ -207,11 +214,21 @@ request an interactive TCC approval. A nonuniform-image check excludes the title
 client with painted chrome, but cannot prove the interface is correct. Retina scaling can change PNG
 pixel dimensions relative to logical window bounds.
 
+The driver establishes foreground state before startup captures and again before
+keyboard input; it records the actual macOS frontmost PID, not just the activation
+request. macOS shortcuts use physical Quartz key transitions, including Command's
+keycode/flags-changed events and release attempts in `finally`. Event-posting access
+is preflighted without requesting a TCC grant or switching to a bypass route.
+Denied input permission is an environment blocker, not a failed toolkit capability.
+System Events appearance/foreground automation remains a separate prerequisite.
+
 Linux uses an Xvfb display, Openbox and a dedicated D-Bus session. Window discovery
 checks PID, title and `xwininfo` viewable state; ImageMagick captures the actual X11
 client window. `LIBGL_ALWAYS_SOFTWARE=1` requests software OpenGL and `glxinfo -B` records
-the display renderer. The session installs/selects the GTK Settings portal backend
-and supplies the same display/session environment to D-Bus activation. `xdotool`
+the display renderer. The session installs/selects the GTK Settings portal backend,
+starts the real GNOME XSettings daemon, and supplies the same display/session
+environment to D-Bus activation. It waits for the XSettings provider before running
+the candidates. `xdotool`
 drives the ordinary widgets and `xclip` supplies the external `CLIPBOARD` endpoint.
 Native Wayland input/clipboard automation is not implemented in this driver;
 an XWayland window cannot count as native Wayland coverage. The applications' own
@@ -227,7 +244,7 @@ terminates only tracked application
 processes and reports any survivors; the external watchdog also attempts descendant
 cleanup before stopping the run. Unrelated desktop and system services are excluded.
 
-The compositor, session bus, Settings portal, shared clipboard infrastructure and
+The compositor, session bus, Settings portal, XSettings daemon, shared clipboard infrastructure and
 other shared services are not allocated once per application. Their exclusion is
 not a claim of zero system cost. In-process portal workers, integration threads,
 private font data and caches are part of the measured app family. Installed font

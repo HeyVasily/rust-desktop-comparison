@@ -71,6 +71,14 @@ label. See the [GTK manifest](../examples/gtk/Cargo.toml),
 For egui and GTK, `--no-default-features` is an explicitly reduced diagnostic
 control, not the published normal desktop profile.
 
+The Windows Qt profile selects the built-in **Fusion** widget style while keeping
+the native Windows platform plugin and its system palette. Qt's legacy Vista
+style deliberately substitutes light colors even with a dark OS preference;
+that is a style limitation, not absent dark rendering throughout Qt. Fusion is a
+documented deployment choice, not a hand-written dark palette or native Win32
+control styling. macOS retains its native Qt style. See the
+[Qt profile notes](../examples/qt/README.md#normal-desktop-integration).
+
 ## Appearance is three different checks
 
 1. **Light/dark rendering:** does the toolkit/application have both palettes?
@@ -91,6 +99,17 @@ portal reports the requested preference; a successful `gsettings` command alone
 is insufficient. An unavailable portal is an integration/environment limitation,
 not an implicit pass. Fallback colors are useful application behavior but do not
 qualify system-theme following.
+
+The current CI environment is a named **GNOME-like X11/Adwaita** profile, not a
+claim about all Linux desktops. It runs the real `gsd-xsettings` daemon and sets
+both the modern portal preference and the shared GTK3 theme
+(`Adwaita` / `Adwaita-dark`) for every candidate. The latter matters for Qt's GTK3
+theme plugin: the plugin may observe the dark preference while still receiving
+light brushes from an unchanged GTK3 theme. The driver independently verifies
+both the portal and effective GTK3 settings, and restores both original keys.
+No application receives a hand-written palette or a candidate-specific theme
+override. See the [Qt deployment notes](../examples/qt/README.md) for sources and
+the distinction from stock GNOME and other desktop settings UIs.
 
 Palette classification uses the client area, not just the titlebar. Captures,
 luminance values and timing are retained so a reviewer can detect blank windows,
@@ -156,7 +175,7 @@ hosted-runner median is not a matched A/B experiment. Report executable size
 separately from memory.
 
 The application-family scope excludes shared desktop services such as the
-compositor, session bus and Settings portal. Record required services and any
+compositor, session bus, XSettings daemon and Settings portal. Record required services and any
 newly started helpers; do not silently charge a shared service once per toolkit
 or treat its exclusion as a zero-cost claim. Accessibility clients and font
 caches can also change a warmed app's footprint.

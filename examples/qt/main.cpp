@@ -20,7 +20,7 @@
 #include "shell_checks.h"
 #endif
 
-// Leave colors and platform style entirely to Qt. Observe actual palette
+// Leave colors entirely to Qt's platform integration. Observe actual palette
 // changes rather than treating a requested OS scheme as rendering evidence.
 static void reportSystemTheme() {
     const auto palette = QApplication::palette();
@@ -63,9 +63,19 @@ static QString yardName(int yard) {
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
+#ifdef Q_OS_WIN
+    // Qt's legacy Windows Vista style always replaces dark system palettes
+    // with light colors. Fusion supports both palettes without hand-written
+    // colors; the native Windows platform plugin still supplies OS settings.
+    app.setStyle(QStringLiteral("Fusion"));
+#endif
     QApplication::setApplicationName("Veranda Qt Widgets comparison");
     PlatformThemeDiagnostics themeDiagnostics;
     app.installEventFilter(&themeDiagnostics);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+    QObject::connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged,
+                     &app, [](Qt::ColorScheme) { reportSystemTheme(); });
+#endif
     reportSystemTheme();
 #ifdef VERANDA_SHELL_CHECKS
     if (shell::handedToRunningInstance()) return 0;

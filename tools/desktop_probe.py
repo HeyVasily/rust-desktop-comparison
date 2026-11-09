@@ -58,7 +58,8 @@ class SystemTheme:
 
     def snapshot(self):
         if sys.platform.startswith("linux"):
-            self.saved = command(["gsettings", "get", "org.gnome.desktop.interface", "color-scheme"]).stdout.strip()
+            self.saved = {key: command(["gsettings", "get", "org.gnome.desktop.interface", key]).stdout.strip()
+                          for key in ("color-scheme", "gtk-theme")}
         elif sys.platform == "win32":
             import winreg
             self.saved = {"AppsUseLightTheme": None, "SystemUsesLightTheme": None}
@@ -116,8 +117,19 @@ class SystemTheme:
             else:
                 value = result.stdout
             scheme = portal_color_scheme(value)
+            legacy = command(["gtk-query-settings", "gtk-theme-name"]).stdout.strip()
+            match = re.fullmatch(r'gtk-theme-name:\s*"([^"\r\n]+)"', legacy)
+            if not match:
+                raise DesktopEnvironmentError(f"Unexpected GTK/XSettings theme reply: {legacy!r}")
+            gtk_theme = match.group(1)
+            expected = {1: "Adwaita-dark", 2: "Adwaita"}.get(scheme)
+            if expected and gtk_theme != expected:
+                raise DesktopEnvironmentError(
+                    f"Portal scheme {scheme} and effective GTK/XSettings theme {gtk_theme!r} are inconsistent; expected {expected!r}")
             return dict(source="org.freedesktop.portal.Settings", value=scheme,
-                        theme={0: "no-preference", 1: "dark", 2: "light"}[scheme])
+                        theme={0: "no-preference", 1: "dark", 2: "light"}[scheme], gtk_theme=gtk_theme,
+                        gtk_theme_source="gtk-query-settings via the session XSettings provider",
+                        session_profile="gnome-adwaita-dual-preference-v1")
         if sys.platform == "win32":
             import winreg
             with winreg.OpenKey(winreg.HKEY_CURRENT_USER, self.registry_path()) as key:
@@ -133,6 +145,12 @@ class SystemTheme:
         if theme not in ("light", "dark"):
             raise ValueError(f"Invalid system theme: {theme}")
         if sys.platform.startswith("linux"):
+            # A complete session publishes both modern color preference and the
+            # legacy GTK3/XSettings theme used by Qt's GTK platform integration.
+            # This shared, explicitly named profile applies to every candidate;
+            # it is not a per-application palette or GTK_THEME override.
+            gtk_theme = "Adwaita-dark" if theme == "dark" else "Adwaita"
+            command(["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", gtk_theme])
             command(["gsettings", "set", "org.gnome.desktop.interface", "color-scheme", f"prefer-{theme}"])
         elif sys.platform == "win32":
             import winreg
@@ -166,7 +184,14 @@ class SystemTheme:
         if self.saved is None:
             return
         if sys.platform.startswith("linux"):
-            command(["gsettings", "set", "org.gnome.desktop.interface", "color-scheme", self.saved])
+            errors = []
+            for key, value in self.saved.items():
+                try:
+                    command(["gsettings", "set", "org.gnome.desktop.interface", key, value])
+                except DesktopEnvironmentError as error:
+                    errors.append(f"{key}: {error}")
+            if errors:
+                raise DesktopEnvironmentError("Linux appearance restoration failed: " + "; ".join(errors))
         elif sys.platform == "win32":
             import winreg
             with winreg.CreateKey(winreg.HKEY_CURRENT_USER, self.registry_path()) as key:

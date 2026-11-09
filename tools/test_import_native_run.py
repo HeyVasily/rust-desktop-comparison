@@ -285,10 +285,42 @@ class ImportNativeRunTests(unittest.TestCase):
             self.save(outcome)
             self.assertEqual(self.rows()[0]["eligibility"], "excluded")
 
+    def test_dark_acceptance_cannot_relabel_a_different_run_or_repetition_as_current(self):
+        for key in ("run_id", "repetition"):
+            with self.subTest(key=key):
+                outcome = self.outcome()
+                outcome["environment"][key] = "999"
+                self.save(outcome, self.source / "dark")
+                row = list(importer.acceptance_rows("123", "ubuntu-24.04", 1, self.source))[0]
+                self.assertEqual(row["desktop_status"], "passed")
+                self.assertEqual(row["desktop_evidence_status"], "incomplete")
+                self.assertIn(f"{key} differs", row["evidence_errors"])
+
+    def test_native_process_cleanup_status_is_preserved_separately_from_desktop_cleanup(self):
+        outcome = self.outcome()
+        outcome["cleanup_status"] = "unknown"
+        self.save(outcome)
+        row = list(importer.acceptance_rows("123", "ubuntu-24.04", 1, self.source))[0]
+        self.assertEqual(row["cleanup_status"], "unknown")
+        self.assertEqual(row["desktop_cleanup_status"], "passed")
+
+    def test_outcome_commit_must_match_recorded_build_source_for_memory_and_acceptance(self):
+        self.save(self.outcome())
+        build = self.source / "build"
+        build.mkdir()
+        (build / "source-commit.txt").write_text("b" * 40 + "\n", encoding="utf-8")
+        self.assertEqual(self.rows()[0]["eligibility"], "excluded")
+        row = list(importer.acceptance_rows("123", "ubuntu-24.04", 1, self.source))[0]
+        self.assertEqual(row["desktop_evidence_status"], "incomplete")
+        self.assertIn("source commit differs", row["evidence_errors"])
+
     def test_copy_preserves_desktop_build_dark_evidence_and_reproducible_samples(self):
         self.save(self.outcome())
         self.save(self.outcome(), self.source / "dark")
         self.save(self.outcome("egui_reduced", "diagnostic-reduced"))
+        self.json(self.source / "selected-candidates.json", ["egui", "gtk"])
+        self.json(self.source / "failed-candidates.json", ["egui"])
+        self.json(self.source / "stopped-after.json", dict(name="egui", reason="unverified process cleanup"))
         build = self.source / "build"
         build.mkdir()
         for name in ("source-sha256.txt", "egui-features.txt", "egui-Cargo.lock", "libadwaita-version.txt"):
@@ -307,6 +339,9 @@ class ImportNativeRunTests(unittest.TestCase):
             self.assertTrue((target / "build" / "libadwaita-version.txt").exists())
             self.assertTrue((target / "build" / "egui-features.txt").exists())
             self.assertFalse((target / "build" / "unwanted.dll").exists())
+            self.assertEqual(importer.read_json(target / "stopped-after.json")["reason"], "unverified process cleanup")
+            self.assertTrue((target / "selected-candidates.json").exists())
+            self.assertTrue((target / "failed-candidates.json").exists())
         archives = [self.base / f"copy-{i}" / "egui" / "comparison-samples.json.gz" for i in (1, 2)]
         self.assertEqual(archives[0].read_bytes(), archives[1].read_bytes())
         self.assertEqual(json.loads(gzip.decompress(archives[0].read_bytes())), [{"synthetic": True}])

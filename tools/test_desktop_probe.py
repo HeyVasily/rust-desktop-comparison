@@ -72,6 +72,51 @@ class DesktopProbeTests(unittest.TestCase):
             with self.assertRaises(probe.DesktopEnvironmentError):
                 probe.portal_color_scheme(text)
 
+    def test_linux_theme_snapshots_sets_and_restores_both_shared_preferences(self):
+        theme = probe.SystemTheme()
+        with patch.object(probe.sys, "platform", "linux"), \
+                patch.object(probe, "command", side_effect=[Mock(stdout="'default'\n"), Mock(stdout="'Original theme'\n")]):
+            theme.snapshot()
+        self.assertEqual(theme.saved, {"color-scheme": "'default'", "gtk-theme": "'Original theme'"})
+        with patch.object(probe.sys, "platform", "linux"), patch.object(probe, "command") as command, \
+                patch.object(theme, "read", return_value=dict(theme="dark", gtk_theme="Adwaita-dark")):
+            theme.set("dark")
+        commands = [call.args[0] for call in command.call_args_list]
+        self.assertIn(["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "Adwaita-dark"], commands)
+        self.assertIn(["gsettings", "set", "org.gnome.desktop.interface", "color-scheme", "prefer-dark"], commands)
+        with patch.object(probe.sys, "platform", "linux"), patch.object(probe, "command") as command:
+            theme.restore()
+        self.assertEqual([call.args[0][-2:] for call in command.call_args_list],
+                         [["color-scheme", "'default'"], ["gtk-theme", "'Original theme'"]])
+
+    def test_linux_theme_reads_effective_gtk_xsettings_not_just_the_stored_key(self):
+        theme = probe.SystemTheme()
+        with patch.object(probe.sys, "platform", "linux"), \
+                patch.object(probe, "command", side_effect=[
+                    Mock(returncode=0, stdout="(<uint32 1>,)"),
+                    Mock(stdout='    gtk-theme-name: "Adwaita-dark"\n')]) as command:
+            setting = theme.read()
+        self.assertEqual(setting["theme"], "dark")
+        self.assertEqual(setting["gtk_theme"], "Adwaita-dark")
+        self.assertEqual(setting["session_profile"], "gnome-adwaita-dual-preference-v1")
+        self.assertEqual(command.call_args.args[0], ["gtk-query-settings", "gtk-theme-name"])
+
+    def test_linux_theme_refuses_disagreement_between_portal_and_effective_gtk_theme(self):
+        with patch.object(probe.sys, "platform", "linux"), \
+                patch.object(probe, "command", side_effect=[
+                    Mock(returncode=0, stdout="(<uint32 1>,)"), Mock(stdout='gtk-theme-name: "Adwaita"\n')]):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "inconsistent"):
+                probe.SystemTheme().read()
+
+    def test_linux_theme_restore_attempts_both_keys_even_if_one_fails(self):
+        theme = probe.SystemTheme()
+        theme.saved = {"color-scheme": "'default'", "gtk-theme": "'Adwaita'"}
+        with patch.object(probe.sys, "platform", "linux"), \
+                patch.object(probe, "command", side_effect=[probe.DesktopEnvironmentError("failed first key"), Mock()]) as command:
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "restoration failed"):
+                theme.restore()
+        self.assertEqual(command.call_count, 2)
+
     def test_missing_host_command_is_an_environment_error(self):
         with patch.object(probe.subprocess, "run", side_effect=FileNotFoundError("missing tool")):
             with self.assertRaises(probe.DesktopEnvironmentError):

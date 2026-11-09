@@ -47,10 +47,15 @@ The normal profile includes:
   system-following style manager. Include the native libadwaita runtime and its
   memory; the old bare-GTK numbers are not measurements of this profile.
 - **Qt:** modern Qt and the matching desktop platform-theme integration. The
-  Linux GNOME profile uses Qt 6.8.3 with its matching GTK3 theme plugin and
-  Settings portal. GTK3 and QtDBus loaded by that plugin belong in the measured
-  app process. Do not substitute the old Qt 6.4/generic-theme result or mix a
+  Linux GNOME-like X11/Adwaita profile uses Qt 6.8.3 with its matching GTK3 theme
+  plugin, Settings portal and real XSettings daemon. Both modern color preference
+  and shared GTK3 theme are set and independently checked. GTK3 and QtDBus loaded
+  by that plugin belong in the measured app process. Do not substitute the old
+  Qt 6.4/generic-theme result or mix a
   distribution plugin with a different Qt kit.
+  Windows uses the native platform plugin with Qt's built-in Fusion style,
+  which retains the OS light/dark palette instead of Vista-style light colors.
+  macOS retains its native Qt style.
 - **Every candidate:** actual text widgets and external clipboard acceptance,
   system-theme startup and same-process light → dark → light transitions,
   followed by restored fixture state and idle sampling.

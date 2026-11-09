@@ -1,10 +1,19 @@
 #!/usr/bin/env bash
-# Disposable CI X11 desktop with a real GNOME Settings portal, not an app override.
+# Disposable GNOME-like X11/Adwaita desktop, not an application palette override.
 set -euo pipefail
 if [[ "${1:-}" == --inside ]]; then
     shift
     openbox > artifacts/build/openbox.log 2>&1 &
     dbus-update-activation-environment DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE GDK_BACKEND XDG_CONFIG_HOME
+    # Modern apps consume the Settings portal; GTK3 (including Qt's gtk3
+    # platform-theme plugin) consumes the actual desktop theme through
+    # XSettings. A window manager plus a portal alone is an incomplete session.
+    # Start only the ordinary settings daemon, not the full GNOME desktop.
+    /usr/libexec/gsd-xsettings > artifacts/build/gsd-xsettings.log 2>&1 &
+    xsettings_pid=$!
+    gdbus wait --session --timeout 10 org.gnome.SettingsDaemon.XSettings
+    kill -0 "$xsettings_pid"
+    gtk-query-settings gtk-theme-name > artifacts/build/gtk3-initial-settings.txt
     glxinfo -B > artifacts/build/glxinfo.txt
     exec "$@"
 fi

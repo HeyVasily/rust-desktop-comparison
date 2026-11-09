@@ -43,6 +43,24 @@ fn build_ui(app: &Application) {
         .default_height(640)
         .build();
 
+    // The native renderer exists after realization. Report the selected backend
+    // once on first map; do not select a renderer or add idle/background work.
+    let renderer_reported = Cell::new(false);
+    window.connect_map(move |window| {
+        if renderer_reported.replace(true) {
+            return;
+        }
+        let renderer = window.renderer();
+        println!(
+            "renderer source=gtk display_backend={} gsk_type={}",
+            window.display().type_().name(),
+            renderer
+                .as_ref()
+                .map(|renderer| renderer.type_().name())
+                .unwrap_or("unavailable")
+        );
+    });
+
     let root = GtkBox::new(Orientation::Vertical, 12);
     root.set_margin_start(12);
     root.set_margin_end(12);

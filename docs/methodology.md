@@ -23,13 +23,19 @@ The primary build must include normal desktop text and appearance integration:
 | egui | eframe `desktop` default: OS clipboard, link opening, system-font fallback, AccessKit, existing renderers/backends, Linux Settings portal observer | Its former explicit feature list disabled OS clipboard, links and system fonts; a lockfile entry alone does not prove an enabled feature |
 | GTK | GTK4 + libadwaita, initialized with system-following StyleManager | Native libadwaita is a real dependency; this is not the historical bare-GTK build |
 | Slint | Existing winit/software widget setup and accessibility integration | Keep these enabled; validate the actual widget/backend rather than infer behavior from the API |
-| Qt Widgets | Modern Qt with native platform integration; Linux GNOME profile uses Qt 6.8.3 and its matching GTK3 platform-theme plugin | GTK3 and QtDBus loaded in the Qt process count toward memory; old Qt 6.4/generic-theme measurements do not describe this setup |
+| Qt Widgets | Modern Qt with native platform integration; Linux uses Qt 6.8.3 and its matching GTK3 theme plugin; Windows uses the built-in Fusion style with the native platform palette; macOS retains its native style | GTK3 and QtDBus loaded in the Linux Qt process count toward memory; old Qt 6.4/generic-theme or Windows Vista-style measurements do not describe this setup |
 | Tauri | System webview with the application's light/dark CSS and normal editable control | Attribute webview helper processes; do not compare only the launcher process |
 
 Qt's GTK3 theme plugin and its Qt kit must match. A distribution plugin must not
 be inserted into a different downloaded kit. The Linux profile must have a
-working Settings portal/backend in the same graphical session. KDE or other
-desktop integrations are separate environments with their own matching plugins,
+working Settings portal/backend in the same graphical session. It is explicitly
+**GNOME-like X11/Adwaita**: `gsd-xsettings` also publishes the GTK3 widget theme,
+and the probe changes both the portal color preference and the shared
+`Adwaita` / `Adwaita-dark` theme. It verifies the portal value and effective GTK3
+settings independently. A portal-only Openbox session can report dark while
+still supplying light GTK3 brushes to Qt; that is not the configured baseline.
+This named profile does not claim that every stock GNOME UI changes both keys.
+KDE or other desktop integrations are separate environments with their own matching plugins,
 not evidence of a universal GNOME result. Record the exact native library and
 plugin versions as well as Rust crate versions.
 
@@ -103,7 +109,7 @@ zero work, and tiny tick differences do not justify a CPU ranking.
 
 Threads, font caches and in-process libraries for the integration are part of
 the application measurement. The compositor/X server, session bus, shared
-Settings portal and probe are outside that process family. Name these required
+Settings portal, XSettings daemon and probe are outside that process family. Name these required
 services and any newly started helpers instead of treating their exclusion as a
 claim of zero system cost. This remains a small backend-free desktop baseline,
 not a production application's total resource budget.
@@ -111,7 +117,9 @@ not a production application's total resource budget.
 ### Reduced control and attribution
 
 `egui_reduced` is an explicit **diagnostic-reduced** candidate, built from the same
-source and lockfile with `--no-default-features` into a separate target directory.
+source and lockfile with `--no-default-features` and retained as a separate
+executable. CI builds it first and renames it before building the desktop profile;
+the manual recipe below uses a separate target directory to avoid overwriting it.
 It is not the normal desktop application and must never replace `egui` in a
 primary ranking. Its missing external clipboard/portal path is deliberate; do
 not waive primary acceptance and then silently present it as an equivalent app.
@@ -161,8 +169,9 @@ Use the [native comparison workflow](../.github/workflows/native-comparison.yml)
 as the complete platform/dependency recipe. On Linux, build dependencies now
 include GTK4 **and libadwaita**, plus the chosen Qt kit and matching GTK3 theme
 plugin when testing Qt. The graphical session needs an X11 display/window
-manager, session D-Bus, Settings portal/backend, GNOME settings schemas,
-`gsettings`/`gdbus`, `xdotool`, X11 utilities and an external clipboard helper.
+manager, session D-Bus, Settings portal/backend, `gsd-xsettings`, the Adwaita
+light/dark GTK themes, GNOME settings schemas, `gsettings`/`gdbus`,
+`gtk-query-settings`, `xdotool`, X11 utilities and an external clipboard helper.
 The probe requires the pinned Python packages recorded in the workflow.
 
 Build the normal egui profile and capture its resolved feature graph:

@@ -26,3 +26,13 @@ jobs:
         run: python -m pip install psutil==7.0.0 Pillow==11.2.1
       - name: Probe and desktop-integration regressions
         run: python -m unittest discover -s tools -p 'test_*.py'
+      - name: Render the site with the runner's sandboxed Google Chrome
+        timeout-minutes: 3
+        run: python tools/site_visual_smoke.py
+      - name: Preserve browser captures and readiness evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-visual-${{ github.run_id }}
+          path: artifacts/site-visual/
+          if-no-files-found: warn

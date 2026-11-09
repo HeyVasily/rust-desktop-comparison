@@ -39,7 +39,7 @@ BUILD_SUFFIXES = {".txt", ".json", ".log", ".lock", ".toml", ".rs", ".slint", ".
 INPUT_SUFFIXES = {".lock", ".toml", ".rs", ".slint", ".h", ".c", ".cpp", ".py", ".js", ".css", ".html"}
 VERSION_FILES = {"rust-version.txt", "cmake-version.txt", "gtk-version.txt", "gtk-rust-version.txt",
                  "libadwaita-version.txt", "native-versions.txt", "webview2-version.txt", "msys2-packages.txt",
-                 "windows-gtk-runtime.json", "qt-runtime.txt"}
+                 "windows-gtk-runtime.json", "qt-runtime.txt", "linux-desktop-versions.txt"}
 GROUP_FIELDS = ("os", "framework", "phase", "run_id", "source_commit", "source_hash",
                 "source_manifest_sha256", "build_inputs_sha256", "measurement_profile",
                 "desktop_profile", "control_theme_profile", "image_version", "primary_metric", "rss_metric")
@@ -57,7 +57,7 @@ SUMMARY_FIELDS = ("os", "framework", "phase", "repetitions", "failed_repetitions
                   "cpu_median_percent", "cpu_max_percent", "executable_bytes", "follows_dark_mode",
                   "run_id", "source_commit", "measurement_profile", "desktop_profile", "desktop_status",
                   *CONTROL_FIELDS, "image_version", "source_hash", "source_manifest_sha256", "build_inputs_sha256", "scope")
-ACCEPTANCE_FIELDS = ("os", "framework", "repetition", "case", "status", "measurement_profile",
+ACCEPTANCE_FIELDS = ("os", "framework", "repetition", "case", "status", "cleanup_status", "measurement_profile",
                      *DESKTOP_FIELDS, *CONTROL_FIELDS, "startup_theme", "run_id", "source_commit", "source_hash",
                      "source_manifest_sha256", "build_inputs_sha256", "image_version", "evidence_errors", "reason")
 
@@ -107,6 +107,8 @@ def regular_files(root):
 
 
 def copy_file(source, target):
+    if source.is_symlink():
+        raise ValueError(f"Symlink evidence is not accepted: {source}")
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source, target)
 
@@ -128,6 +130,10 @@ def copy_case(source, target):
 def copy_evidence(source: Path, target: Path, repetition: int, runner: str, shots: Path):
     del runner  # Kept in the signature for callers of the historical importer.
     target.mkdir(parents=True, exist_ok=True)
+    for name in ("selected-candidates.json", "failed-candidates.json", "stopped-after.json"):
+        path = source / name
+        if path.is_file():
+            copy_file(path, target / name)
     for item in regular_files(source / "build"):
         if item.suffix.lower() in BUILD_SUFFIXES or item.name == "SHA256SUMS":
             copy_file(item, target / "build" / item.relative_to(source / "build"))
@@ -314,6 +320,22 @@ def row_eligibility(row, errors):
     return ("excluded" if errors else scope), "; ".join(dict.fromkeys(errors))
 
 
+def provenance_errors(outcome, run_id, repetition, source):
+    """Normal/dark acceptance must retain, not overwrite, artifact identity."""
+    errors = []
+    env = outcome.get("environment", {})
+    for key, expected in (("run_id", run_id), ("repetition", repetition)):
+        actual = env.get(key)
+        if actual is not None and str(actual) != str(expected):
+            errors.append(f"outcome {key} differs from artifact")
+        elif actual is None and outcome.get("measurement_profile"):
+            errors.append(f"outcome {key} is missing")
+    commit_path = source / "build" / "source-commit.txt"
+    if commit_path.is_file() and commit_path.read_text(encoding="utf-8-sig").strip() != env.get("commit"):
+        errors.append("outcome source commit differs from recorded build source")
+    return errors
+
+
 def rows_for(run_id: str, runner: str, repetition: int, source: Path):
     sizes_path = source / "build" / "binary-sizes.json"
     sizes = read_json(sizes_path) if sizes_path.exists() else {}
@@ -361,10 +383,7 @@ def rows_for(run_id: str, runner: str, repetition: int, source: Path):
             if finite(row["primary_median_mib"]) and finite(row["primary_p95_mib"]) \
                     and row["primary_p95_mib"] < row["primary_median_mib"]:
                 errors.append("primary p95 cannot be smaller than the median")
-            if env.get("run_id") and str(env["run_id"]) != run_id:
-                errors.append("outcome run_id differs from artifact")
-            if env.get("repetition") and str(env["repetition"]) != str(repetition):
-                errors.append("outcome repetition differs from artifact")
+            errors.extend(provenance_errors(outcome, run_id, repetition, source))
             row["eligibility"], row["exclusion_reason"] = row_eligibility(row, errors)
             yield row
 
@@ -380,11 +399,20 @@ def acceptance_rows(run_id, runner, repetition, source):
             env = outcome.get("environment", {})
             desktop, errors = desktop_metadata(outcome, path.parent)
             control, control_errors = control_metadata(outcome, path.parent)
+            provenance = provenance_errors(outcome, run_id, repetition, source)
+            if provenance:
+                # Downstream report builders use this field as a gate; an error
+                # string alone must not leave a stale pass eligible for display.
+                if desktop["desktop_evidence_status"] == "complete":
+                    desktop["desktop_evidence_status"] = "incomplete"
+                if control["control_theme_evidence_status"] == "complete":
+                    control["control_theme_evidence_status"] = "incomplete"
             yield dict(os=runner, framework=fw, repetition=repetition, case=case, status=outcome.get("status", ""),
+                       cleanup_status=outcome.get("cleanup_status", ""),
                        measurement_profile=outcome.get("measurement_profile", ""), **desktop, **control,
                        startup_theme=outcome.get("desktop_integration", {}).get("startup_theme", {}).get("expected", ""),
                        run_id=run_id, source_commit=env.get("commit") or "", source_hash=env.get("source_hash") or "",
-                       **identity, image_version=env.get("image_version") or "", evidence_errors="; ".join(errors + control_errors),
+                       **identity, image_version=env.get("image_version") or "", evidence_errors="; ".join(errors + control_errors + provenance),
                        reason=outcome.get("reason", ""))
 
 
