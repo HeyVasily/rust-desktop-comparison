@@ -1,0 +1,9 @@
+
+(veranda-tauri-comparison:23530): dbind-WARNING **: 11:35:43.501: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+SHELL {"check":"single-instance","status":"primary","detail":"tauri-plugin-single-instance"}
+SHELL {"check":"hotkey","status":"registered","detail":"tauri-plugin-global-shortcut"}
+SHELL {"check":"tray","status":"created","detail":"Tauri TrayIconBuilder"}
+SHELL {"check":"badge","status":"set","detail":"set_badge_count"}
+SHELL {"check":"hotkey","status":"event","detail":"Ctrl+Alt+Shift+F9 pressed"}
+SHELL {"check":"single-instance","status":"forwarded","detail":"1 arguments"}
+SHELL {"check":"attention","status":"requested","detail":"request_user_attention"}

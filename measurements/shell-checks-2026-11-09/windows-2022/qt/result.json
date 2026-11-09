@@ -1,0 +1,150 @@
+{
+  "name": "qt",
+  "platform": "win32",
+  "executable": "D:\\a\\rust-desktop-comparison\\rust-desktop-comparison\\target\\qt\\Release\\veranda-qt-comparison.exe",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "QSystemTrayIcon"
+      },
+      "observed": true,
+      "how": "notification-area toolbar button owned by the app",
+      "buttons": [
+        {
+          "area": "promoted",
+          "pid": 4928,
+          "ours": true,
+          "center": [
+            799,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 5800,
+          "ours": false,
+          "center": [
+            823,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            847,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            871,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            895,
+            748
+          ]
+        }
+      ],
+      "clicked": true,
+      "click_how": "left mouse click on the icon",
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "set",
+        "detail": "QGuiApplication::setBadgeNumber"
+      },
+      "observed": null,
+      "how": "taskbar overlay icons are not exposed to other processes",
+      "verdict": "api-only"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "no-api",
+        "detail": "Qt has no global shortcut API (third-party QHotkey)"
+      },
+      "verdict": "no-api"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "QLocalServer"
+      },
+      "second_exited": true,
+      "second_exit_code": 0,
+      "second_seconds": 0.02,
+      "forwarded": true,
+      "observed": true,
+      "verdict": "pass"
+    },
+    "attention": {
+      "deactivated": "window minimized",
+      "app": {
+        "check": "attention",
+        "status": "requested",
+        "detail": "QApplication::alert"
+      },
+      "observed": true,
+      "how": "HSHELL_FLASH shell-hook message",
+      "windows": [
+        459006,
+        459006
+      ],
+      "verdict": "pass"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "QLocalServer"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "QSystemTrayIcon"
+    },
+    {
+      "check": "badge",
+      "status": "set",
+      "detail": "QGuiApplication::setBadgeNumber"
+    },
+    {
+      "check": "hotkey",
+      "status": "no-api",
+      "detail": "Qt has no global shortcut API (third-party QHotkey)"
+    },
+    {
+      "check": "tray",
+      "status": "click",
+      "detail": "activated reason 3"
+    },
+    {
+      "check": "single-instance",
+      "status": "forwarded",
+      "detail": "QLocalServer connection from a second launch"
+    },
+    {
+      "check": "attention",
+      "status": "requested",
+      "detail": "QApplication::alert"
+    }
+  ]
+}

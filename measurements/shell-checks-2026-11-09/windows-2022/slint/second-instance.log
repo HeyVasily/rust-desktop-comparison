@@ -1,0 +1,1 @@
+SHELL {"check":"single-instance","status":"second-exits","detail":"another instance holds the lock"}

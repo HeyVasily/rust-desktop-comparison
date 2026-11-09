@@ -1,0 +1,8 @@
+SHELL {"check":"single-instance","status":"primary","detail":"single-instance crate"}
+renderer llvmpipe (LLVM 20.1.2, 256 bits)
+SHELL {"check":"badge","status":"no-api","detail":"eframe has no Dock or taskbar badge API"}
+SHELL {"check":"tray","status":"created","detail":"tray-icon crate"}
+SHELL {"check":"hotkey","status":"registered","detail":"global-hotkey crate"}
+SHELL {"check":"tray","status":"click","detail":"Left"}
+SHELL {"check":"hotkey","status":"event","detail":"Ctrl+Alt+Shift+F9 pressed"}
+SHELL {"check":"attention","status":"requested","detail":"ViewportCommand::RequestUserAttention"}

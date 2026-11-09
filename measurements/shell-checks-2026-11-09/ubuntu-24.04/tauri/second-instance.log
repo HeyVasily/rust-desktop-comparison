@@ -1,0 +1,2 @@
+
+(veranda-tauri-comparison:23627): dbind-WARNING **: 11:35:51.388: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files

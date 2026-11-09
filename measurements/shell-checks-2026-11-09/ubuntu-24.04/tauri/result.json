@@ -1,0 +1,108 @@
+{
+  "name": "tauri",
+  "platform": "linux",
+  "executable": "/home/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-tauri-comparison",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "Tauri TrayIconBuilder"
+      },
+      "observed": true,
+      "how": "D-Bus StatusNotifierItem.Activate",
+      "service": ":1.25",
+      "path": "/org/ayatana/NotificationItem/tray_icon_tray_app_shell_check",
+      "clicked": false,
+      "call": "Error: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: No such method \u201cActivate\u201d",
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "set",
+        "detail": "set_badge_count"
+      },
+      "observed": true,
+      "how": "com.canonical.Unity.LauncherEntry Update signal",
+      "excerpt": "signal time=1794224143.772726 sender=:1.25 -> destination=(null destination) serial=26 path=/com/canonical/unity/launcherentry/1151234778; interface=com.canonical.Unity.LauncherEntry; member=Update\n   string \"application://Veranda Tauri comparison.desktop\"\n   array [\n      dict entry(\n         string \"urgent\"\n         variant             boolean false\n      )\n      dict entry(\n         string \"count\"\n         variant             int64 3\n      )\n      dict entry(\n         string \"count-visible\"\n         variant             boolean true\n      )\n      dict entry(\n         string \"progress\"\n         variant             double 0\n      )\n      dict entry(\n         string \"progress-visible\"\n         variant             boolean false\n      )\n   ]\nsignal time=1794224144.288492 sender=:1.25 -> destination=(null destination) serial=30 path=/com/canonical/unity/launcherentry/1151234778; interface=com.canonical.Unity.LauncherEntry; member=Update\n   string \"application://Veranda Tauri comparison.desktop\"\n   array [\n      dict entry(\n         string \"count\"\n         variant             int64 3\n      )\n      dict entry(\n         string \"count-visible\"\n         variant             boolean true\n      )\n   ]\n",
+      "verdict": "pass"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "registered",
+        "detail": "tauri-plugin-global-shortcut"
+      },
+      "injected": "xdotool key ",
+      "observed": true,
+      "verdict": "pass"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "tauri-plugin-single-instance"
+      },
+      "second_exited": true,
+      "second_exit_code": 0,
+      "second_seconds": 0.04,
+      "forwarded": true,
+      "observed": true,
+      "verdict": "pass"
+    },
+    "attention": {
+      "window": "4194307",
+      "deactivated": "focus moved to another window",
+      "app": {
+        "check": "attention",
+        "status": "requested",
+        "detail": "request_user_attention"
+      },
+      "observed": true,
+      "urgency_hint": true,
+      "demands_attention": true,
+      "how": "X11 WM_HINTS urgency / _NET_WM_STATE",
+      "raw": "WM_HINTS 359\n_NET_WM_STATE = _NET_WM_STATE_DEMANDS_ATTENTION",
+      "verdict": "pass"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "tauri-plugin-single-instance"
+    },
+    {
+      "check": "hotkey",
+      "status": "registered",
+      "detail": "tauri-plugin-global-shortcut"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "Tauri TrayIconBuilder"
+    },
+    {
+      "check": "badge",
+      "status": "set",
+      "detail": "set_badge_count"
+    },
+    {
+      "check": "hotkey",
+      "status": "event",
+      "detail": "Ctrl+Alt+Shift+F9 pressed"
+    },
+    {
+      "check": "single-instance",
+      "status": "forwarded",
+      "detail": "1 arguments"
+    },
+    {
+      "check": "attention",
+      "status": "requested",
+      "detail": "request_user_attention"
+    }
+  ]
+}

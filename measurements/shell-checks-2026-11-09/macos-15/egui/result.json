@@ -1,0 +1,102 @@
+{
+  "name": "egui",
+  "platform": "darwin",
+  "executable": "/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-egui-comparison",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "tray-icon crate"
+      },
+      "observed": true,
+      "how": "status-bar window (layer 25) owned by the app",
+      "windows": [
+        {
+          "layer": 25,
+          "bounds": {
+            "X": 768.0,
+            "Height": 24.0,
+            "Y": 0.0,
+            "Width": 34.0
+          }
+        }
+      ],
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "no-api",
+        "detail": "eframe has no Dock or taskbar badge API"
+      },
+      "verdict": "no-api"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "registered",
+        "detail": "global-hotkey crate"
+      },
+      "injected": "System Events key code 101",
+      "observed": true,
+      "verdict": "pass"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "single-instance crate"
+      },
+      "second_exited": true,
+      "second_exit_code": 0,
+      "second_seconds": 0.01,
+      "forwarded": false,
+      "observed": true,
+      "verdict": "pass"
+    },
+    "attention": {
+      "app": {
+        "check": "attention",
+        "status": "requested",
+        "detail": "ViewportCommand::RequestUserAttention"
+      },
+      "observed": null,
+      "how": "Dock bounce is not exposed to other processes",
+      "verdict": "api-only"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "single-instance crate"
+    },
+    {
+      "check": "badge",
+      "status": "no-api",
+      "detail": "eframe has no Dock or taskbar badge API"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "tray-icon crate"
+    },
+    {
+      "check": "hotkey",
+      "status": "registered",
+      "detail": "global-hotkey crate"
+    },
+    {
+      "check": "hotkey",
+      "status": "event",
+      "detail": "Ctrl+Alt+Shift+F9 pressed"
+    },
+    {
+      "check": "attention",
+      "status": "requested",
+      "detail": "ViewportCommand::RequestUserAttention"
+    }
+  ]
+}

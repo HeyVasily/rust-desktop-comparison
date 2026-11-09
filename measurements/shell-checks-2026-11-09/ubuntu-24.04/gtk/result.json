@@ -1,0 +1,110 @@
+{
+  "name": "gtk",
+  "platform": "linux",
+  "executable": "/home/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-gtk-comparison",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "tray-icon crate"
+      },
+      "observed": true,
+      "how": "D-Bus StatusNotifierItem.Activate",
+      "service": "org.kde.StatusNotifierItem-23311-1",
+      "path": "/StatusNotifierItem",
+      "clicked": true,
+      "call": "()",
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "no-api",
+        "detail": "GTK 4 has no Dock or taskbar badge API"
+      },
+      "verdict": "no-api"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "registered",
+        "detail": "global-hotkey crate"
+      },
+      "injected": "xdotool key ",
+      "observed": true,
+      "verdict": "pass"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "GApplication"
+      },
+      "second_exited": true,
+      "second_exit_code": 0,
+      "second_seconds": 0.06,
+      "forwarded": true,
+      "observed": true,
+      "verdict": "pass"
+    },
+    "attention": {
+      "window": "4194308",
+      "deactivated": "focus moved to another window",
+      "app": {
+        "check": "attention",
+        "status": "requested",
+        "detail": "gdk_x11_surface_set_urgency_hint"
+      },
+      "observed": true,
+      "urgency_hint": true,
+      "demands_attention": true,
+      "how": "X11 WM_HINTS urgency / _NET_WM_STATE",
+      "raw": "WM_HINTS 323\n_NET_WM_STATE = _NET_WM_STATE_DEMANDS_ATTENTION",
+      "verdict": "pass"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "GApplication"
+    },
+    {
+      "check": "badge",
+      "status": "no-api",
+      "detail": "GTK 4 has no Dock or taskbar badge API"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "tray-icon crate"
+    },
+    {
+      "check": "hotkey",
+      "status": "registered",
+      "detail": "global-hotkey crate"
+    },
+    {
+      "check": "tray",
+      "status": "click",
+      "detail": "Left"
+    },
+    {
+      "check": "hotkey",
+      "status": "event",
+      "detail": "Ctrl+Alt+Shift+F9 pressed"
+    },
+    {
+      "check": "single-instance",
+      "status": "forwarded",
+      "detail": "GApplication activate from a second launch"
+    },
+    {
+      "check": "attention",
+      "status": "requested",
+      "detail": "gdk_x11_surface_set_urgency_hint"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "name": "tauri",
+  "platform": "darwin",
+  "executable": "/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-tauri-comparison",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "Tauri TrayIconBuilder"
+      },
+      "observed": true,
+      "how": "status-bar window (layer 25) owned by the app",
+      "windows": [
+        {
+          "layer": 25,
+          "bounds": {
+            "X": 768.0,
+            "Height": 24.0,
+            "Y": 0.0,
+            "Width": 34.0
+          }
+        }
+      ],
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "set",
+        "detail": "set_badge_count"
+      },
+      "observed": true,
+      "how": "lsappinfo StatusLabel (Dock tile badge)",
+      "asn": "ASN:0x0-0x3f03f-\"veranda-tauri-comparison\":",
+      "raw": "\"StatusLabel\"={ \"label\"=\"3\" }",
+      "verdict": "pass"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "registered",
+        "detail": "tauri-plugin-global-shortcut"
+      },
+      "injected": "System Events key code 101",
+      "observed": true,
+      "verdict": "pass"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "tauri-plugin-single-instance"
+      },
+      "second_exited": true,
+      "second_exit_code": 0,
+      "second_seconds": 0.08,
+      "forwarded": true,
+      "observed": true,
+      "verdict": "pass"
+    },
+    "attention": {
+      "app": {
+        "check": "attention",
+        "status": "requested",
+        "detail": "request_user_attention"
+      },
+      "observed": null,
+      "how": "Dock bounce is not exposed to other processes",
+      "verdict": "api-only"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "tauri-plugin-single-instance"
+    },
+    {
+      "check": "hotkey",
+      "status": "registered",
+      "detail": "tauri-plugin-global-shortcut"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "Tauri TrayIconBuilder"
+    },
+    {
+      "check": "badge",
+      "status": "set",
+      "detail": "set_badge_count"
+    },
+    {
+      "check": "hotkey",
+      "status": "event",
+      "detail": "Ctrl+Alt+Shift+F9 pressed"
+    },
+    {
+      "check": "single-instance",
+      "status": "forwarded",
+      "detail": "1 arguments"
+    },
+    {
+      "check": "attention",
+      "status": "requested",
+      "detail": "request_user_attention"
+    }
+  ]
+}

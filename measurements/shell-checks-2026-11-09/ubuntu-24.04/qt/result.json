@@ -1,0 +1,103 @@
+{
+  "name": "qt",
+  "platform": "linux",
+  "executable": "/home/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/qt/veranda-qt-comparison",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "QSystemTrayIcon"
+      },
+      "observed": true,
+      "how": "D-Bus StatusNotifierItem.Activate",
+      "service": ":1.21",
+      "path": "/StatusNotifierItem",
+      "clicked": true,
+      "call": "()",
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "no-api",
+        "detail": "QGuiApplication::setBadgeNumber needs Qt 6.5; built with 6.4.2"
+      },
+      "verdict": "no-api"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "no-api",
+        "detail": "Qt has no global shortcut API (third-party QHotkey)"
+      },
+      "verdict": "no-api"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "QLocalServer"
+      },
+      "second_exited": true,
+      "second_exit_code": 0,
+      "second_seconds": 0.05,
+      "forwarded": true,
+      "observed": true,
+      "verdict": "pass"
+    },
+    "attention": {
+      "window": "4194310",
+      "deactivated": "focus moved to another window",
+      "app": {
+        "check": "attention",
+        "status": "requested",
+        "detail": "QApplication::alert"
+      },
+      "observed": false,
+      "urgency_hint": false,
+      "demands_attention": false,
+      "how": "X11 WM_HINTS urgency / _NET_WM_STATE",
+      "raw": "WM_HINTS 65\n_NET_WM_STATE =",
+      "verdict": "fail"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "QLocalServer"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "QSystemTrayIcon"
+    },
+    {
+      "check": "badge",
+      "status": "no-api",
+      "detail": "QGuiApplication::setBadgeNumber needs Qt 6.5; built with 6.4.2"
+    },
+    {
+      "check": "hotkey",
+      "status": "no-api",
+      "detail": "Qt has no global shortcut API (third-party QHotkey)"
+    },
+    {
+      "check": "tray",
+      "status": "click",
+      "detail": "activated reason 3"
+    },
+    {
+      "check": "single-instance",
+      "status": "forwarded",
+      "detail": "QLocalServer connection from a second launch"
+    },
+    {
+      "check": "attention",
+      "status": "requested",
+      "detail": "QApplication::alert"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+SHELL {"check":"single-instance","status":"primary","detail":"tauri-plugin-single-instance"}
+SHELL {"check":"hotkey","status":"registered","detail":"tauri-plugin-global-shortcut"}
+SHELL {"check":"tray","status":"created","detail":"Tauri TrayIconBuilder"}
+SHELL {"check":"badge","status":"set","detail":"set_badge_count"}
+geometry phase=created desired_visible_logical=960x640 scale_factor=1 inner_physical=960x640 outer_physical=960x640 inner_logical=960x640 outer_logical=960x640 native_frame_logical=960x640 native_visible_content_logical=960x612
+geometry requested_tauri_inner_logical=960x668
+geometry phase=resized desired_visible_logical=960x640 scale_factor=1 inner_physical=960x668 outer_physical=960x668 inner_logical=960x668 outer_logical=960x668 native_frame_logical=960x668 native_visible_content_logical=960x640
+SHELL {"check":"hotkey","status":"event","detail":"Ctrl+Alt+Shift+F9 pressed"}
+SHELL {"check":"single-instance","status":"forwarded","detail":"1 arguments"}
+SHELL {"check":"attention","status":"requested","detail":"request_user_attention"}

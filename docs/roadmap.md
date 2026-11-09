@@ -41,6 +41,15 @@ add a native Wayland pass (and a `GSK_RENDERER=cairo` variant) to the repeated n
 matrix. Fold the X11/Wayland split from [platform-support.md](platform-support.md)
 into `data/features.json` so there is one feature matrix.
 
+## Shell integration follow-ups
+
+The [runner checks](shell-integration.md) leave gaps: macOS tray clicks (need an
+Accessibility-enabled runner), Wayland (tray hosts, the GlobalShortcuts portal,
+xdg-activation), autostart, URL schemes and file associations (need installed
+bundles), and the open causes of two failures — GTK's global shortcut on macOS and
+Qt 6.4's attention request on X11. Repeating the run would also show whether any
+result is flaky.
+
 ## Further checks
 
 - Verify GTK desktop notifications on Windows/macOS (currently "not verified").

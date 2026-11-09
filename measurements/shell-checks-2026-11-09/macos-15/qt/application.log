@@ -1,0 +1,7 @@
+project 1
+SHELL {"check":"single-instance","status":"primary","detail":"QLocalServer"}
+SHELL {"check":"tray","status":"created","detail":"QSystemTrayIcon"}
+SHELL {"check":"badge","status":"set","detail":"QGuiApplication::setBadgeNumber"}
+SHELL {"check":"hotkey","status":"no-api","detail":"Qt has no global shortcut API (third-party QHotkey)"}
+SHELL {"check":"single-instance","status":"forwarded","detail":"QLocalServer connection from a second launch"}
+SHELL {"check":"attention","status":"requested","detail":"QApplication::alert"}

@@ -1,0 +1,5 @@
+SHELL {"check":"single-instance","status":"primary","detail":"GApplication"}
+project 1
+SHELL {"check":"badge","status":"no-api","detail":"GTK 4 has no Dock or taskbar badge API"}
+SHELL {"check":"tray","status":"created","detail":"tray-icon crate"}
+SHELL {"check":"hotkey","status":"registered","detail":"global-hotkey crate"}

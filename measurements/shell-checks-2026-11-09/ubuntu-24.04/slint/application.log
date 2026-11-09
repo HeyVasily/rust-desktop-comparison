@@ -1,0 +1,7 @@
+SHELL {"check":"single-instance","status":"primary","detail":"single-instance crate"}
+SHELL {"check":"badge","status":"no-api","detail":"Slint has no Dock or taskbar badge API"}
+SHELL {"check":"tray","status":"created","detail":"Slint SystemTrayIcon"}
+SHELL {"check":"hotkey","status":"registered","detail":"global-hotkey crate"}
+SHELL {"check":"tray","status":"click","detail":"SystemTrayIcon clicked()"}
+SHELL {"check":"hotkey","status":"event","detail":"Ctrl+Alt+Shift+F9 pressed"}
+SHELL {"check":"attention","status":"requested","detail":"winit request_user_attention via WinitWindowAccessor"}

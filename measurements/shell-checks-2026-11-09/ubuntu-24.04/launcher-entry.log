@@ -1,0 +1,41 @@
+signal time=1794223929.897178 sender=org.freedesktop.DBus -> destination=:1.0 serial=2 path=/org/freedesktop/DBus; interface=org.freedesktop.DBus; member=NameAcquired
+   string ":1.0"
+signal time=1794223929.897212 sender=org.freedesktop.DBus -> destination=:1.0 serial=4 path=/org/freedesktop/DBus; interface=org.freedesktop.DBus; member=NameLost
+   string ":1.0"
+signal time=1794224143.772726 sender=:1.25 -> destination=(null destination) serial=26 path=/com/canonical/unity/launcherentry/1151234778; interface=com.canonical.Unity.LauncherEntry; member=Update
+   string "application://Veranda Tauri comparison.desktop"
+   array [
+      dict entry(
+         string "urgent"
+         variant             boolean false
+      )
+      dict entry(
+         string "count"
+         variant             int64 3
+      )
+      dict entry(
+         string "count-visible"
+         variant             boolean true
+      )
+      dict entry(
+         string "progress"
+         variant             double 0
+      )
+      dict entry(
+         string "progress-visible"
+         variant             boolean false
+      )
+   ]
+signal time=1794224144.288492 sender=:1.25 -> destination=(null destination) serial=30 path=/com/canonical/unity/launcherentry/1151234778; interface=com.canonical.Unity.LauncherEntry; member=Update
+   string "application://Veranda Tauri comparison.desktop"
+   array [
+      dict entry(
+         string "count"
+         variant             int64 3
+      )
+      dict entry(
+         string "count-visible"
+         variant             boolean true
+      )
+   ]
+signal time=1794224195.928809 sender=(null sender) -> destination=(null destination) serial=0 path=/org/freedesktop/DBus/Local; interface=org.freedesktop.DBus.Local; member=Disconnected

@@ -1,0 +1,157 @@
+{
+  "name": "tauri",
+  "platform": "win32",
+  "executable": "D:\\a\\rust-desktop-comparison\\rust-desktop-comparison\\target\\release\\veranda-tauri-comparison.exe",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "Tauri TrayIconBuilder"
+      },
+      "observed": true,
+      "how": "notification-area toolbar button owned by the app",
+      "buttons": [
+        {
+          "area": "promoted",
+          "pid": 4884,
+          "ours": true,
+          "center": [
+            799,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 5800,
+          "ours": false,
+          "center": [
+            823,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            847,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            871,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            895,
+            748
+          ]
+        }
+      ],
+      "clicked": true,
+      "click_how": "left mouse click on the icon",
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "set",
+        "detail": "set_overlay_icon (Windows has no count badge)"
+      },
+      "observed": null,
+      "how": "taskbar overlay icons are not exposed to other processes",
+      "verdict": "api-only"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "registered",
+        "detail": "tauri-plugin-global-shortcut"
+      },
+      "injected": "keybd_event Ctrl+Alt+Shift+F9",
+      "observed": true,
+      "verdict": "pass"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "tauri-plugin-single-instance"
+      },
+      "second_exited": true,
+      "second_exit_code": 0,
+      "second_seconds": 0.0,
+      "forwarded": true,
+      "observed": true,
+      "verdict": "pass"
+    },
+    "attention": {
+      "deactivated": "window minimized",
+      "app": {
+        "check": "attention",
+        "status": "requested",
+        "detail": "request_user_attention"
+      },
+      "observed": true,
+      "how": "HSHELL_FLASH shell-hook message",
+      "windows": [
+        327940,
+        327940
+      ],
+      "verdict": "pass"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "tauri-plugin-single-instance"
+    },
+    {
+      "check": "hotkey",
+      "status": "registered",
+      "detail": "tauri-plugin-global-shortcut"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "Tauri TrayIconBuilder"
+    },
+    {
+      "check": "badge",
+      "status": "set",
+      "detail": "set_overlay_icon (Windows has no count badge)"
+    },
+    {
+      "check": "tray",
+      "status": "click",
+      "detail": "Left"
+    },
+    {
+      "check": "hotkey",
+      "status": "event",
+      "detail": "Ctrl+Alt+Shift+F9 pressed"
+    },
+    {
+      "check": "single-instance",
+      "status": "forwarded",
+      "detail": "1 arguments"
+    },
+    {
+      "check": "attention",
+      "status": "requested",
+      "detail": "request_user_attention"
+    }
+  ]
+}

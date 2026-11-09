@@ -1,0 +1,76 @@
+os,framework,check,verdict,detail,run_id
+macos-15,egui,attention,api-only,app: requested (ViewportCommand::RequestUserAttention); Dock bounce is not exposed to other processes,42596721572
+macos-15,egui,badge,no-api,app: no-api (eframe has no Dock or taskbar badge API),42596721572
+macos-15,egui,hotkey,pass,app: registered (global-hotkey crate); System Events key code 101,42596721572
+macos-15,egui,single_instance,pass,app: primary (single-instance crate); second launch exited; not forwarded,42596721572
+macos-15,egui,tray,pass,app: created (tray-icon crate); status-bar window (layer 25) owned by the app,42596721572
+macos-15,gtk,attention,no-api,app: no-api (GTK 4 has no attention request on this backend),42596721572
+macos-15,gtk,badge,no-api,app: no-api (GTK 4 has no Dock or taskbar badge API),42596721572
+macos-15,gtk,hotkey,fail,app: registered (global-hotkey crate); System Events key code 101,42596721572
+macos-15,gtk,single_instance,fail,app: primary (GApplication); second launch was still running after 25 s; second launch kept running; not forwarded,42596721572
+macos-15,gtk,tray,pass,app: created (tray-icon crate); status-bar window (layer 25) owned by the app,42596721572
+macos-15,slint,attention,api-only,app: requested (winit request_user_attention via WinitWindowAccessor); Dock bounce is not exposed to other processes,42596721572
+macos-15,slint,badge,no-api,app: no-api (Slint has no Dock or taskbar badge API),42596721572
+macos-15,slint,hotkey,pass,app: registered (global-hotkey crate); System Events key code 101,42596721572
+macos-15,slint,single_instance,pass,app: primary (single-instance crate); second launch exited; not forwarded,42596721572
+macos-15,slint,tray,pass,app: created (Slint SystemTrayIcon); status-bar window (layer 25) owned by the app,42596721572
+macos-15,qt,attention,api-only,app: requested (QApplication::alert); Dock bounce is not exposed to other processes,42596721572
+macos-15,qt,badge,pass,app: set (QGuiApplication::setBadgeNumber); lsappinfo StatusLabel (Dock tile badge),42596721572
+macos-15,qt,hotkey,no-api,app: no-api (Qt has no global shortcut API (third-party QHotkey)),42596721572
+macos-15,qt,single_instance,pass,app: primary (QLocalServer); second launch exited; forwarded to first,42596721572
+macos-15,qt,tray,pass,app: created (QSystemTrayIcon); status-bar window (layer 25) owned by the app,42596721572
+macos-15,tauri,attention,api-only,app: requested (request_user_attention); Dock bounce is not exposed to other processes,42596721572
+macos-15,tauri,badge,pass,app: set (set_badge_count); lsappinfo StatusLabel (Dock tile badge),42596721572
+macos-15,tauri,hotkey,pass,app: registered (tauri-plugin-global-shortcut); System Events key code 101,42596721572
+macos-15,tauri,single_instance,pass,app: primary (tauri-plugin-single-instance); second launch exited; forwarded to first,42596721572
+macos-15,tauri,tray,pass,app: created (Tauri TrayIconBuilder); status-bar window (layer 25) owned by the app,42596721572
+ubuntu-24.04,egui,attention,pass,app: requested (ViewportCommand::RequestUserAttention); X11 WM_HINTS urgency / _NET_WM_STATE,42607693065
+ubuntu-24.04,egui,badge,no-api,app: no-api (eframe has no Dock or taskbar badge API),42607693065
+ubuntu-24.04,egui,hotkey,pass,app: registered (global-hotkey crate); xdotool key ,42607693065
+ubuntu-24.04,egui,single_instance,pass,app: primary (single-instance crate); second launch exited; not forwarded,42607693065
+ubuntu-24.04,egui,tray,pass,app: created (tray-icon crate); D-Bus StatusNotifierItem.Activate; click received,42607693065
+ubuntu-24.04,gtk,attention,pass,app: requested (gdk_x11_surface_set_urgency_hint); X11 WM_HINTS urgency / _NET_WM_STATE,42607693065
+ubuntu-24.04,gtk,badge,no-api,app: no-api (GTK 4 has no Dock or taskbar badge API),42607693065
+ubuntu-24.04,gtk,hotkey,pass,app: registered (global-hotkey crate); xdotool key ,42607693065
+ubuntu-24.04,gtk,single_instance,pass,app: primary (GApplication); second launch exited; forwarded to first,42607693065
+ubuntu-24.04,gtk,tray,pass,app: created (tray-icon crate); D-Bus StatusNotifierItem.Activate; click received,42607693065
+ubuntu-24.04,slint,attention,pass,app: requested (winit request_user_attention via WinitWindowAccessor); X11 WM_HINTS urgency / _NET_WM_STATE,42607693065
+ubuntu-24.04,slint,badge,no-api,app: no-api (Slint has no Dock or taskbar badge API),42607693065
+ubuntu-24.04,slint,hotkey,pass,app: registered (global-hotkey crate); xdotool key ,42607693065
+ubuntu-24.04,slint,single_instance,pass,app: primary (single-instance crate); second launch exited; not forwarded,42607693065
+ubuntu-24.04,slint,tray,pass,app: created (Slint SystemTrayIcon); D-Bus StatusNotifierItem.Activate; click received,42607693065
+ubuntu-24.04,qt,attention,fail,app: requested (QApplication::alert); X11 WM_HINTS urgency / _NET_WM_STATE,42607693065
+ubuntu-24.04,qt,badge,no-api,app: no-api (QGuiApplication::setBadgeNumber needs Qt 6.5; built with 6.4.2),42607693065
+ubuntu-24.04,qt,hotkey,no-api,app: no-api (Qt has no global shortcut API (third-party QHotkey)),42607693065
+ubuntu-24.04,qt,single_instance,pass,app: primary (QLocalServer); second launch exited; forwarded to first,42607693065
+ubuntu-24.04,qt,tray,pass,app: created (QSystemTrayIcon); D-Bus StatusNotifierItem.Activate; click received,42607693065
+ubuntu-24.04,tauri,attention,pass,app: requested (request_user_attention); X11 WM_HINTS urgency / _NET_WM_STATE,42607693065
+ubuntu-24.04,tauri,badge,pass,app: set (set_badge_count); com.canonical.Unity.LauncherEntry Update signal,42607693065
+ubuntu-24.04,tauri,hotkey,pass,app: registered (tauri-plugin-global-shortcut); xdotool key ,42607693065
+ubuntu-24.04,tauri,single_instance,pass,app: primary (tauri-plugin-single-instance); second launch exited; forwarded to first,42607693065
+ubuntu-24.04,tauri,tray,pass,app: created (Tauri TrayIconBuilder); D-Bus StatusNotifierItem.Activate; click not received,42607693065
+windows-2022,egui,attention,pass,app: requested (ViewportCommand::RequestUserAttention); HSHELL_FLASH shell-hook message,42596721572
+windows-2022,egui,badge,no-api,app: no-api (eframe has no Dock or taskbar badge API),42596721572
+windows-2022,egui,hotkey,pass,app: registered (global-hotkey crate); keybd_event Ctrl+Alt+Shift+F9,42596721572
+windows-2022,egui,single_instance,pass,app: primary (single-instance crate); second launch exited; not forwarded,42596721572
+windows-2022,egui,tray,pass,app: created (tray-icon crate); notification-area toolbar button owned by the app; click received,42596721572
+windows-2022,gtk,attention,no-api,app: no-api (GTK 4 has no attention request on this backend),42596721572
+windows-2022,gtk,badge,no-api,app: no-api (GTK 4 has no Dock or taskbar badge API),42596721572
+windows-2022,gtk,hotkey,pass,app: registered (global-hotkey crate); keybd_event Ctrl+Alt+Shift+F9,42596721572
+windows-2022,gtk,single_instance,pass,app: primary (GApplication); second launch exited; forwarded to first,42596721572
+windows-2022,gtk,tray,pass,app: created (tray-icon crate); notification-area toolbar button owned by the app; click received,42596721572
+windows-2022,slint,attention,pass,app: requested (winit request_user_attention via WinitWindowAccessor); HSHELL_FLASH shell-hook message,42596721572
+windows-2022,slint,badge,no-api,app: no-api (Slint has no Dock or taskbar badge API),42596721572
+windows-2022,slint,hotkey,pass,app: registered (global-hotkey crate); keybd_event Ctrl+Alt+Shift+F9,42596721572
+windows-2022,slint,single_instance,pass,app: primary (single-instance crate); second launch exited; not forwarded,42596721572
+windows-2022,slint,tray,pass,app: created (Slint SystemTrayIcon); notification-area toolbar button owned by the app; click received,42596721572
+windows-2022,qt,attention,pass,app: requested (QApplication::alert); HSHELL_FLASH shell-hook message,42596721572
+windows-2022,qt,badge,api-only,app: set (QGuiApplication::setBadgeNumber); taskbar overlay icons are not exposed to other processes,42596721572
+windows-2022,qt,hotkey,no-api,app: no-api (Qt has no global shortcut API (third-party QHotkey)),42596721572
+windows-2022,qt,single_instance,pass,app: primary (QLocalServer); second launch exited; forwarded to first,42596721572
+windows-2022,qt,tray,pass,app: created (QSystemTrayIcon); notification-area toolbar button owned by the app; click received,42596721572
+windows-2022,tauri,attention,pass,app: requested (request_user_attention); HSHELL_FLASH shell-hook message,42596721572
+windows-2022,tauri,badge,api-only,app: set (set_overlay_icon (Windows has no count badge)); taskbar overlay icons are not exposed to other processes,42596721572
+windows-2022,tauri,hotkey,pass,app: registered (tauri-plugin-global-shortcut); keybd_event Ctrl+Alt+Shift+F9,42596721572
+windows-2022,tauri,single_instance,pass,app: primary (tauri-plugin-single-instance); second launch exited; forwarded to first,42596721572
+windows-2022,tauri,tray,pass,app: created (Tauri TrayIconBuilder); notification-area toolbar button owned by the app; click received,42596721572

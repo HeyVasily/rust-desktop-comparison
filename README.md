@@ -113,7 +113,7 @@ Every cell links to its source in the [detailed matrix](docs/features.md); the
 | Input methods (CJK, dead keys) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Right-to-left and bidi text | ❌ | ✅ | 🟡 | ✅ | ✅ |
 | Native menu bar | 📦 | 🟡 Win<br>✅ mac<br>🟡 Linux | ✅ Win<br>✅ mac<br>🟡 Linux | ✅ | ✅ |
-| System tray icon | 📦 | ❌ | ✅ | ✅ | ✅ |
+| System tray icon | 📦 | 📦 | ✅ | ✅ | ✅ |
 | Native file dialogs | 📦 | ✅ | 📦 | ✅ | 🧩 |
 | Desktop notifications | 📦 | ❔ Win<br>❔ mac<br>✅ Linux | 📦 | 🟡 | 🧩 |
 | Drag and drop with other apps | 🟡 | ✅ | 🟡 | ✅ | 🟡 |
@@ -121,18 +121,31 @@ Every cell links to its source in the [detailed matrix](docs/features.md); the
 | System credential store | 📦 | 📦 | 📦 | 📦 | 📦 |
 | Badge on the app icon | 🛠️ | 🛠️ | 🛠️ | ✅ Win<br>✅ mac<br>🟡 Linux | 🟡 Win<br>✅ mac<br>🟡 Linux |
 | Progress on the app icon | 🛠️ | 🛠️ | 🛠️ | 🛠️ | ✅ Win<br>✅ mac<br>🟡 Linux |
-| Request attention | ✅ | 🛠️ Win<br>🛠️ mac<br>🟡 Linux | 🟡 | ✅ | ✅ |
+| Request attention | ✅ | 🛠️ Win<br>🛠️ mac<br>🟡 Linux | 🟡 | ✅ Win<br>✅ mac<br>🟡 Linux | ✅ |
 | Dock menu or jump list | 🛠️ | 🛠️ | 🛠️ | 🛠️ Win<br>✅ mac<br>🛠️ Linux | 🛠️ |
 | Menu-bar or background-only app | ✅ Win<br>🟡 mac<br>❌ Linux | 🛠️ | 🟡 Win<br>🟡 mac<br>❌ Linux | 🟡 | ✅ |
 | Tray clicks and menu | 📦 | 📦 | ✅ Win<br>🟡 mac<br>✅ Linux | ✅ | ✅ Win<br>✅ mac<br>🟡 Linux |
-| Global keyboard shortcuts | 📦 Win<br>📦 mac<br>🟡 Linux | 📦 | 📦 Win<br>📦 mac<br>🟡 Linux | 📦 Win<br>📦 mac<br>🟡 Linux | 🧩 Win<br>🧩 mac<br>🟡 Linux |
+| Global keyboard shortcuts | 📦 Win<br>📦 mac<br>🟡 Linux | 📦 Win<br>❌ mac<br>🟡 Linux | 📦 Win<br>📦 mac<br>🟡 Linux | 📦 Win<br>📦 mac<br>🟡 Linux | 🧩 Win<br>🧩 mac<br>🟡 Linux |
 | Start at login | 📦 | 📦 | 📦 | 🛠️ | 🧩 |
-| Single instance | 📦 | ❔ Win<br>❔ mac<br>✅ Linux | 📦 | 📦 | 🧩 |
+| Single instance | 📦 | ✅ Win<br>❌ mac<br>✅ Linux | 📦 | 📦 | 🧩 |
 | URL schemes and file associations | 🛠️ | 🟡 Win<br>❔ mac<br>✅ Linux | 🛠️ | 🟡 Win<br>✅ mac<br>🟡 Linux | 🧩 |
 | Installers and updates | 📦 | 🟡 Win<br>🟡 mac<br>✅ Linux | 📦 | 🟡 | ✅ |
 
 ✅ Built in · 🟡 Partial · 🧩 Official plugin · 📦 Third-party crate · 🛠️ Own platform code · ❌ Not available · ❔ Not verified. Checked 2026-11-09.
 <!-- features:end -->
+
+### Tray, badge, shortcut and single instance, tested
+
+A [separate runner check](docs/shell-integration.md) built every example with an
+optional `shell-checks` feature and looked for the effect from outside the app.
+Tray icons appeared on all three systems for all five toolkits (GTK 4 through the
+tray-icon crate); tray clicks reached every app except Tauri on Linux. Qt and Tauri
+set Dock/taskbar badges; egui, GTK and Slint have no badge API. Global shortcuts
+fired everywhere except inside GTK on macOS, and GTK's built-in single-instance
+handling worked on Linux and Windows but not on macOS. Qt 6.4's attention request
+was not visible on X11.
+
+![Status items in the macOS menu bar, and the Windows taskbar with Qt's overlay badge, Tauri's overlay icon and the tray tooltip](screenshots/shell-checks-2026-11-09/menu-and-task-bars.png)
 
 ## What the interfaces look like
 

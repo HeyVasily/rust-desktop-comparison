@@ -1,0 +1,150 @@
+{
+  "name": "slint",
+  "platform": "win32",
+  "executable": "D:\\a\\rust-desktop-comparison\\rust-desktop-comparison\\target\\release\\veranda-slint-comparison.exe",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "Slint SystemTrayIcon"
+      },
+      "observed": true,
+      "how": "notification-area toolbar button owned by the app",
+      "buttons": [
+        {
+          "area": "promoted",
+          "pid": 3044,
+          "ours": true,
+          "center": [
+            799,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 5800,
+          "ours": false,
+          "center": [
+            823,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            847,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            871,
+            748
+          ]
+        },
+        {
+          "area": "promoted",
+          "pid": 6284,
+          "ours": false,
+          "center": [
+            895,
+            748
+          ]
+        }
+      ],
+      "clicked": true,
+      "click_how": "left mouse click on the icon",
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "no-api",
+        "detail": "Slint has no Dock or taskbar badge API"
+      },
+      "verdict": "no-api"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "registered",
+        "detail": "global-hotkey crate"
+      },
+      "injected": "keybd_event Ctrl+Alt+Shift+F9",
+      "observed": true,
+      "verdict": "pass"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "single-instance crate"
+      },
+      "second_exited": true,
+      "second_exit_code": 0,
+      "second_seconds": 0.0,
+      "forwarded": false,
+      "observed": true,
+      "verdict": "pass"
+    },
+    "attention": {
+      "deactivated": "window minimized",
+      "app": {
+        "check": "attention",
+        "status": "requested",
+        "detail": "winit request_user_attention via WinitWindowAccessor"
+      },
+      "observed": true,
+      "how": "HSHELL_FLASH shell-hook message",
+      "windows": [
+        393268,
+        393268
+      ],
+      "verdict": "pass"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "single-instance crate"
+    },
+    {
+      "check": "badge",
+      "status": "no-api",
+      "detail": "Slint has no Dock or taskbar badge API"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "Slint SystemTrayIcon"
+    },
+    {
+      "check": "hotkey",
+      "status": "registered",
+      "detail": "global-hotkey crate"
+    },
+    {
+      "check": "tray",
+      "status": "click",
+      "detail": "SystemTrayIcon clicked()"
+    },
+    {
+      "check": "hotkey",
+      "status": "event",
+      "detail": "Ctrl+Alt+Shift+F9 pressed"
+    },
+    {
+      "check": "attention",
+      "status": "requested",
+      "detail": "winit request_user_attention via WinitWindowAccessor"
+    }
+  ]
+}

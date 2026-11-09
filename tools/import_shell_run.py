@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Import a shell-integration run into the repository and tabulate the verdicts.
+"""Import shell-integration runs into the repository and tabulate the verdicts.
 
-Usage: import_shell_run.py RUN_ID ARTIFACT_DIR
+Usage: import_shell_run.py SERIES ARTIFACT_DIR
 
-ARTIFACT_DIR holds `gh run download RUN_ID` output (one shell-<runner>-<run-id>
-directory per OS). Writes measurements/shell-<run-id>/<runner>/<framework>/ with the
-probe result and application logs, screenshots/shell-<run-id>/<runner>/<framework>.png,
-and measurements/shell-<run-id>/summary.csv with one row per OS, framework and check.
+ARTIFACT_DIR holds `gh run download` output of one or more runs: shell-<runner>-<run-id>
+directories. For each runner the latest run is used. Writes
+measurements/<series>/<runner>/<framework>/ with the probe result and application
+logs, screenshots/<series>/<runner>/<framework>.png, and measurements/<series>/summary.csv
+with one row per OS, framework and check (and the run it came from).
 """
 from __future__ import annotations
 
@@ -43,15 +44,16 @@ def main() -> int:
     if len(sys.argv) != 3:
         print(__doc__, file=sys.stderr)
         return 2
-    run_id, base = sys.argv[1], Path(sys.argv[2])
-    pattern = re.compile(rf"shell-(?P<runner>.+)-{run_id}$")
-    rows = []
-    out = ROOT / "measurements" / f"shell-{run_id}"
-    for artifact in sorted(base.iterdir()):
+    series, base = sys.argv[1], Path(sys.argv[2])
+    pattern = re.compile(r"shell-(?P<runner>.+)-(?P<run>\d+)$")
+    latest = {}
+    for artifact in base.iterdir():
         match = pattern.match(artifact.name)
-        if not (artifact.is_dir() and match):
-            continue
-        runner = match["runner"]
+        if artifact.is_dir() and match and int(match["run"]) > int(latest.get(match["runner"], ("0",))[0]):
+            latest[match["runner"]] = (match["run"], artifact)
+    rows = []
+    out = ROOT / "measurements" / series
+    for runner, (run_id, artifact) in sorted(latest.items()):
         target = out / runner
         (target / "build").mkdir(parents=True, exist_ok=True)
         for name in BUILD_FILES:
@@ -72,7 +74,7 @@ def main() -> int:
                 if (source / item).exists():
                     shutil.copy2(source / item, target / fw / item)
             if (source / "running.png").exists():
-                shots = ROOT / "screenshots" / f"shell-{run_id}" / runner
+                shots = ROOT / "screenshots" / series / runner
                 shots.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(source / "running.png", shots / f"{fw}.png")
             result = json.loads(result_path.read_text(encoding="utf-8"))

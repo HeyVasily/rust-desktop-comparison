@@ -1,0 +1,99 @@
+{
+  "name": "gtk",
+  "platform": "darwin",
+  "executable": "/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-gtk-comparison",
+  "checks": {
+    "tray": {
+      "app": {
+        "check": "tray",
+        "status": "created",
+        "detail": "tray-icon crate"
+      },
+      "observed": true,
+      "how": "status-bar window (layer 25) owned by the app",
+      "windows": [
+        {
+          "layer": 25,
+          "bounds": {
+            "X": 768.0,
+            "Height": 24.0,
+            "Y": 0.0,
+            "Width": 34.0
+          }
+        }
+      ],
+      "verdict": "pass"
+    },
+    "badge": {
+      "app": {
+        "check": "badge",
+        "status": "no-api",
+        "detail": "GTK 4 has no Dock or taskbar badge API"
+      },
+      "verdict": "no-api"
+    },
+    "hotkey": {
+      "app": {
+        "check": "hotkey",
+        "status": "registered",
+        "detail": "global-hotkey crate"
+      },
+      "injected": "System Events key code 101",
+      "observed": false,
+      "verdict": "fail"
+    },
+    "single_instance": {
+      "app": {
+        "check": "single-instance",
+        "status": "primary",
+        "detail": "GApplication"
+      },
+      "second_exited": false,
+      "how": "second launch was still running after 25 s",
+      "forwarded": false,
+      "observed": false,
+      "verdict": "fail"
+    },
+    "attention": {
+      "app": {
+        "check": "attention",
+        "status": "no-api",
+        "detail": "GTK 4 has no attention request on this backend"
+      },
+      "verdict": "no-api"
+    }
+  },
+  "exit_code": null,
+  "shell_lines": [
+    {
+      "check": "single-instance",
+      "status": "primary",
+      "detail": "GApplication"
+    },
+    {
+      "check": "badge",
+      "status": "no-api",
+      "detail": "GTK 4 has no Dock or taskbar badge API"
+    },
+    {
+      "check": "tray",
+      "status": "created",
+      "detail": "tray-icon crate"
+    },
+    {
+      "check": "hotkey",
+      "status": "registered",
+      "detail": "global-hotkey crate"
+    },
+    {
+      "check": "hotkey",
+      "status": "event",
+      "detail": "Ctrl+Alt+Shift+F9 pressed"
+    },
+    {
+      "check": "attention",
+      "status": "no-api",
+      "detail": "GTK 4 has no attention request on this backend"
+    }
+  ]
+}
