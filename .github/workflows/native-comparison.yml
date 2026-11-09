@@ -334,13 +334,16 @@ jobs:
               export LIBGL_ALWAYS_SOFTWARE=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb XDG_SESSION_TYPE=x11 XDG_CURRENT_DESKTOP=GNOME
               dbus-run-session -- xvfb-run -a -s '-screen 0 1600x1000x24' bash -c '
                 openbox > artifacts/dark/openbox.log 2>&1 &
+                # D-Bus activation starts the portal and its GTK backend; they need the display.
+                dbus-update-activation-environment DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE GDK_BACKEND
                 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-                /usr/libexec/xdg-desktop-portal-gtk > artifacts/dark/portal-gtk.log 2>&1 &
-                /usr/libexec/xdg-desktop-portal --replace > artifacts/dark/portal.log 2>&1 &
-                sleep 3
-                gdbus call --session --dest org.freedesktop.portal.Desktop --object-path /org/freedesktop/portal/desktop \
-                  --method org.freedesktop.portal.Settings.ReadOne org.freedesktop.appearance color-scheme \
-                  > artifacts/dark/system-setting.txt 2>&1
+                gsettings get org.gnome.desktop.interface color-scheme > artifacts/dark/gsettings.txt 2>&1
+                for attempt in 1 2 3 4 5 6 7 8 9 10; do
+                  gdbus call --session --dest org.freedesktop.portal.Desktop --object-path /org/freedesktop/portal/desktop \
+                    --method org.freedesktop.portal.Settings.ReadOne org.freedesktop.appearance color-scheme \
+                    > artifacts/dark/system-setting.txt 2>&1 && break
+                  sleep 2
+                done
                 "$PROBE_PYTHON" artifacts/run_candidates.py'
               ;;
           esac
