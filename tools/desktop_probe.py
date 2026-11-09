@@ -191,10 +191,40 @@ class Clipboard:
         self.owners = []
         self.window_handle = None
 
+    def pump_windows_messages(self, user32):
+        """Service ownership notifications on the thread that created our HWND.
+
+        EmptyClipboard in the application can synchronously send
+        WM_DESTROYCLIPBOARD to our previous owner. PeekMessage also dispatches
+        pending sent messages, even when it finds no queued message. Without
+        this pump, the app can block waiting for us while we retry OpenClipboard.
+        Only this probe's message-only HWND is addressed; there is no extra UI.
+        """
+        from ctypes import wintypes
+        pointer = ctypes.POINTER(wintypes.MSG)
+        user32.PeekMessageW.argtypes = [pointer, wintypes.HWND, wintypes.UINT, wintypes.UINT, wintypes.UINT]
+        user32.PeekMessageW.restype = wintypes.BOOL
+        user32.TranslateMessage.argtypes = [pointer]
+        user32.TranslateMessage.restype = wintypes.BOOL
+        user32.DispatchMessageW.argtypes = [pointer]
+        user32.DispatchMessageW.restype = ctypes.c_ssize_t  # LRESULT is pointer-sized on Win64.
+        message = wintypes.MSG()
+        deadline = time.monotonic() + .025
+        for _ in range(64):
+            if not user32.PeekMessageW(ctypes.byref(message), self.window_handle, 0, 0, 0x0001):  # PM_REMOVE
+                return
+            if message.message == 0x0012:  # WM_QUIT should not be swallowed.
+                raise DesktopEnvironmentError("Clipboard probe message queue requested shutdown")
+            user32.TranslateMessage(ctypes.byref(message))
+            user32.DispatchMessageW(ctypes.byref(message))
+            if time.monotonic() >= deadline:
+                return
+
     def windows_api(self):
         from ctypes import wintypes
         user32, kernel32 = ctypes.windll.user32, ctypes.windll.kernel32
         user32.OpenClipboard.argtypes = [wintypes.HWND]
+        user32.OpenClipboard.restype = wintypes.BOOL
         user32.GetClipboardData.argtypes = [wintypes.UINT]
         user32.GetClipboardData.restype = wintypes.HANDLE
         user32.SetClipboardData.argtypes = [wintypes.UINT, wintypes.HANDLE]
@@ -218,7 +248,10 @@ class Clipboard:
             if not self.window_handle:
                 raise DesktopEnvironmentError("Cannot create clipboard owner window")
         deadline = time.monotonic() + 3
-        while not user32.OpenClipboard(self.window_handle):
+        while True:
+            self.pump_windows_messages(user32)
+            if user32.OpenClipboard(self.window_handle):
+                break
             if time.monotonic() >= deadline:
                 raise DesktopEnvironmentError("System clipboard remained locked")
             time.sleep(.05)

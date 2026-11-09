@@ -15,6 +15,8 @@ import sys
 
 import psutil
 
+from desktop_probe import SystemTheme
+
 
 NAMES = ("egui", "gtk", "slint", "qt", "tauri")
 
@@ -42,6 +44,58 @@ def write_json(path, value):
     path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
 
 
+class ControlTheme:
+    """Normalize only the reduced control's OS setting; not desktop acceptance."""
+
+    def __init__(self, output, theme=None):
+        self.output = output
+        self.theme = theme if theme is not None else SystemTheme()
+        self.snapshot_complete = False
+        self.result = dict(schema_version=1, profile="control-system-theme-v1",
+                           status="not_run", requested="light", cleanup={"status": "not_run"},
+                           limitation="OS preference prerequisite only; no application theme, live-change or clipboard acceptance is claimed")
+
+    def save(self):
+        self.output.mkdir(parents=True, exist_ok=True)
+        write_json(self.output / "control-system-theme.json", self.result)
+
+    def prepare(self):
+        try:
+            self.theme.snapshot()
+            self.snapshot_complete = True
+            self.result["observed"] = self.theme.set("light")
+            if self.result["observed"].get("theme") != "light":
+                raise RuntimeError("Reduced control OS preference was not verified light")
+            self.result["status"] = "passed"
+        except Exception as error:
+            self.result.update(status="environment_error", reason=f"{type(error).__name__}: {error}")
+            raise
+        finally:
+            self.save()
+
+    def close(self):
+        if self.result["status"] == "passed":
+            try:
+                self.result["observed_after"] = self.theme.read()
+                if self.result["observed_after"].get("theme") != "light":
+                    raise RuntimeError("OS preference changed while measuring the reduced control")
+            except Exception as error:
+                self.result.update(status="environment_error", reason=f"{type(error).__name__}: {error}")
+        if self.snapshot_complete:
+            try:
+                self.theme.restore()
+                self.result["cleanup"] = dict(status="passed")
+            except Exception as error:
+                reason = f"{type(error).__name__}: {error}"
+                self.result["cleanup"] = dict(status="failed", reason=reason)
+                self.result.update(status="environment_error", reason=f"OS preference restoration failed: {reason}")
+        else:
+            # No preference mutation is attempted until snapshot succeeds.
+            self.result["cleanup"] = dict(status="not_needed")
+        self.save()
+        return self.result["status"] == "passed" and self.result["cleanup"]["status"] == "passed"
+
+
 def record_sizes(candidates, output):
     sizes = {}
     for name, _, executable in candidates:
@@ -55,18 +109,27 @@ def record_sizes(candidates, output):
 
 
 def verify(output, candidates, comparison, desktop_checks):
-    failures = json.loads((output / "failed-candidates.json").read_text())
+    failures = json.loads((output / "failed-candidates.json").read_text(encoding="utf-8"))
     assert not failures, f"Incomplete candidates: {failures}; inspect outcomes and captures"
     names = [name for name, _, _ in candidates]
-    assert json.loads((output / "selected-candidates.json").read_text()) == names
+    assert json.loads((output / "selected-candidates.json").read_text(encoding="utf-8")) == names
     assert len(list(output.glob("*/outcome.json"))) == len(names), "Outcome count differs from selection"
     for name in names:
-        outcome = json.loads((output / name / "outcome.json").read_text())
+        outcome = json.loads((output / name / "outcome.json").read_text(encoding="utf-8"))
         expected = "comparison_passed" if comparison else "diagnostic_passed"
         assert outcome["status"] == expected, f"{name}: {outcome}"
         assert outcome["cleanup_status"] == "clean", f"{name}: process cleanup unverified"
         if name == "egui_reduced":
             assert outcome["measurement_profile"] == "diagnostic-reduced"
+            control = outcome.get("control_system_theme", {})
+            assert control.get("profile") == "control-system-theme-v1"
+            assert control.get("schema_version") == 1
+            assert control.get("status") == "passed", "Reduced control OS preference unverified"
+            assert control.get("requested") == "light"
+            assert control.get("observed", {}).get("theme") == "light"
+            assert control.get("observed_after", {}).get("theme") == "light"
+            assert control.get("cleanup", {}).get("status") == "passed"
+            assert json.loads((output / name / "control-system-theme.json").read_text(encoding="utf-8")) == control
         elif desktop_checks:
             desktop = outcome.get("desktop_integration", {})
             assert outcome["measurement_profile"] == "desktop-integrated"
@@ -108,47 +171,83 @@ def main():
             command += ["--comparison"]
         if desktop_checks and name != "egui_reduced":
             command += ["--desktop-checks", "--startup-theme", args.startup_theme]
-        print("Running", name, "with", " ".join(command), flush=True)
-        probe = subprocess.Popen(command)
+        control = ControlTheme(args.output / name) if name == "egui_reduced" else None
+        probe = None
+        stop_reason = None
         try:
-            if probe.wait(timeout=540):
-                failed.append(name)
+            if control:
+                # Both A/B orders must start with the same real OS setting.
+                # Missing control clipboard support remains deliberately untested.
+                control.prepare()
+            print("Running", name, "with", " ".join(command), flush=True)
+            probe = subprocess.Popen(command)
             try:
-                outcome = json.loads((args.output / name / "outcome.json").read_text())
-            except (OSError, ValueError):
-                outcome = {}
-            if (outcome.get("cleanup_status") not in ("clean", "not_needed")
-                    or outcome.get("cleanup_survivors") or outcome.get("process_access_denied_pids")
-                    or outcome.get("desktop_integration", {}).get("cleanup", {}).get("status") == "failed"):
+                if probe.wait(timeout=540):
+                    failed.append(name)
+                try:
+                    outcome = json.loads((args.output / name / "outcome.json").read_text(encoding="utf-8"))
+                except (OSError, ValueError):
+                    outcome = {}
+                if (outcome.get("cleanup_status") not in ("clean", "not_needed")
+                        or outcome.get("cleanup_survivors") or outcome.get("process_access_denied_pids")
+                        or outcome.get("desktop_integration", {}).get("cleanup", {}).get("status") == "failed"):
+                    if name not in failed:
+                        failed.append(name)
+                    stop_reason = "Process/desktop cleanup failed, unknown or missing; later candidates refused"
+            except subprocess.TimeoutExpired:
+                family = psutil.Process(probe.pid).children(recursive=True)
+                for process in reversed(family):
+                    try:
+                        process.terminate()
+                    except psutil.NoSuchProcess:
+                        pass
+                probe.terminate()
+                _, alive = psutil.wait_procs(family, timeout=3)
+                for process in alive:
+                    try:
+                        process.kill()
+                    except psutil.NoSuchProcess:
+                        pass
+                try:
+                    probe.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    probe.kill()
+                    probe.wait(timeout=5)
                 if name not in failed:
                     failed.append(name)
-                write_json(args.output / "stopped-after.json", dict(
-                    name=name, reason="Process/desktop cleanup failed, unknown or missing; later candidates refused"))
-                break
-        except subprocess.TimeoutExpired:
-            family = psutil.Process(probe.pid).children(recursive=True)
-            for process in reversed(family):
-                try:
-                    process.terminate()
-                except psutil.NoSuchProcess:
-                    pass
-            probe.terminate()
-            _, alive = psutil.wait_procs(family, timeout=3)
-            for process in alive:
-                try:
-                    process.kill()
-                except psutil.NoSuchProcess:
-                    pass
-            try:
-                probe.wait(timeout=5)
-            except subprocess.TimeoutExpired:
-                probe.kill()
-                probe.wait(timeout=5)
-            failed.append(name)
+                (args.output / name).mkdir(exist_ok=True)
+                stop_reason = "Probe exceeded 540s watchdog; subsequent candidates refused to avoid contamination"
+                write_json(args.output / name / "watchdog.json", dict(
+                    name=name, status="failed", cleanup_status="unknown", reason=stop_reason))
+        except Exception as error:
+            if name not in failed:
+                failed.append(name)
+            stop_reason = f"Runner prerequisite/launch/cleanup error: {type(error).__name__}: {error}"
             (args.output / name).mkdir(exist_ok=True)
-            write_json(args.output / name / "watchdog.json", dict(
-                name=name, status="failed", cleanup_status="unknown",
-                reason="Probe exceeded 540s watchdog; subsequent candidates refused to avoid contamination"))
+            write_json(args.output / name / "runner-error.json", dict(name=name, status="failed", reason=stop_reason))
+        finally:
+            if control:
+                control_ok = control.close()
+                outcome_path = args.output / name / "outcome.json"
+                try:
+                    outcome = json.loads(outcome_path.read_text(encoding="utf-8"))
+                except (OSError, ValueError):
+                    outcome = dict(name=name, status="not_run" if probe is None else "failed",
+                                   measurement_profile="diagnostic-reduced", phases={},
+                                   cleanup_status="not_needed" if probe is None else "unknown",
+                                   reason=stop_reason or "Reduced control produced no native outcome")
+                outcome["control_system_theme"] = control.result
+                if not control_ok:
+                    if name not in failed:
+                        failed.append(name)
+                    stop_reason = "Reduced control OS preference or restoration unverified; later candidates refused"
+                    outcome.update(status="failed", reason=stop_reason)
+                elif stop_reason:
+                    # A watchdog or runner failure cannot leave a stale passing result.
+                    outcome.update(status="failed", reason=stop_reason)
+                write_json(outcome_path, outcome)
+        if stop_reason:
+            write_json(args.output / "stopped-after.json", dict(name=name, reason=stop_reason))
             break
     write_json(args.output / "failed-candidates.json", failed)
     # The workflow uploads all evidence before running the strict verification gate.

@@ -12,6 +12,8 @@ mkdir -p target artifacts/build
 pacman -Q > artifacts/build/msys2-packages.txt
 { rustc -Vv; cargo -V; } > artifacts/build/gtk-rust-version.txt
 pkg-config --modversion gtk4 libadwaita-1 > artifacts/build/gtk-version.txt
+cargo tree --locked -e features --manifest-path examples/gtk/Cargo.toml \
+    > artifacts/build/gtk-msys2-gnu-features.txt
 
 # gtk4-rs links against MSYS2's GTK through pkg-config, so build it with the
 # MSYS2 (x86_64-pc-windows-gnu) toolchain in its own target directory.

@@ -13,7 +13,7 @@ def main():
     paths = subprocess.check_output(["git", "ls-files", "-z", "examples", "tools", ".github/workflows"], text=True).split("\0")
     hashes = [f"{hashlib.sha256(Path(path).read_bytes()).hexdigest()}  {path}" for path in sorted(filter(None, paths))]
     (output / "source-sha256.txt").write_text("\n".join(hashes) + "\n", encoding="utf-8")
-    subprocess.run(["git", "diff", "--exit-code", "--", "examples", "tools", ".github/workflows"], check=True)
+    subprocess.run(["git", "diff", "HEAD", "--exit-code", "--", "examples", "tools", ".github/workflows"], check=True)
 
 
 if __name__ == "__main__":

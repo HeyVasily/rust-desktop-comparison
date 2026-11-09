@@ -1,4 +1,5 @@
 """Host-free regressions for external desktop acceptance and false-pass refusal."""
+import ctypes
 import os
 from pathlib import Path
 import tempfile
@@ -88,6 +89,47 @@ class DesktopProbeTests(unittest.TestCase):
         with patch.object(probe.sys, "platform", "win32"), patch.dict("sys.modules", winreg=registry):
             with self.assertRaises(PermissionError):
                 probe.SystemTheme().snapshot()
+
+    def test_windows_clipboard_owner_pumps_and_dispatches_pending_messages(self):
+        from ctypes import wintypes
+        clipboard = probe.Clipboard()
+        clipboard.window_handle = 2**40 + 7
+        user32 = Mock()
+        user32.PeekMessageW.side_effect = [True, True, False]
+        with patch.object(probe.time, "monotonic", return_value=0):
+            clipboard.pump_windows_messages(user32)
+        self.assertEqual(user32.PeekMessageW.call_count, 3)
+        self.assertEqual(user32.TranslateMessage.call_count, 2)
+        self.assertEqual(user32.DispatchMessageW.call_count, 2)
+        self.assertEqual(user32.PeekMessageW.call_args.args[1:], (2**40 + 7, 0, 0, 1))
+        self.assertEqual(user32.PeekMessageW.argtypes[1], wintypes.HWND)
+        self.assertEqual(user32.DispatchMessageW.restype, ctypes.c_ssize_t)
+
+    def test_windows_clipboard_pump_is_bounded_when_messages_keep_arriving(self):
+        clipboard = probe.Clipboard()
+        clipboard.window_handle = 42
+        user32 = Mock()
+        user32.PeekMessageW.return_value = True
+        with patch.object(probe.time, "monotonic", return_value=0):
+            clipboard.pump_windows_messages(user32)
+        self.assertEqual(user32.DispatchMessageW.call_count, 64)
+
+    def test_windows_clipboard_pumps_before_initial_open_and_every_retry(self):
+        clipboard = probe.Clipboard()
+        clipboard.window_handle = 2**40 + 7
+        events = []
+        user32, kernel32 = Mock(), Mock()
+        attempts = iter((False, True))
+        def open_clipboard(handle):
+            events.append(("open", handle))
+            return next(attempts)
+        user32.OpenClipboard.side_effect = open_clipboard
+        with patch.object(probe.ctypes, "windll", Mock(user32=user32, kernel32=kernel32), create=True), \
+                patch.object(clipboard, "pump_windows_messages", side_effect=lambda api: events.append(("pump", api))), \
+                patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
+            self.assertEqual(clipboard.windows_api(), (user32, kernel32))
+        self.assertEqual([event[0] for event in events], ["pump", "open", "pump", "open"])
+        self.assertEqual(events[1][1], 2**40 + 7)
 
     def test_clipboard_changes_external_seed_before_copy_and_checks_unicode_exactly(self):
         checker = self.checks()

@@ -47,7 +47,7 @@ jobs:
       max-parallel: 6
       matrix:
         repetition: ${{ fromJSON(inputs.repetitions == '1' && '[1]' || contains(github.event.head_commit.message, '[desktop-smoke]') && '[1]' || inputs.repetitions == '5' && '[1,2,3,4,5]' || '[1,2,3]') }}
-        os: ${{ fromJSON(inputs.platforms == 'windows' && '["windows-2022"]' || inputs.platforms == 'macos' && '["macos-15"]' || inputs.platforms == 'linux' && '["ubuntu-24.04"]' || inputs.platforms == 'native' && '["windows-2022","macos-15"]' || '["windows-2022","macos-15","ubuntu-24.04"]') }}
+        os: ${{ fromJSON((inputs.platforms == 'windows' || contains(github.event.head_commit.message, '[windows-only]')) && '["windows-2022"]' || (inputs.platforms == 'macos' || contains(github.event.head_commit.message, '[macos-only]')) && '["macos-15"]' || (inputs.platforms == 'linux' || contains(github.event.head_commit.message, '[linux-only]')) && '["ubuntu-24.04"]' || inputs.platforms == 'native' && '["windows-2022","macos-15"]' || '["windows-2022","macos-15","ubuntu-24.04"]') }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 120
     env:
@@ -203,7 +203,8 @@ jobs:
         continue-on-error: true
         timeout-minutes: 15
         run: |
-          dbus-run-session -- env COMPARISON_TEST_ISOLATED_DBUS=1 cargo test --release --locked --manifest-path examples/egui/Cargo.toml portal_round_trip -- --ignored 2>&1 | tee artifacts/build/egui-portal-test.log
+          cargo test --release --locked --manifest-path examples/egui/Cargo.toml --no-run 2>&1 | tee artifacts/build/egui-test-build.log
+          timeout 60s dbus-run-session -- env COMPARISON_TEST_ISOLATED_DBUS=1 cargo test --release --locked --manifest-path examples/egui/Cargo.toml portal_round_trip -- --ignored 2>&1 | tee artifacts/build/egui-portal-test.log
       - name: Build Slint release
         if: contains(env.SELECTED_FRAMEWORKS, 'slint')
         continue-on-error: true
