@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run with msys2/setup-msys2's `msys2 {0}` shell, after installing UCRT64
-# gcc, pkgconf, gtk4 and rust. Keep this runtime private to the GTK candidate.
+# gcc, pkgconf, gtk4, libadwaita and rust. Keep this runtime private to GTK.
 set -euo pipefail
 
 if [[ "${MSYSTEM:-}" != UCRT64 ]]; then
@@ -11,7 +11,7 @@ fi
 mkdir -p target artifacts/build
 pacman -Q > artifacts/build/msys2-packages.txt
 { rustc -Vv; cargo -V; } > artifacts/build/gtk-rust-version.txt
-pkg-config --modversion gtk4 > artifacts/build/gtk-version.txt
+pkg-config --modversion gtk4 libadwaita-1 > artifacts/build/gtk-version.txt
 
 # gtk4-rs links against MSYS2's GTK through pkg-config, so build it with the
 # MSYS2 (x86_64-pc-windows-gnu) toolchain in its own target directory.

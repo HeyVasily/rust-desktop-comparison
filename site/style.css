@@ -128,6 +128,7 @@ h3 { font-size: 1.0625rem; margin: 0 0 4px; }
 .fw h3 { font-size: 1.25rem; }
 .fw .ver { color: var(--muted); font-size: 0.875rem; text-align: right; }
 .fw .model { color: var(--ink-2); margin: 0; font-size: 0.9375rem; }
+.fw .profile-label { color: var(--muted); margin: 0 0 -6px; font-size: 0.75rem; }
 .fw dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; font-size: 0.875rem; }
 .fw dt { color: var(--muted); }
 .fw dd { margin: 0; }
@@ -237,8 +238,8 @@ table.matrix { border-collapse: separate; border-spacing: 0; width: 100%; min-wi
 .lvl { display: inline-flex; align-items: center; gap: 6px; }
 .lvl .lbl { font-size: 0.8125rem; color: var(--ink-2); }
 .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-grid; place-items: center; flex: none; color: #fff; font-size: 10px; font-weight: 700; line-height: 1; }
-.dot.yes { background: var(--good); }
-.dot.yes::after { content: "✓"; }
+.dot.yes, .dot.pass { background: var(--good); }
+.dot.yes::after, .dot.pass::after { content: "✓"; }
 .dot.partial { background: var(--warning); color: #0b0b0b; }
 .dot.partial::after { content: "~"; }
 .dot.plugin { background: var(--plugin); }
@@ -247,8 +248,8 @@ table.matrix { border-collapse: separate; border-spacing: 0; width: 100%; min-wi
 .dot.crate::after { content: "+"; }
 .dot.manual { background: transparent; border: 1.5px solid var(--crate); color: var(--ink-2); }
 .dot.manual::after { content: "⚒"; font-size: 9px; }
-.dot.no { background: var(--critical); }
-.dot.no::after { content: "×"; }
+.dot.no, .dot.fail { background: var(--critical); }
+.dot.no::after, .dot.fail::after { content: "×"; }
 .dot.unknown { background: transparent; border: 1.5px dashed var(--muted); color: var(--muted); }
 .dot.unknown::after { content: "?"; }
 
@@ -268,6 +269,7 @@ table.matrix { border-collapse: separate; border-spacing: 0; width: 100%; min-wi
 /* Method */
 .method { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
 .method .card { padding: 18px 20px; }
+.method .card > p { margin: 8px 0 0; color: var(--ink-2); font-size: 0.9375rem; }
 .method ul { margin: 8px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 0.9375rem; }
 .method li { margin: 4px 0; }
 

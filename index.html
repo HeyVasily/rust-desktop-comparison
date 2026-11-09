@@ -14,14 +14,14 @@
 <body>
   <header class="hero">
     <div class="wrap">
-      <p class="eyebrow">Open data · measured on GitHub-hosted runners · November 2026</p>
+      <p class="eyebrow">Open data · desktop integration and reproducible measurements · November 2026</p>
       <h1>Rust desktop GUI comparison</h1>
       <p class="lede">The same small desktop interface built with <strong>egui</strong>, <strong>GTK4</strong>, <strong>Slint</strong>, <strong>Qt Widgets</strong> and <strong>Tauri</strong>, measured on Windows, macOS and Linux. Real screenshots, the layout code, idle memory and how much of each operating system the toolkit reaches.</p>
       <ul class="facts">
         <li><b>5</b>toolkits</li>
         <li><b>3</b>operating systems</li>
-        <li><b>×5</b>runs on fresh VMs</li>
-        <li><b>13</b>native capabilities with sources</li>
+        <li><b>×5</b>historical runs on fresh VMs</li>
+        <li><b id="capability-count">…</b>capabilities and checks with sources</li>
       </ul>
       <div class="links">
         <a class="button primary" href="https://github.com/HeyVasily/rust-desktop-comparison">View on GitHub</a>
@@ -34,6 +34,7 @@
   <nav class="nav" aria-label="Sections">
     <div class="wrap">
       <ul>
+        <li><a href="#desktop">Desktop baseline</a></li>
         <li><a href="#overview">Overview</a></li>
         <li><a href="#memory">Memory</a></li>
         <li><a href="#screenshots">Screenshots</a></li>
@@ -45,17 +46,37 @@
   </nav>
 
   <main class="wrap">
+    <section id="desktop" aria-labelledby="desktop-title">
+      <h2 id="desktop-title">A desktop application, not a stripped-down window</h2>
+      <p class="section-lede">The default examples include desktop integration. Light and dark palettes, following the OS at startup, and reacting while the application stays open are separate checks. A failed integration check does not mean a toolkit cannot draw a dark theme.</p>
+      <div class="method">
+        <div class="card">
+          <h3>System appearance</h3>
+          <p>Verify the OS setting, then check the client area at startup and through a light → dark → light transition in the same process. Linux needs a working settings portal or the appropriate native theme bridge.</p>
+        </div>
+        <div class="card">
+          <h3>External clipboard</h3>
+          <p>Paste Unicode text from another process into the real filter, replace the system clipboard with a sentinel, then copy from the filter and compare the result. App-local simulated copy/paste is not sufficient.</p>
+        </div>
+        <div class="card">
+          <h3>Cost after actual use</h3>
+          <p>Exercise theme and clipboard before measuring idle. Keep system fonts, accessibility support and the selected renderer enabled; record features, process scope and backend. Optional tray and global shortcuts remain a separate profile.</p>
+        </div>
+      </div>
+      <p class="note" id="desktop-evidence"><strong>Current profile and evidence:</strong> see the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-integration.md">desktop integration report</a> for enabled features, acceptance gates and measurement scope. The historical series below is preserved, not relabeled as the cost of these updated binaries. In particular, the old egui build disabled eframe's OS clipboard, link-opening and system-font features.</p>
+    </section>
+
     <section id="overview" aria-labelledby="overview-title">
       <h2 id="overview-title">Overview</h2>
-      <p class="section-lede">What each toolkit is, its measured idle memory per system (as the OS's own monitor reports it), and where it is strong or limited. Lower is better; the outlined value is the lowest on that system.</p>
+      <p class="section-lede">What each toolkit is and where it is strong or limited. Memory and executable sizes in these cards are from the historical UI-only series, not the updated desktop profile. The outlined value is lowest on that system in that series. “Startup test (old)” means the old example was relaunched after changing the OS theme; it is not a dark-theme capability rating.</p>
       <div class="overview" id="overview-cards"><p>Loading…</p></div>
     </section>
 
     <section id="memory" aria-labelledby="memory-title">
-      <h2 id="memory-title">Idle memory</h2>
-      <p class="section-lede">Memory of the application's whole process family (webview helpers included) with a 960×640 window: Linux PSS, Windows private working set (Task Manager) and macOS physical footprint (Activity Monitor). Bars are the median of five runs on fresh VMs; the thin line spans the lowest to highest run. All panels share one scale.</p>
+      <h2 id="memory-title">Historical UI-only idle memory</h2>
+      <p class="section-lede">The 2026-11-09 matrix measured the application's whole process family (webview helpers included) with a 960×640 window, without exercising external clipboard or live theme changes. Metrics: Linux PSS, Windows private working set (Task Manager) and macOS physical footprint (Activity Monitor). Bars are the median of five runs on fresh VMs; the thin line spans the lowest to highest run. All panels share one scale.</p>
       <div class="charts" id="memory-charts"></div>
-      <p class="note"><strong>How to read this.</strong> Each OS defines its metric differently, so compare toolkits within a panel. These metrics count shared libraries proportionally, so multi-process apps are not double-counted (Tauri on Linux: 501&nbsp;MiB summed RSS, 338&nbsp;MiB PSS). Linux ran under Xvfb with software OpenGL, which GL-based toolkits (GTK 4.14, egui) pay for in private memory: the same GTK binary used 210&nbsp;MiB PSS with OpenGL and 68&nbsp;MiB with Cairo (<a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/gtk-memory-investigation.md">experiment</a>), and Qt rose from 23 to 73&nbsp;MiB on native Wayland (<a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/linux-display-comparison.md">X11 vs Wayland</a>). Idle CPU stayed below 0.11&nbsp;% of one core everywhere — too small to rank. These are idle UI-only observations, not startup, interaction or frame-rate measurements.</p>
+      <p class="note"><strong>How to read this.</strong> Each OS defines its metric differently, so compare toolkits within a panel. Linux PSS counts shared pages proportionally; Windows private working set excludes shared pages. These are not interchangeable with summed RSS (Tauri on Linux: 501&nbsp;MiB summed RSS, 338&nbsp;MiB PSS). Linux ran under Xvfb with software OpenGL, which GL-based toolkits (GTK 4.14, egui) pay for in private memory: the same GTK binary used 210&nbsp;MiB PSS with OpenGL and 68&nbsp;MiB with Cairo (<a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/gtk-memory-investigation.md">experiment</a>), and Qt rose from 23 to 73&nbsp;MiB on native Wayland (<a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/linux-display-comparison.md">X11 vs Wayland</a>). Idle CPU stayed below 0.11&nbsp;% of one core in this series — too small to rank. These are historical idle UI-only observations, not desktop-profile, startup, interaction or frame-rate measurements.</p>
       <details class="table-view">
         <summary>Show as a table, with ranges, RSS and CPU</summary>
         <div class="scroll-x" id="memory-table"></div>
@@ -63,8 +84,8 @@
     </section>
 
     <section id="screenshots" aria-labelledby="screenshots-title">
-      <h2 id="screenshots-title">What the interfaces look like</h2>
-      <p class="section-lede">Captured during the measured runs: all projects, project-001 selected, empty filter. “System dark mode” shows each example relaunched after switching the OS itself to dark. macOS captures include the titlebar. Select an image to view it at full size.</p>
+      <h2 id="screenshots-title">Historical captures</h2>
+      <p class="section-lede">Captured from the historical UI-only builds: all projects, project-001 selected, empty filter. “Relaunched in dark mode” shows the old example restarted after switching the OS to dark, not a live transition or the updated integration. macOS captures include the titlebar. Select an image to view it at full size.</p>
       <div class="toolbar">
         <div class="seg" role="group" aria-label="Operating system" id="shot-os"></div>
         <div class="seg" role="group" aria-label="System appearance" id="shot-scheme"></div>
@@ -85,7 +106,7 @@
 
     <section id="features" aria-labelledby="features-title">
       <h2 id="features-title">Native features and OS integration</h2>
-      <p class="section-lede" id="features-lede">How much of the operating system each toolkit reaches without extra work. Select a cell for the details and its source.</p>
+      <p class="section-lede" id="features-lede">Upstream capabilities, required application integration, and explicitly scoped test outcomes. “Failed stated test” is not “No support”; a documented API is not a passed acceptance test. Select a cell for the details and its source.</p>
       <div class="toolbar">
         <div class="seg" role="group" aria-label="Show support for" id="feature-os"></div>
       </div>
@@ -193,17 +214,19 @@ document.getElementById("refresh").addEventListener("click", () =&gt; {
       <h2 id="method-title">Method and limits</h2>
       <div class="method">
         <div class="card">
-          <h3>Workload</h3>
+          <h3>Historical matrix workload</h3>
           <ul>
             <li>10 synthetic yards, 100 projects, filter and Refresh — no backend, no polling.</li>
             <li>960×640 visible content, release builds, one app at a time.</li>
             <li>30&nbsp;s settling, then 120 samples; five runs, each on a fresh VM.</li>
-            <li>Dark mode: the OS is switched to dark and every app relaunched.</li>
+            <li>Theme startup only: the OS is switched to dark and every app relaunched.</li>
           </ul>
         </div>
         <div class="card">
           <h3>What it does not show</h3>
           <ul>
+            <li>The cost of the current desktop-integrated builds or optional tray/shortcut integrations.</li>
+            <li>Live theme changes, external clipboard, screen-reader or IME acceptance in the historical series.</li>
             <li>Startup time, interaction cost, frame rate or GPU rendering.</li>
             <li>A controlled cross-OS ranking: runners, CPUs and toolkit builds differ.</li>
             <li>Rust bindings for Qt: the Qt example is C++.</li>
@@ -212,6 +235,7 @@ document.getElementById("refresh").addEventListener("click", () =&gt; {
         <div class="card">
           <h3>Read more</h3>
           <ul>
+            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-integration.md">Desktop-integrated baseline</a>, acceptance checks and footprint scope</li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/full-native-results.md">Full native results</a> with versions and run IDs</li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/linux-display-comparison.md">Linux X11 vs Wayland</a> and the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/gtk-memory-investigation.md">GTK renderer experiment</a></li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/platform-support.md">Platform support per session</a> (Windows, macOS, X11, Wayland)</li>

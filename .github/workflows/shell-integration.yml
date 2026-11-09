@@ -65,7 +65,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 python3-gi gir1.2-glib-2.0 libglib2.0-bin libunity9
+          sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libadwaita-1-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 python3-gi gir1.2-glib-2.0 libglib2.0-bin libunity9
           pkg-config --modversion gtk4 webkit2gtk-4.1 Qt6Widgets > artifacts/build/native-versions.txt
       - name: Qt 6.8.3 for Windows
         if: runner.os == 'Windows' && contains(env.FRAMEWORK, 'qt')
@@ -84,6 +84,7 @@ jobs:
             mingw-w64-ucrt-x86_64-gcc
             mingw-w64-ucrt-x86_64-pkgconf
             mingw-w64-ucrt-x86_64-gtk4
+            mingw-w64-ucrt-x86_64-libadwaita
             mingw-w64-ucrt-x86_64-rust
       - name: Build gtk4-rs with shell checks on Windows
         if: runner.os == 'Windows' && contains(env.FRAMEWORK, 'gtk')
@@ -95,8 +96,8 @@ jobs:
       - name: macOS libraries
         if: runner.os == 'macOS' && (contains(env.FRAMEWORK, 'qt') || contains(env.FRAMEWORK, 'gtk'))
         run: |
-          brew install pkgconf qtbase gtk4 2>&1 | tail -5
-          brew list --versions qtbase gtk4 > artifacts/build/native-versions.txt
+          brew install pkgconf qtbase gtk4 libadwaita 2>&1 | tail -5
+          brew list --versions qtbase gtk4 libadwaita > artifacts/build/native-versions.txt
           echo "Qt6_DIR=$(brew --prefix qtbase)/lib/cmake/Qt6" >> "$GITHUB_ENV"
       - name: Build Rust examples with shell checks
         continue-on-error: true

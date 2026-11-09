@@ -1,5 +1,6 @@
-//! Matched synthetic UI-only GTK4 example written with gtk4-rs.
-//! It mirrors the earlier C control (examples/gtk-c/main.c) widget for widget.
+//! Matched synthetic GTK4 desktop example written with gtk4-rs.
+//! The default profile includes libadwaita's system-appearance integration.
+//! No backend, filesystem inventory or production actions are simulated.
 
 use std::cell::Cell;
 use std::rc::Rc;
@@ -62,6 +63,18 @@ fn build_ui(app: &Application) {
     toolbar.append(&Label::new(Some("Filter:")));
     toolbar.append(&filter);
     root.append(&toolbar);
+
+    // A normal desktop accelerator, also used by the external clipboard probe.
+    let focus_filter = gtk::gio::SimpleAction::new("focus-filter", None);
+    let weak_filter = filter.downgrade();
+    focus_filter.connect_activate(move |_, _| {
+        if let Some(entry) = weak_filter.upgrade() {
+            entry.grab_focus();
+            entry.select_region(0, -1);
+        }
+    });
+    window.add_action(&focus_filter);
+    app.set_accels_for_action("win.focus-filter", &["<Primary>f"]);
 
     {
         let refreshes = refreshes.clone();
@@ -166,6 +179,19 @@ fn build_ui(app: &Application) {
 
 fn main() -> glib::ExitCode {
     let app = Application::builder().application_id(APP_ID).build();
+    #[cfg(feature = "desktop")]
+    app.connect_startup(|_| {
+        adw::init().expect("initialize libadwaita desktop integration");
+        let style = adw::StyleManager::default();
+        // Follow the desktop preference, including changes while the app runs.
+        // No GTK_THEME override, forced dark palette or polling timer is used.
+        style.set_color_scheme(adw::ColorScheme::Default);
+        println!("desktop_profile gtk4+libadwaita system_theme=true clipboard=gtk");
+        println!("theme source=libadwaita dark={}", style.is_dark());
+        style.connect_dark_notify(|style| {
+            println!("theme source=libadwaita dark={}", style.is_dark());
+        });
+    });
     app.connect_activate(build_ui);
     app.run()
 }

@@ -33,6 +33,9 @@ const fmtSize = (bytes) => {
   return mib >= 1 ? `${fmt(mib)} MiB` : `${Math.round(bytes / 1024)} KiB`;
 };
 const fmt = (n, d = 1) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+// Missing or unrecognized evidence is not a failed test.
+const parseBoolean = (value) => value === "True" ? true : value === "False" ? false : null;
+const startupLabel = (value) => value === true ? "passed" : value === false ? "failed" : "not tested";
 
 function parseCsv(text) {
   const [head, ...rows] = text.trim().split(/\r?\n/);
@@ -65,7 +68,7 @@ async function load() {
       cpu: Number(row.cpu_median_percent),
       metric: row.primary_metric,
       bytes: Number(row.executable_bytes),
-      dark: row.follows_dark_mode === "True",
+      dark: parseBoolean(row.follows_dark_mode),
       run: row.run_id,
       commit: row.source_commit,
       runner: row.os,
@@ -76,12 +79,15 @@ async function load() {
 
 /* ---------- Overview ---------- */
 function renderOverview({ features, memory }) {
+  const palettes = features.groups.flatMap((group) => group.features).find((feature) => feature.id === "color-palettes");
   const best = {};
   for (const os of OS_ORDER) {
     best[os] = Math.min(...features.frameworks.map((fw) => memory[fw.id]?.[os]?.median ?? Infinity));
   }
   const cards = features.frameworks.map((fw) => {
-    const strip = el("div", { class: "mem-strip", "aria-label": "Idle memory in MiB" },
+    const paletteLevel = palettes?.support[fw.id]?.level ?? "unknown";
+    const paletteLabel = paletteLevel === "yes" ? "Supported" : features.levels[paletteLevel].label;
+    const strip = el("div", { class: "mem-strip", "aria-label": "Historical UI-only idle memory in MiB" },
       OS_ORDER.map((os) => {
         const m = memory[fw.id]?.[os];
         const value = m ? fmt(m.median) : "—";
@@ -92,18 +98,22 @@ function renderOverview({ features, memory }) {
         );
       }));
     return el("article", { class: "card fw" },
-      el("header", {}, el("h3", { text: fw.name }), el("span", { class: "ver", text: fw.version })),
+      el("header", {}, el("h3", { text: fw.name }), el("span", { class: "ver", title: "Versions in the historical matrix", text: fw.version })),
       el("p", { class: "model", text: fw.model }),
+      el("p", { class: "profile-label", text: "Historical UI-only profile · 2026-11-09" }),
       strip,
       el("dl", {},
         el("dt", { text: "Language" }), el("dd", { text: fw.language }),
         el("dt", { text: "Licence" }), el("dd", { text: fw.license }),
-        el("dt", { text: "Executable" }), el("dd", { text: OS_ORDER.map((os) => {
+        fw.desktop_profile ? el("dt", { text: "Default build" }) : null,
+        fw.desktop_profile ? el("dd", { text: fw.desktop_profile }) : null,
+        el("dt", { text: "Executable (old)" }), el("dd", { text: OS_ORDER.map((os) => {
           const b = memory[fw.id]?.[os]?.bytes;
           return b ? `${fmtSize(b)} ${OS_NAME[os]}` : null;
         }).filter(Boolean).join(" · ") }),
-        el("dt", { text: "Dark mode" }), el("dd", { text: OS_ORDER.map((os) =>
-          `${OS_NAME[os]} ${memory[fw.id]?.[os]?.dark ? "✓" : "✗"}`).join(" · ") }),
+        el("dt", { text: "Light/dark palette" }), el("dd", { text: paletteLabel }),
+        el("dt", { text: "Startup test (old)" }), el("dd", { text: OS_ORDER.map((os) =>
+          `${OS_NAME[os]} ${startupLabel(memory[fw.id]?.[os]?.dark)}`).join(" · ") }),
       ),
       el("ul", { class: "pros", "aria-label": "Strengths" }, fw.strengths.map((s) => el("li", { text: s }))),
       el("ul", { class: "cons", "aria-label": "Limits" }, fw.limits.map((s) => el("li", { text: s }))),
@@ -142,7 +152,7 @@ function renderMemory({ features, memory }) {
     const best = Math.min(...fws.map((fw) => memory[fw.id]?.[os]?.median ?? Infinity));
     const panel = el("div", { class: "card panel" },
       el("h3", {}, OS_NAME[os], el("small", { text: `${metric}, MiB` })));
-    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${OS_NAME[os]} idle memory by toolkit` });
+    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${OS_NAME[os]} historical UI-only idle memory by toolkit` });
 
     for (const t of ticks) {
       svg.append(svgEl("line", { class: t === 0 ? "baseline" : "gridline", x1: x(t), x2: x(t), y1: top - 2, y2: top + fws.length * rowH }));
@@ -231,7 +241,7 @@ function renderMemory({ features, memory }) {
   $("#memory-table").replaceChildren(table,
     el("p", { style: "font-size:.875rem;color:var(--muted)" },
       "Source: ", el("a", { href: repoLink(CSV_PATH), text: "summary.csv" }),
-      ". Medians of five runs on fresh VMs; RSS is the summed resident set or Working Set. Per-run rows are in runs.csv."));
+      ". Historical UI-only profile, 2026-11-09; medians of five runs on fresh VMs. RSS is the summed resident set or Working Set. Per-run rows are in runs.csv. These are not measurements of the current desktop-integrated builds."));
 }
 
 /* ---------- Screenshots ---------- */
@@ -278,7 +288,7 @@ function renderScreenshots({ features, memory }) {
   const show = (os) => {
     current = features.frameworks.map((fw) => ({
       src: shotPath(fw.id, os),
-      alt: `${fw.name} on ${OS_NAME[os]}${scheme === "dark" ? " with the system in dark mode" : ""}`,
+      alt: `${fw.name} on ${OS_NAME[os]}, historical UI-only build${scheme === "dark" ? " relaunched with the system in dark mode" : " in the light run"}`,
       name: fw.name,
       mem: memory[fw.id]?.[os],
     })).filter((s) => s.src);
@@ -286,12 +296,12 @@ function renderScreenshots({ features, memory }) {
       el("button", { type: "button", "aria-label": `Open ${s.alt} at full size`, onclick: () => open(i) },
         el("img", { src: s.src, alt: s.alt, loading: "lazy", width: 960, height: 640 })),
       el("figcaption", {}, s.name, el("span", { text: !s.mem ? "" : scheme === "dark"
-        ? (s.mem.dark ? "follows dark mode" : "stays light") : `${fmt(s.mem.median)} MiB` })),
+        ? `Startup test: ${startupLabel(s.mem.dark)}` : `${fmt(s.mem.median)} MiB · old profile` })),
     )));
   };
   const redraw = () => show(currentOs);
   segmented($("#shot-os"), OS_ORDER.map((os) => [os, OS_NAME[os]]), "linux", (os) => { currentOs = os; redraw(); });
-  segmented($("#shot-scheme"), [["light", "Light"], ["dark", "System dark mode"]], "light", (v) => { scheme = v; redraw(); });
+  segmented($("#shot-scheme"), [["light", "Light run"], ["dark", "Relaunched in dark mode"]], "light", (v) => { scheme = v; redraw(); });
   show("linux");
 }
 
@@ -316,6 +326,7 @@ function renderFeatures({ features }) {
   let selected = null;
 
   $("#features-lede").textContent += ` Checked ${features.checked}.`;
+  $("#capability-count").textContent = groups.reduce((sum, group) => sum + group.features.filter((feat) => feat.kind !== "text").length, 0);
   $("#legend").replaceChildren(...Object.keys(levels).map((k) => el("li", {}, levelDot(k, levels, true))));
 
   const showDetail = (fw, feat) => {
@@ -336,7 +347,7 @@ function renderFeatures({ features }) {
 
   const draw = () => {
     const head = el("thead", {}, el("tr", {},
-      el("th", { scope: "col", text: "Capability" }),
+      el("th", { scope: "col", text: "Capability or scoped check" }),
       frameworks.map((fw) => el("th", { scope: "col", text: fw.name }))));
     const body = el("tbody");
     for (const group of groups) {
