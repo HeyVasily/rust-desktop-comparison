@@ -63,8 +63,11 @@ they are not green ticks or zero-memory observations.
 
 The `egui_reduced` build is a **separate diagnostic control**, built from the same
 source with `--no-default-features`. It is not eligible for the desktop ranking.
-Paired runs on the same host, toolchain and renderer can establish the added cost;
-dependency count, executable size and comparisons with an old runner cannot.
+Paired runs keep the host, toolchain, renderer, final palette and sampling fixed,
+but only the integrated build exercises external clipboard and theme changes.
+Their delta is the **whole profile's footprint after use**, not a clipboard-only
+allocation. Dependency count, executable size and comparisons with an old runner
+cannot establish that difference.
 There is no assumption that desktop integration adds either a large or a small
 amount of resident memory. Optional tray, global shortcuts and single-instance
 checks remain a [separate profile](docs/shell-integration.md).

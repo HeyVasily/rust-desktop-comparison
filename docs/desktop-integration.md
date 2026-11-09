@@ -139,13 +139,21 @@ driver covers **X11**, not native Wayland; unsupported driver coverage must not
 be presented as missing toolkit capability. See the
 [probe implementation](../tools/desktop_probe.py).
 
-To claim an egui integration overhead, build both a diagnostic reduced-feature
+To measure an egui profile difference, build both a diagnostic reduced-feature
 control and the desktop profile with the same toolchain on the same host. Keep
-renderer, display session, font installation, window geometry, workload and
-sampling constant, alternate run order and publish each repetition. The control
-is useful for attribution but is not a recommendation or the primary ranking.
-Comparing a fresh local result to an old hosted-runner median is not a matched
-A/B experiment. Report executable size separately from memory.
+renderer, display session, installed fonts, final light palette, window geometry,
+fixture state and settling/sampling policy constant; alternate run order and
+publish each repetition. The reduced control's OS light preference is verified
+before and after sampling, but it does not pass desktop acceptance.
+
+The warmed workloads are deliberately **not identical**: only the integrated
+profile exercises external clipboard and live system-theme changes, which the
+reduced build cannot support. The delta therefore describes the whole configured
+profile after use, including retained allocations and caches, not the allocation
+of an individual feature or dependency. The control is neither a recommendation
+nor part of the primary ranking. Comparing a fresh local result to an old
+hosted-runner median is not a matched A/B experiment. Report executable size
+separately from memory.
 
 The application-family scope excludes shared desktop services such as the
 compositor, session bus and Settings portal. Record required services and any

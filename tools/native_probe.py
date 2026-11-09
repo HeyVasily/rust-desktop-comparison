@@ -261,6 +261,17 @@ def prepare_window(window):
     user32.SetForegroundWindow(window["id"])
 
 
+def activate_reduced_control(window, result):
+    """Match the desktop candidate's foreground state without claiming acceptance."""
+    from desktop_probe import DesktopInput
+    driver = DesktopInput()
+    try:
+        result["startup_focus"] = driver.focus(window)
+    finally:
+        if hasattr(driver, "last_focus"):
+            result["startup_focus"] = driver.last_focus
+
+
 def capture_once(window, path):
     if sys.platform == "darwin":
         import Quartz
@@ -497,6 +508,8 @@ def main():
                 acceptance = desktop.run(desktop_window, capture)
                 if acceptance["status"] != "passed":
                     raise RuntimeError("Desktop acceptance failed; inspect desktop-integration.json and screenshots; idle comparison refused")
+            elif args.name == "egui_reduced":
+                activate_reduced_control(discovered, result)
             result["phases"]["diagnostic"] = phase(family, args.title, args.output, "diagnostic", 5, 10,
                                                    client_size=args.client_size)
             unassigned, report = scope_snapshot(family, before_helpers)

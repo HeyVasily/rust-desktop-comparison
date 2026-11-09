@@ -202,8 +202,8 @@ class VerificationGateTests(unittest.TestCase):
                 patch.object(runner.subprocess, "Popen", return_value=Mock(wait=Mock(return_value=0))) as launch:
             self.assertEqual(runner.main(), 0)  # Evidence first; --verify-only fails afterward.
         self.assertEqual(launch.call_count, 1)
-        self.assertEqual(json.loads((self.output / "failed-candidates.json").read_text()), ["egui"])
-        self.assertEqual(json.loads((self.output / "stopped-after.json").read_text())["name"], "egui")
+        self.assertEqual(json.loads((self.output / "failed-candidates.json").read_text(encoding="utf-8")), ["egui"])
+        self.assertEqual(json.loads((self.output / "stopped-after.json").read_text(encoding="utf-8"))["name"], "egui")
 
     def run_control(self, theme, launch):
         output = self.output / "control-run"
@@ -221,7 +221,7 @@ class VerificationGateTests(unittest.TestCase):
         output, spawned = self.run_control(theme, Mock())
         spawned.assert_not_called()
         theme.restore.assert_called_once()
-        outcome = json.loads((output / "egui_reduced/outcome.json").read_text())
+        outcome = json.loads((output / "egui_reduced/outcome.json").read_text(encoding="utf-8"))
         self.assertEqual(outcome["status"], "failed")
         self.assertEqual(outcome["measurement_profile"], "diagnostic-reduced")
         self.assertEqual(outcome["control_system_theme"]["status"], "environment_error")
@@ -239,7 +239,7 @@ class VerificationGateTests(unittest.TestCase):
             output = Path(command[command.index("--output") + 1])
             events.append(f"launch-{name}")
             output.mkdir(parents=True, exist_ok=True)
-            (output / "outcome.json").write_text(json.dumps(self.valid_outcome(name, comparison=False)))
+            (output / "outcome.json").write_text(json.dumps(self.valid_outcome(name, comparison=False)), encoding="utf-8")
             return Mock(wait=Mock(return_value=0))
         output, spawned = self.run_control(theme, launch)
         self.assertEqual(spawned.call_count, 2)
@@ -251,7 +251,7 @@ class VerificationGateTests(unittest.TestCase):
         output, spawned = self.run_control(theme, FileNotFoundError("probe executable unavailable"))
         spawned.assert_called_once()
         theme.restore.assert_called_once()
-        outcome = json.loads((output / "egui_reduced/outcome.json").read_text())
+        outcome = json.loads((output / "egui_reduced/outcome.json").read_text(encoding="utf-8"))
         self.assertEqual(outcome["status"], "failed")
         self.assertEqual(outcome["control_system_theme"]["cleanup"]["status"], "passed")
         self.assertTrue((output / "egui_reduced/runner-error.json").is_file())
@@ -272,7 +272,7 @@ class ControlThemeTests(unittest.TestCase):
         self.theme.set.assert_called_once_with("light")
         self.theme.read.assert_called_once()
         self.theme.restore.assert_called_once()
-        evidence = json.loads((self.output / "control-system-theme.json").read_text())
+        evidence = json.loads((self.output / "control-system-theme.json").read_text(encoding="utf-8"))
         self.assertEqual(evidence, self.control.result)
         self.assertEqual(evidence["profile"], "control-system-theme-v1")
         self.assertNotIn("clipboard", evidence)

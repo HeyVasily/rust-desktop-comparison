@@ -1,11 +1,25 @@
 # Desktop platform and integration support
 
-This is a **framework capability matrix**, separate from the resource measurements.
+This is a **framework capability matrix**, not runtime proof and not the resource measurements.
 It describes APIs and integration routes documented for egui/eframe 0.37, Slint
 1.18, Qt 6, GTK 4 and Tauri 2. The small demos implement one window, fixture
 navigation, text filtering and Refresh. They do not implement or qualify every
-feature below. No screen-reader, IME, clipboard, drag-and-drop, tray or mixed-DPI
-acceptance suite was run for this table.
+feature below.
+
+The [historical 2026-11-09 memory matrix](full-native-results.md) did not exercise
+an external clipboard acceptance path and checked dark appearance only after
+relaunch. The current [desktop-integrated baseline and evidence requirements](desktop-integration.md)
+add real external Unicode clipboard tests, verified system appearance at startup,
+and live same-process transitions before idle sampling. Those tests are defined
+for Windows, macOS and Linux X11; actual passing, failed or environment-blocked
+outcomes must come from their own run artifacts. Adding the tests or enabling a
+feature does not make the capability table a passing-results table.
+
+This table still does not qualify end-to-end screen readers, IME composition,
+cross-application drag-and-drop, mixed-DPI behavior or native Wayland clipboard
+automation. [Optional shell checks](shell-integration.md), including tray behavior,
+have a separate scope and evidence. See the [runner guide](github-runners.md) for
+the current acceptance gates and preserved failure statuses.
 
 **B** = framework API/integration, sometimes enabled by a Cargo feature;
 **A** = additional crate, plugin or application integration;
@@ -98,10 +112,13 @@ is not enabled or implemented by this demo. Sources:
 | Multiple windows | B: top-level QWidget instances | B: same | B: same | B: same; compositor policies apply |
 | HiDPI | B: per-monitor support | B: display scaling | B: DPI/backend settings | B: compositor/backend scaling; version-dependent details |
 
-These are Qt 6 API capabilities. The published native comparison used Linux Qt
+These are Qt 6 API capabilities. The historical UI-only native comparison used Linux Qt
 6.4.2, Windows Qt 6.8.3 and Homebrew qtbase 6.12.0_2 on macOS;
 backend/version-specific behavior must be checked against the deployed version
-([recorded versions](full-native-results.md#versions-and-environment)). In particular, Qt 6.8's HiDPI guide describes
+([historical recorded versions](full-native-results.md#versions-and-environment)).
+The current workflow configures Qt 6.8.3 on Linux and Windows and records the
+actual deployment separately; do not transfer historical startup results to it.
+In particular, Qt 6.8's HiDPI guide describes
 integer `wl_output::scale` on Wayland; this table does not transfer that exact
 limitation to every Qt release. Custom widgets need appropriate accessibility
 interfaces. Tray availability can be queried at runtime. Sources:
@@ -114,6 +131,12 @@ interfaces. Tray availability can be queried at runtime. Sources:
 [Qt 6.8 HiDPI details](https://doc.qt.io/qt-6.8/highdpi.html).
 
 ## GTK 4.14 / 4.18
+
+The API evidence below describes GTK capabilities. The current desktop fixture
+also includes libadwaita and its system-driven style manager; the historical
+memory/startup captures used bare GTK4. Neither configuration by itself establishes
+that all platform integrations pass. See the
+[profile and runtime-dependency distinction](desktop-integration.md#feature-configuration).
 
 | Feature | Windows | macOS | Linux X11 | Linux Wayland |
 | --- | --- | --- | --- | --- |

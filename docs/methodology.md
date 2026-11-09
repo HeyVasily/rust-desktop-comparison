@@ -118,11 +118,17 @@ not waive primary acceptance and then silently present it as an equivalent app.
 
 For an integration delta, pair reduced and integrated runs on the **same runner,
 repetition, source revision, compiler, display session and renderer**. Keep font
-installation, fixture state, geometry and sampling policy fixed, alternate run
-order, and publish the paired raw medians/ranges and idle CPU. The integrated
-candidate is measured after the required capabilities have been exercised; the
-reduced candidate is a counterfactual without those capabilities. This is an
-attribution experiment, not a fully equivalent-product contest.
+installation, final light palette, fixture state, geometry and sampling policy
+fixed, alternate run order, and publish the paired raw medians/ranges and idle
+CPU. Verify the reduced control's light OS preference before and after sampling;
+this prerequisite does not claim application-theme or clipboard acceptance.
+
+The warmed workloads are **not identical**. The integrated candidate is measured
+after external clipboard and live system-theme use; the reduced candidate cannot
+exercise those capabilities. The delta measures the whole configured profile
+after use, including retained caches/allocations, not a clipboard-only or
+theme-only allocation. This is a controlled profile comparison, not a fully
+equivalent-product contest or a feature-isolation experiment.
 
 Retain diagnostic controls separately from the primary summary. An old hosted
 runner result and a new local build do not form a matched pair. Enabling more

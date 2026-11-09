@@ -1,5 +1,5 @@
 name: Native desktop comparison
-run-name: "Desktop baseline: ${{ inputs.platforms || 'all' }} / ${{ inputs.framework || 'all' }} (${{ github.event_name }})"
+run-name: "Desktop baseline: ${{ inputs.platforms || contains(github.event.head_commit.message, '[windows-only]') && 'windows' || contains(github.event.head_commit.message, '[macos-only]') && 'macos' || contains(github.event.head_commit.message, '[linux-only]') && 'linux' || 'all' }} / ${{ inputs.framework || 'all' }} (${{ github.event_name }})"
 
 on:
   workflow_dispatch:
@@ -231,7 +231,8 @@ jobs:
         continue-on-error: true
         timeout-minutes: 20
         run: |
-          pkg-config --modversion gtk4 libadwaita-1 > artifacts/build/gtk-version.txt
+          pkg-config --modversion gtk4 > artifacts/build/gtk-version.txt
+          pkg-config --modversion libadwaita-1 > artifacts/build/libadwaita-version.txt
           cargo build --release --locked --manifest-path examples/gtk/Cargo.toml 2>&1 | tee artifacts/build/gtk.log
       - name: Verify build did not mutate benchmark sources
         run: '"$PROBE_PYTHON" tools/record_source.py'

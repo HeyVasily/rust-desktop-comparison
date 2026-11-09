@@ -194,6 +194,20 @@ table.data { border-collapse: collapse; width: 100%; font-size: 0.875rem; margin
 table.data th, table.data td { padding: 8px 10px; border-bottom: 1px solid var(--grid); text-align: left; }
 table.data td.num, table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
+/* Current desktop evidence remains separate from the historical chart. */
+#desktop-results:not(:empty) { margin-top: 28px; }
+.desktop-panel { margin: 20px 0 28px; }
+.desktop-table { min-width: 850px; }
+.desktop-table td, .desktop-table th { vertical-align: top; }
+.desktop-table small { display: block; color: var(--muted); font-weight: 400; margin-top: 3px; }
+.desktop-table th[scope="row"] { min-width: 185px; }
+.acceptance-details { min-width: 210px; }
+.acceptance-details p, .acceptance-details ul { font-size: 0.8125rem; margin: 8px 0; }
+.acceptance-details ul { padding-left: 18px; }
+.invocation > span, .invocation > b { display: block; margin: 3px 0; }
+.evidence-links, .invocation > .evidence-links { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 0.8125rem; }
+.desktop-limits { color: var(--ink-2); font-size: 0.875rem; padding-left: 20px; }
+
 /* Screenshots */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 16px; }
 .shot { margin: 0; overflow: hidden; }

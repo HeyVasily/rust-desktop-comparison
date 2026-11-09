@@ -74,7 +74,14 @@ fn build_ui(app: &Application) {
         }
     });
     window.add_action(&focus_filter);
-    app.set_accels_for_action("win.focus-filter", &["<Primary>f"]);
+    // GTK4 no longer maps <Primary> to Command on macOS: it always means
+    // Control. Use the platform's normal find shortcut explicitly.
+    let find_shortcut = if cfg!(target_os = "macos") {
+        "<Meta>f"
+    } else {
+        "<Control>f"
+    };
+    app.set_accels_for_action("win.focus-filter", &[find_shortcut]);
 
     {
         let refreshes = refreshes.clone();

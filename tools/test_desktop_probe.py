@@ -37,6 +37,7 @@ class FakeInput:
 
     def focus(self, window):
         self.clipboard.events.append(("focus", window["id"]))
+        return dict(status="passed", source="synthetic-test", observed_pid=window["pid"])
 
     def key(self, name, *, command_modifier=False):
         self.clipboard.events.append(("key", name, command_modifier))
@@ -131,6 +132,82 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual([event[0] for event in events], ["pump", "open", "pump", "open"])
         self.assertEqual(events[1][1], 2**40 + 7)
 
+    def test_macos_focus_waits_for_actual_frontmost_pid_and_records_evidence(self):
+        driver = probe.DesktopInput()
+        responses = [Mock(stdout=""), Mock(stdout="7\n"), Mock(stdout="42\n")]
+        with patch.object(probe.sys, "platform", "darwin"), \
+                patch.object(probe, "command", side_effect=responses) as command, \
+                patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
+            evidence = driver.focus(self.window)
+        self.assertEqual(command.call_count, 3)
+        self.assertEqual(evidence["status"], "passed")
+        self.assertEqual(evidence["observed_pid"], "42")
+        self.assertEqual(evidence["attempts"], 2)
+        self.assertEqual(command.call_args.kwargs["timeout"], 1)
+
+    def test_macos_focus_failure_is_bounded_and_not_a_clipboard_capability_failure(self):
+        driver = probe.DesktopInput()
+        with patch.object(probe.sys, "platform", "darwin"), \
+                patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
+                patch.object(probe.time, "monotonic", side_effect=[0, 4]), patch.object(probe.time, "sleep"):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "frontmost PID"):
+                driver.focus(self.window)
+        self.assertEqual(driver.last_focus["status"], "environment_error")
+        self.assertEqual(driver.last_focus["observed_pid"], "7")
+
+    def test_macos_focus_permission_error_is_not_retried_or_bypassed(self):
+        driver = probe.DesktopInput()
+        with patch.object(probe.sys, "platform", "darwin"), \
+                patch.object(probe, "command", side_effect=probe.DesktopEnvironmentError("Automation permission denied")) as command:
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "permission denied"):
+                driver.focus(self.window)
+        self.assertEqual(command.call_count, 1)
+        self.assertEqual(driver.last_focus["status"], "environment_error")
+
+    def quartz(self, fail_key_down=False):
+        events = []
+        api = Mock(kCGEventFlagMaskCommand=1 << 20, kCGEventFlagsChanged=12, kCGHIDEventTap=0)
+        api.CGPreflightPostEventAccess.return_value = True
+        def create(source, code, down):
+            event = dict(code=code, down=down)
+            events.append(event)
+            return event
+        api.CGEventCreateKeyboardEvent.side_effect = create
+        api.CGEventSetType.side_effect = lambda event, kind: event.update(type=kind)
+        api.CGEventSetFlags.side_effect = lambda event, flags: event.update(flags=flags)
+        def post(tap, event):
+            if fail_key_down and event["code"] == 3 and event["down"]:
+                raise RuntimeError("synthetic posting failure")
+        api.CGEventPost.side_effect = post
+        return api, events
+
+    def test_macos_shortcut_posts_real_modifier_and_key_transitions_in_order(self):
+        api, events = self.quartz()
+        with patch.dict("sys.modules", Quartz=api), patch.object(probe.time, "sleep"):
+            probe.DesktopInput.macos_key(3, command_modifier=True)
+        self.assertEqual([(event["code"], event["down"]) for event in events],
+                         [(55, True), (3, True), (3, False), (55, False)])
+        self.assertEqual([event["flags"] for event in events], [1 << 20, 1 << 20, 1 << 20, 0])
+        self.assertEqual([event.get("type") for event in events], [12, None, None, 12])
+
+    def test_macos_shortcut_releases_key_and_command_even_after_posting_error(self):
+        api, events = self.quartz(fail_key_down=True)
+        with patch.dict("sys.modules", Quartz=api), patch.object(probe.time, "sleep"):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "posting failure"):
+                probe.DesktopInput.macos_key(3, command_modifier=True)
+        self.assertEqual([(event["code"], event["down"]) for event in events],
+                         [(55, True), (3, True), (3, False), (55, False)])
+        self.assertEqual(events[-1]["flags"], 0)
+
+    def test_macos_posting_permission_denial_does_not_post_or_request_access(self):
+        api, events = self.quartz()
+        api.CGPreflightPostEventAccess.return_value = False
+        with patch.dict("sys.modules", Quartz=api):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "permission unavailable"):
+                probe.DesktopInput.macos_key(3, command_modifier=True)
+        self.assertEqual(events, [])
+        api.CGRequestPostEventAccess.assert_not_called()
+
     def test_clipboard_changes_external_seed_before_copy_and_checks_unicode_exactly(self):
         checker = self.checks()
         with patch.object(probe.time, "sleep"):
@@ -211,6 +288,7 @@ class DesktopProbeTests(unittest.TestCase):
             return dict(source="fake-os", theme=theme)
         checker.theme = Mock(set=Mock(side_effect=set_theme))
         def capture(window, path):
+            self.assertEqual(checker.clipboard.events[0], ("focus", self.window["id"]))
             Image.new("RGB", (960, 640), "white" if state["theme"] == "light" else "#202020").save(path)
         with patch.object(probe.time, "sleep"):
             result = checker.run(lambda: self.window, capture)
@@ -218,7 +296,19 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual([call.args[0] for call in checker.theme.set.call_args_list], ["dark", "light"])
         self.assertEqual(len(result["live_theme"]["transitions"]), 2)
         self.assertTrue(result["clipboard"]["probe_helpers_reaped_before_idle"])
+        self.assertEqual(result["startup_focus"]["status"], "passed")
+        self.assertEqual(result["clipboard"]["focus"]["status"], "passed")
         self.assertEqual(checker.clipboard.events[-1], ("close",))
+
+    def test_startup_focus_failure_refuses_appearance_and_clipboard_testing(self):
+        checker = self.checks()
+        checker.input.focus = Mock(side_effect=probe.DesktopEnvironmentError("Wrong frontmost PID"))
+        capture = Mock()
+        result = checker.run(lambda: self.window, capture)
+        self.assertEqual(result["status"], "environment_error")
+        self.assertEqual(result["startup_theme"]["status"], "not_run")
+        self.assertEqual(result["clipboard"]["status"], "not_run")
+        capture.assert_not_called()
 
     def test_prepare_refuses_native_wayland_instead_of_claiming_xwayland_coverage(self):
         checker = self.checks()

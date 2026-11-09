@@ -2,6 +2,7 @@
 
 const REPO = "https://github.com/HeyVasily/rust-desktop-comparison";
 const CSV_PATH = "measurements/native-matrix-2026-11-09/summary.csv";
+const DESKTOP_PATH = "data/desktop-results.json";
 const OS_RUNNER = { windows: "windows-2022", macos: "macos-15", linux: "ubuntu-24.04" };
 const OS_ORDER = ["linux", "windows", "macos"];
 const OS_NAME = { windows: "Windows", macos: "macOS", linux: "Linux" };
@@ -36,6 +37,11 @@ const fmt = (n, d = 1) => n.toLocaleString("en-US", { minimumFractionDigits: d, 
 // Missing or unrecognized evidence is not a failed test.
 const parseBoolean = (value) => value === "True" ? true : value === "False" ? false : null;
 const startupLabel = (value) => value === true ? "passed" : value === false ? "failed" : "not tested";
+const numberOrNull = (value) => {
+  if ((typeof value !== "number" && typeof value !== "string") || String(value).trim() === "") return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+};
 
 function parseCsv(text) {
   const [head, ...rows] = text.trim().split(/\r?\n/);
@@ -75,6 +81,104 @@ async function load() {
     };
   }
   return { features, memory };
+}
+
+/* ---------- Optional current desktop evidence (independent of history) ---------- */
+async function loadDesktop() {
+  try {
+    const response = await fetch(DESKTOP_PATH);
+    if (!response.ok) return null;
+    const data = await response.json();
+    if (data?.schema_version !== 1 || !Array.isArray(data.platforms)
+        || !Array.isArray(data.paired_ab) || !Array.isArray(data.sources) || !Array.isArray(data.limitations)) return null;
+    return data;
+  } catch {
+    // Missing, malformed or unavailable optional data must not affect history.
+    return null;
+  }
+}
+
+function acceptanceLabel(acceptance = {}) {
+  if (acceptance.status === "fully_verified") {
+    return ["startup_light", "startup_dark", "live_theme", "clipboard", "cleanup", "process_cleanup", "evidence", "provenance"].every((key) => acceptance[key] === "passed")
+      ? "Fully verified" : "Incomplete evidence";
+  }
+  return { failed: "Failed invocation(s)", environment_error: "Environment blocked", incomplete: "Incomplete evidence", not_run: "Not run" }[acceptance.status] ?? "Not run";
+}
+
+function renderDesktop(data) {
+  const host = $("#desktop-results");
+  if (!data || !host) return;
+  const link = (url, label) => typeof url === "string" && url.startsWith(`${REPO}/`)
+    ? el("a", { href: url, text: label }) : el("span", { text: label });
+  const value = (raw, digits = 2) => numberOrNull(raw) == null ? "—" : fmt(numberOrNull(raw), digits);
+  const evidence = (experiment) => {
+    const a = experiment?.acceptance ?? {};
+    const detail = el("details", { class: "acceptance-details" }, el("summary", { text: acceptanceLabel(a) }));
+    const labels = { startup_light: "Light startup", startup_dark: "Separate dark startup", live_theme: "Live transitions",
+      clipboard: "External clipboard", cleanup: "Settings cleanup", process_cleanup: "Process cleanup",
+      evidence: "Evidence", provenance: "Source/build provenance" };
+    detail.append(el("ul", {}, Object.entries(labels).map(([key, label]) => el("li", { text: `${label}: ${a[key] ?? "not_run"}` }))));
+    detail.append(el("p", { text: `Acceptance invocations: ${a.normal_invocations ?? 0} normal / ${a.dark_invocations ?? 0} dark-startup. These are not the memory sample count.` }));
+    for (const invocation of experiment?.invocations ?? []) {
+      const links = invocation.links ?? {};
+      detail.append(el("p", { class: "invocation" },
+        el("b", { text: `${invocation.case}, r${invocation.repetition}: ${invocation.status || "not_run"}` }),
+        el("span", { text: `Startup ${invocation.startup_theme_status || "not_run"} · live ${invocation.live_theme_status || "not_run"} · clipboard ${invocation.clipboard_status || "not_run"}` }),
+        invocation.reason || invocation.evidence_errors ? el("span", { text: invocation.reason || invocation.evidence_errors }) : null,
+        el("span", { class: "evidence-links" },
+          links.outcome ? link(links.outcome, "Outcome") : null,
+          links.desktop ? link(links.desktop, "Checks") : null,
+          (links.screenshots ?? []).map((shot) => link(shot.url, shot.label))),
+      ));
+    }
+    return detail;
+  };
+  const panels = data.platforms.map((platform) => {
+    const rows = platform.candidates.flatMap((candidate) => {
+      const experiments = candidate.experiments.length ? candidate.experiments : [null];
+      return experiments.flatMap((experiment) => {
+        const measurements = experiment?.measurements?.length ? experiment.measurements : [null];
+        return measurements.map((m) => el("tr", {},
+          el("th", { scope: "row" }, candidate.name,
+            experiment ? el("small", {}, experiment.identity.os, " · ",
+              link(experiment.links.commit, experiment.identity.source_commit?.slice(0, 8) || "unknown commit"), " · ",
+              link(experiment.links.run, `run ${experiment.identity.run_id || "unknown"}`)) : null),
+          el("td", {}, m ? el("b", { text: `${value(m.primary_median_mib)} MiB` }) : el("span", { text: "Not measured" }),
+            el("small", { text: m ? `${m.primary_metric}; ${value(m.primary_min_mib)}–${value(m.primary_max_mib)} MiB` : "No eligible comparison result" })),
+          el("td", { class: "num", text: m ? value(m.repetitions, 0) : "—" }),
+          el("td", { class: "num", text: m ? numberOrNull(m.cpu_median_percent) === 0 ? "0 recorded" : value(m.cpu_median_percent, 5) : "—" }),
+          el("td", {}, evidence(experiment)),
+        ));
+      });
+    });
+    return el("article", { class: "desktop-panel" }, el("h3", { text: platform.name }),
+      el("div", { class: "scroll-x" }, el("table", { class: "data desktop-table" },
+        el("thead", {}, el("tr", {}, ["Desktop profile / source", "Memory median; repetition range", "n", "Idle CPU, % of one core", "Acceptance and snapshots"].map((text) => el("th", { text })))),
+        el("tbody", {}, rows))));
+  });
+  const abRows = OS_ORDER.flatMap((os) => {
+    const summaries = data.paired_ab.filter((row) => row.platform === os);
+    return (summaries.length ? summaries : [null]).map((row) => el("tr", {},
+      el("th", { scope: "row", text: OS_NAME[os] }),
+      el("td", { text: row?.primary_metric ?? "—" }),
+      el("td", { class: "num", text: row ? `${numberOrNull(row.primary_delta_median_mib) > 0 ? "+" : ""}${value(row.primary_delta_median_mib, 3)}` : "Not measured" }),
+      el("td", { class: "num", text: row ? `${value(row.primary_delta_min_mib, 3)}–${value(row.primary_delta_max_mib, 3)}` : "—" }),
+      el("td", { class: "num", text: row ? value(row.paired_repetitions, 0) : "—" }),
+      el("td", {}, row ? link(row.source_url, `Run ${row.run_id} · ${(row.source_commit ?? "").slice(0, 8)} · paired raw data`) : "No eligible same-run pairs"),
+    ));
+  });
+  host.replaceChildren(el("h3", { text: "Current desktop evidence" }),
+    el("p", { class: "section-lede", text: `Imported series: ${data.series}. Eligible measured invocations are separate from acceptance checks. A separate dark-startup failure remains visible even when a light-start measured invocation passed.` }),
+    ...panels,
+    el("h3", { text: "egui matched profile difference" }),
+    el("p", { text: "Desktop-integrated after use minus diagnostic-reduced, paired on the same runner/repetition/source. This is the configured profile difference, not a clipboard-only or theme-only allocation. A small sample does not establish statistical significance." }),
+    el("div", { class: "scroll-x" }, el("table", { class: "data" },
+      el("thead", {}, el("tr", {}, ["OS", "Metric", "Median Δ, MiB", "Paired Δ range, MiB", "Pairs", "Evidence"].map((text) => el("th", { text })))),
+      el("tbody", {}, abRows))),
+    el("ul", { class: "desktop-limits" }, data.limitations.map((text) => el("li", { text }))),
+    el("p", { class: "evidence-links" }, data.sources.map((source) => link(source.url, source.label))),
+  );
 }
 
 /* ---------- Overview ---------- */
@@ -438,3 +542,5 @@ load().then((data) => {
   const msg = el("p", { class: "error" }, `Could not load data (${err.message}). Browse it on `, el("a", { href: REPO, text: "GitHub" }), ".");
   $("#overview-cards").replaceChildren(msg);
 });
+// Fetch/render separately: optional fresh results never block the historical page.
+loadDesktop().then(renderDesktop).catch(() => {});

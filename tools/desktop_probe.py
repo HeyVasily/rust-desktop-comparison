@@ -347,21 +347,89 @@ class DesktopInput:
     """Real platform keyboard input into the focused native window."""
 
     def focus(self, window):
-        if sys.platform.startswith("linux"):
-            command(["xdotool", "windowactivate", "--sync", str(window["id"])])
-        elif sys.platform == "win32":
-            from ctypes import wintypes
-            user32 = ctypes.windll.user32
-            user32.SetForegroundWindow.argtypes = [wintypes.HWND]
-            user32.GetForegroundWindow.restype = wintypes.HWND
-            user32.SetForegroundWindow(window["id"])
-            time.sleep(.2)
-            if user32.GetForegroundWindow() != window["id"]:
-                raise DesktopEnvironmentError("Cannot focus the test application's window")
-        else:
-            command(["osascript", "-e", 'tell application "System Events" to set frontmost of '
-                     f'(first process whose unix id is {int(window["pid"])}) to true'])
+        evidence = dict(status="not_run", requested_pid=window["pid"], requested_window=window["id"])
+        self.last_focus = evidence
+        try:
+            if sys.platform.startswith("linux"):
+                command(["xdotool", "windowactivate", "--sync", str(window["id"])])
+                observed = command(["xdotool", "getactivewindow"]).stdout.strip()
+                evidence.update(source="X11 active window", observed_window=observed)
+                if observed != str(window["id"]):
+                    raise DesktopEnvironmentError("X11 active window differs from the test window")
+            elif sys.platform == "win32":
+                from ctypes import wintypes
+                user32 = ctypes.windll.user32
+                user32.SetForegroundWindow.argtypes = [wintypes.HWND]
+                user32.GetForegroundWindow.restype = wintypes.HWND
+                user32.SetForegroundWindow(window["id"])
+                time.sleep(.2)
+                observed = user32.GetForegroundWindow()
+                evidence.update(source="Windows foreground window", observed_window=observed)
+                if observed != window["id"]:
+                    raise DesktopEnvironmentError("Cannot focus the test application's window")
+            elif sys.platform == "darwin":
+                command(["osascript", "-e", 'tell application "System Events" to set frontmost of '
+                         f'(first process whose unix id is {int(window["pid"])}) to true'], timeout=5)
+                deadline = time.monotonic() + 3
+                for attempt in range(1, 31):
+                    observed = command(["osascript", "-e", 'tell application "System Events" to get unix id '
+                                        'of first process whose frontmost is true'], timeout=1).stdout.strip()
+                    evidence.update(source="macOS frontmost process", observed_pid=observed, attempts=attempt)
+                    if observed == str(window["pid"]):
+                        break
+                    if time.monotonic() >= deadline or attempt == 30:
+                        raise DesktopEnvironmentError(
+                            f"macOS frontmost PID {observed!r} differs from test PID {window['pid']}")
+                    time.sleep(.1)
+            else:
+                raise DesktopEnvironmentError(f"Unsupported input host: {sys.platform}")
+        except DesktopEnvironmentError as error:
+            evidence.update(status="environment_error", reason=str(error))
+            raise
         time.sleep(.2)
+        evidence["status"] = "passed"
+        return evidence
+
+    @staticmethod
+    def macos_key(code, command_modifier=False):
+        """Post physical transitions, not a key event with modifier flags only.
+
+        Winit consumers can derive modifier state from the real Command key's
+        flagsChanged event. All pressed keys get a release attempt in finally.
+        TCC is checked without requesting access or falling back to another route.
+        """
+        import Quartz
+        if not hasattr(Quartz, "CGPreflightPostEventAccess") or not Quartz.CGPreflightPostEventAccess():
+            raise DesktopEnvironmentError("macOS keyboard event-posting permission unavailable; no TCC prompt attempted")
+        mask = Quartz.kCGEventFlagMaskCommand if command_modifier else 0
+
+        def post(keycode, down, flags, *, modifier=False):
+            event = Quartz.CGEventCreateKeyboardEvent(None, keycode, down)
+            if event is None:
+                raise DesktopEnvironmentError("Cannot create macOS keyboard event")
+            if modifier:
+                Quartz.CGEventSetType(event, Quartz.kCGEventFlagsChanged)
+            Quartz.CGEventSetFlags(event, flags)
+            Quartz.CGEventPost(Quartz.kCGHIDEventTap, event)
+            time.sleep(.03)
+
+        modifier_attempted = key_attempted = False
+        try:
+            try:
+                if command_modifier:
+                    modifier_attempted = True
+                    post(55, True, mask, modifier=True)  # kVK_Command, physical left Command.
+                key_attempted = True
+                post(code, True, mask)
+            finally:
+                try:
+                    if key_attempted:
+                        post(code, False, mask)
+                finally:
+                    if modifier_attempted:
+                        post(55, False, 0, modifier=True)
+        except Exception as error:
+            raise DesktopEnvironmentError(f"macOS keyboard event injection failed: {error}") from error
 
     def key(self, name, *, command_modifier=False):
         if sys.platform.startswith("linux"):
@@ -375,10 +443,11 @@ class DesktopInput:
                 ctypes.windll.user32.keybd_event(key, 0, 0, 0)
             for key in reversed(sequence):
                 ctypes.windll.user32.keybd_event(key, 0, 0x0002, 0)
-        else:
+        elif sys.platform == "darwin":
             code = {"a": 0, "f": 3, "c": 8, "v": 9, "BackSpace": 51, "Tab": 48}[name]
-            suffix = " using {command down}" if command_modifier else ""
-            command(["osascript", "-e", f'tell application "System Events" to key code {code}{suffix}'])
+            self.macos_key(code, command_modifier)
+        else:
+            raise DesktopEnvironmentError(f"Unsupported input host: {sys.platform}")
         time.sleep(.15)
 
     def park_pointer(self):
@@ -488,7 +557,11 @@ class DesktopChecks:
                       protocol="external Unicode seed → Ctrl/Cmd+V into filter → replace OS clipboard → Ctrl/Cmd+C → external read")
         self.result["clipboard"] = result
         window = self.stable_window(get_window, identity)
-        self.input.focus(window)
+        try:
+            result["focus"] = self.input.focus(window)
+        finally:
+            if "focus" not in result and hasattr(self.input, "last_focus"):
+                result["focus"] = self.input.last_focus
         self.input.key("f", command_modifier=True)
         self.input.key("a", command_modifier=True)
         self.clipboard.write(payload)
@@ -529,6 +602,16 @@ class DesktopChecks:
             raise RuntimeError("No application window for desktop checks")
         identity = (window.get("pid"), window["id"])
         self.result["application_window"] = dict(pid=identity[0], id=identity[1])
+        try:
+            # A mapped window is not necessarily foreground on macOS. Establish
+            # the same ordinary foreground workload before the first palette
+            # capture, not just immediately before clipboard keyboard input.
+            self.result["startup_focus"] = self.input.focus(window)
+        except DesktopEnvironmentError as error:
+            self.result["startup_focus"] = getattr(self.input, "last_focus", dict(status="environment_error", reason=str(error)))
+            self.result.update(status="environment_error", reason=f"Initial foreground activation failed: {error}")
+            self.save()
+            return self.result
         self.result["startup_theme"] = self.appearance(self.initial, "startup", get_window, identity, capture)
         self.save()
         transitions = []

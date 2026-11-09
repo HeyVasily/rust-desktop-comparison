@@ -11,7 +11,8 @@ fi
 mkdir -p target artifacts/build
 pacman -Q > artifacts/build/msys2-packages.txt
 { rustc -Vv; cargo -V; } > artifacts/build/gtk-rust-version.txt
-pkg-config --modversion gtk4 libadwaita-1 > artifacts/build/gtk-version.txt
+pkg-config --modversion gtk4 > artifacts/build/gtk-version.txt
+pkg-config --modversion libadwaita-1 > artifacts/build/libadwaita-version.txt
 cargo tree --locked -e features --manifest-path examples/gtk/Cargo.toml \
     > artifacts/build/gtk-msys2-gnu-features.txt
 
@@ -25,5 +26,5 @@ test -f target/msys2/release/veranda-gtk-comparison.exe
 # Forward-slash Windows paths are accepted by the loader and JSON without
 # special escaping. The probe must apply this only to the GTK child process.
 runtime_bin="$(cygpath -am "$MINGW_PREFIX/bin")"
-printf '{"path_prepend":"%s","environment":{"GDK_BACKEND":"win32","GSK_RENDERER":"cairo","GTK_CSD":"0"},"renderer_variant":"GTK4 Cairo software renderer; native decorations; MSYS2 UCRT64; gtk4-rs"}\n' \
+printf '{"path_prepend":"%s","environment":{"GDK_BACKEND":"win32","GSK_RENDERER":"cairo","GTK_CSD":"0"},"renderer_variant":"GTK4 Cairo software renderer; native decorations; MSYS2 UCRT64; gtk4-rs + libadwaita"}\n' \
     "$runtime_bin" > artifacts/build/windows-gtk-runtime.json
