@@ -3,13 +3,13 @@
 **[Open the interactive comparison →](https://heyvasily.github.io/rust-desktop-comparison/)**
 &nbsp;·&nbsp; [Native features](docs/features.md)
 &nbsp;·&nbsp; [Full measurements](docs/full-native-results.md)
-&nbsp;·&nbsp; [Raw data](measurements/native-matrix-2026-11-07/README.md)
+&nbsp;·&nbsp; [Raw data](measurements/native-matrix-2026-11-09/summary.csv)
 &nbsp;·&nbsp; [Methodology](docs/methodology.md)
 
-The same small desktop interface built five times — **egui/eframe, GTK4, Slint,
-Qt Widgets and Tauri** — then measured on GitHub-hosted Windows, macOS and Linux
-runners, with real screenshots, the layout code and a sourced matrix of native OS
-features.
+The same small desktop interface built five times — **egui/eframe, GTK4 (gtk4-rs),
+Slint, Qt Widgets and Tauri** — then measured five times on fresh GitHub-hosted
+Windows, macOS and Linux runners, with real screenshots in light and dark mode,
+the layout code and a sourced matrix of native OS features.
 
 Every example shows 10 synthetic yards and 100 projects: navigation, selection,
 scrolling, an editable filter and a Refresh button that advances an in-memory
@@ -19,37 +19,53 @@ costs before your application does anything.
 | Framework | Language here | UI model | Example |
 | --- | --- | --- | --- |
 | egui/eframe 0.37.0 | Rust | Immediate mode, own drawing (OpenGL/wgpu) | [main.rs](examples/egui/src/main.rs) |
-| GTK4 | C (Rust apps use gtk4-rs, not measured) | Retained widget tree, GTK theme | [main.c](examples/gtk-c/main.c) |
+| GTK4 via gtk4-rs 0.11.5 | Rust | Retained widget tree, GTK theme | [main.rs](examples/gtk/src/main.rs) |
 | Slint 1.18.1 | Rust + `.slint` markup | Declarative, own renderer (software here) | [main.slint](examples/slint/ui/main.slint) |
 | Qt Widgets | C++17 | Retained widget tree, platform styles | [main.cpp](examples/qt/main.cpp) |
 | Tauri 2.12.5 | Rust + HTML/CSS/JS | System webview | [index.html](examples/tauri/frontend/index.html) |
 
 ## Idle memory on three operating systems
 
-Median memory of the whole application process family (including webview helpers)
-with a 960×640 window, after 30 s of settling and 120 one-second samples.
-**Lower is better.** Compare rows within a column: each OS reports memory differently.
+Memory of the whole application process family (including webview helpers) with a
+960×640 window, as each OS's own monitor reports it: **Linux PSS**, **Windows
+private working set** (Task Manager) and **macOS physical footprint** (Activity
+Monitor). Median of five runs on separate VMs, with the range in brackets.
+**Lower is better.** Compare rows within a column.
 
-| Framework | Linux RSS, MiB | Windows Working Set, MiB | macOS RSS, MiB |
+| Framework | Linux PSS, MiB | Windows private WS, MiB | macOS footprint, MiB |
 | --- | ---: | ---: | ---: |
-| egui / eframe | 120.71 | 51.79 | 76.70 |
-| GTK4 (C) | 240.27 | 75.45 | 119.55 |
-| Slint | **22.99** | **21.57** | **67.58** |
-| Qt Widgets | 33.60 | 31.67 | 88.70 |
-| Tauri | 499.20 | 270.71 | 134.86 |
+| egui / eframe | 96.4 [95.9–96.6] | 26.9 [26.3–29.4] | 28.2 [27.3–30.6] |
+| GTK4 (gtk4-rs) | 211.7 [211.5–212.0] | 33.2 [33.0–33.4] | 43.7 [36.0–46.1] |
+| Slint | **17.5** [17.4–17.7] | **9.0** [9.0–9.1] | **17.1** [16.9–17.2] |
+| Qt Widgets | 23.0 [22.9–23.0] | 15.0 [15.0–15.2] | 24.2 [24.1–24.5] |
+| Tauri | 338.2 [337.1–340.1] | 116.2 [115.9–116.4] | 40.8 [40.4–41.1] |
 
-Idle CPU stayed below 0.11 % of one core in every case, too small to rank;
-per-case CPU, elapsed time and toolkit versions are in the
-[full report](docs/full-native-results.md).
+Idle CPU stayed below 0.11 % of one core everywhere, too small to rank. The
+[full report](docs/full-native-results.md) adds summed RSS / Working Set, CPU,
+outliers, executable sizes and versions.
 
 > [!NOTE]
-> **How to read these numbers.** RSS and Working Set sum every process in the
-> family, so shared pages are counted more than once — this inflates multi-process
-> apps such as Tauri on Linux (WebKitGTK). These are idle UI-only observations,
-> not startup, interaction or frame-rate measurements. Linux used Ubuntu's GTK 4.14
-> and Qt 6.4 packages under X11 without a pinned GSK renderer, so its GTK figure is
-> not comparable with the [earlier Wayland/Cairo measurements](docs/historical-comparison.md#why-the-current-linux-numbers-differ)
-> (Slint 35.00, GTK 41.98, Qt 51.91 MiB GUI RSS, backend-connected).
+> **How to read these numbers.** PSS and footprint count shared libraries
+> proportionally, so multi-process apps are no longer double-counted (Tauri on
+> Linux: 501 MiB summed RSS → 338 MiB PSS). Linux ran under Xvfb with Mesa llvmpipe;
+> GL-based toolkits (GTK 4.14, egui) carry its private allocations there, and the GTK
+> renderer was not pinned. These are idle UI-only observations, not startup,
+> interaction or frame-rate measurements. Earlier series:
+> [2026-11-07 single run with GTK in C](docs/native-matrix-2026-11-07.md) and the
+> [backend-connected Wayland measurements](docs/historical-comparison.md#why-the-current-linux-numbers-differ).
+
+## Executable size and dark mode
+
+| Framework | Executable, Linux / Windows / macOS | Follows system dark mode, Win / mac / Linux |
+| --- | --- | --- |
+| egui / eframe | 12.0 / 12.8 / 5.4 MiB | ✅ / ✅ / ❌ |
+| GTK4 (gtk4-rs) | 0.4 / 2.1 / 0.4 MiB + GTK runtime | ❌ / ❌ / ❌ |
+| Slint | 19.6 / 12.8 / 11.7 MiB | ✅ / ✅ / ✅ |
+| Qt Widgets | 0.03 / 0.05 / 0.07 MiB + Qt runtime (49 MiB deployed on Windows) | ❌ / ✅ / ❌ |
+| Tauri | 6.6 / 8.2 / 6.3 MiB + system webview | ✅ / ✅ / ✅ (app CSS) |
+
+Dark mode was tested by switching the OS itself to dark and relaunching each example;
+see the [captures](docs/full-native-results.md#system-dark-mode).
 
 ## Native features and OS integration
 
@@ -61,7 +77,7 @@ Every cell links to its source in the [detailed matrix](docs/features.md).
 | Capability | egui / eframe | GTK4 | Slint | Qt Widgets | Tauri |
 | --- | :---: | :---: | :---: | :---: | :---: |
 | Native-looking controls | ❌ | 🟡 Win<br>🟡 mac<br>✅ Linux | 🟡 | ✅ Win<br>✅ mac<br>🟡 Linux | 🟡 |
-| Follows system light/dark | ✅ | ❔ Win<br>❔ mac<br>✅ Linux | ✅ | ✅ Win<br>✅ mac<br>🟡 Linux | ✅ |
+| Follows system light/dark | ✅ Win<br>✅ mac<br>❌ Linux | ❌ | ✅ | ❌ Win<br>✅ mac<br>❌ Linux | ✅ |
 | Native Wayland and X11 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Screen readers | ✅ | 🟡 Win<br>🟡 mac<br>✅ Linux | ✅ | ✅ | ✅ |
 | Input methods (CJK, dead keys) | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -74,28 +90,28 @@ Every cell links to its source in the [detailed matrix](docs/features.md).
 | Multiple windows | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Installers and updates | 📦 | 🟡 Win<br>🟡 mac<br>✅ Linux | 📦 | 🟡 | ✅ |
 
-✅ Built in · 🟡 Partial · 🧩 Official plugin · 📦 Third-party crate · ❌ Not available · ❔ Not verified. Checked 2026-11-08.
+✅ Built in · 🟡 Partial · 🧩 Official plugin · 📦 Third-party crate · ❌ Not available · ❔ Not verified. Checked 2026-11-09.
 <!-- features:end -->
 
 ## What the interfaces look like
 
-Real **960×640 Linux client captures**: all projects, project-001 selected,
-empty filter. The [interactive page](https://heyvasily.github.io/rust-desktop-comparison/#screenshots)
+Real **960×640 Linux client captures** from the measured runs: all projects,
+project-001 selected, empty filter. The [interactive page](https://heyvasily.github.io/rust-desktop-comparison/#screenshots)
 and the [full gallery](docs/full-native-results.md#interfaces-captured-during-measurement)
-show the same interfaces on Windows and macOS.
+show Windows, macOS and dark mode.
 
 <table>
   <tr>
-    <td width="50%"><b>egui / eframe</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/egui.png" alt="egui / eframe on Linux"></td>
-    <td width="50%"><b>GTK4 (C)</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/gtk.png" alt="GTK4 C control on Linux"></td>
+    <td width="50%"><b>egui / eframe</b><br><img src="screenshots/native-42538198685/ubuntu-24.04/egui.png" alt="egui / eframe on Linux"></td>
+    <td width="50%"><b>GTK4 (gtk4-rs)</b><br><img src="screenshots/native-42538198685/ubuntu-24.04/gtk.png" alt="GTK4 via gtk4-rs on Linux"></td>
   </tr>
   <tr>
-    <td><b>Slint</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/slint.png" alt="Slint on Linux"></td>
-    <td><b>Qt Widgets</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/qt.png" alt="Qt Widgets on Linux"></td>
+    <td><b>Slint</b><br><img src="screenshots/native-42538198685/ubuntu-24.04/slint.png" alt="Slint on Linux"></td>
+    <td><b>Qt Widgets</b><br><img src="screenshots/native-42538198685/ubuntu-24.04/qt.png" alt="Qt Widgets on Linux"></td>
   </tr>
   <tr>
-    <td><b>Tauri / WebKitGTK</b><br><img src="screenshots/native-42420765503/ubuntu-24.04/tauri.png" alt="Tauri / WebKitGTK on Linux"></td>
-    <td></td>
+    <td><b>Tauri / WebKitGTK</b><br><img src="screenshots/native-42538198685/ubuntu-24.04/tauri.png" alt="Tauri / WebKitGTK on Linux"></td>
+    <td><b>Slint, system dark mode</b><br><img src="screenshots/native-42538198685/ubuntu-24.04/slint-dark.png" alt="Slint on Linux in system dark mode"></td>
   </tr>
 </table>
 
@@ -104,7 +120,7 @@ show the same interfaces on Windows and macOS.
 | Framework | Layout in these examples | State and events |
 | --- | --- | --- |
 | egui/eframe | Rust panel/widget calls inside `App::ui` | Rust fields; widget responses update state |
-| GTK4 | C code builds persistent `GtkBox`/`GtkListBox` widgets | GTK signals call C callbacks |
+| GTK4 (gtk4-rs) | Rust builds persistent `GtkBox`/`ListBox` widgets | GTK signals call Rust closures sharing `Rc<Cell>` state |
 | Slint | Declarative `.slint` boxes, properties and repeated rows | Rust models and callbacks update properties |
 | Qt Widgets | C++ builds `QWidget`, `QVBoxLayout` and `QHBoxLayout` objects | Qt signals connect to C++ lambdas |
 | Tauri | HTML panels, CSS Grid and persistent DOM buttons | JavaScript event handlers; Rust starts the system webview |
@@ -128,23 +144,23 @@ egui::CentralPanel::default().show(ui, |ui| {
 });
 ```
 
-GTK constructs a persistent widget tree and connects signals to callbacks. The
-[C control](examples/gtk-c/main.c) uses this layout shape:
+GTK constructs a persistent widget tree and connects signals to closures. The
+[gtk4-rs example](examples/gtk/src/main.rs) mirrors the earlier
+[C control](examples/gtk-c/main.c) widget for widget:
 
-```c
-GtkWidget *body = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
-GtkWidget *yards = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
-GtkWidget *scroll = gtk_scrolled_window_new();
-projects = gtk_list_box_new();
-gtk_widget_set_hexpand(scroll, TRUE);
-gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroll), projects);
-gtk_box_append(GTK_BOX(body), yards);
-gtk_box_append(GTK_BOX(body), scroll);
-g_signal_connect(projects, "row-selected", G_CALLBACK(select_project), NULL);
+```rust
+let body = GtkBox::new(Orientation::Horizontal, 12);
+let yards = GtkBox::new(Orientation::Vertical, 4);
+let projects = ListBox::new();
+let scroll = ScrolledWindow::new();
+scroll.set_hexpand(true);
+scroll.set_child(Some(&projects));
+body.append(&yards);
+body.append(&scroll);
+projects.connect_row_selected(move |_, row| { /* update details */ });
 ```
 
 These are shortened layout excerpts. The linked files contain the runnable applications.
-The GTK control is written in C; these numbers do not measure Rust GTK bindings.
 
 ### Slint: declarative widgets and Rust callbacks
 
@@ -252,10 +268,10 @@ Read the [full methodology and verification](docs/methodology.md) or inspect the
 
 ## Build and run
 
-The commands below and the original `tools/measure.py` probe target Linux/X11.
+The commands below target Linux; the original `tools/measure.py` probe targets X11.
 The separate [native runner guide](docs/github-runners.md) covers Windows/macOS and
-the new examples. The original measured build used Rust/Cargo
-1.99.1 and GTK4 4.18.6 on Debian 13. You need Rust/Cargo, Python 3, a C compiler,
+the new examples. The original Debian measurements built the
+[C control](examples/gtk-c/main.c) with GTK4 4.18.6. You need Rust/Cargo, Python 3, a C compiler,
 `pkg-config`, GTK4 development libraries, and the X11/OpenGL development libraries.
 The [reproduction guide](docs/methodology.md#reproduce) lists the Debian packages.
 
@@ -266,8 +282,7 @@ export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/target}"
 mkdir -p "$CARGO_TARGET_DIR"
 cargo fmt --manifest-path examples/egui/Cargo.toml --check
 cargo build --release --locked --manifest-path examples/egui/Cargo.toml
-cc -O2 -Wall -Wextra -Werror examples/gtk-c/main.c \
-    -o "$CARGO_TARGET_DIR/gtk-control" $(pkg-config --cflags --libs gtk4)
+cargo build --release --locked --manifest-path examples/gtk/Cargo.toml
 ```
 
 Launch one example at a time in a graphical Linux session:
@@ -275,7 +290,7 @@ Launch one example at a time in a graphical Linux session:
 ```sh
 "$CARGO_TARGET_DIR/release/veranda-egui-comparison"
 # After closing egui:
-"$CARGO_TARGET_DIR/gtk-control"
+"$CARGO_TARGET_DIR/release/veranda-gtk-comparison"
 ```
 
 The binary name and GTK application ID retain the original experiment's names.

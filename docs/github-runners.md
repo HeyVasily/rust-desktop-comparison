@@ -22,6 +22,27 @@ Different operating systems and architectures must be analyzed separately.
 The probe uses the captured Python 3.12 executable throughout the job, including
 child processes; tool installers can otherwise change which `python` is on `PATH`.
 
+## Repetitions, memory metrics and dark mode
+
+`repetitions` (1, 3 or 5; default 5) runs every OS job that many times, each on a
+fresh runner VM, so VM-to-VM variation and outliers become visible. Artifacts are
+named `native-<runner>-<run-id>-r<k>`. `tools/import_native_run.py RUN_ID DIR SERIES`
+copies outcomes, gzipped samples and repetition-1 screenshots into the repository and
+writes `runs.csv` (one row per repetition) and `summary.csv` (median of repetition
+medians, min/max, spread, repetitions more than 10 % from the median).
+
+Each sample records, per process, RSS/Working Set and a primary metric that does not
+count shared pages in full: Linux PSS (`/proc/<pid>/smaps_rollup` via psutil), macOS
+`phys_footprint` (`proc_pid_rusage`, Activity Monitor's *Memory*) and the Windows
+private working set (psutil USS, Task Manager's *Memory*). Executable sizes are
+recorded in `build/binary-sizes.json`.
+
+With `appearance` enabled, repetition 1 switches the OS to dark mode after the
+measurements (Windows registry `AppsUseLightTheme=0`, macOS `AppleInterfaceStyle=Dark`,
+Linux `color-scheme prefer-dark` served by the Settings portal through D-Bus
+activation), relaunches every example in diagnostic mode under `artifacts/dark/`, and
+compares mean client luminance with the light capture in `appearance-summary.json`.
+
 ## Run and inspect
 
 In the repository's Actions tab, select **Native desktop comparison**, then **Run

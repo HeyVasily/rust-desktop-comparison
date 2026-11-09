@@ -1,13 +1,31 @@
 {
-  "checked": "2026-11-08",
-  "about": "Native-integration capabilities of the framework versions used in this repository. 'docs' cells cite upstream documentation or release notes; 'repo' cells are backed by this repository's lockfiles, examples or screenshots. Capabilities describe the current upstream release line; the Linux runs used older Ubuntu packages of GTK and Qt. Nothing here was exercised by the measured examples unless the evidence says so.",
+  "checked": "2026-11-09",
+  "about": "Native-integration capabilities of the framework versions used in this repository. 'docs' cells cite upstream documentation or release notes; 'repo' cells are backed by this repository's lockfiles, examples, captures or runner checks. Light/dark following was tested on GitHub runners by switching the OS to dark mode and relaunching each example. Other capabilities describe the current upstream release line; the Linux runs used Ubuntu 24.04's GTK 4.14 and Qt 6.4.",
   "levels": {
-    "yes": {"label": "Built in", "symbol": "✅"},
-    "partial": {"label": "Partial", "symbol": "🟡"},
-    "plugin": {"label": "Official plugin", "symbol": "🧩"},
-    "crate": {"label": "Third-party crate", "symbol": "📦"},
-    "no": {"label": "Not available", "symbol": "❌"},
-    "unknown": {"label": "Not verified", "symbol": "❔"}
+    "yes": {
+      "label": "Built in",
+      "symbol": "✅"
+    },
+    "partial": {
+      "label": "Partial",
+      "symbol": "🟡"
+    },
+    "plugin": {
+      "label": "Official plugin",
+      "symbol": "🧩"
+    },
+    "crate": {
+      "label": "Third-party crate",
+      "symbol": "📦"
+    },
+    "no": {
+      "label": "Not available",
+      "symbol": "❌"
+    },
+    "unknown": {
+      "label": "Not verified",
+      "symbol": "❔"
+    }
   },
   "os": {
     "windows": "Windows",
@@ -31,24 +49,27 @@
       "limits": [
         "Same custom look on every OS",
         "Menus, tray, dialogs and notifications come from separate crates",
-        "No right-to-left text in 0.37"
+        "No right-to-left text in 0.37",
+        "Did not follow dark mode on Linux X11"
       ]
     },
     {
       "id": "gtk",
       "name": "GTK4",
       "version": "4.14.5 Linux · 4.24.1 Windows/macOS",
-      "language": "C here; Rust via gtk4-rs",
+      "language": "Rust (gtk4-rs 0.11.5)",
       "model": "Retained widget tree styled by the GTK theme (Adwaita)",
       "license": "LGPL-2.1-or-later",
-      "source": "examples/gtk-c/main.c",
+      "source": "examples/gtk/src/main.rs",
       "home": "https://www.gtk.org/",
       "strengths": [
         "Native look and system integration on GNOME/Linux",
-        "Mature text stack (Pango) with bidi and IME"
+        "Mature text stack (Pango) with bidi and IME",
+        "Smallest executables here; the GTK runtime is separate"
       ],
       "limits": [
         "Looks like GTK, not like Windows or macOS",
+        "Did not follow system dark mode on any runner",
         "Windows/macOS screen-reader backend is new and opt-in",
         "No tray icon API; runtime must be bundled on Windows/macOS"
       ]
@@ -63,9 +84,9 @@
       "source": "examples/slint/ui/main.slint",
       "home": "https://slint.dev/",
       "strengths": [
-        "Smallest measured footprint on Windows and Linux",
-        "Built-in tray icon and native menu bar on Windows/macOS",
-        "Styles that imitate Fluent, Cupertino and Material"
+        "Smallest measured memory on every system",
+        "Followed system dark mode on all three runners",
+        "Built-in tray icon and native menu bar on Windows/macOS"
       ],
       "limits": [
         "Drag and drop works only inside the app in 1.17–1.18",
@@ -107,8 +128,9 @@
         "Native menus and tray icon"
       ],
       "limits": [
-        "Highest measured memory: the webview runs extra processes",
-        "Different browser engine on each OS"
+        "Highest measured memory on Linux and Windows: the webview runs extra processes",
+        "Different browser engine on each OS",
+        "Dark mode needs the app’s own CSS"
       ]
     }
   ],
@@ -122,23 +144,98 @@
           "title": "Native-looking controls",
           "description": "Do buttons, lists and inputs look like the platform's own controls?",
           "support": {
-            "egui": {"level": "no", "note": "egui draws its own style, identical on every OS.", "evidence": "repo", "source": "docs/full-native-results.md#interfaces-captured-during-measurement"},
-            "gtk": {"level": "partial", "os": {"linux": "yes", "windows": "partial", "macos": "partial"}, "note": "Native on GNOME. On Windows and macOS it keeps the GTK theme rather than platform controls.", "evidence": "repo", "source": "docs/full-native-results.md#interfaces-captured-during-measurement"},
-            "slint": {"level": "partial", "note": "Built-in styles imitate Fluent, Cupertino and Material; the native style renders through Qt when the Qt backend is used. Controls are drawn by Slint.", "evidence": "docs", "source": "https://docs.slint.dev/latest/docs/slint/reference/std-widgets/style/"},
-            "qt": {"level": "yes", "os": {"windows": "yes", "macos": "yes", "linux": "partial"}, "note": "Platform styles on Windows and macOS; on Linux the look depends on the desktop's Qt platform theme (Fusion by default).", "evidence": "docs", "source": "https://doc.qt.io/qt-6/gallery.html"},
-            "tauri": {"level": "partial", "note": "Layout and styling come from the app's CSS. Form controls and scrollbars follow the webview's defaults.", "evidence": "repo", "source": "examples/tauri/frontend/style.css"}
+            "egui": {
+              "level": "no",
+              "note": "egui draws its own style, identical on every OS.",
+              "evidence": "repo",
+              "source": "docs/full-native-results.md#interfaces-captured-during-measurement"
+            },
+            "gtk": {
+              "level": "partial",
+              "os": {
+                "linux": "yes",
+                "windows": "partial",
+                "macos": "partial"
+              },
+              "note": "Native on GNOME. On Windows and macOS it keeps the GTK theme rather than platform controls.",
+              "evidence": "repo",
+              "source": "docs/full-native-results.md#interfaces-captured-during-measurement"
+            },
+            "slint": {
+              "level": "partial",
+              "note": "Built-in styles imitate Fluent, Cupertino and Material; the native style renders through Qt when the Qt backend is used. Controls are drawn by Slint.",
+              "evidence": "docs",
+              "source": "https://docs.slint.dev/latest/docs/slint/reference/std-widgets/style/"
+            },
+            "qt": {
+              "level": "yes",
+              "os": {
+                "windows": "yes",
+                "macos": "yes",
+                "linux": "partial"
+              },
+              "note": "Platform styles on Windows and macOS; on Linux the look depends on the desktop's Qt platform theme (Fusion by default).",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/gallery.html"
+            },
+            "tauri": {
+              "level": "partial",
+              "note": "Layout and styling come from the app's CSS. Form controls and scrollbars follow the webview's defaults.",
+              "evidence": "repo",
+              "source": "examples/tauri/frontend/style.css"
+            }
           }
         },
         {
           "id": "dark-mode",
           "title": "Follows system light/dark",
-          "description": "Does the UI switch with the OS appearance without app code?",
+          "description": "Tested: the OS was switched to dark mode and each example relaunched.",
           "support": {
-            "egui": {"level": "yes", "note": "eframe defaults to ThemePreference::System.", "evidence": "docs", "source": "https://docs.rs/egui/0.37.0/egui/enum.ThemePreference.html"},
-            "gtk": {"level": "partial", "os": {"linux": "yes", "windows": "unknown", "macos": "unknown"}, "note": "Reads the desktop color-scheme setting on Linux (gtk-interface-color-scheme). Windows/macOS behaviour was not verified.", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/property.Settings.gtk-interface-color-scheme.html"},
-            "slint": {"level": "yes", "note": "std-widgets styles follow the system color scheme; Palette.color-scheme can override it.", "evidence": "docs", "source": "https://docs.slint.dev/latest/docs/slint/reference/std-widgets/globals/palette/"},
-            "qt": {"level": "yes", "os": {"windows": "yes", "macos": "yes", "linux": "partial"}, "note": "QStyleHints::colorScheme since Qt 6.5. On Linux it depends on the platform theme plugin.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/qstylehints.html#colorScheme-prop"},
-            "tauri": {"level": "yes", "note": "Window theme follows the system, and CSS prefers-color-scheme works in the webview.", "evidence": "docs", "source": "https://v2.tauri.app/reference/javascript/api/namespacewindow/"}
+            "egui": {
+              "level": "partial",
+              "os": {
+                "windows": "yes",
+                "macos": "yes",
+                "linux": "no"
+              },
+              "note": "Followed the OS on Windows and macOS (ThemePreference::System). On Linux X11 it stayed light although the Settings portal reported prefer-dark.",
+              "evidence": "repo",
+              "source": "docs/full-native-results.md#system-dark-mode"
+            },
+            "gtk": {
+              "level": "no",
+              "os": {
+                "windows": "no",
+                "macos": "no",
+                "linux": "no"
+              },
+              "note": "Stayed light on every runner: GTK 4.24 on Windows/macOS and GTK 4.14 with the Linux portal set to prefer-dark. GTK 4.20+ documents gtk-interface-color-scheme for Linux; libadwaita apps follow the portal.",
+              "evidence": "repo",
+              "source": "docs/full-native-results.md#system-dark-mode"
+            },
+            "slint": {
+              "level": "yes",
+              "note": "The std-widgets style switched to dark on Windows, macOS and Linux (portal).",
+              "evidence": "repo",
+              "source": "docs/full-native-results.md#system-dark-mode"
+            },
+            "qt": {
+              "level": "partial",
+              "os": {
+                "windows": "no",
+                "macos": "yes",
+                "linux": "no"
+              },
+              "note": "Switched on macOS (Qt 6.12). Stayed light on Windows Server 2022 with Qt 6.8.3 and on Linux with Qt 6.4, which predates QStyleHints::colorScheme (6.5).",
+              "evidence": "repo",
+              "source": "docs/full-native-results.md#system-dark-mode"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "All three webviews reported prefers-color-scheme: dark. The app must style dark mode itself; the example defines both palettes in CSS.",
+              "evidence": "repo",
+              "source": "docs/full-native-results.md#system-dark-mode"
+            }
           }
         },
         {
@@ -146,11 +243,36 @@
           "title": "Native Wayland and X11",
           "description": "Runs natively on both Linux display protocols.",
           "support": {
-            "egui": {"level": "yes", "note": "Through winit. The measured example enables only the x11 feature on Linux.", "evidence": "repo", "source": "examples/egui/Cargo.toml"},
-            "gtk": {"level": "yes", "note": "Wayland and X11 backends are part of GTK.", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/running.html"},
-            "slint": {"level": "yes", "note": "Through winit, plus a LinuxKMS backend without a compositor.", "evidence": "repo", "source": "examples/slint/Cargo.lock"},
-            "qt": {"level": "yes", "note": "Wayland and xcb platform plugins.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/linux.html"},
-            "tauri": {"level": "yes", "note": "Through GTK3 and WebKitGTK.", "evidence": "docs", "source": "https://v2.tauri.app/reference/webview-versions/"}
+            "egui": {
+              "level": "yes",
+              "note": "Through winit. The measured example enables only the x11 feature on Linux.",
+              "evidence": "repo",
+              "source": "examples/egui/Cargo.toml"
+            },
+            "gtk": {
+              "level": "yes",
+              "note": "Wayland and X11 backends are part of GTK.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/running.html"
+            },
+            "slint": {
+              "level": "yes",
+              "note": "Through winit, plus a LinuxKMS backend without a compositor.",
+              "evidence": "repo",
+              "source": "examples/slint/Cargo.lock"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "Wayland and xcb platform plugins.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/linux.html"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "Through GTK3 and WebKitGTK.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/reference/webview-versions/"
+            }
           }
         }
       ]
@@ -164,11 +286,41 @@
           "title": "Screen readers",
           "description": "Exposes the UI to Narrator/NVDA, VoiceOver and Orca.",
           "support": {
-            "egui": {"level": "yes", "note": "AccessKit adapters for Windows, macOS and AT-SPI are in the pinned lockfile (eframe feature accesskit).", "evidence": "repo", "source": "examples/egui/Cargo.lock"},
-            "gtk": {"level": "partial", "os": {"linux": "yes", "windows": "partial", "macos": "partial"}, "note": "AT-SPI on Linux. GTK 4.18 added an AccessKit backend for Windows/macOS; it is enabled at build time and selected with GTK_A11Y=accesskit.", "evidence": "docs", "source": "https://blog.gtk.org/2025/05/12/an-accessibility-update/"},
-            "slint": {"level": "yes", "note": "AccessKit adapters for all three systems are in the pinned lockfile (feature accessibility).", "evidence": "repo", "source": "examples/slint/Cargo.lock"},
-            "qt": {"level": "yes", "note": "UI Automation, NSAccessibility and AT-SPI.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/accessible.html"},
-            "tauri": {"level": "yes", "note": "Provided by the system webview; quality depends on the app's HTML semantics.", "evidence": "docs", "source": "https://v2.tauri.app/reference/webview-versions/"}
+            "egui": {
+              "level": "yes",
+              "note": "AccessKit adapters for Windows, macOS and AT-SPI are in the pinned lockfile (eframe feature accesskit).",
+              "evidence": "repo",
+              "source": "examples/egui/Cargo.lock"
+            },
+            "gtk": {
+              "level": "partial",
+              "os": {
+                "linux": "yes",
+                "windows": "partial",
+                "macos": "partial"
+              },
+              "note": "AT-SPI on Linux. GTK 4.18 added an AccessKit backend for Windows/macOS; it is enabled at build time and selected with GTK_A11Y=accesskit.",
+              "evidence": "docs",
+              "source": "https://blog.gtk.org/2025/05/12/an-accessibility-update/"
+            },
+            "slint": {
+              "level": "yes",
+              "note": "AccessKit adapters for all three systems are in the pinned lockfile (feature accessibility).",
+              "evidence": "repo",
+              "source": "examples/slint/Cargo.lock"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "UI Automation, NSAccessibility and AT-SPI.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/accessible.html"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "Provided by the system webview; quality depends on the app's HTML semantics.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/reference/webview-versions/"
+            }
           }
         },
         {
@@ -176,11 +328,36 @@
           "title": "Input methods (CJK, dead keys)",
           "description": "Composes text through the OS input method.",
           "support": {
-            "egui": {"level": "yes", "note": "IME events through winit.", "evidence": "repo", "source": "examples/egui/Cargo.lock"},
-            "gtk": {"level": "yes", "note": "GtkIMContext with platform modules (IBus/Wayland text-input, Win32 IMM, macOS).", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/class.IMContext.html"},
-            "slint": {"level": "yes", "note": "IME events through winit.", "evidence": "repo", "source": "examples/slint/Cargo.lock"},
-            "qt": {"level": "yes", "note": "QInputMethod with platform input contexts.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/qinputmethod.html"},
-            "tauri": {"level": "yes", "note": "Handled by the webview.", "evidence": "docs", "source": "https://v2.tauri.app/reference/webview-versions/"}
+            "egui": {
+              "level": "yes",
+              "note": "IME events through winit.",
+              "evidence": "repo",
+              "source": "examples/egui/Cargo.lock"
+            },
+            "gtk": {
+              "level": "yes",
+              "note": "GtkIMContext with platform modules (IBus/Wayland text-input, Win32 IMM, macOS).",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/class.IMContext.html"
+            },
+            "slint": {
+              "level": "yes",
+              "note": "IME events through winit.",
+              "evidence": "repo",
+              "source": "examples/slint/Cargo.lock"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "QInputMethod with platform input contexts.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qinputmethod.html"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "Handled by the webview.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/reference/webview-versions/"
+            }
           }
         },
         {
@@ -188,11 +365,36 @@
           "title": "Right-to-left and bidi text",
           "description": "Arabic/Hebrew shaping, bidi reordering and mirrored layouts.",
           "support": {
-            "egui": {"level": "no", "note": "Bidi shaping and RTL layout are open pull requests after 0.37.", "evidence": "docs", "source": "https://github.com/emilk/egui/pull/8836"},
-            "gtk": {"level": "yes", "note": "Pango shaping and bidi; widgets mirror with the text direction.", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/method.Widget.set_direction.html"},
-            "slint": {"level": "partial", "note": "The pinned lockfile includes Parley and unicode-bidi for shaping. Automatic layout mirroring was not verified.", "evidence": "repo", "source": "examples/slint/Cargo.lock"},
-            "qt": {"level": "yes", "note": "Text shaping plus Qt::RightToLeft layout direction.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/qguiapplication.html#layoutDirection-prop"},
-            "tauri": {"level": "yes", "note": "HTML dir and CSS logical properties.", "evidence": "docs", "source": "https://v2.tauri.app/reference/webview-versions/"}
+            "egui": {
+              "level": "no",
+              "note": "Bidi shaping and RTL layout are open pull requests after 0.37.",
+              "evidence": "docs",
+              "source": "https://github.com/emilk/egui/pull/8836"
+            },
+            "gtk": {
+              "level": "yes",
+              "note": "Pango shaping and bidi; widgets mirror with the text direction.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/method.Widget.set_direction.html"
+            },
+            "slint": {
+              "level": "partial",
+              "note": "The pinned lockfile includes Parley and unicode-bidi for shaping. Automatic layout mirroring was not verified.",
+              "evidence": "repo",
+              "source": "examples/slint/Cargo.lock"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "Text shaping plus Qt::RightToLeft layout direction.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qguiapplication.html#layoutDirection-prop"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "HTML dir and CSS logical properties.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/reference/webview-versions/"
+            }
           }
         }
       ]
@@ -206,11 +408,46 @@
           "title": "Native menu bar",
           "description": "Uses the macOS global menu bar and native Windows menus.",
           "support": {
-            "egui": {"level": "crate", "note": "No menu-bar integration; the muda crate can add native menus.", "evidence": "docs", "source": "https://docs.rs/muda"},
-            "gtk": {"level": "partial", "os": {"macos": "yes", "windows": "partial", "linux": "partial"}, "note": "gtk_application_set_menubar uses the macOS menu bar; elsewhere it is an in-window GTK menu.", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/method.Application.set_menubar.html"},
-            "slint": {"level": "yes", "os": {"windows": "yes", "macos": "yes", "linux": "partial"}, "note": "MenuBar uses the macOS menu bar and native Windows menus (muda, since 1.10); on Linux it is drawn by Slint.", "evidence": "docs", "source": "https://docs.slint.dev/latest/docs/slint/reference/window/window/#menubar"},
-            "qt": {"level": "yes", "note": "QMenuBar maps to the macOS global menu bar.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/qmenubar.html"},
-            "tauri": {"level": "yes", "note": "Native window and app menus (muda).", "evidence": "docs", "source": "https://v2.tauri.app/learn/window-menu/"}
+            "egui": {
+              "level": "crate",
+              "note": "No menu-bar integration; the muda crate can add native menus.",
+              "evidence": "docs",
+              "source": "https://docs.rs/muda"
+            },
+            "gtk": {
+              "level": "partial",
+              "os": {
+                "macos": "yes",
+                "windows": "partial",
+                "linux": "partial"
+              },
+              "note": "gtk_application_set_menubar uses the macOS menu bar; elsewhere it is an in-window GTK menu.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/method.Application.set_menubar.html"
+            },
+            "slint": {
+              "level": "yes",
+              "os": {
+                "windows": "yes",
+                "macos": "yes",
+                "linux": "partial"
+              },
+              "note": "MenuBar uses the macOS menu bar and native Windows menus (muda, since 1.10); on Linux it is drawn by Slint.",
+              "evidence": "docs",
+              "source": "https://docs.slint.dev/latest/docs/slint/reference/window/window/#menubar"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "QMenuBar maps to the macOS global menu bar.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qmenubar.html"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "Native window and app menus (muda).",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/learn/window-menu/"
+            }
           }
         },
         {
@@ -218,11 +455,36 @@
           "title": "System tray icon",
           "description": "Notification-area or menu-bar status icon with a menu.",
           "support": {
-            "egui": {"level": "crate", "note": "Not built in; the tray-icon crate is the usual choice.", "evidence": "docs", "source": "https://docs.rs/tray-icon"},
-            "gtk": {"level": "no", "note": "GtkStatusIcon was removed in GTK4.", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/migrating-3to4.html"},
-            "slint": {"level": "yes", "note": "SystemTrayIcon since 1.17. Linux uses StatusNotifierItem; plain X11 trays are not supported.", "evidence": "docs", "source": "https://docs.slint.dev/latest/docs/slint/reference/window/systemtrayicon/"},
-            "qt": {"level": "yes", "note": "QSystemTrayIcon.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/qsystemtrayicon.html"},
-            "tauri": {"level": "yes", "note": "Core API behind the tray-icon feature.", "evidence": "docs", "source": "https://v2.tauri.app/learn/system-tray/"}
+            "egui": {
+              "level": "crate",
+              "note": "Not built in; the tray-icon crate is the usual choice.",
+              "evidence": "docs",
+              "source": "https://docs.rs/tray-icon"
+            },
+            "gtk": {
+              "level": "no",
+              "note": "GtkStatusIcon was removed in GTK4.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/migrating-3to4.html"
+            },
+            "slint": {
+              "level": "yes",
+              "note": "SystemTrayIcon since 1.17. Linux uses StatusNotifierItem; plain X11 trays are not supported.",
+              "evidence": "docs",
+              "source": "https://docs.slint.dev/latest/docs/slint/reference/window/systemtrayicon/"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "QSystemTrayIcon.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qsystemtrayicon.html"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "Core API behind the tray-icon feature.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/learn/system-tray/"
+            }
           }
         },
         {
@@ -230,11 +492,36 @@
           "title": "Native file dialogs",
           "description": "Open/save dialogs provided by the OS or desktop portal.",
           "support": {
-            "egui": {"level": "crate", "note": "Not built in; rfd provides native dialogs.", "evidence": "docs", "source": "https://docs.rs/rfd"},
-            "gtk": {"level": "yes", "note": "GtkFileDialog uses Win32/macOS dialogs and the XDG portal.", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/class.FileDialog.html"},
-            "slint": {"level": "crate", "note": "Not built in; rfd is commonly used.", "evidence": "docs", "source": "https://docs.rs/rfd"},
-            "qt": {"level": "yes", "note": "QFileDialog uses native dialogs by default.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/qfiledialog.html"},
-            "tauri": {"level": "plugin", "note": "tauri-plugin-dialog.", "evidence": "docs", "source": "https://v2.tauri.app/plugin/dialog/"}
+            "egui": {
+              "level": "crate",
+              "note": "Not built in; rfd provides native dialogs.",
+              "evidence": "docs",
+              "source": "https://docs.rs/rfd"
+            },
+            "gtk": {
+              "level": "yes",
+              "note": "GtkFileDialog uses Win32/macOS dialogs and the XDG portal.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/class.FileDialog.html"
+            },
+            "slint": {
+              "level": "crate",
+              "note": "Not built in; rfd is commonly used.",
+              "evidence": "docs",
+              "source": "https://docs.rs/rfd"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "QFileDialog uses native dialogs by default.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qfiledialog.html"
+            },
+            "tauri": {
+              "level": "plugin",
+              "note": "tauri-plugin-dialog.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/plugin/dialog/"
+            }
           }
         },
         {
@@ -242,11 +529,41 @@
           "title": "Desktop notifications",
           "description": "Toasts in the OS notification centre.",
           "support": {
-            "egui": {"level": "crate", "note": "Not built in; notify-rust or platform crates.", "evidence": "docs", "source": "https://docs.rs/notify-rust"},
-            "gtk": {"level": "partial", "os": {"linux": "yes", "windows": "unknown", "macos": "unknown"}, "note": "GNotification through GApplication; Linux uses the portal or freedesktop service. Windows/macOS backends were not verified.", "evidence": "docs", "source": "https://docs.gtk.org/gio/class.Notification.html"},
-            "slint": {"level": "crate", "note": "Not built in.", "evidence": "docs", "source": "https://docs.rs/notify-rust"},
-            "qt": {"level": "partial", "note": "Qt Widgets has no notification-centre API; QSystemTrayIcon::showMessage shows a tray balloon.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/qsystemtrayicon.html#showMessage"},
-            "tauri": {"level": "plugin", "note": "tauri-plugin-notification.", "evidence": "docs", "source": "https://v2.tauri.app/plugin/notification/"}
+            "egui": {
+              "level": "crate",
+              "note": "Not built in; notify-rust or platform crates.",
+              "evidence": "docs",
+              "source": "https://docs.rs/notify-rust"
+            },
+            "gtk": {
+              "level": "partial",
+              "os": {
+                "linux": "yes",
+                "windows": "unknown",
+                "macos": "unknown"
+              },
+              "note": "GNotification through GApplication; Linux uses the portal or freedesktop service. Windows/macOS backends were not verified.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gio/class.Notification.html"
+            },
+            "slint": {
+              "level": "crate",
+              "note": "Not built in.",
+              "evidence": "docs",
+              "source": "https://docs.rs/notify-rust"
+            },
+            "qt": {
+              "level": "partial",
+              "note": "Qt Widgets has no notification-centre API; QSystemTrayIcon::showMessage shows a tray balloon.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qsystemtrayicon.html#showMessage"
+            },
+            "tauri": {
+              "level": "plugin",
+              "note": "tauri-plugin-notification.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/plugin/notification/"
+            }
           }
         },
         {
@@ -254,11 +571,36 @@
           "title": "Drag and drop with other apps",
           "description": "Accepts drops from, and drags to, the file manager and other apps.",
           "support": {
-            "egui": {"level": "partial", "note": "Receives dropped files; dragging out of the app is not built in.", "evidence": "docs", "source": "https://docs.rs/egui/0.37.0/egui/struct.RawInput.html"},
-            "gtk": {"level": "yes", "note": "GtkDragSource and GtkDropTarget.", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/drag-and-drop.html"},
-            "slint": {"level": "partial", "note": "DragArea/DropArea work inside the application; cross-app drag and drop awaits winit support.", "evidence": "docs", "source": "https://slint.dev/blog/slint-1.17-released"},
-            "qt": {"level": "yes", "note": "QDrag and drop events with MIME data.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/dnd.html"},
-            "tauri": {"level": "partial", "note": "Drag-drop events for files dropped on a window; dragging out needs a community plugin.", "evidence": "docs", "source": "https://v2.tauri.app/reference/javascript/api/namespacewebview/"}
+            "egui": {
+              "level": "partial",
+              "note": "Receives dropped files; dragging out of the app is not built in.",
+              "evidence": "docs",
+              "source": "https://docs.rs/egui/0.37.0/egui/struct.RawInput.html"
+            },
+            "gtk": {
+              "level": "yes",
+              "note": "GtkDragSource and GtkDropTarget.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/drag-and-drop.html"
+            },
+            "slint": {
+              "level": "partial",
+              "note": "DragArea/DropArea work inside the application; cross-app drag and drop awaits winit support.",
+              "evidence": "docs",
+              "source": "https://slint.dev/blog/slint-1.17-released"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "QDrag and drop events with MIME data.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/dnd.html"
+            },
+            "tauri": {
+              "level": "partial",
+              "note": "Drag-drop events for files dropped on a window; dragging out needs a community plugin.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/reference/javascript/api/namespacewebview/"
+            }
           }
         },
         {
@@ -266,11 +608,36 @@
           "title": "Multiple windows",
           "description": "Opens additional native top-level windows.",
           "support": {
-            "egui": {"level": "yes", "note": "Viewports open native windows on desktop backends.", "evidence": "docs", "source": "https://docs.rs/egui/0.37.0/egui/viewport/index.html"},
-            "gtk": {"level": "yes", "note": "GtkWindow.", "evidence": "docs", "source": "https://docs.gtk.org/gtk4/class.Window.html"},
-            "slint": {"level": "yes", "note": "Each component with a Window root can be shown separately.", "evidence": "docs", "source": "https://docs.slint.dev/latest/docs/slint/reference/window/window/"},
-            "qt": {"level": "yes", "note": "Any top-level QWidget.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/qwidget.html"},
-            "tauri": {"level": "yes", "note": "WebviewWindow; each window hosts a webview.", "evidence": "docs", "source": "https://v2.tauri.app/reference/javascript/api/namespacewebviewwindow/"}
+            "egui": {
+              "level": "yes",
+              "note": "Viewports open native windows on desktop backends.",
+              "evidence": "docs",
+              "source": "https://docs.rs/egui/0.37.0/egui/viewport/index.html"
+            },
+            "gtk": {
+              "level": "yes",
+              "note": "GtkWindow.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/class.Window.html"
+            },
+            "slint": {
+              "level": "yes",
+              "note": "Each component with a Window root can be shown separately.",
+              "evidence": "docs",
+              "source": "https://docs.slint.dev/latest/docs/slint/reference/window/window/"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "Any top-level QWidget.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qwidget.html"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "WebviewWindow; each window hosts a webview.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/reference/javascript/api/namespacewebviewwindow/"
+            }
           }
         }
       ]
@@ -284,11 +651,41 @@
           "title": "Installers and updates",
           "description": "Official tooling to produce installers and deliver updates.",
           "support": {
-            "egui": {"level": "crate", "note": "General Rust packagers such as cargo-packager.", "evidence": "docs", "source": "https://github.com/crabnebula-dev/cargo-packager"},
-            "gtk": {"level": "partial", "os": {"linux": "yes", "windows": "partial", "macos": "partial"}, "note": "Flatpak and distro packages on Linux. On Windows/macOS the GTK runtime must be collected and bundled by the app; this repository copies the MSYS2 runtime.", "evidence": "repo", "source": "measurements/native-42420765503/windows-2022/build/windows-gtk-runtime.json"},
-            "slint": {"level": "crate", "note": "General Rust packagers.", "evidence": "docs", "source": "https://github.com/crabnebula-dev/cargo-packager"},
-            "qt": {"level": "partial", "note": "windeployqt/macdeployqt collect the runtime; installers via Qt Installer Framework. No built-in updater.", "evidence": "docs", "source": "https://doc.qt.io/qt-6/deployment.html"},
-            "tauri": {"level": "yes", "note": "Built-in bundler (MSI/NSIS, .app/.dmg, deb/rpm/AppImage) and an official updater plugin.", "evidence": "docs", "source": "https://v2.tauri.app/distribute/"}
+            "egui": {
+              "level": "crate",
+              "note": "General Rust packagers such as cargo-packager.",
+              "evidence": "docs",
+              "source": "https://github.com/crabnebula-dev/cargo-packager"
+            },
+            "gtk": {
+              "level": "partial",
+              "os": {
+                "linux": "yes",
+                "windows": "partial",
+                "macos": "partial"
+              },
+              "note": "Flatpak and distro packages on Linux. On Windows/macOS the GTK runtime must be collected and bundled by the app; this repository copies the MSYS2 runtime.",
+              "evidence": "repo",
+              "source": "measurements/native-42420765503/windows-2022/build/windows-gtk-runtime.json"
+            },
+            "slint": {
+              "level": "crate",
+              "note": "General Rust packagers.",
+              "evidence": "docs",
+              "source": "https://github.com/crabnebula-dev/cargo-packager"
+            },
+            "qt": {
+              "level": "partial",
+              "note": "windeployqt/macdeployqt collect the runtime; installers via Qt Installer Framework. No built-in updater.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/deployment.html"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "Built-in bundler (MSI/NSIS, .app/.dmg, deb/rpm/AppImage) and an official updater plugin.",
+              "evidence": "docs",
+              "source": "https://v2.tauri.app/distribute/"
+            }
           }
         },
         {
@@ -297,11 +694,26 @@
           "description": "Platforms beyond desktop.",
           "kind": "text",
           "support": {
-            "egui": {"text": "Web (WebAssembly); Android experimental", "source": "https://github.com/emilk/egui"},
-            "gtk": {"text": "Desktop only", "source": "https://www.gtk.org/"},
-            "slint": {"text": "Embedded MCUs, Linux KMS, Android, WebAssembly", "source": "https://slint.dev/"},
-            "qt": {"text": "Android, iOS (Qt Quick preferred there), embedded Linux", "source": "https://doc.qt.io/qt-6/supported-platforms.html"},
-            "tauri": {"text": "iOS and Android", "source": "https://v2.tauri.app/"}
+            "egui": {
+              "text": "Web (WebAssembly); Android experimental",
+              "source": "https://github.com/emilk/egui"
+            },
+            "gtk": {
+              "text": "Desktop only",
+              "source": "https://www.gtk.org/"
+            },
+            "slint": {
+              "text": "Embedded MCUs, Linux KMS, Android, WebAssembly",
+              "source": "https://slint.dev/"
+            },
+            "qt": {
+              "text": "Android, iOS (Qt Quick preferred there), embedded Linux",
+              "source": "https://doc.qt.io/qt-6/supported-platforms.html"
+            },
+            "tauri": {
+              "text": "iOS and Android",
+              "source": "https://v2.tauri.app/"
+            }
           }
         },
         {
@@ -310,11 +722,26 @@
           "description": "How a Rust application talks to the toolkit.",
           "kind": "text",
           "support": {
-            "egui": {"text": "Native Rust", "source": "https://docs.rs/eframe"},
-            "gtk": {"text": "gtk4-rs bindings (not measured here)", "source": "https://gtk-rs.org/"},
-            "slint": {"text": "Native Rust + .slint markup", "source": "https://docs.rs/slint"},
-            "qt": {"text": "CXX-Qt bridge, mainly for QML", "source": "https://github.com/KDAB/cxx-qt"},
-            "tauri": {"text": "Rust core; UI in web code", "source": "https://docs.rs/tauri"}
+            "egui": {
+              "text": "Native Rust",
+              "source": "https://docs.rs/eframe"
+            },
+            "gtk": {
+              "text": "gtk4-rs bindings (measured here)",
+              "source": "https://gtk-rs.org/"
+            },
+            "slint": {
+              "text": "Native Rust + .slint markup",
+              "source": "https://docs.rs/slint"
+            },
+            "qt": {
+              "text": "CXX-Qt bridge, mainly for QML",
+              "source": "https://github.com/KDAB/cxx-qt"
+            },
+            "tauri": {
+              "text": "Rust core; UI in web code",
+              "source": "https://docs.rs/tauri"
+            }
           }
         },
         {
@@ -323,11 +750,26 @@
           "description": "Toolkit licence (dependencies differ).",
           "kind": "text",
           "support": {
-            "egui": {"text": "MIT or Apache-2.0", "source": "https://github.com/emilk/egui"},
-            "gtk": {"text": "LGPL-2.1-or-later", "source": "https://www.gtk.org/"},
-            "slint": {"text": "GPL-3.0, royalty-free or commercial", "source": "https://slint.dev/pricing"},
-            "qt": {"text": "LGPL-3.0, GPL or commercial", "source": "https://doc.qt.io/qt-6/licensing.html"},
-            "tauri": {"text": "MIT or Apache-2.0", "source": "https://github.com/tauri-apps/tauri"}
+            "egui": {
+              "text": "MIT or Apache-2.0",
+              "source": "https://github.com/emilk/egui"
+            },
+            "gtk": {
+              "text": "LGPL-2.1-or-later",
+              "source": "https://www.gtk.org/"
+            },
+            "slint": {
+              "text": "GPL-3.0, royalty-free or commercial",
+              "source": "https://slint.dev/pricing"
+            },
+            "qt": {
+              "text": "LGPL-3.0, GPL or commercial",
+              "source": "https://doc.qt.io/qt-6/licensing.html"
+            },
+            "tauri": {
+              "text": "MIT or Apache-2.0",
+              "source": "https://github.com/tauri-apps/tauri"
+            }
           }
         }
       ]

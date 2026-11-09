@@ -1,0 +1,162 @@
+{
+  "name": "tauri",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "architecture": "x86_64",
+    "processor": "x86_64",
+    "logical_cpus": 4,
+    "memory_bytes": 16760344576,
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "runner_image": "ubuntu24",
+    "image_version": "20261101.360.1",
+    "commit": "f378db02035304148b2a5ce3f1e7ad011a99c795",
+    "run_id": "42538198685",
+    "repetition": "5",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "memory_metric": "Linux RSS",
+  "primary_memory_metric": "Linux PSS",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": "2097155",
+        "pid": 21704,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          321,
+          207,
+          1281,
+          847
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 10.670114135999938,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.3400000000000001,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 3.186470132056721,
+        "family_rss_mib": {
+          "median": 502.12890625,
+          "p95": 502.22265625,
+          "observed_maximum": 502.22265625
+        },
+        "family_primary_mib": {
+          "median": 338.18115234375,
+          "p95": 338.1845703125,
+          "observed_maximum": 338.1845703125
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": "2097155",
+        "pid": 21704,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          321,
+          207,
+          1281,
+          847
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 128.1189599600002,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.030000000000000027,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.02341573800580825,
+        "family_rss_mib": {
+          "median": 502.30078125,
+          "p95": 502.3359375,
+          "observed_maximum": 502.3359375
+        },
+        "family_primary_mib": {
+          "median": 338.2626953125,
+          "p95": 338.2978515625,
+          "observed_maximum": 338.2978515625
+        }
+      }
+    },
+    "minimized": {
+      "status": "passed",
+      "window": {
+        "id": "2097155",
+        "pid": 21704,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          321,
+          207,
+          1281,
+          847
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "state": "minimized verified with _NET_WM_STATE_HIDDEN and IsUnMapped"
+      },
+      "summary": {
+        "seconds": 128.20238386099982,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.040000000000000036,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.03120066787788363,
+        "family_rss_mib": {
+          "median": 492.8671875,
+          "p95": 492.87109375,
+          "observed_maximum": 492.87109375
+        },
+        "family_primary_mib": {
+          "median": 331.1728515625,
+          "p95": 331.1767578125,
+          "observed_maximum": 331.1767578125
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 21704,
+      "name": "veranda-tauri-comparison",
+      "created": 1794188698.84
+    },
+    {
+      "pid": 21716,
+      "name": "WebKitNetworkProcess",
+      "created": 1794188699.18
+    },
+    {
+      "pid": 21746,
+      "name": "WebKitWebProcess",
+      "created": 1794188699.27
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

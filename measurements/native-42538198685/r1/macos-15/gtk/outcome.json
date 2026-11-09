@@ -1,0 +1,119 @@
+{
+  "name": "gtk",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "macOS-15.8.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "logical_cpus": 3,
+    "memory_bytes": 7516192768,
+    "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "runner_image": "macos15",
+    "image_version": "20261104.0514.1",
+    "commit": "f378db02035304148b2a5ce3f1e7ad011a99c795",
+    "run_id": "42538198685",
+    "repetition": "1",
+    "renderer": "See each application.log; unknown unless reported by the app",
+    "cpu_model": "Apple M1 (Virtual)",
+    "system_webkit_version": "20621.3.11.11.3"
+  },
+  "memory_metric": "macOS RSS",
+  "primary_memory_metric": "macOS physical footprint",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 40,
+        "pid": 23065,
+        "title": "Veranda GTK comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          32.0,
+          25.0,
+          992.0,
+          693.0
+        ]
+      },
+      "capture": {
+        "width": 960,
+        "height": 668,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 12
+      },
+      "summary": {
+        "seconds": 13.93022033300008,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 1.4367840639999976,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 10.314151748169547,
+        "family_rss_mib": {
+          "median": 115.21875,
+          "p95": 115.265625,
+          "observed_maximum": 115.265625
+        },
+        "family_primary_mib": {
+          "median": 46.4866943359375,
+          "p95": 48.9398193359375,
+          "observed_maximum": 48.9398193359375
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 40,
+        "pid": 23065,
+        "title": "Veranda GTK comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          32.0,
+          25.0,
+          992.0,
+          693.0
+        ]
+      },
+      "capture": {
+        "width": 960,
+        "height": 668,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 178.14808529200013,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.0009575039999987212,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0005374764474337679,
+        "family_rss_mib": {
+          "median": 114.8125,
+          "p95": 114.8125,
+          "observed_maximum": 114.8125
+        },
+        "family_primary_mib": {
+          "median": 46.1273193359375,
+          "p95": 46.1273193359375,
+          "observed_maximum": 46.1273193359375
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 23065,
+      "name": "veranda-gtk-comparison",
+      "created": 1794183531.408063
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

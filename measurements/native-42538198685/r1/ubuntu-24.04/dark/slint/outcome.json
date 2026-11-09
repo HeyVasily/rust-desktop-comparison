@@ -1,0 +1,79 @@
+{
+  "name": "slint",
+  "status": "diagnostic_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "architecture": "x86_64",
+    "processor": "x86_64",
+    "logical_cpus": 4,
+    "memory_bytes": 16759304192,
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "runner_image": "ubuntu24",
+    "image_version": "20261101.360.1",
+    "commit": "f378db02035304148b2a5ce3f1e7ad011a99c795",
+    "run_id": "42538198685",
+    "repetition": "1",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "memory_metric": "Linux RSS",
+  "primary_memory_metric": "Linux PSS",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": "6291459",
+        "pid": 22262,
+        "title": "Veranda Slint comparison",
+        "rectangle": [
+          321,
+          209,
+          1281,
+          849
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 10.151977155000168,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 22.58984375,
+          "p95": 22.58984375,
+          "observed_maximum": 22.58984375
+        },
+        "family_primary_mib": {
+          "median": 17.15234375,
+          "p95": 17.15234375,
+          "observed_maximum": 17.15234375
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 22262,
+      "name": "veranda-slint-comparison",
+      "created": 1794185122.32
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

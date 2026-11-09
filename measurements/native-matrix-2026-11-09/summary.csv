@@ -1,0 +1,21 @@
+os,framework,phase,repetitions,failed_repetitions,primary_metric,primary_median_mib,primary_min_mib,primary_max_mib,primary_spread_percent,outlier_repetitions,rss_metric,rss_median_mib,rss_min_mib,rss_max_mib,cpu_median_percent,cpu_max_percent,executable_bytes,follows_dark_mode,run_id,source_commit
+macos-15,egui,comparison,5,0,macOS physical footprint,28.22,27.31,30.56,11.5,,macOS RSS,77.41,76.41,79.3,0.00407,0.005,5681808,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+macos-15,gtk,comparison,5,0,macOS physical footprint,43.69,35.95,46.13,23.3,2 4,macOS RSS,117.33,110.88,127.45,0.00115,0.00529,400112,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+macos-15,slint,comparison,5,0,macOS physical footprint,17.13,16.94,17.16,1.3,,macOS RSS,69.98,69.77,70.86,0.00035,0.00456,12243648,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+macos-15,qt,comparison,5,0,macOS physical footprint,24.22,24.14,24.47,1.4,,macOS RSS,88.98,88.64,89.17,0.00021,0.001,75656,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+macos-15,tauri,comparison,5,0,macOS physical footprint,40.77,40.4,41.05,1.6,,macOS RSS,134.58,134.33,135.19,0.0168,0.03764,6581360,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,egui,comparison,5,0,Linux PSS,96.4,95.94,96.61,0.7,,Linux RSS,120.46,120.0,120.71,0.00811,0.00814,12563840,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,egui,minimized,5,0,Linux PSS,96.4,95.94,96.62,0.7,,Linux RSS,120.46,120.0,120.72,0.00813,0.0082,12563840,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,gtk,comparison,5,0,Linux PSS,211.74,211.48,212.03,0.3,,Linux RSS,240.56,240.19,240.8,0.0,0.0,410552,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,gtk,minimized,5,0,Linux PSS,211.74,211.48,212.03,0.3,,Linux RSS,240.56,240.19,240.8,0.0,0.0,410552,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,slint,comparison,5,0,Linux PSS,17.45,17.39,17.71,1.8,,Linux RSS,22.68,22.48,22.78,0.00815,0.01624,20538952,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,slint,minimized,5,0,Linux PSS,17.45,17.39,17.71,1.8,,Linux RSS,22.68,22.48,22.78,0.00812,0.0082,20538952,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,qt,comparison,5,0,Linux PSS,22.96,22.86,22.99,0.6,,Linux RSS,33.46,33.37,33.58,0.0,0.0,31048,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,qt,minimized,5,0,Linux PSS,22.96,22.86,22.99,0.6,,Linux RSS,33.46,33.37,33.58,0.0,0.0,31048,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,tauri,comparison,5,0,Linux PSS,338.18,337.06,340.1,0.9,,Linux RSS,501.5,501.01,503.98,0.02314,0.03861,6957896,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+ubuntu-24.04,tauri,minimized,5,0,Linux PSS,331.12,330.0,333.06,0.9,,Linux RSS,492.09,491.62,494.59,0.0312,0.03861,6957896,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+windows-2022,egui,comparison,5,0,Windows private working set,26.87,26.25,29.41,11.7,,Windows Working Set,51.69,51.13,51.86,0.0,0.0,13400576,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+windows-2022,gtk,comparison,5,0,Windows private working set,33.23,32.97,33.38,1.2,,Windows Working Set,76.02,75.76,76.16,0.0,0.0,2151424,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+windows-2022,slint,comparison,5,0,Windows private working set,9.03,9.0,9.12,1.3,,Windows Working Set,21.63,21.6,21.71,0.0,0.0,13452288,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+windows-2022,qt,comparison,5,0,Windows private working set,15.03,14.98,15.17,1.2,,Windows Working Set,31.62,31.57,31.64,0.0,0.0,56832,False,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795
+windows-2022,tauri,comparison,5,0,Windows private working set,116.15,115.91,116.38,0.4,,Windows Working Set,268.85,268.35,272.34,0.08194,0.10892,8628224,True,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795

@@ -1,6 +1,6 @@
 # Earlier native runner observations
 
-The [current full matrix](full-native-results.md) supersedes the incomplete/native
+The [2026-11-07 matrix](native-matrix-2026-11-07.md) and the [current repeated matrix](full-native-results.md) supersede the incomplete/native
 desktop attempts below. Their original evidence and limitations remain intact.
 
 These are small synthetic UI observations from actual GitHub-hosted desktop runs.

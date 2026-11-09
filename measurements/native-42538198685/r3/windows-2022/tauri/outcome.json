@@ -1,0 +1,152 @@
+{
+  "name": "tauri",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Windows-2022Server-10.0.20348-SP0",
+    "architecture": "AMD64",
+    "processor": "AMD64 Family 25 Model 1 Stepping 1, AuthenticAMD",
+    "logical_cpus": 4,
+    "memory_bytes": 17174360064,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "runner_image": "win22",
+    "image_version": "20261101.353.1",
+    "commit": "f378db02035304148b2a5ce3f1e7ad011a99c795",
+    "run_id": "42538198685",
+    "repetition": "3",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "memory_metric": "Windows Working Set",
+  "primary_memory_metric": "Windows private working set",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 393366,
+        "pid": 7100,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 3
+      },
+      "summary": {
+        "seconds": 11.094000000000051,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.171875,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 1.5492608617270525,
+        "family_rss_mib": {
+          "median": 271.955078125,
+          "p95": 272.84375,
+          "observed_maximum": 272.84375
+        },
+        "family_primary_mib": {
+          "median": 118.33203125,
+          "p95": 122.578125,
+          "observed_maximum": 122.578125
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 393366,
+        "pid": 7100,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 132.89100000000008,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.078125,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.05878878178356695,
+        "family_rss_mib": {
+          "median": 268.3515625,
+          "p95": 270.59765625,
+          "observed_maximum": 270.7109375
+        },
+        "family_primary_mib": {
+          "median": 116.146484375,
+          "p95": 117.68359375,
+          "observed_maximum": 117.77734375
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 7100,
+      "name": "veranda-tauri-comparison.exe",
+      "created": 1794186351.50769
+    },
+    {
+      "pid": 3312,
+      "name": "msedgewebview2.exe",
+      "created": 1794186352.1307747
+    },
+    {
+      "pid": 2744,
+      "name": "msedgewebview2.exe",
+      "created": 1794186352.5137644
+    },
+    {
+      "pid": 6400,
+      "name": "msedgewebview2.exe",
+      "created": 1794186355.6427011
+    },
+    {
+      "pid": 2772,
+      "name": "msedgewebview2.exe",
+      "created": 1794186356.0934277
+    },
+    {
+      "pid": 7832,
+      "name": "msedgewebview2.exe",
+      "created": 1794186356.3534968
+    },
+    {
+      "pid": 7440,
+      "name": "msedgewebview2.exe",
+      "created": 1794186356.6265004
+    },
+    {
+      "pid": 988,
+      "name": "msedgewebview2.exe",
+      "created": 1794186475.5678835
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

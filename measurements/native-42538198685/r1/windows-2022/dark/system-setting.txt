@@ -1,0 +1,7 @@
+
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize
+    ColorPrevalence    REG_DWORD    0x0
+    EnableTransparency    REG_DWORD    0x1
+    AppsUseLightTheme    REG_DWORD    0x0
+    SystemUsesLightTheme    REG_DWORD    0x0
+

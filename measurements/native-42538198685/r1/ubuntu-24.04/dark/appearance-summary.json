@@ -1,0 +1,27 @@
+{
+  "egui": {
+    "light_mean_luma": 241.2,
+    "dark_mean_luma": 241.2,
+    "follows_dark_mode": false
+  },
+  "gtk": {
+    "light_mean_luma": 240.0,
+    "dark_mean_luma": 240.0,
+    "follows_dark_mode": false
+  },
+  "slint": {
+    "light_mean_luma": 238.3,
+    "dark_mean_luma": 48.9,
+    "follows_dark_mode": true
+  },
+  "qt": {
+    "light_mean_luma": 235.3,
+    "dark_mean_luma": 234.7,
+    "follows_dark_mode": false
+  },
+  "tauri": {
+    "light_mean_luma": 241.3,
+    "dark_mean_luma": 46.4,
+    "follows_dark_mode": true
+  }
+}

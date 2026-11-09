@@ -6,6 +6,6 @@ byte-for-byte from the uploaded artifact. Settled start/end PNGs are in [the scr
 directory](../../../screenshots/native-42420765503/windows-2022).
 
 Included comparisons passed and raw summaries were independently recomputed before
-publication. Linux additionally has a verified minimized phase. See [the full report](../../../docs/full-native-results.md)
+publication. Linux additionally has a verified minimized phase. See [the full report](../../../docs/native-matrix-2026-11-07.md)
 for the combined matrix, definitions, scope, actual durations and renderer variants.
 Diagnostic samples include warmup; use `comparison-samples.json` for published visible idle values.

@@ -283,3 +283,4 @@ footer { margin: 56px 0 0; padding: 24px 0 40px; border-top: 1px solid var(--bor
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.panel .range { stroke: var(--ink-2); stroke-width: 1.5; stroke-linecap: round; opacity: 0.7; }

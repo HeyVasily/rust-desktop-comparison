@@ -1,7 +1,7 @@
 "use strict";
 
 const REPO = "https://github.com/HeyVasily/rust-desktop-comparison";
-const CSV_PATH = "measurements/native-matrix-2026-11-07/summary.csv";
+const CSV_PATH = "measurements/native-matrix-2026-11-09/summary.csv";
 const OS_RUNNER = { windows: "windows-2022", macos: "macos-15", linux: "ubuntu-24.04" };
 const OS_ORDER = ["linux", "windows", "macos"];
 const OS_NAME = { windows: "Windows", macos: "macOS", linux: "Linux" };
@@ -28,6 +28,10 @@ const repoLink = (path) => {
   if (/^https?:/.test(path)) return path;
   return `${REPO}/blob/main/${path}`;
 };
+const fmtSize = (bytes) => {
+  const mib = bytes / 2 ** 20;
+  return mib >= 1 ? `${fmt(mib)} MiB` : `${Math.round(bytes / 1024)} KiB`;
+};
 const fmt = (n, d = 1) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 
 function parseCsv(text) {
@@ -51,10 +55,17 @@ async function load() {
     const os = runnerToOs[row.os];
     memory[row.framework] ??= {};
     memory[row.framework][os] = {
-      median: Number(row.median_mib),
-      p95: Number(row.p95_mib),
-      cpu: Number(row.cpu_percent_one_core),
-      metric: row.memory_metric,
+      median: Number(row.primary_median_mib),
+      min: Number(row.primary_min_mib),
+      max: Number(row.primary_max_mib),
+      reps: Number(row.repetitions),
+      outliers: row.outlier_repetitions,
+      rss: Number(row.rss_median_mib),
+      rssMetric: row.rss_metric,
+      cpu: Number(row.cpu_median_percent),
+      metric: row.primary_metric,
+      bytes: Number(row.executable_bytes),
+      dark: row.follows_dark_mode === "True",
       run: row.run_id,
       commit: row.source_commit,
       runner: row.os,
@@ -87,6 +98,12 @@ function renderOverview({ features, memory }) {
       el("dl", {},
         el("dt", { text: "Language" }), el("dd", { text: fw.language }),
         el("dt", { text: "Licence" }), el("dd", { text: fw.license }),
+        el("dt", { text: "Executable" }), el("dd", { text: OS_ORDER.map((os) => {
+          const b = memory[fw.id]?.[os]?.bytes;
+          return b ? `${fmtSize(b)} ${OS_NAME[os]}` : null;
+        }).filter(Boolean).join(" · ") }),
+        el("dt", { text: "Dark mode" }), el("dd", { text: OS_ORDER.map((os) =>
+          `${OS_NAME[os]} ${memory[fw.id]?.[os]?.dark ? "✓" : "✗"}`).join(" · ") }),
       ),
       el("ul", { class: "pros", "aria-label": "Strengths" }, fw.strengths.map((s) => el("li", { text: s }))),
       el("ul", { class: "cons", "aria-label": "Limits" }, fw.limits.map((s) => el("li", { text: s }))),
@@ -106,7 +123,7 @@ function niceMax(v) {
 
 function renderMemory({ features, memory }) {
   const fws = features.frameworks;
-  const all = fws.flatMap((fw) => OS_ORDER.map((os) => memory[fw.id]?.[os]?.median ?? 0));
+  const all = fws.flatMap((fw) => OS_ORDER.map((os) => memory[fw.id]?.[os]?.max ?? 0));
   const max = niceMax(Math.max(...all));
   const ticks = [];
   const step = max > 300 ? 100 : 50;
@@ -150,7 +167,9 @@ function renderMemory({ features, memory }) {
       // Square at the baseline, 4px rounded at the data end.
       const path = `M${x0},${by} H${x1 - r} Q${x1},${by} ${x1},${by + r} V${by + barH - r} Q${x1},${by + barH} ${x1 - r},${by + barH} H${x0} Z`;
       const bar = svgEl("path", { class: "bar", d: path });
-      const val = svgEl("text", { class: `val${m.median === best ? " best" : ""}`, x: x1 + 6, y: y + rowH / 2 + 4 });
+      // Range of the repetition medians, drawn as a thin line through the bar end.
+      const range = svgEl("line", { class: "range", x1: x(m.min), x2: x(m.max), y1: y + rowH / 2, y2: y + rowH / 2 });
+      const val = svgEl("text", { class: `val${m.median === best ? " best" : ""}`, x: Math.max(x1, x(m.max)) + 6, y: y + rowH / 2 + 4 });
       val.textContent = fmt(m.median);
       const hit = svgEl("rect", {
         class: "bar-hit", x: 0, y, width: W, height: rowH, tabindex: 0,
@@ -161,9 +180,10 @@ function renderMemory({ features, memory }) {
           el("b", { text: fw.name }),
           el("dl", {},
             el("dt", { text: "Median" }), el("dd", { text: `${fmt(m.median, 2)} MiB` }),
-            el("dt", { text: "p95" }), el("dd", { text: `${fmt(m.p95, 2)} MiB` }),
+            el("dt", { text: `${m.reps} runs` }), el("dd", { text: `${fmt(m.min, 2)}–${fmt(m.max, 2)}` }),
+            el("dt", { text: m.rssMetric }), el("dd", { text: `${fmt(m.rss, 2)} MiB` }),
             el("dt", { text: "Idle CPU" }), el("dd", { text: m.cpu === 0 ? "0 recorded" : `${m.cpu.toFixed(4)} %` }),
-            el("dt", { text: "Run" }), el("dd", { text: m.run }),
+            m.outliers ? el("dt", { text: "Outlier runs" }) : null, m.outliers ? el("dd", { text: m.outliers }) : null,
           ));
         tip.hidden = false;
         const pr = panel.getBoundingClientRect();
@@ -178,7 +198,7 @@ function renderMemory({ features, memory }) {
       hit.addEventListener("mouseleave", hide);
       hit.addEventListener("focus", () => show(null));
       hit.addEventListener("blur", hide);
-      g.append(label, bar, val, hit);
+      g.append(label, bar, range, val, hit);
       svg.append(g);
     });
 
@@ -192,7 +212,9 @@ function renderMemory({ features, memory }) {
       el("th", { text: "Toolkit" }),
       OS_ORDER.flatMap((os) => [
         el("th", { class: "num", text: `${OS_NAME[os]}, MiB` }),
-        el("th", { class: "num", text: `${OS_NAME[os]} CPU, %` }),
+        el("th", { class: "num", text: "range" }),
+        el("th", { class: "num", text: "RSS" }),
+        el("th", { class: "num", text: "CPU, %" }),
       ]))),
     el("tbody", {}, fws.map((fw) => el("tr", {},
       el("th", { scope: "row", text: fw.name }),
@@ -200,6 +222,8 @@ function renderMemory({ features, memory }) {
         const m = memory[fw.id]?.[os];
         return [
           el("td", { class: "num", text: m ? fmt(m.median, 2) : "—" }),
+          el("td", { class: "num", text: m ? `${fmt(m.min, 1)}–${fmt(m.max, 1)}` : "—" }),
+          el("td", { class: "num", text: m ? fmt(m.rss, 1) : "—" }),
           el("td", { class: "num", text: m ? (m.cpu === 0 ? "0 recorded" : m.cpu.toFixed(5)) : "—" }),
         ];
       })))),
@@ -207,7 +231,7 @@ function renderMemory({ features, memory }) {
   $("#memory-table").replaceChildren(table,
     el("p", { style: "font-size:.875rem;color:var(--muted)" },
       "Source: ", el("a", { href: repoLink(CSV_PATH), text: "summary.csv" }),
-      ". Each row links to its raw samples and source commit in the repository."));
+      ". Medians of five runs on fresh VMs; RSS is the summed resident set or Working Set. Per-run rows are in runs.csv."));
 }
 
 /* ---------- Screenshots ---------- */
@@ -228,9 +252,11 @@ function renderScreenshots({ features, memory }) {
   let current = [];
   let index = 0;
 
+  let scheme = "light";
+  let currentOs = "linux";
   const shotPath = (fw, os) => {
     const m = memory[fw]?.[os];
-    return m ? `screenshots/native-${m.run}/${m.runner}/${fw}.png` : null;
+    return m ? `screenshots/native-${m.run}/${m.runner}/${fw}${scheme === "dark" ? "-dark" : ""}.png` : null;
   };
 
   const open = (i) => {
@@ -252,17 +278,20 @@ function renderScreenshots({ features, memory }) {
   const show = (os) => {
     current = features.frameworks.map((fw) => ({
       src: shotPath(fw.id, os),
-      alt: `${fw.name} on ${OS_NAME[os]}`,
+      alt: `${fw.name} on ${OS_NAME[os]}${scheme === "dark" ? " with the system in dark mode" : ""}`,
       name: fw.name,
       mem: memory[fw.id]?.[os],
     })).filter((s) => s.src);
     gallery.replaceChildren(...current.map((s, i) => el("figure", { class: "card shot" },
       el("button", { type: "button", "aria-label": `Open ${s.alt} at full size`, onclick: () => open(i) },
         el("img", { src: s.src, alt: s.alt, loading: "lazy", width: 960, height: 640 })),
-      el("figcaption", {}, s.name, el("span", { text: s.mem ? `${fmt(s.mem.median)} MiB` : "" })),
+      el("figcaption", {}, s.name, el("span", { text: !s.mem ? "" : scheme === "dark"
+        ? (s.mem.dark ? "follows dark mode" : "stays light") : `${fmt(s.mem.median)} MiB` })),
     )));
   };
-  segmented($("#shot-os"), OS_ORDER.map((os) => [os, OS_NAME[os]]), "linux", show);
+  const redraw = () => show(currentOs);
+  segmented($("#shot-os"), OS_ORDER.map((os) => [os, OS_NAME[os]]), "linux", (os) => { currentOs = os; redraw(); });
+  segmented($("#shot-scheme"), [["light", "Light"], ["dark", "System dark mode"]], "light", (v) => { scheme = v; redraw(); });
   show("linux");
 }
 

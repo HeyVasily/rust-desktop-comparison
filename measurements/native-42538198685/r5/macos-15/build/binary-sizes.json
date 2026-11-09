@@ -1,0 +1,22 @@
+{
+  "egui": {
+    "executable": "/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-egui-comparison",
+    "executable_bytes": 5681808
+  },
+  "gtk": {
+    "executable": "/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-gtk-comparison",
+    "executable_bytes": 400112
+  },
+  "slint": {
+    "executable": "/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-slint-comparison",
+    "executable_bytes": 12243648
+  },
+  "qt": {
+    "executable": "/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/qt/veranda-qt-comparison",
+    "executable_bytes": 75656
+  },
+  "tauri": {
+    "executable": "/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/release/veranda-tauri-comparison",
+    "executable_bytes": 6581360
+  }
+}

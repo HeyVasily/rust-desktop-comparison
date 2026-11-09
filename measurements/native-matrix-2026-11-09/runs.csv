@@ -1,0 +1,101 @@
+os,framework,phase,repetition,status,cleanup,run_id,source_commit,image_version,primary_metric,primary_median_mib,primary_p95_mib,rss_metric,rss_median_mib,cpu_percent_one_core,elapsed_seconds,intervals,executable_bytes
+macos-15,egui,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,27.705,27.705,macOS RSS,76.953,0.0,167.672,120,5681808
+macos-15,egui,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,30.096,30.111,macOS RSS,78.328,0.002702,168.534,120,5681808
+macos-15,egui,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,28.221,28.221,macOS RSS,77.406,0.004732,167.712,120,5681808
+macos-15,egui,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,30.564,30.564,macOS RSS,79.297,0.004995,169.116,120,5681808
+macos-15,egui,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,27.314,27.314,macOS RSS,76.406,0.004071,171.443,120,5681808
+macos-15,gtk,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,46.127,46.127,macOS RSS,114.812,0.000537,178.148,120,400112
+macos-15,gtk,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,36.58,36.58,macOS RSS,127.453,0.000536,170.737,120,400112
+macos-15,gtk,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,44.721,44.721,macOS RSS,110.875,0.001146,172.715,120,400112
+macos-15,gtk,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,35.955,35.955,macOS RSS,119.766,0.005287,174.138,120,400112
+macos-15,gtk,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,43.69,43.69,macOS RSS,117.328,0.001311,173.419,120,400112
+macos-15,slint,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,17.158,17.158,macOS RSS,70.281,0.000346,177.13,120,12243648
+macos-15,slint,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,16.939,16.939,macOS RSS,69.984,0.000169,173.449,120,12243648
+macos-15,slint,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,17.127,17.127,macOS RSS,69.984,0.004564,173.112,120,12243648
+macos-15,slint,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,17.143,17.143,macOS RSS,70.859,0.000818,173.286,120,12243648
+macos-15,slint,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,17.111,17.111,macOS RSS,69.766,0.000225,172.603,120,12243648
+macos-15,qt,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,24.19,24.19,macOS RSS,88.984,0.000342,173.301,120,75656
+macos-15,qt,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,24.471,24.471,macOS RSS,89.172,0.0,170.63,120,75656
+macos-15,qt,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,24.143,24.143,macOS RSS,88.641,0.0,173.106,120,75656
+macos-15,qt,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,24.221,24.221,macOS RSS,89.141,0.00021,174.058,120,75656
+macos-15,qt,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,24.252,24.252,macOS RSS,88.891,0.001,174.234,120,75656
+macos-15,tauri,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,40.396,40.474,macOS RSS,135.016,0.016796,191.789,120,6581360
+macos-15,tauri,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,40.77,40.849,macOS RSS,134.328,0.008929,183.921,120,6581360
+macos-15,tauri,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,41.052,41.13,macOS RSS,134.344,0.013083,187.216,120,6581360
+macos-15,tauri,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,40.974,41.083,macOS RSS,135.188,0.037637,187.692,120,6581360
+macos-15,tauri,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261104.0514.1,macOS physical footprint,40.77,40.849,macOS RSS,134.578,0.020815,187.43,120,6581360
+ubuntu-24.04,egui,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,96.404,96.404,Linux RSS,120.449,0.0,122.006,120,12563840
+ubuntu-24.04,egui,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,95.945,95.945,Linux RSS,120.004,0.0,123.035,120,12563840
+ubuntu-24.04,egui,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,96.472,96.472,Linux RSS,120.559,0.00811,123.311,120,12563840
+ubuntu-24.04,egui,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,96.267,96.267,Linux RSS,120.461,0.008112,123.272,120,12563840
+ubuntu-24.04,egui,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,96.615,96.615,Linux RSS,120.707,0.00814,122.846,120,12563840
+ubuntu-24.04,egui,minimized,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,96.404,96.404,Linux RSS,120.449,0.008196,122.013,120,12563840
+ubuntu-24.04,egui,minimized,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,95.945,95.945,Linux RSS,120.004,0.008127,123.047,120,12563840
+ubuntu-24.04,egui,minimized,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,96.472,96.472,Linux RSS,120.559,0.00811,123.311,120,12563840
+ubuntu-24.04,egui,minimized,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,96.267,96.267,Linux RSS,120.461,0.008111,123.29,120,12563840
+ubuntu-24.04,egui,minimized,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,96.623,96.623,Linux RSS,120.715,0.008142,122.821,120,12563840
+ubuntu-24.04,gtk,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,211.738,211.738,Linux RSS,240.562,0.0,122.227,120,410552
+ubuntu-24.04,gtk,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,212.035,212.035,Linux RSS,240.801,0.0,123.508,120,410552
+ubuntu-24.04,gtk,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,211.831,211.831,Linux RSS,240.609,0.0,123.676,120,410552
+ubuntu-24.04,gtk,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,211.602,211.602,Linux RSS,240.328,0.0,123.691,120,410552
+ubuntu-24.04,gtk,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,211.479,211.479,Linux RSS,240.188,0.0,123.219,120,410552
+ubuntu-24.04,gtk,minimized,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,211.738,211.738,Linux RSS,240.562,0.0,122.222,120,410552
+ubuntu-24.04,gtk,minimized,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,212.035,212.035,Linux RSS,240.801,0.0,123.447,120,410552
+ubuntu-24.04,gtk,minimized,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,211.831,211.831,Linux RSS,240.609,0.0,123.841,120,410552
+ubuntu-24.04,gtk,minimized,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,211.602,211.602,Linux RSS,240.328,0.0,123.596,120,410552
+ubuntu-24.04,gtk,minimized,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,211.479,211.479,Linux RSS,240.188,0.0,123.249,120,410552
+ubuntu-24.04,slint,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.445,17.445,Linux RSS,22.68,0.008202,121.925,120,20538952
+ubuntu-24.04,slint,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.446,17.446,Linux RSS,22.629,0.0,122.95,120,20538952
+ubuntu-24.04,slint,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.711,17.711,Linux RSS,22.777,0.016237,123.173,120,20538952
+ubuntu-24.04,slint,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.391,17.391,Linux RSS,22.477,0.0,122.976,120,20538952
+ubuntu-24.04,slint,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.479,17.479,Linux RSS,22.746,0.008152,122.675,120,20538952
+ubuntu-24.04,slint,minimized,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.449,17.449,Linux RSS,22.684,0.008203,121.907,120,20538952
+ubuntu-24.04,slint,minimized,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.446,17.446,Linux RSS,22.629,0.008132,122.969,120,20538952
+ubuntu-24.04,slint,minimized,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.711,17.711,Linux RSS,22.777,0.008121,123.139,120,20538952
+ubuntu-24.04,slint,minimized,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.395,17.395,Linux RSS,22.48,0.0,122.979,120,20538952
+ubuntu-24.04,slint,minimized,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,17.482,17.482,Linux RSS,22.75,0.0,122.632,120,20538952
+ubuntu-24.04,qt,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.956,22.956,Linux RSS,33.566,0.0,121.925,120,31048
+ubuntu-24.04,qt,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.946,22.946,Linux RSS,33.391,0.0,123.042,120,31048
+ubuntu-24.04,qt,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.984,22.984,Linux RSS,33.457,0.0,122.957,120,31048
+ubuntu-24.04,qt,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.859,22.859,Linux RSS,33.371,0.0,123.039,120,31048
+ubuntu-24.04,qt,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.991,22.991,Linux RSS,33.582,0.0,122.632,120,31048
+ubuntu-24.04,qt,minimized,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.956,22.956,Linux RSS,33.566,0.0,121.911,120,31048
+ubuntu-24.04,qt,minimized,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.946,22.946,Linux RSS,33.391,0.0,123.068,120,31048
+ubuntu-24.04,qt,minimized,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.984,22.984,Linux RSS,33.457,0.0,122.936,120,31048
+ubuntu-24.04,qt,minimized,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.859,22.859,Linux RSS,33.371,0.0,123.061,120,31048
+ubuntu-24.04,qt,minimized,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,22.991,22.991,Linux RSS,33.582,0.0,122.604,120,31048
+ubuntu-24.04,tauri,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,338.183,338.194,Linux RSS,501.496,0.01596,125.316,120,6957896
+ubuntu-24.04,tauri,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,340.098,340.117,Linux RSS,503.98,0.023138,129.656,120,6957896
+ubuntu-24.04,tauri,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,337.888,337.919,Linux RSS,501.008,0.015456,129.398,120,6957896
+ubuntu-24.04,tauri,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,337.059,337.09,Linux RSS,501.086,0.038609,129.503,120,6957896
+ubuntu-24.04,tauri,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,338.263,338.298,Linux RSS,502.301,0.023416,128.119,120,6957896
+ubuntu-24.04,tauri,minimized,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,331.12,331.124,Linux RSS,492.09,0.031936,125.25,120,6957896
+ubuntu-24.04,tauri,minimized,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,333.055,333.059,Linux RSS,494.594,0.023164,129.514,120,6957896
+ubuntu-24.04,tauri,minimized,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,330.845,330.849,Linux RSS,491.621,0.030928,129.333,120,6957896
+ubuntu-24.04,tauri,minimized,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,330.0,330.004,Linux RSS,491.684,0.038608,129.507,120,6957896
+ubuntu-24.04,tauri,minimized,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.360.1,Linux PSS,331.173,331.177,Linux RSS,492.867,0.031201,128.202,120,6957896
+windows-2022,egui,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,26.254,26.363,Windows Working Set,51.133,0.0,122.391,120,13400576
+windows-2022,egui,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,27.02,27.133,Windows Working Set,51.809,0.0,122.5,120,13400576
+windows-2022,egui,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,26.602,26.711,Windows Working Set,51.434,0.0,122.438,120,13400576
+windows-2022,egui,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,29.406,29.52,Windows Working Set,51.863,0.0,122.687,120,13400576
+windows-2022,egui,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,26.871,26.984,Windows Working Set,51.691,0.0,121.422,120,13400576
+windows-2022,gtk,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,32.965,33.098,Windows Working Set,75.758,0.0,123.891,120,2151424
+windows-2022,gtk,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,33.375,33.512,Windows Working Set,76.164,0.0,123.609,120,2151424
+windows-2022,gtk,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,33.23,33.371,Windows Working Set,75.932,0.0,124.063,120,2151424
+windows-2022,gtk,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,33.211,33.344,Windows Working Set,76.02,0.0,124.313,120,2151424
+windows-2022,gtk,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,33.289,33.434,Windows Working Set,76.094,0.0,122.468,120,2151424
+windows-2022,slint,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,9.004,9.078,Windows Working Set,21.605,0.0,122.391,120,13452288
+windows-2022,slint,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,9.012,9.102,Windows Working Set,21.602,0.0,122.204,120,13452288
+windows-2022,slint,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,9.031,9.121,Windows Working Set,21.633,0.0,122.421,120,13452288
+windows-2022,slint,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,9.125,9.203,Windows Working Set,21.711,0.0,122.469,120,13452288
+windows-2022,slint,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,9.035,9.109,Windows Working Set,21.629,0.0,121.531,120,13452288
+windows-2022,qt,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,15.023,15.391,Windows Working Set,31.604,0.0,122.312,120,56832
+windows-2022,qt,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,14.984,15.359,Windows Working Set,31.57,0.0,122.281,120,56832
+windows-2022,qt,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,15.166,15.535,Windows Working Set,31.637,0.0,122.344,120,56832
+windows-2022,qt,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,15.031,15.391,Windows Working Set,31.621,0.0,122.75,120,56832
+windows-2022,qt,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,15.039,15.406,Windows Working Set,31.621,0.0,121.906,120,56832
+windows-2022,tauri,comparison,1,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,116.258,117.555,Windows Working Set,268.852,0.059538,131.219,120,8628224
+windows-2022,tauri,comparison,2,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,116.375,117.773,Windows Working Set,270.818,0.084014,130.187,120,8628224
+windows-2022,tauri,comparison,3,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,116.146,117.684,Windows Working Set,268.352,0.058789,132.891,120,8628224
+windows-2022,tauri,comparison,4,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,115.945,117.02,Windows Working Set,272.336,0.081939,133.484,120,8628224
+windows-2022,tauri,comparison,5,comparison_passed,clean,42538198685,f378db02035304148b2a5ce3f1e7ad011a99c795,20261101.353.1,Windows private working set,115.91,117.312,Windows Working Set,268.467,0.108919,129.11,120,8628224

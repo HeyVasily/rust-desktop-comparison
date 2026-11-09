@@ -1,0 +1,3 @@
+project 1
+
+(veranda-gtk-comparison:22138): Gdk-WARNING **: 00:59:13.458: gdk_frame_timings_presented() called on skipped frame.

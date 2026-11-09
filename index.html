@@ -20,12 +20,12 @@
       <ul class="facts">
         <li><b>5</b>toolkits</li>
         <li><b>3</b>operating systems</li>
-        <li><b>15</b>measured interfaces</li>
+        <li><b>×5</b>runs on fresh VMs</li>
         <li><b>13</b>native capabilities with sources</li>
       </ul>
       <div class="links">
         <a class="button primary" href="https://github.com/HeyVasily/rust-desktop-comparison">View on GitHub</a>
-        <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison/tree/main/measurements/native-matrix-2026-11-07">Raw data</a>
+        <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison/tree/main/measurements/native-matrix-2026-11-09">Raw data</a>
         <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/methodology.md">Methodology</a>
       </div>
     </div>
@@ -47,26 +47,27 @@
   <main class="wrap">
     <section id="overview" aria-labelledby="overview-title">
       <h2 id="overview-title">Overview</h2>
-      <p class="section-lede">What each toolkit is, its measured idle memory per system, and where it is strong or limited. Memory is lower-is-better; the bold value is the lowest on that system.</p>
+      <p class="section-lede">What each toolkit is, its measured idle memory per system (as the OS's own monitor reports it), and where it is strong or limited. Lower is better; the outlined value is the lowest on that system.</p>
       <div class="overview" id="overview-cards"><p>Loading…</p></div>
     </section>
 
     <section id="memory" aria-labelledby="memory-title">
       <h2 id="memory-title">Idle memory</h2>
-      <p class="section-lede">Median memory of the application's whole process family (webview helpers included) with a 960×640 window, after 30&nbsp;s settling and 120 one-second samples. All three panels share one scale.</p>
+      <p class="section-lede">Memory of the application's whole process family (webview helpers included) with a 960×640 window: Linux PSS, Windows private working set (Task Manager) and macOS physical footprint (Activity Monitor). Bars are the median of five runs on fresh VMs; the thin line spans the lowest to highest run. All panels share one scale.</p>
       <div class="charts" id="memory-charts"></div>
-      <p class="note"><strong>How to read this.</strong> Each OS reports memory differently (Linux/macOS RSS, Windows Working Set), so compare toolkits within a panel. Summing RSS counts shared pages more than once, which inflates multi-process apps such as Tauri on Linux. Idle CPU stayed below 0.11&nbsp;% of one core for every case — too small to rank. These are idle UI-only observations, not startup, interaction or frame-rate measurements.</p>
+      <p class="note"><strong>How to read this.</strong> Each OS defines its metric differently, so compare toolkits within a panel. These metrics count shared libraries proportionally, so multi-process apps are not double-counted (Tauri on Linux: 501&nbsp;MiB summed RSS, 338&nbsp;MiB PSS). Linux ran under Xvfb with software OpenGL, which GL-based toolkits (GTK 4.14, egui) pay for in private memory. Idle CPU stayed below 0.11&nbsp;% of one core everywhere — too small to rank. These are idle UI-only observations, not startup, interaction or frame-rate measurements.</p>
       <details class="table-view">
-        <summary>Show as a table, with CPU</summary>
+        <summary>Show as a table, with ranges, RSS and CPU</summary>
         <div class="scroll-x" id="memory-table"></div>
       </details>
     </section>
 
     <section id="screenshots" aria-labelledby="screenshots-title">
       <h2 id="screenshots-title">What the interfaces look like</h2>
-      <p class="section-lede">Captured during the measured runs: all projects, project-001 selected, empty filter. macOS captures include the titlebar. Select an image to view it at full size.</p>
+      <p class="section-lede">Captured during the measured runs: all projects, project-001 selected, empty filter. “System dark mode” shows each example relaunched after switching the OS itself to dark. macOS captures include the titlebar. Select an image to view it at full size.</p>
       <div class="toolbar">
         <div class="seg" role="group" aria-label="Operating system" id="shot-os"></div>
+        <div class="seg" role="group" aria-label="System appearance" id="shot-scheme"></div>
       </div>
       <div class="gallery" id="gallery"></div>
       <dialog class="lightbox" id="lightbox" aria-label="Screenshot">
@@ -128,16 +129,16 @@ egui::CentralPanel::default().show(ui, |ui| {
       </article>
 
       <article class="card code-card" data-panel="gtk" role="tabpanel" hidden>
-        <header><span>C builds a persistent widget tree; GTK signals call C callbacks.</span><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/examples/gtk/main.c">main.c</a></header>
-<pre><code>GtkWidget *body = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 12);
-GtkWidget *yards = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
-GtkWidget *scroll = gtk_scrolled_window_new();
-projects = gtk_list_box_new();
-gtk_widget_set_hexpand(scroll, TRUE);
-gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroll), projects);
-gtk_box_append(GTK_BOX(body), yards);
-gtk_box_append(GTK_BOX(body), scroll);
-g_signal_connect(projects, "row-selected", G_CALLBACK(select_project), NULL);</code></pre>
+        <header><span>gtk4-rs builds a persistent widget tree; GTK signals call Rust closures.</span><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/examples/gtk/src/main.rs">main.rs</a></header>
+<pre><code>let body = GtkBox::new(Orientation::Horizontal, 12);
+let yards = GtkBox::new(Orientation::Vertical, 4);
+let projects = ListBox::new();
+let scroll = ScrolledWindow::new();
+scroll.set_hexpand(true);
+scroll.set_child(Some(&amp;projects));
+body.append(&amp;yards);
+body.append(&amp;scroll);
+projects.connect_row_selected(move |_, row| { /* update details */ });</code></pre>
       </article>
 
       <article class="card code-card" data-panel="slint" role="tabpanel" hidden>
@@ -196,7 +197,8 @@ document.getElementById("refresh").addEventListener("click", () =&gt; {
           <ul>
             <li>10 synthetic yards, 100 projects, filter and Refresh — no backend, no polling.</li>
             <li>960×640 visible content, release builds, one app at a time.</li>
-            <li>30&nbsp;s settling, then 120 samples; CPU uses actual elapsed time.</li>
+            <li>30&nbsp;s settling, then 120 samples; five runs, each on a fresh VM.</li>
+            <li>Dark mode: the OS is switched to dark and every app relaunched.</li>
           </ul>
         </div>
         <div class="card">
@@ -204,7 +206,7 @@ document.getElementById("refresh").addEventListener("click", () =&gt; {
           <ul>
             <li>Startup time, interaction cost, frame rate or GPU rendering.</li>
             <li>A controlled cross-OS ranking: runners, CPUs and toolkit builds differ.</li>
-            <li>Rust bindings for GTK or Qt: those examples are written in C and C++.</li>
+            <li>Rust bindings for Qt: the Qt example is C++.</li>
           </ul>
         </div>
         <div class="card">

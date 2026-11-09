@@ -1,0 +1,119 @@
+{
+  "name": "egui",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "macOS-15.8.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "logical_cpus": 3,
+    "memory_bytes": 7516192768,
+    "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "runner_image": "macos15",
+    "image_version": "20261104.0514.1",
+    "commit": "f378db02035304148b2a5ce3f1e7ad011a99c795",
+    "run_id": "42538198685",
+    "repetition": "3",
+    "renderer": "See each application.log; unknown unless reported by the app",
+    "cpu_model": "Apple M1 (Virtual)",
+    "system_webkit_version": "20621.3.11.11.3"
+  },
+  "memory_metric": "macOS RSS",
+  "primary_memory_metric": "macOS physical footprint",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 23,
+        "pid": 21886,
+        "title": "Veranda egui comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          32.0,
+          29.0,
+          992.0,
+          697.0
+        ]
+      },
+      "capture": {
+        "width": 960,
+        "height": 668,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 14.298166999999921,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.02991200000000016,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.2092016410215402,
+        "family_rss_mib": {
+          "median": 77.453125,
+          "p95": 77.453125,
+          "observed_maximum": 77.453125
+        },
+        "family_primary_mib": {
+          "median": 28.2362060546875,
+          "p95": 28.2362060546875,
+          "observed_maximum": 28.2362060546875
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 23,
+        "pid": 21886,
+        "title": "Veranda egui comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          32.0,
+          29.0,
+          992.0,
+          697.0
+        ]
+      },
+      "capture": {
+        "width": 960,
+        "height": 668,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 167.71150179200004,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.007935391999999819,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.004731572918499943,
+        "family_rss_mib": {
+          "median": 77.40625,
+          "p95": 77.40625,
+          "observed_maximum": 77.40625
+        },
+        "family_primary_mib": {
+          "median": 28.2205810546875,
+          "p95": 28.2205810546875,
+          "observed_maximum": 28.2205810546875
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 21886,
+      "name": "veranda-egui-comparison",
+      "created": 1794185391.821959
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}
