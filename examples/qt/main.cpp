@@ -10,6 +10,10 @@
 #include <QWidget>
 #include <QTimer>
 #include <iostream>
+#include <memory>
+#ifdef VERANDA_SHELL_CHECKS
+#include "shell_checks.h"
+#endif
 
 static QString projectName(int project) {
     return QStringLiteral("project-%1").arg(project + 1, 3, 10, QLatin1Char('0'));
@@ -22,6 +26,9 @@ static QString yardName(int yard) {
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
     QApplication::setApplicationName("Veranda Qt Widgets comparison");
+#ifdef VERANDA_SHELL_CHECKS
+    if (shell::handedToRunningInstance()) return 0;
+#endif
     QWidget window;
     window.setWindowTitle("Veranda Qt Widgets comparison");
     window.resize(960, 640);
@@ -146,5 +153,9 @@ int main(int argc, char **argv) {
                       << "}" << std::endl;
         });
     }
+#ifdef VERANDA_SHELL_CHECKS
+    std::unique_ptr<shell::Checks> shellChecks;
+    if (shell::enabled()) shellChecks = std::make_unique<shell::Checks>(&window);
+#endif
     return app.exec();
 }

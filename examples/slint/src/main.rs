@@ -2,6 +2,8 @@
 use slint::{ComponentHandle, ModelRc, SharedString, VecModel};
 
 slint::include_modules!();
+#[cfg(feature = "shell-checks")]
+mod shell;
 #[cfg(target_os = "linux")]
 include!("../../linux_display_diagnostics.rs");
 
@@ -42,6 +44,8 @@ fn main() -> Result<(), slint::PlatformError> {
         .backend_name("winit".into())
         .renderer_name("software".into())
         .select()?;
+    #[cfg(feature = "shell-checks")]
+    let _instance = shell::single_instance();
     let ui = Demo::new()?;
     let yards: Vec<SharedString> = (1..=10)
         .map(|yard| format!("yard-{yard:02}     10 projects").into())
@@ -107,9 +111,16 @@ fn main() -> Result<(), slint::PlatformError> {
         slint::Timer::single_shot(std::time::Duration::from_millis(100), move || {
             if let Some(ui) = weak.upgrade() {
                 let size = ui.window().size();
-                report_display("slint", &ui.window().window_handle(), size.width, size.height);
+                report_display(
+                    "slint",
+                    &ui.window().window_handle(),
+                    size.width,
+                    size.height,
+                );
             }
         });
     }
+    #[cfg(feature = "shell-checks")]
+    let _shell = shell::start(&ui.as_weak());
     ui.run()
 }

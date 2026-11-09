@@ -5,8 +5,12 @@ use eframe::glow::HasContext;
 
 #[cfg(target_os = "linux")]
 include!("../../linux_display_diagnostics.rs");
+#[cfg(feature = "shell-checks")]
+mod shell;
 
 struct Demo {
+    #[cfg(feature = "shell-checks")]
+    _shell: Option<shell::Shell>,
     #[cfg(target_os = "linux")]
     reported_display: bool,
     yard: usize,
@@ -18,6 +22,8 @@ struct Demo {
 impl Default for Demo {
     fn default() -> Self {
         Self {
+            #[cfg(feature = "shell-checks")]
+            _shell: None,
             #[cfg(target_os = "linux")]
             reported_display: false,
             yard: 0,
@@ -128,6 +134,8 @@ impl eframe::App for Demo {
 }
 
 fn main() -> eframe::Result {
+    #[cfg(feature = "shell-checks")]
+    let _instance = shell::single_instance();
     #[cfg(target_os = "windows")]
     let options = {
         // Hosted Windows desktops expose OpenGL 1.1. DX12 supports their WARP
@@ -179,6 +187,12 @@ fn main() -> eframe::Result {
             // when the OS reports none, use light instead of egui's dark fallback.
             cc.egui_ctx
                 .options_mut(|options| options.fallback_theme = egui::Theme::Light);
+            #[cfg(feature = "shell-checks")]
+            return Ok(Box::new(Demo {
+                _shell: shell::start(&cc.egui_ctx),
+                ..Demo::default()
+            }));
+            #[cfg(not(feature = "shell-checks"))]
             Ok(Box::new(Demo::default()))
         }),
     )

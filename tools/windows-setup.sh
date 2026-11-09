@@ -15,8 +15,9 @@ pkg-config --modversion gtk4 > artifacts/build/gtk-version.txt
 
 # gtk4-rs links against MSYS2's GTK through pkg-config, so build it with the
 # MSYS2 (x86_64-pc-windows-gnu) toolchain in its own target directory.
+# GTK_CARGO_FEATURES (e.g. shell-checks) is set only by the shell-integration workflow.
 cargo build --release --locked --manifest-path examples/gtk/Cargo.toml \
-    --target-dir target/msys2 2>&1 | tee artifacts/build/gtk.log
+    --target-dir target/msys2 ${GTK_CARGO_FEATURES:+--features "$GTK_CARGO_FEATURES"} 2>&1 | tee artifacts/build/gtk.log
 test -f target/msys2/release/veranda-gtk-comparison.exe
 
 # Forward-slash Windows paths are accepted by the loader and JSON without

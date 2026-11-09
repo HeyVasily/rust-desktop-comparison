@@ -12,3 +12,11 @@ else()
 endif()
 # Keep a directly runnable executable on every platform for the comparison probe.
 set_target_properties(veranda-qt-comparison PROPERTIES MACOSX_BUNDLE FALSE)
+
+# Optional shell-integration checks; the measured build leaves this off.
+option(VERANDA_SHELL_CHECKS "Build the tray, badge, attention and single-instance checks" OFF)
+if(VERANDA_SHELL_CHECKS)
+    find_package(Qt6 REQUIRED COMPONENTS Network)
+    target_compile_definitions(veranda-qt-comparison PRIVATE VERANDA_SHELL_CHECKS)
+    target_link_libraries(veranda-qt-comparison PRIVATE Qt6::Network)
+endif()

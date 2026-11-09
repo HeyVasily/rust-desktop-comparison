@@ -1,0 +1,160 @@
+name: Shell integration checks
+run-name: "Shell integration checks: ${{ inputs.platforms }} / ${{ inputs.framework }}"
+
+# Manual only. Builds each example with its shell-checks option (tray icon, Dock or
+# taskbar badge, global shortcut, single instance, attention request) and verifies
+# the effect from outside the app with tools/shell_probe.py. The measured builds of
+# native-comparison.yml do not include this code.
+on:
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: 'Windows, macOS, Linux X11, or all three'
+        type: choice
+        options: [all, windows, macos, linux]
+        default: all
+      framework:
+        description: 'all or comma-separated egui,gtk,slint,qt,tauri'
+        type: string
+        default: all
+
+permissions:
+  contents: read
+
+jobs:
+  shell:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.platforms == 'windows' && '["windows-2022"]' || inputs.platforms == 'macos' && '["macos-15"]' || inputs.platforms == 'linux' && '["ubuntu-24.04"]' || '["windows-2022","macos-15","ubuntu-24.04"]') }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 100
+    env:
+      CARGO_TARGET_DIR: ${{ github.workspace }}/target
+      CARGO_BUILD_JOBS: '2'
+      CARGO_INCREMENTAL: '0'
+      FRAMEWORK: ${{ inputs.framework }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        id: probe_python
+        with:
+          python-version: '3.12'
+      - name: Select frameworks and prepare the probe
+        run: |
+          mkdir -p artifacts/build target
+          PROBE_PYTHON="${{ steps.probe_python.outputs.python-path }}"
+          echo "PROBE_PYTHON=$PROBE_PYTHON" >> "$GITHUB_ENV"
+          "$PROBE_PYTHON" -m pip install psutil==7.0.0 Pillow==11.2.1
+          if [ "$RUNNER_OS" = macOS ]; then "$PROBE_PYTHON" -m pip install pyobjc-framework-Quartz==11.0; fi
+          "$PROBE_PYTHON" - <<'PY'
+          import os
+          names = ('egui', 'gtk', 'slint', 'qt', 'tauri')
+          requested = [n.strip() for n in os.environ['FRAMEWORK'].split(',')]
+          selected = list(names) if requested == ['all'] else [n for n in names if n in requested]
+          assert selected and all(n in names for n in requested if n != 'all'), requested
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write('FRAMEWORK=' + ','.join(selected) + '\n')
+          print('Selected:', ', '.join(selected))
+          PY
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Linux libraries, X11 desktop and D-Bus tools
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev xvfb openbox xdotool x11-utils imagemagick dbus-x11 python3-gi gir1.2-glib-2.0 libglib2.0-bin
+          pkg-config --modversion gtk4 webkit2gtk-4.1 Qt6Widgets > artifacts/build/native-versions.txt
+      - name: Qt 6.8.3 for Windows
+        if: runner.os == 'Windows' && contains(env.FRAMEWORK, 'qt')
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          arch: win64_msvc2022_64
+          cache: false
+      - name: GTK4 Windows toolchain
+        if: runner.os == 'Windows' && contains(env.FRAMEWORK, 'gtk')
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-pkgconf
+            mingw-w64-ucrt-x86_64-gtk4
+            mingw-w64-ucrt-x86_64-rust
+      - name: Build gtk4-rs with shell checks on Windows
+        if: runner.os == 'Windows' && contains(env.FRAMEWORK, 'gtk')
+        continue-on-error: true
+        shell: msys2 {0}
+        env:
+          GTK_CARGO_FEATURES: shell-checks
+        run: bash tools/windows-setup.sh
+      - name: macOS libraries
+        if: runner.os == 'macOS' && (contains(env.FRAMEWORK, 'qt') || contains(env.FRAMEWORK, 'gtk'))
+        run: |
+          brew install pkgconf qtbase gtk4 2>&1 | tail -5
+          brew list --versions qtbase gtk4 > artifacts/build/native-versions.txt
+          echo "Qt6_DIR=$(brew --prefix qtbase)/lib/cmake/Qt6" >> "$GITHUB_ENV"
+      - name: Build Rust examples with shell checks
+        continue-on-error: true
+        timeout-minutes: 45
+        run: |
+          status=0
+          for example in egui gtk slint tauri; do
+            if [[ ",$FRAMEWORK," != *,"$example",* ]]; then continue; fi
+            if [ "$RUNNER_OS" = Windows ] && [ "$example" = gtk ]; then continue; fi
+            cargo build --release --locked --features shell-checks \
+              --manifest-path "examples/$example/Cargo.toml" 2>&1 | tee "artifacts/build/$example.log" || status=1
+          done
+          exit "$status"
+      - name: Build Qt Widgets with shell checks
+        if: contains(env.FRAMEWORK, 'qt')
+        continue-on-error: true
+        run: |
+          cmake -S examples/qt -B target/qt -DCMAKE_BUILD_TYPE=Release -DVERANDA_SHELL_CHECKS=ON 2>&1 | tee artifacts/build/qt-configure.log
+          cmake --build target/qt --config Release 2>&1 | tee artifacts/build/qt-build.log
+          if [ "$RUNNER_OS" = Windows ]; then
+            windeployqt --release --no-translations target/qt/Release/veranda-qt-comparison.exe 2>&1 | tee artifacts/build/qt-deploy.log
+          fi
+      - name: Run the shell checks
+        timeout-minutes: 30
+        run: |
+          cat > artifacts/run_shell.sh <<'SH'
+          set -u
+          ext=""; [ "$RUNNER_OS" = Windows ] && ext=".exe"
+          for name in egui gtk slint qt tauri; do
+            if [[ ",$FRAMEWORK," != *,"$name",* ]]; then continue; fi
+            case "$name" in
+              gtk) dir="$CARGO_TARGET_DIR/release"; [ "$RUNNER_OS" = Windows ] && dir="target/msys2/release"; exe="$dir/veranda-gtk-comparison$ext" ;;
+              qt) exe="$CARGO_TARGET_DIR/qt/veranda-qt-comparison$ext"; [ "$RUNNER_OS" = Windows ] && exe="$CARGO_TARGET_DIR/qt/Release/veranda-qt-comparison.exe" ;;
+              *) exe="$CARGO_TARGET_DIR/release/veranda-$name-comparison$ext" ;;
+            esac
+            echo "::group::$name"
+            "$PROBE_PYTHON" tools/shell_probe.py --name "$name" --executable "$exe" --output "artifacts/shell/$name" || echo "$name probe exited $?"
+            cat "artifacts/shell/$name/result.json" 2>/dev/null | head -c 6000
+            echo "::endgroup::"
+          done
+          SH
+          if [ "$RUNNER_OS" = Linux ]; then
+            export LIBGL_ALWAYS_SOFTWARE=1 GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb XDG_SESSION_TYPE=x11
+            export SNI_WATCHER_LOG="$PWD/artifacts/sni-watcher.log" LAUNCHER_MONITOR_LOG="$PWD/artifacts/launcher-entry.log"
+            export LAUNCHER_RULE="type='signal',interface='com.canonical.Unity.LauncherEntry'"
+            dbus-run-session -- xvfb-run -a -s '-screen 0 1600x1000x24' bash -c '
+              openbox > artifacts/build/openbox.log 2>&1 &
+              /usr/bin/python3 tools/sni_watcher.py "$SNI_WATCHER_LOG" &
+              dbus-monitor --session "$LAUNCHER_RULE" > "$LAUNCHER_MONITOR_LOG" 2>&1 &
+              sleep 2
+              bash artifacts/run_shell.sh'
+          else
+            bash artifacts/run_shell.sh
+          fi
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shell-${{ matrix.os }}-${{ github.run_id }}
+          path: artifacts
+          if-no-files-found: error

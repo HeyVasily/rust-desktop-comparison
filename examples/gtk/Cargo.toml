@@ -7,5 +7,16 @@ publish = false
 [dependencies]
 gtk = { package = "gtk4", version = "=0.11.5" }
 
+# Optional shell-integration checks; the measured build does not enable them.
+tray-icon = { version = "=0.25.1", default-features = false, features = ["ksni"], optional = true }
+global-hotkey = { version = "=0.9.0", optional = true }
+single-instance = { version = "=0.3.3", optional = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+gdk4-x11 = { version = "=0.11.5", optional = true }
+
+[features]
+shell-checks = ["dep:tray-icon", "dep:global-hotkey", "dep:single-instance", "dep:gdk4-x11"]
+
 [profile.release]
 strip = true

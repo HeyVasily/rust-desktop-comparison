@@ -10,6 +10,8 @@ tauri-build = { version = "=2.7.4", features = [] }
 
 [dependencies]
 tauri = { version = "=2.12.5", features = [] }
+tauri-plugin-global-shortcut = { version = "=2.4.1", optional = true }
+tauri-plugin-single-instance = { version = "=2.5.5", optional = true }
 
 [target.'cfg(target_os = "macos")'.dependencies]
 objc2 = "=0.6.5"
@@ -19,6 +21,8 @@ objc2-app-kit = { version = "=0.3.2", default-features = false, features = ["std
 # Embed the static frontend when building directly with Cargo, without the Tauri CLI.
 default = ["custom-protocol"]
 custom-protocol = ["tauri/custom-protocol"]
+# Optional shell-integration checks; the measured build does not enable them.
+shell-checks = ["tauri/tray-icon", "dep:tauri-plugin-global-shortcut", "dep:tauri-plugin-single-instance"]
 
 [profile.release]
 strip = true

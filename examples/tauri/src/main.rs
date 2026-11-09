@@ -5,11 +5,22 @@
 use tauri::Manager;
 #[cfg(target_os = "linux")]
 include!("../../linux_display_diagnostics.rs");
+#[cfg(feature = "shell-checks")]
+mod shell;
 
 #[cfg(target_os = "linux")]
 #[tauri::command]
-fn comparison_ready(window: tauri::WebviewWindow, width: u32, height: u32, projects: u32, yards: u32) {
-    if std::env::var_os("COMPARISON_DISPLAY_DIAGNOSTICS").is_some() && projects == 100 && yards == 10 {
+fn comparison_ready(
+    window: tauri::WebviewWindow,
+    width: u32,
+    height: u32,
+    projects: u32,
+    yards: u32,
+) {
+    if std::env::var_os("COMPARISON_DISPLAY_DIAGNOSTICS").is_some()
+        && projects == 100
+        && yards == 10
+    {
         report_display("tauri", &window, width, height);
     }
 }
@@ -52,6 +63,8 @@ fn log_geometry(
 
 fn main() {
     let builder = tauri::Builder::default();
+    #[cfg(feature = "shell-checks")]
+    let builder = shell::install(builder);
     #[cfg(target_os = "linux")]
     let builder = builder
         .invoke_handler(tauri::generate_handler![comparison_ready])
@@ -61,14 +74,16 @@ fn main() {
             {
                 // Two startup frames establish a rendered, populated DOM. The IPC is
                 // diagnostic-only; normal launches execute no additional JavaScript.
-                let _ = webview.eval(r#"requestAnimationFrame(() => requestAnimationFrame(() => {
+                let _ = webview.eval(
+                    r#"requestAnimationFrame(() => requestAnimationFrame(() => {
                     window.__TAURI_INTERNALS__.invoke('comparison_ready', {
                         width: Math.round(innerWidth * devicePixelRatio),
                         height: Math.round(innerHeight * devicePixelRatio),
                         projects: document.querySelectorAll('#projects > button').length,
                         yards: document.querySelectorAll('#yards > button').length
                     });
-                }));"#);
+                }));"#,
+                );
             }
         });
     #[cfg(target_os = "macos")]

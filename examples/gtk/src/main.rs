@@ -12,6 +12,9 @@ use gtk::{
 
 const APP_ID: &str = "org.subyard.Comparison";
 
+#[cfg(feature = "shell-checks")]
+mod shell;
+
 fn project_of(row: &ListBoxRow) -> usize {
     usize::try_from(row.index()).expect("rows are appended in project order")
 }
@@ -25,6 +28,10 @@ fn details_text(project: usize) -> String {
 }
 
 fn build_ui(app: &Application) {
+    #[cfg(feature = "shell-checks")]
+    if shell::forwarded_activation(app) {
+        return;
+    }
     let selected_yard = Rc::new(Cell::new(0usize));
     let refreshes = Rc::new(Cell::new(0u32));
 
@@ -147,6 +154,14 @@ fn build_ui(app: &Application) {
     projects.select_row(projects.row_at_index(0).as_ref());
     GtkWindowExt::set_focus(&window, Some(&refresh_button));
     window.present();
+    #[cfg(feature = "shell-checks")]
+    {
+        // Keep the tray and hotkey alive as long as the window.
+        let shell = shell::start(&window);
+        window.connect_destroy(move |_| {
+            let _ = &shell;
+        });
+    }
 }
 
 fn main() -> glib::ExitCode {

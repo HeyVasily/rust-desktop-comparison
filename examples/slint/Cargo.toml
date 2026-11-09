@@ -7,6 +7,12 @@ build = "build.rs"
 
 [dependencies]
 slint = { version = "=1.18.1", default-features = false, features = ["std", "compat-1-18", "backend-winit", "renderer-software", "accessibility", "raw-window-handle-06"] }
+# Optional shell-integration checks; the measured build does not enable them.
+global-hotkey = { version = "=0.9.0", optional = true }
+single-instance = { version = "=0.3.3", optional = true }
+
+[features]
+shell-checks = ["slint/system-tray", "slint/unstable-winit-030", "dep:global-hotkey", "dep:single-instance"]
 
 [build-dependencies]
 slint-build = "=1.18.1"
