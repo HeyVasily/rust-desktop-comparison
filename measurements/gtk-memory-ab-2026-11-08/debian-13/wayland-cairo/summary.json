@@ -1,0 +1,52 @@
+{
+  "intervals": 120,
+  "elapsed_seconds": 120.66729603699991,
+  "cpu_seconds": 0,
+  "cpu_percent_one_core": 0.0,
+  "cpu_resolution_note": "0 means no recorded CPU-counter increment",
+  "rss_mib": 33.0703125,
+  "pss_mib": 20.740234375,
+  "stat_rss_mib": 33.0703125,
+  "processes": [
+    "gtk-control"
+  ],
+  "max_family_processes": 1,
+  "max_threads": 6,
+  "diagnostic": {
+    "gtk": "4.18.6",
+    "display": "GdkWaylandDisplay",
+    "renderer": "GskCairoRenderer",
+    "width": 960,
+    "height": 640,
+    "surface_width": 960,
+    "surface_height": 640,
+    "scale": 1,
+    "mapped": true
+  },
+  "screenshots": {
+    "start": {
+      "size": [
+        1280,
+        720
+      ],
+      "stddev": [
+        114.81928991910566,
+        113.57180393853979,
+        113.50828838807068
+      ],
+      "sha256": "341ea56a26852d6e5e05c36d66b94406796acd53679d5d8ed4bdc532902e8687"
+    },
+    "end": {
+      "size": [
+        1280,
+        720
+      ],
+      "stddev": [
+        114.81928991910566,
+        113.57180393853979,
+        113.50828838807068
+      ],
+      "sha256": "341ea56a26852d6e5e05c36d66b94406796acd53679d5d8ed4bdc532902e8687"
+    }
+  }
+}

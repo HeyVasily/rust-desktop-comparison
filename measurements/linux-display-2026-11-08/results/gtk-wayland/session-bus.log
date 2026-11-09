@@ -1,0 +1,10 @@
+unix:path=/tmp/dbus-cXBeYiw1TV,guid=0d85709bbda84c08cc6897da6af0afba
+dbus-daemon[20882]: [session uid=1001 pid=20882] Activating service name='org.freedesktop.systemd1' requested by ':1.1' (uid=1001 pid=20889 comm="systemctl --user import-environment DISPLAY WAYLAN" label="unconfined")
+dbus-daemon[20882]: [session uid=1001 pid=20882] Activated service 'org.freedesktop.systemd1' failed: Process org.freedesktop.systemd1 exited with status 1
+dbus-daemon[20882]: [session uid=1001 pid=20882] Activating service name='org.a11y.Bus' requested by ':1.2' (uid=1001 pid=20900 comm="/home/runner/work/rust-desktop-comparison/rust-des" label="unconfined")
+dbus-daemon[20882]: [session uid=1001 pid=20882] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[20914]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=1001 pid=20900 comm="/home/runner/work/rust-desktop-comparison/rust-des" label="unconfined")
+dbus-daemon[20914]: Successfully activated service 'org.a11y.atspi.Registry'
+SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
+
+Session terminated, killing shell... ...killed.

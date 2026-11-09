@@ -6,6 +6,38 @@
 static GtkWidget *projects, *details, *snapshot, *filter;
 static int selected_yard, refreshes;
 
+/* Opt-in, once after a real paint; no recurring diagnostic wakeups. */
+static void report_renderer(GdkFrameClock *clock, gpointer data) {
+    GtkWidget *window = GTK_WIDGET(data);
+    GskRenderer *renderer = gtk_native_get_renderer(GTK_NATIVE(window));
+    GdkSurface *surface = gtk_native_get_surface(GTK_NATIVE(window));
+    printf("GTK_DIAGNOSTIC {\"gtk\":\"%u.%u.%u\",\"display\":\"%s\","
+           "\"renderer\":\"%s\",\"width\":%d,\"height\":%d,"
+           "\"surface_width\":%d,\"surface_height\":%d,\"scale\":%d,"
+           "\"mapped\":%s}\n",
+           gtk_get_major_version(), gtk_get_minor_version(), gtk_get_micro_version(),
+           G_OBJECT_TYPE_NAME(gtk_widget_get_display(window)),
+           renderer ? G_OBJECT_TYPE_NAME(renderer) : "unavailable",
+           gtk_widget_get_width(window), gtk_widget_get_height(window),
+           surface ? gdk_surface_get_width(surface) : 0,
+           surface ? gdk_surface_get_height(surface) : 0,
+           gtk_widget_get_scale_factor(window), gtk_widget_get_mapped(window) ? "true" : "false");
+    if (g_getenv("COMPARISON_DISPLAY_DIAGNOSTICS")) {
+        GtkWidget *child = gtk_window_get_child(GTK_WINDOW(window));
+        const char *display = G_OBJECT_TYPE_NAME(gtk_widget_get_display(window));
+        const char *backend = strstr(display, "Wayland") ? "wayland" :
+                              (strstr(display, "X11") ? "x11" : "unavailable");
+        int scale = gtk_widget_get_scale_factor(window);
+        printf("DISPLAY_DIAGNOSTIC {\"name\":\"gtk\",\"backend\":\"%s\","
+               "\"content_width\":%d,\"content_height\":%d,\"ready\":%s}\n", backend,
+               scale * (gtk_widget_get_width(child) + gtk_widget_get_margin_start(child) + gtk_widget_get_margin_end(child)),
+               scale * (gtk_widget_get_height(child) + gtk_widget_get_margin_top(child) + gtk_widget_get_margin_bottom(child)),
+               gtk_widget_get_mapped(window) ? "true" : "false");
+    }
+    fflush(stdout);
+    g_signal_handlers_disconnect_by_func(clock, G_CALLBACK(report_renderer), data);
+}
+
 static void select_project(GtkListBox *box, GtkListBoxRow *row, gpointer unused) {
     (void)box; (void)unused;
     if (!row) return;
@@ -92,6 +124,8 @@ static void activate(GtkApplication *app, gpointer unused) {
     gtk_list_box_select_row(GTK_LIST_BOX(projects), gtk_list_box_get_row_at_index(GTK_LIST_BOX(projects), 0));
     gtk_window_set_focus(GTK_WINDOW(window), refresh_button);
     gtk_window_present(GTK_WINDOW(window));
+    if (g_getenv("COMPARISON_GTK_DIAGNOSTICS") || g_getenv("COMPARISON_DISPLAY_DIAGNOSTICS"))
+        g_signal_connect(gtk_widget_get_frame_clock(window), "after-paint", G_CALLBACK(report_renderer), window);
 }
 
 int main(int argc, char **argv) {

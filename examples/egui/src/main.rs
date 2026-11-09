@@ -3,7 +3,12 @@ use eframe::egui;
 #[cfg(not(target_os = "windows"))]
 use eframe::glow::HasContext;
 
+#[cfg(target_os = "linux")]
+include!("../../linux_display_diagnostics.rs");
+
 struct Demo {
+    #[cfg(target_os = "linux")]
+    reported_display: bool,
     yard: usize,
     project: usize,
     filter: String,
@@ -13,6 +18,8 @@ struct Demo {
 impl Default for Demo {
     fn default() -> Self {
         Self {
+            #[cfg(target_os = "linux")]
+            reported_display: false,
             yard: 0,
             project: 0,
             filter: String::new(),
@@ -23,6 +30,12 @@ impl Default for Demo {
 
 impl eframe::App for Demo {
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        #[cfg(target_os = "linux")]
+        if !self.reported_display && std::env::var_os("COMPARISON_DISPLAY_DIAGNOSTICS").is_some() {
+            let size = ui.max_rect().size() * ui.ctx().pixels_per_point();
+            report_display("egui", _frame, size.x.round() as u32, size.y.round() as u32);
+            self.reported_display = true;
+        }
         egui::Panel::top("header").exact_size(100.0).show(ui, |ui| {
             ui.add_space(12.0);
             ui.heading("Veranda / egui");

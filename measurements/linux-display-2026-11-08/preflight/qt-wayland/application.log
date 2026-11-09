@@ -1,0 +1,3 @@
+project 1
+DISPLAY_DIAGNOSTIC {"name":"qt","backend":"wayland","content_width":960,"content_height":640,"ready":true}
+Terminated

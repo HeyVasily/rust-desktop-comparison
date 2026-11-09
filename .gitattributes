@@ -1,2 +1,4 @@
 # Retain the original LF/CRLF bytes of native measurement exports.
 measurements/** -text whitespace=cr-at-eol,-blank-at-eof
+# Preserve empty package-version fields in these original environment exports.
+measurements/gtk-memory-ab-2026-11-08/**/build/environment.txt -text whitespace=cr-at-eol,-blank-at-eof,-blank-at-eol

@@ -32,6 +32,15 @@ it changes the published comparison.
   screenshots compare toolkits rather than fixture differences.
 - Requires a full re-run because every measured binary changes.
 
+## Linux display and renderer in the main matrix
+
+The [X11/Wayland](linux-display-comparison.md) and [GTK renderer](gtk-memory-investigation.md)
+series still use the GTK C control (`examples/gtk-c`). Next: add the same
+`DISPLAY_DIAGNOSTIC` report to the gtk4-rs example, switch both workflows to it, and
+add a native Wayland pass (and a `GSK_RENDERER=cairo` variant) to the repeated native
+matrix. Fold the X11/Wayland split from [platform-support.md](platform-support.md)
+into `data/features.json` so there is one feature matrix.
+
 ## Further checks
 
 - Verify GTK desktop notifications on Windows/macOS (currently "not verified").

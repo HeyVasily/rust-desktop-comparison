@@ -55,7 +55,7 @@
       <h2 id="memory-title">Idle memory</h2>
       <p class="section-lede">Memory of the application's whole process family (webview helpers included) with a 960×640 window: Linux PSS, Windows private working set (Task Manager) and macOS physical footprint (Activity Monitor). Bars are the median of five runs on fresh VMs; the thin line spans the lowest to highest run. All panels share one scale.</p>
       <div class="charts" id="memory-charts"></div>
-      <p class="note"><strong>How to read this.</strong> Each OS defines its metric differently, so compare toolkits within a panel. These metrics count shared libraries proportionally, so multi-process apps are not double-counted (Tauri on Linux: 501&nbsp;MiB summed RSS, 338&nbsp;MiB PSS). Linux ran under Xvfb with software OpenGL, which GL-based toolkits (GTK 4.14, egui) pay for in private memory. Idle CPU stayed below 0.11&nbsp;% of one core everywhere — too small to rank. These are idle UI-only observations, not startup, interaction or frame-rate measurements.</p>
+      <p class="note"><strong>How to read this.</strong> Each OS defines its metric differently, so compare toolkits within a panel. These metrics count shared libraries proportionally, so multi-process apps are not double-counted (Tauri on Linux: 501&nbsp;MiB summed RSS, 338&nbsp;MiB PSS). Linux ran under Xvfb with software OpenGL, which GL-based toolkits (GTK 4.14, egui) pay for in private memory: the same GTK binary used 210&nbsp;MiB PSS with OpenGL and 68&nbsp;MiB with Cairo (<a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/gtk-memory-investigation.md">experiment</a>), and Qt rose from 23 to 73&nbsp;MiB on native Wayland (<a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/linux-display-comparison.md">X11 vs Wayland</a>). Idle CPU stayed below 0.11&nbsp;% of one core everywhere — too small to rank. These are idle UI-only observations, not startup, interaction or frame-rate measurements.</p>
       <details class="table-view">
         <summary>Show as a table, with ranges, RSS and CPU</summary>
         <div class="scroll-x" id="memory-table"></div>
@@ -213,6 +213,8 @@ document.getElementById("refresh").addEventListener("click", () =&gt; {
           <h3>Read more</h3>
           <ul>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/full-native-results.md">Full native results</a> with versions and run IDs</li>
+            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/linux-display-comparison.md">Linux X11 vs Wayland</a> and the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/gtk-memory-investigation.md">GTK renderer experiment</a></li>
+            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/platform-support.md">Platform support per session</a> (Windows, macOS, X11, Wayland)</li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/github-runners.md">Runner procedure</a> and process scope</li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/historical-comparison.md">Earlier Wayland measurements</a> and why they differ</li>
           </ul>

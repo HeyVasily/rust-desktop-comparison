@@ -5,10 +5,13 @@ edition = "2024"
 publish = false
 
 [target.'cfg(not(target_os = "windows"))'.dependencies]
-eframe = { version = "=0.37.0", default-features = false, features = ["accesskit", "default_fonts", "glow", "x11"] }
+eframe = { version = "=0.37.0", default-features = false, features = ["accesskit", "default_fonts", "glow", "x11", "wayland"] }
 
 [target.'cfg(target_os = "windows")'.dependencies]
 eframe = { version = "=0.37.0", default-features = false, features = ["accesskit", "default_fonts", "wgpu"] }
 
 [profile.release]
 strip = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+raw-window-handle = "=0.6.2"

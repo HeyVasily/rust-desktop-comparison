@@ -11,6 +11,24 @@ import native_probe as probe
 
 
 class NativeProbeTests(unittest.TestCase):
+    def test_linux_window_discovery_uses_explicit_case_display_for_every_command(self):
+        case_env = dict(DISPLAY=':91')
+        def output(command, **kwargs):
+            self.assertIs(kwargs.get('env'), case_env)
+            if command[0] == 'xwininfo':
+                return 'Map State: IsViewable'
+            if command[1] == 'getwindowname':
+                return 'Example'
+            return 'X=160\nY=40\nWIDTH=960\nHEIGHT=640\n'
+        with patch.object(probe.sys, 'platform', 'linux'), \
+                patch.dict(os.environ, DISPLAY=':wrong'), \
+                patch.object(probe.subprocess, 'run', return_value=Mock(stdout='123')) as search, \
+                patch.object(probe.subprocess, 'check_output', side_effect=output) as inspect:
+            window = probe.find_window({321}, 'Example', env=case_env)
+        self.assertIs(search.call_args.kwargs['env'], case_env)
+        self.assertEqual(inspect.call_count, 3)
+        self.assertEqual(window['rectangle'], [160, 40, 1120, 680])
+
     def test_verified_other_owner_is_excluded_from_global_webkit_audit(self):
         family = Mock()
         family.root.pid = 10

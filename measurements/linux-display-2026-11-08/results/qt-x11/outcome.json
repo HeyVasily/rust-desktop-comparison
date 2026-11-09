@@ -1,0 +1,110 @@
+{
+  "name": "qt",
+  "backend": "x11",
+  "status": "passed",
+  "cleanup_status": "clean",
+  "binary_sha256": "8d4686fdb974b68998340feeb116fcf2110056ca47da647e873feed412dad721",
+  "probe_uid": 0,
+  "expected_app_uid": 1001,
+  "limitations": [
+    "5Hz ancestry discovery can miss short-lived helpers and their final CPU interval",
+    "RSS counts shared pages per process; PSS apportions current sharing",
+    "Native Wayland verified by display handle; no claim that labwc disables its optional Xwayland support"
+  ],
+  "diagnostic": {
+    "name": "qt",
+    "backend": "x11",
+    "content_width": 960,
+    "content_height": 640,
+    "ready": true
+  },
+  "environment": {
+    "GDK_BACKEND": "x11",
+    "QT_QPA_PLATFORM": "xcb",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "GSK_RENDERER": null,
+    "GDK_DISABLE": null,
+    "WLR_BACKENDS": null,
+    "WLR_RENDERER": null,
+    "WLR_XWAYLAND": null,
+    "GDK_SCALE": "1",
+    "GDK_DPI_SCALE": "1"
+  },
+  "desktop_processes": [
+    {
+      "pid": 21052,
+      "name": "dbus-daemon",
+      "uid": 1001
+    },
+    {
+      "pid": 21054,
+      "name": "Xvfb",
+      "uid": 1001
+    },
+    {
+      "pid": 21059,
+      "name": "openbox",
+      "uid": 1001
+    }
+  ],
+  "window": {
+    "id": "4194310",
+    "pid": 21063,
+    "title": "Veranda Qt Widgets comparison",
+    "rectangle": [
+      161,
+      67,
+      1121,
+      707
+    ],
+    "bounds_kind": "X11 client"
+  },
+  "screenshots": {
+    "start": {
+      "sha256": "b75874540f297ee44889e39ccee99061ec67ec2df9dd849d728f704e39348810",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    },
+    "end": {
+      "sha256": "b75874540f297ee44889e39ccee99061ec67ec2df9dd849d728f704e39348810",
+      "desktop_size": [
+        1280,
+        720
+      ],
+      "inspection": "Original desktop PNG; native content dimensions also required; inspect initial UI"
+    }
+  },
+  "summary": {
+    "seconds": 120.29177651399982,
+    "sample_intervals": 120,
+    "observed_cpu_seconds": 0.0,
+    "late_discovered_preexisting_processes": [],
+    "observed_cpu_percent_one_core": 0.0,
+    "family_rss_mib": {
+      "median": 33.6875,
+      "p95": 33.6875,
+      "observed_maximum": 33.6875
+    },
+    "family_pss_mib": {
+      "median": 22.923828125
+    },
+    "family_stat_rss_mib": {
+      "median": 33.6875
+    },
+    "max_processes": 1,
+    "max_threads": 3,
+    "cpu_note": "Percent of one logical core; zero means no recorded counter increment"
+  },
+  "observed_processes": [
+    {
+      "pid": 21063,
+      "name": "veranda-qt-comparison",
+      "created": 1794158990.82
+    }
+  ],
+  "xwayland_processes": [],
+  "cleanup_survivors": []
+}

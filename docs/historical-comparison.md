@@ -74,17 +74,22 @@ Qt from 6.8.2 to 6.4.2, and the client size from 1120×768 to 960×640. The new 
 log also reports an unavailable accessibility bus, so the integration environment
 differs as well.
 
-A changed GTK rendering path is a possible contributor to its larger footprint,
-not a measured allocation breakdown. The separate imported Cairo/X11 UI-only GTK
+At the time of those captures, the GTK rendering path was not measured as an
+allocation breakdown. The separate imported Cairo/X11 UI-only GTK
 run already measured **120.75 MiB RSS / 95.27 MiB PSS**, rather than the historical
 Wayland GUI's 41.98 MiB RSS. See the [original methodology](methodology.md) and
 [raw sample](../measurements/2026-11-07/gtk-visible.json).
 
-The existing data cannot isolate the memory cost of the renderer, display backend,
-library version or frontend code. That requires a controlled run of the same
-binary/environment with the renderer recorded and varied independently. The new
-numbers describe their recorded demo configurations; they do not establish a GTK
-regression or reverse the historical project decision. Historical CPU covers the
+A subsequent [controlled experiment](gtk-memory-investigation.md) runs the same
+C demo binary with renderer/display controls and full memory mappings. A new
+Ubuntu 24.04 pair measured 238.36 MiB with actual default OpenGL and 97.87 MiB with
+Cairo, reproducing the earlier 240.27 MiB configuration within 0.79%. On Debian,
+X11/default OpenGL used 216.90 MiB, X11/Cairo 119.45 MiB, and Wayland/Cairo 33.07 MiB.
+Disabling GL/Vulkan initialization while retaining X11/Cairo reduced it to 31.68 MiB,
+with byte-identical screenshots and no resident LLVM/Gallium mappings. This isolates
+a large graphics initialization cost even with Cairo. It does not attribute the
+remaining differences to the unavailable historical frontend or prove a GTK
+regression. The original numbers still describe their recorded configurations. Historical CPU covers the
 desktop process scope; current CPU covers only each demo family, with tiny idle
 increments subject to counter resolution.
 

@@ -1,0 +1,56 @@
+[
+  {
+    "monotonic": 803.327304829,
+    "wall_time": 1794157988.2344909,
+    "processes": [
+      {
+        "pid": 20293,
+        "created": 1794157985.04,
+        "name": "gtk-control",
+        "uid": 1001,
+        "cpu_seconds": 0.2,
+        "threads": 16,
+        "rollup_kib": {
+          "Rss": 189184,
+          "Pss": 175561,
+          "Shared_Clean": 16764,
+          "Shared_Dirty": 2660,
+          "Private_Clean": 71004,
+          "Private_Dirty": 98756,
+          "Anonymous": 96160,
+          "Swap": 0
+        },
+        "rss_bytes": 193724416,
+        "stat_rss_bytes": 193724416
+      }
+    ],
+    "family_rss_bytes": 193724416
+  },
+  {
+    "monotonic": 804.33238285,
+    "wall_time": 1794157989.239569,
+    "processes": [
+      {
+        "pid": 20293,
+        "created": 1794157985.04,
+        "name": "gtk-control",
+        "uid": 1001,
+        "cpu_seconds": 0.2,
+        "threads": 16,
+        "rollup_kib": {
+          "Rss": 189184,
+          "Pss": 175561,
+          "Shared_Clean": 16764,
+          "Shared_Dirty": 2660,
+          "Private_Clean": 71456,
+          "Private_Dirty": 98304,
+          "Anonymous": 96160,
+          "Swap": 0
+        },
+        "rss_bytes": 193724416,
+        "stat_rss_bytes": 193724416
+      }
+    ],
+    "family_rss_bytes": 193724416
+  }
+]

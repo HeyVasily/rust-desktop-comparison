@@ -1,0 +1,4 @@
+project 1
+GTK_DIAGNOSTIC {"gtk":"4.14.5","display":"GdkX11Display","renderer":"GskGLRenderer","width":960,"height":640,"surface_width":960,"surface_height":640,"scale":1,"mapped":true}
+DISPLAY_DIAGNOSTIC {"name":"gtk","backend":"x11","content_width":960,"content_height":640,"ready":true}
+Terminated

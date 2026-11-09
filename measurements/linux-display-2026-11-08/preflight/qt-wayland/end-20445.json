@@ -1,0 +1,1127 @@
+{
+  "pid": 20445,
+  "created": 1794158021.82,
+  "name": "veranda-qt-comparison",
+  "mappings_kib": {
+    "/usr/lib/x86_64-linux-gnu/libLLVM.so.20.1": {
+      "Rss": 43268,
+      "Pss": 43268,
+      "Private_Clean": 36508,
+      "Private_Dirty": 6760,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 6760,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2": {
+      "Rss": 5324,
+      "Pss": 5324,
+      "Private_Clean": 5184,
+      "Private_Dirty": 140,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 140,
+      "Swap": 0
+    },
+    "/memfd:wayland-shm (deleted)": {
+      "Rss": 4800,
+      "Pss": 2642,
+      "Private_Clean": 0,
+      "Private_Dirty": 484,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 4316,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libgallium-25.2.8-0ubuntu0.24.04.4.so": {
+      "Rss": 4524,
+      "Pss": 4524,
+      "Private_Clean": 3344,
+      "Private_Dirty": 1180,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 1180,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2": {
+      "Rss": 4364,
+      "Pss": 4364,
+      "Private_Clean": 4096,
+      "Private_Dirty": 268,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 268,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2": {
+      "Rss": 3916,
+      "Pss": 3916,
+      "Private_Clean": 3840,
+      "Private_Dirty": 76,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 76,
+      "Swap": 0
+    },
+    "[heap]": {
+      "Rss": 1760,
+      "Pss": 1760,
+      "Private_Clean": 0,
+      "Private_Dirty": 1760,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 1760,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libc.so.6": {
+      "Rss": 1684,
+      "Pss": 66,
+      "Private_Clean": 0,
+      "Private_Dirty": 24,
+      "Shared_Clean": 1660,
+      "Shared_Dirty": 0,
+      "Anonymous": 24,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33": {
+      "Rss": 1652,
+      "Pss": 345,
+      "Private_Clean": 0,
+      "Private_Dirty": 56,
+      "Shared_Clean": 1596,
+      "Shared_Dirty": 0,
+      "Anonymous": 56,
+      "Swap": 0
+    },
+    "[anonymous]": {
+      "Rss": 1208,
+      "Pss": 1208,
+      "Private_Clean": 0,
+      "Private_Dirty": 1208,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 1208,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libicui18n.so.74.2": {
+      "Rss": 1156,
+      "Pss": 335,
+      "Private_Clean": 0,
+      "Private_Dirty": 76,
+      "Shared_Clean": 1080,
+      "Shared_Dirty": 0,
+      "Anonymous": 76,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.60830.0": {
+      "Rss": 948,
+      "Pss": 490,
+      "Private_Clean": 24,
+      "Private_Dirty": 8,
+      "Shared_Clean": 916,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libQt6WaylandClient.so.6.4.2": {
+      "Rss": 852,
+      "Pss": 852,
+      "Private_Clean": 800,
+      "Private_Dirty": 52,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 52,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libfreetype.so.6.20.1": {
+      "Rss": 728,
+      "Pss": 353,
+      "Private_Clean": 0,
+      "Private_Dirty": 32,
+      "Shared_Clean": 696,
+      "Shared_Dirty": 0,
+      "Anonymous": 32,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6.4.2": {
+      "Rss": 696,
+      "Pss": 696,
+      "Private_Clean": 672,
+      "Private_Dirty": 24,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 24,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libglib-2.0.so.0.8000.0": {
+      "Rss": 684,
+      "Pss": 104,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 676,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libicuuc.so.74.2": {
+      "Rss": 592,
+      "Pss": 174,
+      "Private_Clean": 0,
+      "Private_Dirty": 80,
+      "Shared_Clean": 512,
+      "Shared_Dirty": 0,
+      "Anonymous": 80,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0": {
+      "Rss": 528,
+      "Pss": 328,
+      "Private_Clean": 12,
+      "Private_Dirty": 116,
+      "Shared_Clean": 400,
+      "Shared_Dirty": 0,
+      "Anonymous": 116,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libEGL_mesa.so.0.0.0": {
+      "Rss": 340,
+      "Pss": 340,
+      "Private_Clean": 288,
+      "Private_Dirty": 52,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 52,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libm.so.6": {
+      "Rss": 328,
+      "Pss": 19,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 320,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libdbus-1.so.3.32.4": {
+      "Rss": 312,
+      "Pss": 84,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 304,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf": {
+      "Rss": 312,
+      "Pss": 149,
+      "Private_Clean": 52,
+      "Private_Dirty": 0,
+      "Shared_Clean": 260,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libfontconfig.so.1.12.1": {
+      "Rss": 300,
+      "Pss": 135,
+      "Private_Clean": 0,
+      "Private_Dirty": 12,
+      "Shared_Clean": 288,
+      "Shared_Dirty": 0,
+      "Anonymous": 12,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxml2.so.2.9.14": {
+      "Rss": 296,
+      "Pss": 110,
+      "Private_Clean": 0,
+      "Private_Dirty": 40,
+      "Shared_Clean": 256,
+      "Shared_Dirty": 0,
+      "Anonymous": 40,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libgomp.so.1.0.0": {
+      "Rss": 252,
+      "Pss": 70,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 244,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libQt6OpenGL.so.6.4.2": {
+      "Rss": 240,
+      "Pss": 240,
+      "Private_Clean": 224,
+      "Private_Dirty": 16,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 16,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": {
+      "Rss": 232,
+      "Pss": 21,
+      "Private_Clean": 0,
+      "Private_Dirty": 16,
+      "Shared_Clean": 216,
+      "Shared_Dirty": 0,
+      "Anonymous": 16,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxkbcommon.so.0.0.0": {
+      "Rss": 208,
+      "Pss": 110,
+      "Private_Clean": 0,
+      "Private_Dirty": 12,
+      "Shared_Clean": 196,
+      "Shared_Dirty": 0,
+      "Anonymous": 12,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libsystemd.so.0.38.0": {
+      "Rss": 200,
+      "Pss": 59,
+      "Private_Clean": 0,
+      "Private_Dirty": 48,
+      "Shared_Clean": 152,
+      "Shared_Dirty": 0,
+      "Anonymous": 48,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libX11.so.6.4.0": {
+      "Rss": 196,
+      "Pss": 67,
+      "Private_Clean": 0,
+      "Private_Dirty": 20,
+      "Shared_Clean": 176,
+      "Shared_Dirty": 0,
+      "Anonymous": 20,
+      "Swap": 0
+    },
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf": {
+      "Rss": 192,
+      "Pss": 192,
+      "Private_Clean": 192,
+      "Private_Dirty": 0,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1": {
+      "Rss": 184,
+      "Pss": 31,
+      "Private_Clean": 0,
+      "Private_Dirty": 12,
+      "Shared_Clean": 172,
+      "Shared_Dirty": 0,
+      "Anonymous": 12,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libgcrypt.so.20.4.3": {
+      "Rss": 160,
+      "Pss": 41,
+      "Private_Clean": 0,
+      "Private_Dirty": 36,
+      "Shared_Clean": 124,
+      "Shared_Dirty": 0,
+      "Anonymous": 36,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libOpenGL.so.0.0.0": {
+      "Rss": 152,
+      "Pss": 152,
+      "Private_Clean": 128,
+      "Private_Dirty": 24,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 24,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libgpg-error.so.0.34.0": {
+      "Rss": 140,
+      "Pss": 13,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 132,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libtinfo.so.6.4": {
+      "Rss": 136,
+      "Pss": 50,
+      "Private_Clean": 0,
+      "Private_Dirty": 20,
+      "Shared_Clean": 116,
+      "Shared_Dirty": 0,
+      "Anonymous": 20,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0": {
+      "Rss": 132,
+      "Pss": 132,
+      "Private_Clean": 124,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_CTYPE": {
+      "Rss": 128,
+      "Pss": 9,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 128,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0": {
+      "Rss": 116,
+      "Pss": 29,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 108,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "[stack]": {
+      "Rss": 108,
+      "Pss": 108,
+      "Private_Clean": 0,
+      "Private_Dirty": 108,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 108,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libb2.so.1.0.4": {
+      "Rss": 104,
+      "Pss": 104,
+      "Private_Clean": 96,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libedit.so.2.0.72": {
+      "Rss": 104,
+      "Pss": 50,
+      "Private_Clean": 0,
+      "Private_Dirty": 12,
+      "Shared_Clean": 92,
+      "Shared_Dirty": 0,
+      "Anonymous": 12,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": {
+      "Rss": 104,
+      "Pss": 19,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 96,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libdrm.so.2.125.0": {
+      "Rss": 92,
+      "Pss": 50,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 84,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libpng16.so.16.43.0": {
+      "Rss": 92,
+      "Pss": 32,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 84,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.11.2": {
+      "Rss": 88,
+      "Pss": 11,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 80,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libzstd.so.1.5.5": {
+      "Rss": 88,
+      "Pss": 11,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 80,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libdrm_intel.so.1.125.0": {
+      "Rss": 84,
+      "Pss": 84,
+      "Private_Clean": 76,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/liblz4.so.1.9.4": {
+      "Rss": 84,
+      "Pss": 11,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 76,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5": {
+      "Rss": 84,
+      "Pss": 10,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 76,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libpcre2-16.so.0.11.2": {
+      "Rss": 80,
+      "Pss": 80,
+      "Private_Clean": 72,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libz.so.1.3": {
+      "Rss": 80,
+      "Pss": 12,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 72,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/qt6/plugins/wayland-shell-integration/libxdg-shell.so": {
+      "Rss": 80,
+      "Pss": 80,
+      "Private_Clean": 68,
+      "Private_Dirty": 12,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 12,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libgraphite2.so.3.2.1": {
+      "Rss": 76,
+      "Pss": 46,
+      "Private_Clean": 4,
+      "Private_Dirty": 12,
+      "Shared_Clean": 60,
+      "Shared_Dirty": 0,
+      "Anonymous": 12,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libEGL.so.1.1.0": {
+      "Rss": 72,
+      "Pss": 40,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 64,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1": {
+      "Rss": 72,
+      "Pss": 19,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 64,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4": {
+      "Rss": 68,
+      "Pss": 14,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 60,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libelf-0.190.so": {
+      "Rss": 68,
+      "Pss": 68,
+      "Private_Clean": 60,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/locale/locale-archive": {
+      "Rss": 64,
+      "Pss": 3,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 64,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3.1": {
+      "Rss": 64,
+      "Pss": 64,
+      "Private_Clean": 56,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libwayland-client.so.0.22.0": {
+      "Rss": 64,
+      "Pss": 42,
+      "Private_Clean": 8,
+      "Private_Dirty": 12,
+      "Shared_Clean": 44,
+      "Shared_Dirty": 0,
+      "Anonymous": 12,
+      "Swap": 0
+    },
+    "/var/cache/fontconfig/6cc790b63b123a6a96ee260fcdad32a9-le64.cache-9": {
+      "Rss": 64,
+      "Pss": 32,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 64,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libQt6WaylandEglClientHwIntegration.so.6.4.2": {
+      "Rss": 60,
+      "Pss": 60,
+      "Private_Clean": 52,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libmd4c.so.0.4.8": {
+      "Rss": 60,
+      "Pss": 60,
+      "Private_Clean": 52,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0": {
+      "Rss": 56,
+      "Pss": 56,
+      "Private_Clean": 48,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/var/cache/fontconfig/a4e60e8d1e10d2fdff3fe3037a1845fb-le64.cache-9": {
+      "Rss": 56,
+      "Pss": 28,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 56,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/var/cache/fontconfig/e13b20fdb08344e0e664864cc2ede53d-le64.cache-9": {
+      "Rss": 56,
+      "Pss": 28,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 56,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libmd.so.0.1.0": {
+      "Rss": 52,
+      "Pss": 16,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 44,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/var/cache/fontconfig/d589a48862398ed80a3d6066f4f56f4c-le64.cache-9": {
+      "Rss": 52,
+      "Pss": 26,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 52,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libffi.so.8.1.4": {
+      "Rss": 48,
+      "Pss": 11,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 40,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libcap.so.2.66": {
+      "Rss": 44,
+      "Pss": 8,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 36,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1.125.0": {
+      "Rss": 44,
+      "Pss": 44,
+      "Private_Clean": 36,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libsensors.so.5.0.0": {
+      "Rss": 44,
+      "Pss": 44,
+      "Private_Clean": 36,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/home/runner/work/rust-desktop-comparison/rust-desktop-comparison/target/qt/veranda-qt-comparison": {
+      "Rss": 40,
+      "Pss": 40,
+      "Private_Clean": 32,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libbrotlidec.so.1.1.0": {
+      "Rss": 40,
+      "Pss": 17,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 32,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libpciaccess.so.0.11.1": {
+      "Rss": 36,
+      "Pss": 36,
+      "Private_Clean": 28,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libwayland-cursor.so.0.22.0": {
+      "Rss": 36,
+      "Pss": 36,
+      "Private_Clean": 24,
+      "Private_Dirty": 12,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 12,
+      "Swap": 0
+    },
+    "/var/cache/fontconfig/bf3b770c553c462765856025a94f1ce6-le64.cache-9": {
+      "Rss": 36,
+      "Pss": 18,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 36,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0": {
+      "Rss": 32,
+      "Pss": 32,
+      "Private_Clean": 24,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxcb-xfixes.so.0.0.0": {
+      "Rss": 32,
+      "Pss": 20,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 24,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so": {
+      "Rss": 32,
+      "Pss": 32,
+      "Private_Clean": 24,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache": {
+      "Rss": 28,
+      "Pss": 1,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 28,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0": {
+      "Rss": 24,
+      "Pss": 10,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 16,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libgbm.so.1.0.0": {
+      "Rss": 24,
+      "Pss": 16,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 16,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0.1.0": {
+      "Rss": 24,
+      "Pss": 16,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 16,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/var/cache/fontconfig/3047814df9a2f067bd2d96a2b9c36e5a-le64.cache-9": {
+      "Rss": 24,
+      "Pss": 12,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 24,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libXau.so.6.0.0": {
+      "Rss": 20,
+      "Pss": 9,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 12,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/qt6/plugins/platforms/libqwayland-generic.so": {
+      "Rss": 20,
+      "Pss": 20,
+      "Private_Clean": 12,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/qt6/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so": {
+      "Rss": 20,
+      "Pss": 20,
+      "Private_Clean": 12,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0": {
+      "Rss": 16,
+      "Pss": 16,
+      "Private_Clean": 8,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1.1.0": {
+      "Rss": 16,
+      "Pss": 9,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 8,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libicudata.so.74.2": {
+      "Rss": 16,
+      "Pss": 8,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 8,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libwayland-egl.so.1.22.0": {
+      "Rss": 16,
+      "Pss": 16,
+      "Private_Clean": 8,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxcb-present.so.0.0.0": {
+      "Rss": 16,
+      "Pss": 12,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 8,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxcb-shm.so.0.0.0": {
+      "Rss": 16,
+      "Pss": 12,
+      "Private_Clean": 0,
+      "Private_Dirty": 8,
+      "Shared_Clean": 8,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "/usr/lib/x86_64-linux-gnu/libxshmfence.so.1.0.0": {
+      "Rss": 16,
+      "Pss": 16,
+      "Private_Clean": 8,
+      "Private_Dirty": 8,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 8,
+      "Swap": 0
+    },
+    "[vdso]": {
+      "Rss": 8,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 8,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_ADDRESS": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_COLLATE": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_IDENTIFICATION": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_MEASUREMENT": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_MONETARY": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_NAME": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_NUMERIC": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_PAPER": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_TELEPHONE": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/usr/lib/locale/C.utf8/LC_TIME": {
+      "Rss": 4,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "/var/cache/fontconfig/0bd3dc0958fa2205aaaa8ebb13e2872b-le64.cache-9": {
+      "Rss": 4,
+      "Pss": 2,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 4,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "[vsyscall]": {
+      "Rss": 0,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "[vvar]": {
+      "Rss": 0,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    },
+    "[vvar_vclock]": {
+      "Rss": 0,
+      "Pss": 0,
+      "Private_Clean": 0,
+      "Private_Dirty": 0,
+      "Shared_Clean": 0,
+      "Shared_Dirty": 0,
+      "Anonymous": 0,
+      "Swap": 0
+    }
+  }
+}

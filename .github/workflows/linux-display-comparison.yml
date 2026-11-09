@@ -1,0 +1,125 @@
+name: Linux X11 and Wayland comparison
+
+on:
+  workflow_dispatch:
+    inputs:
+      framework:
+        description: 'All five, or an affected pair for a targeted repair'
+        type: choice
+        options: [all, egui, gtk, slint, qt, tauri]
+        default: all
+
+permissions:
+  contents: read
+
+jobs:
+  paired-linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      CARGO_TARGET_DIR: ${{ github.workspace }}/target
+      CARGO_BUILD_JOBS: '2'
+      CARGO_INCREMENTAL: '0'
+      FRAMEWORK: ${{ inputs.framework || 'all' }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install build and native display dependencies
+        run: |
+          mkdir -p out/linux-display/build target
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev qt6-wayland libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev libwayland-dev wayland-protocols xvfb openbox labwc grim xdotool x11-utils dbus-x11 at-spi2-core fonts-dejavu-core python3-psutil python3-pil python3-tk
+          {
+            cat /etc/os-release
+            uname -srmo
+            rustc -Vv
+            cargo -V
+            cc --version
+            pkg-config --modversion gtk4 webkit2gtk-4.1 Qt6Widgets
+            dpkg-query -W -f='${binary:Package} ${db:Status-Status} ${Version}\n' labwc libgtk-4-1 libgl1-mesa-dri qt6-wayland libwebkit2gtk-4.1-0
+            git rev-parse HEAD
+            id
+          } > out/linux-display/build/environment.txt
+      - name: Focused host-free checks
+        run: /usr/bin/python3 -m unittest discover -s tools -p 'test_*probe.py' -v
+      - name: Restore compiled dependencies
+        id: build-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            target
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-linux-display-v1-${{ hashFiles('examples/**/Cargo.lock') }}
+      - name: Resolve feature graphs and freeze exact build inputs
+        timeout-minutes: 10
+        run: |
+          for framework in egui slint tauri; do
+            if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == "$framework" ]]; then
+              cargo metadata --format-version 1 --manifest-path "examples/$framework/Cargo.toml" > "out/linux-display/build/$framework-metadata.json" 2> "out/linux-display/build/$framework-resolution.log"
+              cp "examples/$framework/Cargo.lock" "out/linux-display/build/$framework-Cargo.lock"
+            fi
+          done
+          /usr/bin/python3 - <<'PYTHON'
+          import subprocess
+          allowed = {f'examples/{name}/Cargo.lock' for name in ('egui', 'slint', 'tauri')}
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only', '--', 'examples'], text=True).splitlines())
+          untracked = subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard', '--', 'examples'], text=True).splitlines()
+          if changed - allowed or untracked:
+              raise SystemExit(f'Unexpected source changes during resolution: {sorted(changed - allowed) + untracked}')
+          PYTHON
+          git diff --binary -- examples > out/linux-display/build/source-resolution.patch
+          git ls-files -z examples tools/linux_display_probe.py tools/test_linux_display_probe.py tools/test_native_probe.py tools/native_probe.py tools/gtk_memory_probe.py .github/workflows/linux-display-comparison.yml | xargs -0 sha256sum > out/linux-display/build/source-hashes.txt
+      - name: Build each selected binary once
+        timeout-minutes: 45
+        run: |
+          for framework in egui slint tauri; do
+            if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == "$framework" ]]; then
+              cargo build --release --locked --manifest-path "examples/$framework/Cargo.toml" 2>&1 | tee "out/linux-display/build/$framework.log"
+            fi
+          done
+          if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == gtk ]]; then
+            cc -O2 -Wall -Wextra examples/gtk-c/main.c -o target/gtk-control $(pkg-config --cflags --libs gtk4) 2>&1 | tee out/linux-display/build/gtk.log
+          fi
+          if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == qt ]]; then
+            cmake -S examples/qt -B target/qt -DCMAKE_BUILD_TYPE=Release 2>&1 | tee out/linux-display/build/qt-configure.log
+            cmake --build target/qt --config Release 2>&1 | tee out/linux-display/build/qt-build.log
+          fi
+          sha256sum --check out/linux-display/build/source-hashes.txt > out/linux-display/build/source-verification.log
+      - name: Save compiled dependencies before GUI preflight
+        if: steps.build-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            target
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ steps.build-cache.outputs.cache-primary-key }}
+      - name: Native backend and content preflight
+        timeout-minutes: 8
+        run: |
+          probe_user=$(id -un)
+          sudo /usr/bin/python3 tools/linux_display_probe.py --target target --output out/linux-display/preflight --user "$probe_user" --framework "$FRAMEWORK" --settle 2 --intervals 1 --keep-going
+      - name: Measure paired displays sequentially
+        timeout-minutes: 35
+        run: |
+          probe_user=$(id -un)
+          started=$(date +%s)
+          finish() {
+            result=$?
+            elapsed=$(( $(date +%s) - started ))
+            printf '{"exit_code":%d,"elapsed_seconds":%d}\n' "$result" "$elapsed" > out/linux-display/measurement-receipt.json
+          }
+          trap finish EXIT
+          sudo /usr/bin/python3 tools/linux_display_probe.py --target target --output out/linux-display/results --user "$probe_user" --framework "$FRAMEWORK" --settle 30 --intervals 120
+      - name: Retain original evidence including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-display-${{ github.run_id }}
+          path: out/linux-display/
+          if-no-files-found: error
+          retention-days: 14

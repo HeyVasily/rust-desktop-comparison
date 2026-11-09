@@ -2,6 +2,8 @@
 use slint::{ComponentHandle, ModelRc, SharedString, VecModel};
 
 slint::include_modules!();
+#[cfg(target_os = "linux")]
+include!("../../linux_display_diagnostics.rs");
 
 fn project_name(project: i32) -> String {
     format!("project-{:03}", project + 1)
@@ -96,6 +98,16 @@ fn main() -> Result<(), slint::PlatformError> {
                     size.height,
                     window.scale_factor()
                 );
+            }
+        });
+    }
+    #[cfg(target_os = "linux")]
+    if std::env::var_os("COMPARISON_DISPLAY_DIAGNOSTICS").is_some() {
+        let weak = ui.as_weak();
+        slint::Timer::single_shot(std::time::Duration::from_millis(100), move || {
+            if let Some(ui) = weak.upgrade() {
+                let size = ui.window().size();
+                report_display("slint", &ui.window().window_handle(), size.width, size.height);
             }
         });
     }

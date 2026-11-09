@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QTimer>
 #include <iostream>
 
 static QString projectName(int project) {
@@ -132,5 +133,18 @@ int main(int argc, char **argv) {
     projects->setCurrentRow(0);
     window.show();
     refresh->setFocus(Qt::OtherFocusReason);
+    if (qEnvironmentVariableIsSet("COMPARISON_DISPLAY_DIAGNOSTICS")) {
+        QTimer::singleShot(100, &window, [&window] {
+            const auto platform = QGuiApplication::platformName();
+            const auto backend = platform.startsWith("wayland") ? "wayland" :
+                                 (platform == "xcb" ? "x11" : "unavailable");
+            const auto size = window.contentsRect().size() * window.devicePixelRatioF();
+            std::cout << "DISPLAY_DIAGNOSTIC {\"name\":\"qt\",\"backend\":\"" << backend
+                      << "\",\"content_width\":" << size.width()
+                      << ",\"content_height\":" << size.height()
+                      << ",\"ready\":" << (window.isVisible() ? "true" : "false")
+                      << "}" << std::endl;
+        });
+    }
     return app.exec();
 }

@@ -68,7 +68,13 @@ Linux minimized phases matched the visible phase for every toolkit except Tauri
 
 Linux used Xvfb with Mesa llvmpipe software OpenGL. GTK 4.14 and egui render through
 OpenGL there, and llvmpipe's private allocations count in PSS. The GTK renderer was
-not pinned or observed, so the 212 MiB does not isolate a GTK cost. Tauri runs
+not pinned in this series, but a [controlled GTK experiment](gtk-memory-investigation.md)
+on the same Ubuntu image ran one GTK binary both ways: 209.67 MiB PSS with the default
+OpenGL renderer versus 67.86 MiB with `GSK_RENDERER=cairo`, and about 32 MiB on Debian
+once GL/Vulkan initialisation was also disabled. So the 212 MiB here is mostly the
+software-GL path, not GTK's widget tree. The [paired X11/Wayland run](linux-display-comparison.md)
+shows the display server matters too: Qt rises from 22.92 to 72.92 MiB PSS on native
+Wayland, where it loads Mesa/LLVM. Tauri runs
 several WebKitGTK processes; PSS removes their double-counted shared libraries
 (501 → 338 MiB) but keeps each process's private memory. Slint (software renderer)
 and Qt avoid the GL stack in these runs.

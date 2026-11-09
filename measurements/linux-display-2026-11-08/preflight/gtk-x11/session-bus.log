@@ -1,0 +1,8 @@
+unix:path=/tmp/dbus-fIAheywJFE,guid=7a406c217f7b2347a8e3d9c96af0ad96
+dbus-daemon[20224]: [session uid=1001 pid=20224] Activating service name='org.a11y.Bus' requested by ':1.0' (uid=1001 pid=20234 comm="/home/runner/work/rust-desktop-comparison/rust-des" label="unconfined")
+dbus-daemon[20224]: [session uid=1001 pid=20224] Successfully activated service 'org.a11y.Bus'
+dbus-daemon[20256]: Activating service name='org.a11y.atspi.Registry' requested by ':1.0' (uid=1001 pid=20234 comm="/home/runner/work/rust-desktop-comparison/rust-des" label="unconfined")
+dbus-daemon[20256]: Successfully activated service 'org.a11y.atspi.Registry'
+SpiRegistry daemon is running with well-known name - org.a11y.atspi.Registry
+
+Session terminated, killing shell... ...killed.

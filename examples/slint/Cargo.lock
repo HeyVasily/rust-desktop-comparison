@@ -3807,6 +3807,7 @@ dependencies = [
  "num-traits",
  "once_cell",
  "pin-weak",
+ "raw-window-handle",
  "slint-macros",
  "unicode-segmentation",
  "vtable",
@@ -4498,6 +4499,7 @@ dependencies = [
 name = "veranda-slint-comparison"
 version = "0.1.0"
 dependencies = [
+ "raw-window-handle",
  "slint",
  "slint-build",
 ]

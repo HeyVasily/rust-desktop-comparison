@@ -1,0 +1,136 @@
+[
+  {
+    "monotonic": 860.609267506,
+    "wall_time": 1794158045.516454,
+    "processes": [
+      {
+        "pid": 20586,
+        "created": 1794158041.59,
+        "name": "veranda-tauri-comparison",
+        "uid": 1001,
+        "cpu_seconds": 0.16999999999999998,
+        "threads": 27,
+        "rollup_kib": {
+          "Rss": 175724,
+          "Pss": 109128,
+          "Shared_Clean": 105516,
+          "Shared_Dirty": 7204,
+          "Private_Clean": 12956,
+          "Private_Dirty": 50048,
+          "Anonymous": 47396,
+          "Swap": 0
+        },
+        "rss_bytes": 179941376,
+        "stat_rss_bytes": 177483776
+      },
+      {
+        "pid": 20607,
+        "created": 1794158041.67,
+        "name": "WebKitNetworkProcess",
+        "uid": 1001,
+        "cpu_seconds": 0.02,
+        "threads": 12,
+        "rollup_kib": {
+          "Rss": 49444,
+          "Pss": 20387,
+          "Shared_Clean": 39504,
+          "Shared_Dirty": 0,
+          "Private_Clean": 2476,
+          "Private_Dirty": 7464,
+          "Anonymous": 7464,
+          "Swap": 0
+        },
+        "rss_bytes": 50630656,
+        "stat_rss_bytes": 50630656
+      },
+      {
+        "pid": 20636,
+        "created": 1794158041.73,
+        "name": "WebKitWebProcess",
+        "uid": 1001,
+        "cpu_seconds": 0.61,
+        "threads": 26,
+        "rollup_kib": {
+          "Rss": 296304,
+          "Pss": 230909,
+          "Shared_Clean": 105400,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 48436,
+          "Private_Dirty": 137668,
+          "Anonymous": 137584,
+          "Swap": 0
+        },
+        "rss_bytes": 303415296,
+        "stat_rss_bytes": 303415296
+      }
+    ],
+    "family_rss_bytes": 533987328
+  },
+  {
+    "monotonic": 861.624873678,
+    "wall_time": 1794158046.5320601,
+    "processes": [
+      {
+        "pid": 20586,
+        "created": 1794158041.59,
+        "name": "veranda-tauri-comparison",
+        "uid": 1001,
+        "cpu_seconds": 0.29000000000000004,
+        "threads": 27,
+        "rollup_kib": {
+          "Rss": 173328,
+          "Pss": 106732,
+          "Shared_Clean": 105516,
+          "Shared_Dirty": 7204,
+          "Private_Clean": 12956,
+          "Private_Dirty": 47652,
+          "Anonymous": 47400,
+          "Swap": 0
+        },
+        "rss_bytes": 177487872,
+        "stat_rss_bytes": 177487872
+      },
+      {
+        "pid": 20607,
+        "created": 1794158041.67,
+        "name": "WebKitNetworkProcess",
+        "uid": 1001,
+        "cpu_seconds": 0.02,
+        "threads": 12,
+        "rollup_kib": {
+          "Rss": 49444,
+          "Pss": 20387,
+          "Shared_Clean": 39504,
+          "Shared_Dirty": 0,
+          "Private_Clean": 2476,
+          "Private_Dirty": 7464,
+          "Anonymous": 7464,
+          "Swap": 0
+        },
+        "rss_bytes": 50630656,
+        "stat_rss_bytes": 50630656
+      },
+      {
+        "pid": 20636,
+        "created": 1794158041.73,
+        "name": "WebKitWebProcess",
+        "uid": 1001,
+        "cpu_seconds": 1.2000000000000002,
+        "threads": 26,
+        "rollup_kib": {
+          "Rss": 296172,
+          "Pss": 230777,
+          "Shared_Clean": 105400,
+          "Shared_Dirty": 4800,
+          "Private_Clean": 48436,
+          "Private_Dirty": 137536,
+          "Anonymous": 137452,
+          "Swap": 0
+        },
+        "rss_bytes": 303280128,
+        "stat_rss_bytes": 303280128
+      }
+    ],
+    "family_rss_bytes": 531398656
+  }
+]

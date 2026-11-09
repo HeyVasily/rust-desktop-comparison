@@ -22,3 +22,6 @@ custom-protocol = ["tauri/custom-protocol"]
 
 [profile.release]
 strip = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+raw-window-handle = "=0.6.2"
