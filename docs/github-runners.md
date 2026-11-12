@@ -53,6 +53,9 @@ include one of these markers in the head commit message:
   footprint sampling.
 - An additional `[windows-only]`, `[macos-only]` or `[linux-only]` narrows either
   route to that OS; without one, all three OSes are configured.
+- An additional `[gtk-only]` selects GTK alone for focused desktop-driver
+  diagnostics. Its title, build steps and verification gates retain that subset;
+  it is not a complete five-candidate comparison.
 
 Ordinary pushes do not start the expensive desktop jobs. The workflow has only
 `contents: read` permission. An opt-in marker requests a run; it is not passing
@@ -230,6 +233,12 @@ request. macOS first uses System Events, then makes bounded native
 `NSRunningApplication` activation requests for the exact process. The native API's
 return value is diagnostic only: the independently observed frontmost PID still
 has to match. An Automation permission failure stops the check before that path.
+If those requests leave another process foreground, the driver can make one
+ordinary titlebar click. It re-reads the exact owned window and its bounds,
+refuses an occluding window, and requires existing event-posting permission.
+The click is not proof of activation: the actual foreground PID must still match.
+Supplementary AppKit observations are retained to distinguish conflicting API
+reports; they do not replace the acceptance gate.
 macOS shortcuts use physical Quartz key transitions, including Command's
 keycode/flags-changed events and release attempts in `finally`. Event-posting access
 is preflighted without requesting a TCC grant or switching to a bypass route.

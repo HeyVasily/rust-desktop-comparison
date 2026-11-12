@@ -243,12 +243,102 @@ class DesktopProbeTests(unittest.TestCase):
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
                 patch.object(driver, "macos_activate", return_value={"request_accepted": True}) as activate, \
+                patch.object(driver, "macos_activation_click", return_value={"events_posted": True}) as click, \
+                patch.object(driver, "macos_focus_snapshot", return_value={"observed_pid": 42, "target_is_active": True}), \
                 patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "frontmost PID"):
                 driver.focus(self.window)
         self.assertEqual(activate.call_count, 3)
+        click.assert_called_once_with(self.window)
         self.assertEqual(driver.last_focus["attempts"], 30)
         self.assertEqual(driver.last_focus["status"], "environment_error")
+
+    def test_macos_focus_can_activate_by_one_real_click_but_still_checks_actual_pid(self):
+        driver = probe.DesktopInput()
+        responses = [Mock(stdout=value) for value in ("", "7\n", "7\n", "42\n")]
+        with patch.object(probe.sys, "platform", "darwin"), \
+                patch.object(probe, "command", side_effect=responses), \
+                patch.object(driver, "macos_activate", return_value={"request_accepted": True}), \
+                patch.object(driver, "macos_activation_click", return_value={"events_posted": True}) as click, \
+                patch.object(driver, "macos_focus_snapshot", return_value={"observed_pid": 42, "target_is_active": True}), \
+                patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
+            evidence = driver.focus(self.window)
+        click.assert_called_once_with(self.window)
+        self.assertEqual(evidence["status"], "passed")
+        self.assertEqual(evidence["observed_pid"], "42")
+        self.assertEqual(evidence["activation_clicks"], [{"events_posted": True}])
+        self.assertEqual(evidence["native_foreground"]["observed_pid"], 42)
+
+    def mouse_quartz(self):
+        target = {"kCGWindowNumber": 123, "kCGWindowOwnerPID": 42, "kCGWindowLayer": 0,
+                  "kCGWindowBounds": {"X": 50, "Y": 100, "Width": 960, "Height": 640}}
+        api = Mock(kCGWindowListOptionOnScreenOnly=1, kCGWindowListExcludeDesktopElements=16,
+                   kCGNullWindowID=0, kCGMouseButtonLeft=0, kCGEventLeftMouseDown=1,
+                   kCGEventLeftMouseUp=2, kCGMouseEventClickState=1, kCGHIDEventTap=0)
+        api.CGPreflightPostEventAccess.return_value = True
+        api.CGWindowListCopyWindowInfo.return_value = [target]
+        events = []
+        def create(source, kind, point, button):
+            event = dict(kind=kind, point=point, button=button)
+            events.append(event)
+            return event
+        api.CGEventCreateMouseEvent.side_effect = create
+        return api, events, target
+
+    def test_macos_activation_click_refreshes_owned_window_bounds_and_releases_button(self):
+        api, events, _ = self.mouse_quartz()
+        with patch.dict("sys.modules", Quartz=api), patch.object(probe.time, "sleep"):
+            evidence = probe.DesktopInput.macos_activation_click(self.window)
+        self.assertEqual([(event["kind"], event["point"]) for event in events], [(1, (530, 112)), (2, (530, 112))])
+        self.assertEqual(evidence["window_rectangle"], [50, 100, 1010, 740])
+        self.assertEqual(evidence["event_access"], "preflight_passed")
+        self.assertTrue(evidence["events_posted"])
+        self.assertNotIn("status", evidence)
+
+    def test_macos_activation_click_denied_permission_never_posts_or_requests_access(self):
+        api, events, _ = self.mouse_quartz()
+        api.CGPreflightPostEventAccess.return_value = False
+        with patch.dict("sys.modules", Quartz=api):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "permission unavailable"):
+                probe.DesktopInput.macos_activation_click(self.window)
+        self.assertEqual(events, [])
+        api.CGRequestPostEventAccess.assert_not_called()
+
+    def test_macos_activation_click_refuses_changed_ownership_or_missing_window(self):
+        for change in ({"kCGWindowOwnerPID": 99}, {"kCGWindowNumber": 999}, {"kCGWindowLayer": 1}):
+            with self.subTest(change=change):
+                api, events, target = self.mouse_quartz()
+                target.update(change)
+                with patch.dict("sys.modules", Quartz=api):
+                    with self.assertRaisesRegex(probe.DesktopEnvironmentError, "exact owned"):
+                        probe.DesktopInput.macos_activation_click(self.window)
+                self.assertEqual(events, [])
+
+    def test_macos_activation_click_refuses_an_occluding_window(self):
+        api, events, target = self.mouse_quartz()
+        api.CGWindowListCopyWindowInfo.return_value.insert(0, {**target, "kCGWindowNumber": 999})
+        with patch.dict("sys.modules", Quartz=api):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "occluded"):
+                probe.DesktopInput.macos_activation_click(self.window)
+        self.assertEqual(events, [])
+
+    def test_macos_activation_click_releases_button_after_posting_exception(self):
+        api, events, _ = self.mouse_quartz()
+        api.CGEventPost.side_effect = [RuntimeError("synthetic posting failure"), None]
+        with patch.dict("sys.modules", Quartz=api), patch.object(probe.time, "sleep"):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "posting failure"):
+                probe.DesktopInput.macos_activation_click(self.window)
+        self.assertEqual([event["kind"] for event in events], [1, 2])
+
+    def test_macos_native_focus_snapshot_refreshes_run_loop_and_retains_independent_state(self):
+        appkit, foundation = Mock(), Mock()
+        appkit.NSWorkspace.sharedWorkspace.return_value.frontmostApplication.return_value.processIdentifier.return_value = 7
+        appkit.NSRunningApplication.runningApplicationWithProcessIdentifier_.return_value.isActive.return_value = False
+        with patch.dict("sys.modules", AppKit=appkit, Foundation=foundation):
+            evidence = probe.DesktopInput.macos_focus_snapshot(42)
+        foundation.NSRunLoop.currentRunLoop.return_value.runUntilDate_.assert_called_once()
+        self.assertEqual(evidence["observed_pid"], 7)
+        self.assertFalse(evidence["target_is_active"])
 
     def quartz(self, fail_key_down=False):
         events = []

@@ -1,5 +1,5 @@
 name: Native desktop comparison
-run-name: "Desktop baseline: ${{ inputs.platforms || contains(github.event.head_commit.message, '[windows-only]') && 'windows' || contains(github.event.head_commit.message, '[macos-only]') && 'macos' || contains(github.event.head_commit.message, '[linux-only]') && 'linux' || 'all' }} / ${{ inputs.framework || 'all' }} (${{ github.event_name }})"
+run-name: "Desktop baseline: ${{ inputs.platforms || contains(github.event.head_commit.message, '[windows-only]') && 'windows' || contains(github.event.head_commit.message, '[macos-only]') && 'macos' || contains(github.event.head_commit.message, '[linux-only]') && 'linux' || 'all' }} / ${{ contains(github.event.head_commit.message, '[gtk-only]') && 'gtk' || inputs.framework || 'all' }} (${{ github.event_name }})"
 
 on:
   workflow_dispatch:
@@ -57,7 +57,7 @@ jobs:
       COMPARISON: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[desktop-benchmark]') || inputs.comparison == true }}
       DESKTOP_CHECKS: 'true'
       REDUCED_CONTROL: ${{ github.event_name == 'push' || inputs.reduced_control == true }}
-      FRAMEWORK: ${{ inputs.framework || 'all' }}
+      FRAMEWORK: ${{ contains(github.event.head_commit.message, '[gtk-only]') && 'gtk' || inputs.framework || 'all' }}
       # Hosted image rollouts can split repetitions into different provenance groups.
       # Qualify dark startup in each VM instead of borrowing another image's pass.
       APPEARANCE: ${{ github.event_name == 'push' || inputs.appearance == true }}

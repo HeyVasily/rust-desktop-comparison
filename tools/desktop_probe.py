@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import ctypes
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -394,6 +395,79 @@ class DesktopInput:
         except Exception as error:
             raise DesktopEnvironmentError(f"macOS native activation unavailable: {error}") from error
 
+    @staticmethod
+    def macos_focus_snapshot(pid):
+        """Supplementary AppKit observations, never a substitute for the PID gate."""
+        try:
+            import AppKit
+            import Foundation
+            # AppKit documents time-varying NSRunningApplication properties as
+            # cached until the main run loop advances. Refresh before observing.
+            Foundation.NSRunLoop.currentRunLoop().runUntilDate_(Foundation.NSDate.dateWithTimeIntervalSinceNow_(.005))
+            front = AppKit.NSWorkspace.sharedWorkspace().frontmostApplication()
+            target = AppKit.NSRunningApplication.runningApplicationWithProcessIdentifier_(int(pid))
+            return dict(source="NSWorkspace.frontmostApplication", observed_pid=int(front.processIdentifier()) if front else None,
+                        target_is_active=bool(target.isActive()) if target else None)
+        except Exception as error:
+            return dict(source="NSWorkspace.frontmostApplication", error=f"{type(error).__name__}: {error}")
+
+    @staticmethod
+    def macos_activation_click(window):
+        """Make one normal titlebar click on a freshly verified, exposed window.
+
+        This is only an activation request on a disposable test desktop. Refuse
+        permission denial, stale ownership and occlusion rather than clicking a
+        different application or treating a posted event as proof of focus.
+        """
+        import Quartz
+        if not hasattr(Quartz, "CGPreflightPostEventAccess") or not Quartz.CGPreflightPostEventAccess():
+            raise DesktopEnvironmentError("macOS mouse event-posting permission unavailable; no TCC prompt attempted")
+        windows = Quartz.CGWindowListCopyWindowInfo(
+            Quartz.kCGWindowListOptionOnScreenOnly | Quartz.kCGWindowListExcludeDesktopElements,
+            Quartz.kCGNullWindowID) or []
+        candidates = [(index, item) for index, item in enumerate(windows)
+                      if item.get("kCGWindowNumber") == window["id"] and item.get("kCGWindowOwnerPID") == window["pid"]
+                      and item.get("kCGWindowLayer") == 0]
+        if len(candidates) != 1:
+            raise DesktopEnvironmentError("Cannot locate the exact owned macOS window for activation click")
+        index, target = candidates[0]
+        bounds = target.get("kCGWindowBounds", {})
+        values = [bounds.get(key) for key in ("X", "Y", "Width", "Height")]
+        if not all(isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) for value in values):
+            raise DesktopEnvironmentError("Invalid macOS window bounds for activation click")
+        left, top, width, height = values
+        if width < 200 or height < 100:
+            raise DesktopEnvironmentError("macOS window is too small for a safe titlebar activation click")
+        point = (left + width / 2, top + 12)
+        # Quartz's on-screen list is ordered front-to-back. Do not send input
+        # through another visible window, including menus or transient dialogs.
+        for item in windows[:index]:
+            other = item.get("kCGWindowBounds", {})
+            if item.get("kCGWindowAlpha", 1) > 0 and all(key in other for key in ("X", "Y", "Width", "Height")) \
+                    and other["X"] <= point[0] < other["X"] + other["Width"] \
+                    and other["Y"] <= point[1] < other["Y"] + other["Height"]:
+                raise DesktopEnvironmentError("The macOS activation-click point is occluded by another window")
+
+        def post(kind):
+            event = Quartz.CGEventCreateMouseEvent(None, kind, point, Quartz.kCGMouseButtonLeft)
+            if event is None:
+                raise DesktopEnvironmentError("Cannot create macOS activation-click event")
+            Quartz.CGEventSetFlags(event, 0)
+            Quartz.CGEventSetIntegerValueField(event, Quartz.kCGMouseEventClickState, 1)
+            Quartz.CGEventPost(Quartz.kCGHIDEventTap, event)
+            time.sleep(.03)
+
+        try:
+            try:
+                post(Quartz.kCGEventLeftMouseDown)
+            finally:
+                post(Quartz.kCGEventLeftMouseUp)
+        except Exception as error:
+            raise DesktopEnvironmentError(f"macOS activation click failed: {error}") from error
+        return dict(source="Quartz titlebar click", requested_pid=window["pid"], requested_window=window["id"],
+                    point=list(point), window_rectangle=[left, top, left + width, top + height],
+                    event_access="preflight_passed", events_posted=True)
+
     def focus(self, window):
         evidence = dict(status="not_run", requested_pid=window["pid"], requested_window=window["id"])
         self.last_focus = evidence
@@ -423,6 +497,7 @@ class DesktopInput:
                 # activation API, bounded and by PID, without changing the app.
                 # An Automation denial above is never retried via another path.
                 evidence["activation_requests"] = []
+                evidence["activation_clicks"] = []
                 deadline = time.monotonic() + 3
                 for attempt in range(1, 31):
                     if attempt in (1, 11, 21):
@@ -430,11 +505,14 @@ class DesktopInput:
                     observed = command(["osascript", "-e", 'tell application "System Events" to get unix id '
                                         'of first process whose frontmost is true'], timeout=1).stdout.strip()
                     evidence.update(source="macOS frontmost process", observed_pid=observed, attempts=attempt)
+                    evidence["native_foreground"] = self.macos_focus_snapshot(window["pid"])
                     if observed == str(window["pid"]):
                         break
                     if time.monotonic() >= deadline or attempt == 30:
                         raise DesktopEnvironmentError(
                             f"macOS frontmost PID {observed!r} differs from test PID {window['pid']}")
+                    if attempt == 2:
+                        evidence["activation_clicks"].append(self.macos_activation_click(window))
                     time.sleep(.1)
             else:
                 raise DesktopEnvironmentError(f"Unsupported input host: {sys.platform}")
