@@ -6,7 +6,9 @@ appearance changes and external text-clipboard use. The older
 dataset; its memory figures and startup-only observations do not describe these
 updated profiles.
 
-**Verification status: Linux and Windows complete; macOS validation in progress.**
+**Verification status: Linux and Windows complete for the stated profile;
+macOS partial, with failures retained. No hardware-iGPU or production Veranda
+20/200 result is claimed.**
 The six Linux/Windows jobs in
 [Actions run 43251948886](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43251948886)
 passed, measuring source
@@ -16,9 +18,17 @@ labeled reduced egui control. All 60 Linux/Windows light- and dark-startup
 acceptance invocations passed. The failed macOS jobs from that run are diagnostic
 history, not successful measurements or missing values replaced with zero.
 
-<!-- FINALIZE_STATUS: Replace the pending status only after reviewing all nine
-artifacts, import exclusions, provenance groups, screenshots and final CI gates.
-Keep the measurement source above distinct from later report-only revisions. -->
+The final selected macOS [run 43263287428](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43263287428),
+source [`589a6111d79156d787471069aa9e26d5b289d5d7`](https://github.com/HeyVasily/rust-desktop-comparison/commit/589a6111d79156d787471069aa9e26d5b289d5d7),
+provides one eligible visible-idle observation each for egui, Slint, Qt and Tauri.
+GTK failed live-theme acceptance. Two repetitions stopped before the integrated
+light-start candidates because the reduced control's process cleanup was unknown.
+Both complete workflow runs therefore concluded **failure**; the successful
+Linux/Windows jobs and individual eligible macOS observations are reported at
+their actual scope, not promoted to an all-platform pass.
+
+[Retained evidence and archive checksums](../measurements/desktop-integrated-2026-11-12/README.md)
+make every selected result, failed invocation and selection decision reviewable.
 
 ## What was built
 
@@ -47,9 +57,7 @@ future `stable`, Homebrew, MSYS2 or hosted-image install resolves identically.
 | --- | --- | --- | --- |
 | Linux | Ubuntu 24.04 x86_64, image `20261101.360.1`; rustc/cargo **1.99.1**; four logical CPUs, approximately 16 GiB RAM | GTK **4.14.5**, libadwaita **1.5.0**, GTK3 **3.24.41**, Qt **6.8.3**, WebKitGTK **2.52.6**, Mesa **25.2.8** | egui reports **llvmpipe (LLVM 20.1.2, 256 bits)**; GTK reports `GdkX11Display` / `GskGLRenderer`; Qt reports `xcb` / Fusion and the shared GTK3 theme integration |
 | Windows | Windows Server 2022 x64, image `20261101.353.1`; rustc/cargo **1.99.1**; four logical CPUs, approximately 16 GiB RAM | GTK **4.24.1**, libadwaita **1.10.0**, Qt **6.8.3**, WebView2 **131.0.2903.86** | egui reports Dx12 **Microsoft Basic Render Driver**, CPU device, driver **10.0.20348.5756**; GTK reports `GdkWin32Display` / `GskCairoRenderer`; Qt reports its Windows platform plugin / Fusion |
-
-<!-- FINALIZE_MAC_VERSIONS: Add only the selected final macOS run's actual image,
-compiler, native package, architecture and renderer versions. -->
+| macOS | macOS **15.8.2 arm64**, image `20261104.0514.1`; rustc/cargo **1.99.1**; **Apple M1 (Virtual)**, three logical CPUs, 7 GiB RAM | GTK **4.24.1**, libadwaita **1.10.0**, Qt **6.12.0** (Homebrew `qtbase 6.12.0_2`), system WebKit **20621.3.11.11.3** | egui Glow reports **Apple Software Renderer**; GTK reports `GdkMacosDisplay` / `GskGLRenderer`; Qt reports `cocoa` / `macos` style |
 
 Slint is configured for its winit/software-renderer backend. Tauri's system
 webview can use its own compositor; no unsupported claim about its GPU backend
@@ -90,6 +98,9 @@ clipboard test in **every repetition**. It supplies acceptance evidence, not an
 extra ranked memory sample. A light-state sample does not disappear merely
 because another invocation fails, but the overall desktop profile must not be
 marked fully verified when its required dark-startup evidence failed or is missing.
+The site also requires matching light/dark repetition coverage within one source
+and build group. Three dark-start checks and one light-start check remain partial;
+the successful light-state memory observation is still retained as **n=1**.
 
 Startup permits up to 30 seconds for a correctly themed nonblank first frame
 after the owned window is found; live transitions retain an eight-second budget.
@@ -183,10 +194,32 @@ claim of literally no work. Tauri's per-run CPU observations span 0.165–0.234%
 
 ### macOS
 
-<!-- FINALIZE_MAC_RESULTS: Insert selected full-run results and actual acceptance
-status. Keep failures explicit and separate source/image/build groups. -->
+Image `20261104.0514.1`, run `43263287428`, source `589a611`, build-input digest
+`1b5ccfe2dd84…`. These are **single observations from r2**, not a completed
+three-repetition matrix. Every reported sample followed successful light-start,
+live-theme and clipboard acceptance; the separate dark-start checks passed for
+these four candidates in r1/r2/r3. Missing light-start repetitions keep their
+overall series status **incomplete**.
 
-Pending the corrected native run; no earlier macOS numbers are substituted here.
+| Candidate | Eligible n | Physical footprint, MiB | Summed RSS, MiB | Idle CPU, % | Remaining evidence |
+| --- | ---: | ---: | ---: | ---: | --- |
+| egui / eframe | 1 | 31.55 | 97.92 | 0.01081 | Light-start r1/r3 not run |
+| GTK4 + libadwaita | 0 | — | — | — | Live-theme failure; idle refused |
+| Slint | 1 | 16.60 | 97.83 | 0.00109 | Light-start r1/r3 not run |
+| Qt Widgets | 1 | 28.05 | 101.30 | 0.00040 | Light-start r1/r3 not run |
+| Tauri | 1 | 45.07 | 146.66 | 0.00954 | Light-start r1/r3 not run |
+
+The reduced control in r1/r3 completed sampling, but newly observed WebKit helpers
+could not be assigned to an application owner. The process gate recorded
+`cleanup_status=unknown` and stopped subsequent light-start candidates. Its
+`cleanup_survivors` list was empty: this is **unresolved ownership**, not evidence
+that egui created WebKit processes or leaked an owned child. The reduced numbers
+are excluded, and no paired delta is computed for those repetitions.
+
+GTK's system setting and libadwaita state changed, but the dark client frame
+remained dark through the eight-second light-transition deadline. Ordinary input
+later caused a light redraw. This limits the tested GTK/macOS profile; it does
+not establish that GTK lacks dark appearance or clipboard support.
 
 ### Linux minimized, separately measured
 
@@ -237,8 +270,7 @@ for other machines, renderers or desktop environments.
 | Linux visible, image `20261101.360.1` | 3 | **+1.028 [+1.008–+8.201]** PSS |
 | Linux minimized, same image | 3 | **+1.028 [+1.008–+8.201]** PSS |
 | Windows visible, image `20261101.353.1` | 3 | **+4.926 [+4.859–+5.265]** private working set |
-
-<!-- FINALIZE_MAC_PAIRED_AB: Add only verified compatible pairs from final Mac run. -->
+| macOS visible, image `20261104.0514.1` | 1 | **+1.969** physical footprint; r2 only |
 
 These observations do **not** support an assumed very large resident-memory cost
 for enabling the desktop bundle. Linux's wide pair spread also prevents treating
@@ -284,8 +316,15 @@ libadwaita, but the client remained dark through the eight-second deadline and
 became light after ordinary keyboard input. A macOS-only, event-driven redraw
 invalidation was subsequently tested; no forced palette or polling was added.
 
-<!-- FINALIZE_MAC_HISTORY: Record the redraw smoke outcome and final selected
-native run, including failures if any. Do not describe an attempted fix as proven. -->
+The [redraw smoke run 43262165209](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43262165209)
+did **not** fix GTK's stale frame. The `queue_draw()` experiment was removed before
+the selected [native run 43263287428](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43263287428),
+which retained the unresolved failure. The latter's
+three dark-start GTK invocations and r2 light-start invocation still failed live
+theme acceptance. Their original outcomes, screenshots and application logs are
+retained under [the measured source's evidence directory](../measurements/native-43263287428/).
+The prior run's two macOS artifacts are also retained, but explicitly excluded
+from the current cohort in [archives.json](../measurements/desktop-integrated-2026-11-12/archives.json).
 
 Previous successful samples are not relabeled as measurements of another source
 revision. The earlier GTK `display()` compile ambiguity was already resolved
@@ -304,23 +343,74 @@ After downloading and verifying all selected artifact archives, an import is
 reproducible with:
 
 ```sh
-python3 tools/import_native_run.py 43251948886 out/artifacts-current desktop-integrated-2026-11-12
+python3 tools/import_native_run.py 43251948886,43263287428 out/artifacts-current desktop-integrated-2026-11-12
 python3 tools/build_desktop_site_data.py measurements/desktop-integrated-2026-11-12
 python3 tools/build_desktop_site_data.py measurements/desktop-integrated-2026-11-12 --check
 ```
 
-`out/artifacts-current` must contain extracted directories named
-`native-<runner>-43251948886-r<repetition>`. The importer retains build evidence,
-outcomes, desktop screenshots and deterministic compressed samples under
-`measurements/native-43251948886/r<repetition>/<runner>/`; series CSV/JSON files
-record eligibility, exclusions, provenance groups and the paired control.
+`out/artifacts-current` must contain the **nine selected archives** listed as
+`selection: current` in [archives.json](../measurements/desktop-integrated-2026-11-12/archives.json):
+six Linux/Windows directories from `43251948886` and three macOS directories from
+`43263287428`, named `native-<runner>-<run-id>-r<repetition>`. The two older macOS
+archives are diagnostic history, kept outside this input directory. The importer
+retains build evidence, outcomes, desktop screenshots and deterministic compressed
+samples under `measurements/native-<run-id>/r<repetition>/<runner>/`; series CSV/JSON
+files record eligibility, exclusions, provenance groups and the paired control.
 `--check` verifies that the site's published JSON matches those imported records
 without rewriting it. A successful import alone is not an all-jobs-passed claim:
 review `import-report.json`, all expected artifacts, acceptance and actual counts.
 
-<!-- FINALIZE_EVIDENCE: Link the retained evidence directories, series README,
-summary/acceptance/paired data and useful light/dark/clipboard screenshots once
-they exist in the repository. Record final verification counts, not planned ones. -->
+The [series README](../measurements/desktop-integrated-2026-11-12/README.md) links
+the verified original ZIP digests, selected and diagnostic evidence, summaries,
+acceptance records, paired controls and retained-file checksums. The import
+contains **89 outcome records**, **62 requested/measured phase rows**, **19 primary
+summary groups** and **4 diagnostic-control groups**. These are data-record counts,
+not 89 successful GUI tests or 62 independent runner VMs.
+
+The importer checked the retained samples against their summaries and captured
+luminance against PNGs. Representative light/dark/restored captures were also
+visually reviewed. The Python/JavaScript checks validate the evidence pipeline
+and report; they do not constitute new native application runs.
+
+## Applicability to Veranda and the hardware follow-up
+
+At Subyard commit [`1446bdaa37e6f79e3717063b6b96643bc6b19257`](https://github.com/subyard/subyard/commit/1446bdaa37e6f79e3717063b6b96643bc6b19257),
+the [GTK product and its acceptance harness](https://github.com/subyard/subyard/blob/1446bdaa37e6f79e3717063b6b96643bc6b19257/veranda/desktop/README.md)
+already use the shared Rust client, a real Go owner and **20 configured yards / 200
+actual project records**. This does not mean all 200 project widgets are rendered
+simultaneously or all acceptance gates have passed. The examples measured here
+use **10 synthetic yards / 100 projects without RPC**, and the GTK example adds
+libadwaita. These profiles are not measurements of replacing Veranda's GTK shell.
+
+The primary missing experiment is the matched GTK/egui product slice on a user
+desktop with a **verified hardware GPU, including integrated graphics**. None of
+the three selected hosted environments supplies that evidence: egui reports
+llvmpipe, Microsoft Basic Render Driver or Apple Software Renderer. Their memory
+values must not be used to predict hardware-rendered RAM, interaction latency or
+battery use. Software CI remains a separate compatibility and regression case.
+
+The smallest product-specific extension is a read-only egui fleet view using
+Veranda's existing Rust client/store and unchanged RPC contract, with the same
+real 20/200 inventory and comparable GTK view. Preserve snapshot/events,
+reconnect/cancellation, SSH trust and process ownership; introduce no polling or
+new authority. Test actual input, clipboard, accessibility and HiDPI before
+resource acceptance, then compare visible/minimized idle, startup, burst events,
+sleep/reconnect and 100 connection cycles. A GPU adapter must be recorded by the
+application; the presence of a display server or a GPU in the physical host is
+insufficient evidence of the renderer used by a guest process.
+
+The existing GTK software-resource prerequisite is documented as:
+
+```sh
+python3 dev/e2e/veranda-wayland-resources.py /absolute/candidate.deb /absolute/yard --gtk --x11 --short
+```
+
+After its review, omitting `--short` runs the existing 30-start and visible/minimized
+idle sequence. For the separate native Wayland fixture omit `--x11` and use a fresh
+VM. These are [existing GTK harness commands](https://github.com/subyard/subyard/blob/1446bdaa37e6f79e3717063b6b96643bc6b19257/dev/e2e/veranda-wayland-resources.py),
+**not an egui driver or hardware-GPU measurement**. Adapting readiness/input to
+egui and running on actual iGPU hardware remain outstanding. This report proposes
+no production UI migration and claims no completed hardware result.
 
 ## Limits of this baseline
 

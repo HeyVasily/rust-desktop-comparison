@@ -1,0 +1,51 @@
+name: Import verified desktop evidence once
+
+on:
+  push:
+    branches: ['codex/desktop-integration-baseline']
+    paths: ['.github/workflows/import-desktop-evidence.yml', 'tools/publish_desktop_evidence.py']
+
+permissions:
+  contents: read
+
+jobs:
+  import-evidence:
+    if: github.repository == 'HeyVasily/rust-desktop-comparison' && github.ref == 'refs/heads/codex/desktop-integration-baseline' && contains(github.event.head_commit.message, '[import-evidence]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the existing evidence-validation dependencies
+        run: python -m pip install psutil==7.0.0 Pillow==11.2.1
+      - name: Verify archives, retain evidence, and rebuild current tables
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/publish_desktop_evidence.py
+      - name: Validate the evidence pipeline and report
+        run: |
+          python -m unittest discover -s tools -p 'test_*.py'
+          node --test site/app.test.cjs
+          node --check site/app.js
+          python tools/render_features.py --check
+          python tools/build_desktop_site_data.py measurements/desktop-integrated-2026-11-12 --check
+      - name: Commit generated evidence to this branch only
+        env:
+          EXPECTED_BRANCH: codex/desktop-integration-baseline
+        run: |
+          test "$GITHUB_REF_NAME" = "$EXPECTED_BRANCH"
+          git add -- data/desktop-results.json measurements/desktop-integrated-2026-11-12 measurements/native-43251948886 measurements/native-43263287428 screenshots/native-43251948886 screenshots/native-43263287428
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo 'Evidence already matches the selected archives.'
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit --quiet -m 'Retain verified desktop evidence and generated comparison tables'
+          git push origin HEAD:"$EXPECTED_BRANCH"

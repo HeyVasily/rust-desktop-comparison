@@ -100,7 +100,7 @@ async function loadDesktop() {
 
 function acceptanceLabel(acceptance = {}) {
   if (acceptance.status === "fully_verified") {
-    return ["startup_light", "startup_dark", "live_theme", "clipboard", "cleanup", "process_cleanup", "evidence", "provenance"].every((key) => acceptance[key] === "passed")
+    return ["startup_light", "startup_dark", "repetition_coverage", "live_theme", "clipboard", "cleanup", "process_cleanup", "evidence", "provenance"].every((key) => acceptance[key] === "passed")
       ? "Fully verified" : "Incomplete evidence";
   }
   return { failed: "Failed invocation(s)", environment_error: "Environment blocked", incomplete: "Incomplete evidence", not_run: "Not run" }[acceptance.status] ?? "Not run";
@@ -121,9 +121,15 @@ function renderDesktop(data) {
     const detail = el("details", { class: "acceptance-details" }, el("summary", { text: acceptanceLabel(a) }));
     const labels = { startup_light: "Light startup", startup_dark: "Separate dark startup", live_theme: "Live transitions",
       clipboard: "External clipboard", cleanup: "Settings cleanup", process_cleanup: "Process cleanup",
-      evidence: "Evidence", provenance: "Source/build provenance" };
+      evidence: "Evidence", provenance: "Source/build provenance", repetition_coverage: "Matching startup repetitions" };
     detail.append(el("ul", {}, Object.entries(labels).map(([key, label]) => el("li", { text: `${label}: ${a[key] ?? "not_run"}` }))));
     detail.append(el("p", { text: `Acceptance invocations: ${a.normal_invocations ?? 0} normal / ${a.dark_invocations ?? 0} dark-startup. These are not the memory sample count.` }));
+    for (const missing of a.missing_cases ?? []) {
+      detail.append(el("p", { text: `Missing case: ${missing.case}, r${missing.repetition}.` }));
+    }
+    for (const duplicate of a.duplicate_cases ?? []) {
+      detail.append(el("p", { text: `Duplicate case: ${duplicate.case}, r${duplicate.repetition} (${duplicate.count} invocations).` }));
+    }
     for (const invocation of experiment?.invocations ?? []) {
       const links = invocation.links ?? {};
       detail.append(el("p", { class: "invocation" },

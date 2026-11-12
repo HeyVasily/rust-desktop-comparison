@@ -92,6 +92,46 @@ class DesktopSiteDataTests(unittest.TestCase):
         self.assertEqual(result["status"], "incomplete")
         self.assertEqual(result["startup_dark"], "not_run")
 
+    def test_same_build_partial_normal_repetitions_preserve_memory_and_observed_passes(self):
+        self.summaries = [{**self.summary(), "repetitions": "1"}]
+        self.invocations = [self.invocation(repetition="2")]
+        self.invocations.extend(self.invocation("dark-startup", repetition=str(rep)) for rep in (1, 2, 3))
+        experiment = self.egui(self.build())["experiments"][0]
+        result = experiment["acceptance"]
+        self.assertEqual(result["status"], "incomplete")
+        self.assertEqual(result["repetition_coverage"], "incomplete")
+        self.assertEqual(result["normal_repetitions"], [2])
+        self.assertEqual(result["dark_repetitions"], [1, 2, 3])
+        self.assertEqual(result["missing_cases"], [{"case": "normal", "repetition": 1},
+                                                   {"case": "normal", "repetition": 3}])
+        self.assertEqual(result["duplicate_cases"], [])
+        self.assertEqual((result["normal_invocations"], result["dark_invocations"]), (1, 3))
+        for field in ("startup_light", "startup_dark", *builder.CHECKS, "provenance"):
+            self.assertEqual(result[field], "passed", field)
+        self.assertEqual(experiment["measurements"], self.summaries)
+        self.assertEqual(len(experiment["invocations"]), 4)
+
+    def test_equal_case_counts_cannot_hide_mismatched_repetitions(self):
+        self.invocations = [self.invocation(repetition="1"), self.invocation("dark-startup", repetition="2")]
+        result = self.egui(self.build())["experiments"][0]["acceptance"]
+        self.assertEqual(result["status"], "incomplete")
+        self.assertEqual(result["missing_cases"], [{"case": "normal", "repetition": 2},
+                                                   {"case": "dark-startup", "repetition": 1}])
+        self.assertEqual(result["startup_light"], "passed")
+        self.assertEqual(result["startup_dark"], "passed")
+
+    def test_duplicate_case_prevents_fully_verified_despite_matching_repetition_sets(self):
+        for case in ("normal", "dark-startup"):
+            with self.subTest(case=case):
+                self.invocations = [self.invocation(), self.invocation("dark-startup"), self.invocation(case)]
+                result = self.egui(self.build())["experiments"][0]["acceptance"]
+                self.assertEqual(result["status"], "incomplete")
+                self.assertEqual(result["normal_repetitions"], result["dark_repetitions"])
+                self.assertEqual(result["missing_cases"], [])
+                self.assertEqual(result["duplicate_cases"], [{"case": case, "repetition": 1, "count": 2}])
+                self.assertEqual(result["startup_light"], "passed")
+                self.assertEqual(result["startup_dark"], "passed")
+
     def test_missing_build_provenance_prevents_fully_verified_label(self):
         for field in ("source_manifest_sha256", "build_inputs_sha256", "image_version"):
             with self.subTest(field=field):

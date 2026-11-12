@@ -133,8 +133,13 @@ test("missing numeric evidence does not become zero", () => {
 
 test("full acceptance label requires separate dark startup and every check", () => {
   const scope = context({ acceptance: { status: "fully_verified", startup_light: "passed", startup_dark: "passed",
-    live_theme: "passed", clipboard: "passed", cleanup: "passed", process_cleanup: "passed", evidence: "passed", provenance: "passed" } });
+    repetition_coverage: "passed", live_theme: "passed", clipboard: "passed", cleanup: "passed", process_cleanup: "passed", evidence: "passed", provenance: "passed" } });
   assert.equal(vm.runInContext("acceptanceLabel(acceptance)", scope), "Fully verified");
+  scope.acceptance.repetition_coverage = "incomplete";
+  assert.equal(vm.runInContext("acceptanceLabel(acceptance)", scope), "Incomplete evidence");
+  delete scope.acceptance.repetition_coverage;
+  assert.equal(vm.runInContext("acceptanceLabel(acceptance)", scope), "Incomplete evidence");
+  scope.acceptance.repetition_coverage = "passed";
   scope.acceptance.startup_dark = "not_run";
   assert.equal(vm.runInContext("acceptanceLabel(acceptance)", scope), "Incomplete evidence");
   scope.acceptance.startup_dark = "passed";
@@ -204,6 +209,32 @@ test("renderer distinguishes measured n from acceptance invocations and keeps me
   assert.match(host.textContent, /Acceptance invocations: 3 normal \/ 0 dark-startup/);
   assert.match(host.textContent, /not the memory sample count/);
   assert.match(host.textContent, /configured profile difference, not a clipboard-only/);
+});
+
+test("renderer exposes missing normal repetitions without discarding one valid memory sample", () => {
+  const data = desktopFixture();
+  data.platforms[0].candidates[0].experiments = [{
+    identity: { os: "macos-15", run_id: "123", source_commit: "a".repeat(40) }, links: {}, invocations: [],
+    measurements: [{ primary_metric: "macOS physical footprint", primary_median_mib: "123.45", primary_min_mib: "123.45",
+      primary_max_mib: "123.45", repetitions: "1", cpu_median_percent: "0.00000" }],
+    acceptance: { status: "incomplete", startup_light: "passed", startup_dark: "passed",
+      repetition_coverage: "incomplete", normal_invocations: 1, dark_invocations: 3,
+      missing_cases: [{ case: "normal", repetition: 1 }, { case: "normal", repetition: 3 }], duplicate_cases: [] },
+  }];
+  const { scope, host } = rendererContext(data);
+  vm.runInContext("renderDesktop(data)", scope);
+  assert.match(host.textContent, /Incomplete evidence/);
+  assert.match(host.textContent, /Light startup: passed/);
+  assert.match(host.textContent, /Separate dark startup: passed/);
+  assert.match(host.textContent, /Matching startup repetitions: incomplete/);
+  assert.match(host.textContent, /Missing case: normal, r1/);
+  assert.match(host.textContent, /Missing case: normal, r3/);
+  assert.doesNotMatch(host.textContent, /Missing case: normal, r2/);
+  assert.match(host.textContent, /Acceptance invocations: 1 normal \/ 3 dark-startup/);
+  assert.match(host.textContent, /123\.45 MiB/);
+  const descendants = (node) => [node, ...node.children.filter((child) => typeof child !== "string").flatMap(descendants)];
+  const row = descendants(host).find((node) => node.tag === "tr" && node.textContent.includes("macOS physical footprint"));
+  assert.equal(row.children[2].textContent, "1", "memory n remains distinct from four acceptance invocations");
 });
 
 test("renderer exposes image and build identity when one source has separate experiments", () => {

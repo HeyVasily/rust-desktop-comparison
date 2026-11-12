@@ -16,6 +16,13 @@ OS theme and clipboard integration before measuring idle memory. Current results
 and historical UI-only measurements are separate datasets, not interchangeable
 measurements of the same binaries.
 
+**2026-11-12 evidence:** Linux and Windows have three accepted repetitions per
+candidate. macOS remains partial: four candidates have one accepted visible-idle
+observation, while GTK failed live-theme acceptance. Failed and unrun cases stay
+visible. These hosted software-rendering results do not establish hardware-iGPU
+performance or the footprint of the real Veranda RPC client; see the
+[product-specific follow-up](docs/desktop-results.md#applicability-to-veranda-and-the-hardware-follow-up).
+
 Every example shows 10 synthetic yards and 100 projects: navigation, selection,
 scrolling, an editable filter and a Refresh button that advances an in-memory
 snapshot. There is no backend or periodic work. Measurements describe the stated

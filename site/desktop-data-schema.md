@@ -44,13 +44,22 @@ historical results are not promoted to current primary measurements.
 
 `acceptance.status` is `fully_verified`, `failed`, `environment_error`,
 `incomplete` or `not_run`. Its check fields are `startup_light`, `startup_dark`,
-`live_theme`, `clipboard`, `cleanup` (settings), `process_cleanup`, `evidence`
-and `provenance`. A fully verified label needs all checks passed, clean native
+`live_theme`, `clipboard`, `cleanup` (settings), `process_cleanup`, `evidence`,
+`provenance` and `repetition_coverage`. A fully verified label needs all checks passed, clean native
 process cleanup, a normal light-start invocation, a **separate dark-startup**
 invocation, complete imported evidence and the same nonempty source/build/run
 identity (valid commit and build/source digests, run ID and runner image).
 Separate commits or build inputs never fill each other's missing tests.
 Environment failures and incomplete evidence remain visible.
+
+`normal_repetitions` and `dark_repetitions` are the sorted observed repetition
+numbers for light normal and dark-startup cases. `repetition_coverage` passes only
+when both sets are nonempty and identical, with no duplicate `(case, repetition)`.
+`missing_cases` contains `{case, repetition}` records for a missing counterpart;
+`duplicate_cases` adds `count` for repeated invocations of the same case. A normal
+case in r2 with dark cases in r1/r2/r3 remains incomplete, while its valid memory
+observation remains n=1. These fields describe observed coverage, not an inference
+that a requested job with no artifact ran.
 
 Memory `n` is the number of eligible measured comparison invocations. Acceptance
 invocation counts are displayed separately: a successful smoke test can have

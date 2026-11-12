@@ -9,6 +9,7 @@ The importer remains responsible for checking raw captures and measurement scope
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import csv
 import json
 import math
@@ -89,12 +90,27 @@ def check_status(rows, field, *, success="passed"):
 def acceptance(rows, provenance):
     light = [row for row in rows if row["case"] == "normal" and row["startup_theme"] == "light"]
     dark = [row for row in rows if row["case"] == "dark-startup" and row["startup_theme"] == "dark"]
+    light_repetitions = {int(row["repetition"]) for row in light}
+    dark_repetitions = {int(row["repetition"]) for row in dark}
+    case_counts = Counter((row["case"], int(row["repetition"])) for row in rows)
+    duplicates = [dict(case=case, repetition=repetition, count=count)
+                  for (case, repetition), count in sorted(case_counts.items()) if count > 1]
+    missing = [dict(case=case, repetition=repetition)
+               for case, repetitions in (("normal", dark_repetitions - light_repetitions),
+                                          ("dark-startup", light_repetitions - dark_repetitions))
+               for repetition in sorted(repetitions)]
+    # Observed passes remain passes, but one repetition's startup cannot cover
+    # another repetition's missing invocation within the same source/build group.
+    coverage_complete = bool(light_repetitions) and light_repetitions == dark_repetitions and not duplicates
     result = dict(startup_light=check_status(light, "startup_theme_status"),
                   startup_dark=check_status(dark, "startup_theme_status"),
                   **{label: check_status(rows, field, success={"evidence": "complete", "process_cleanup": "clean"}.get(label, "passed"))
                      for label, field in CHECKS.items()},
                   normal_invocations=sum(row["case"] == "normal" for row in rows),
-                  dark_invocations=sum(row["case"] == "dark-startup" for row in rows))
+                  dark_invocations=sum(row["case"] == "dark-startup" for row in rows),
+                  normal_repetitions=sorted(light_repetitions), dark_repetitions=sorted(dark_repetitions),
+                  missing_cases=missing, duplicate_cases=duplicates,
+                  repetition_coverage="passed" if coverage_complete else "incomplete" if rows else "not_run")
     # Failed setup can have no startup expectation; retain that failure separately.
     environment_error = any(row.get("desktop_status") == "environment_error" for row in rows) \
         or "environment_error" in result.values()
@@ -112,7 +128,7 @@ def acceptance(rows, provenance):
                 for key in ("source_manifest_sha256", "build_inputs_sha256"))
     result["provenance"] = "passed" if provenance_complete else "incomplete" if rows else "not_run"
     result["status"] = ("fully_verified" if provenance_complete and qualified and all(result[key] == "passed"
-                         for key in ("startup_light", "startup_dark", *CHECKS)) else
+                         for key in ("startup_light", "startup_dark", "repetition_coverage", *CHECKS)) else
                          "environment_error" if environment_error else "failed" if failed else "incomplete" if rows else "not_run")
     return result
 
@@ -192,7 +208,7 @@ def build(series, *, root=ROOT):
                          ("summary.csv", "desktop-acceptance.csv", "paired-egui-ab.json")],
                 limitations=[
                     "Memory n counts measured comparison invocations; startup/clipboard acceptance invocations are listed separately.",
-                    "Fully verified requires light startup, separate dark startup, live transitions, clipboard and complete evidence from the same source/build identity.",
+                    "Fully verified requires matching nonempty light/dark startup repetition sets without duplicate cases, live transitions, clipboard and complete evidence from the same source/build identity.",
                     "Linux CI is X11/Xvfb with Mesa llvmpipe, not native Wayland or hardware-GPU acceptance.",
                     "Linux PSS, Windows private working set and macOS physical footprint are not interchangeable across operating systems.",
                     "Paired egui deltas measure the configured desktop profile after use minus the reduced diagnostic control, not clipboard-only allocation."])
