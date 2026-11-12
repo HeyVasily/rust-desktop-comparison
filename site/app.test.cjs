@@ -82,6 +82,14 @@ test("page supplies each selector used by the data-driven sections", () => {
   assert.ok(ids.includes("desktop-evidence"), "current profile evidence must be prominent");
 });
 
+test("historical hero data and method limits cannot be mistaken for current results", () => {
+  const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
+  assert.match(html, /<b>5<\/b>runs per OS · historical UI-only series/);
+  assert.match(html, /native-matrix-2026-11-09">Historical raw data<\/a>/);
+  assert.match(html, /<h3>Historical series limits<\/h3>/);
+  assert.match(html, /id="desktop-results"/, "current results retain a stable fragment target");
+});
+
 test("optional desktop data failures do not break the historical loader", async () => {
   const csv = "phase,framework,os,primary_median_mib,follows_dark_mode\ncomparison,egui,ubuntu-24.04,45,False";
   const scope = context({ fetch: async (url) => url.endsWith("desktop-results.json")

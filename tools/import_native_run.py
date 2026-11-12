@@ -320,6 +320,93 @@ def row_eligibility(row, errors):
     return ("excluded" if errors else scope), "; ".join(dict.fromkeys(errors))
 
 
+def measurement_evidence_errors(outcome, directory, phase, data):
+    """Recompute current-profile summaries from the retained process samples.
+
+    A passing label and a 120-interval counter are not a measurement archive.
+    Historical imports retain their original acceptance policy; new desktop and
+    reduced-control results must include the samples that produced each summary.
+    """
+    if outcome.get("measurement_profile") not in ("desktop-integrated", "diagnostic-reduced"):
+        return []
+    if not component(phase):
+        return ["unsafe measurement phase name"]
+    paths = [directory / f"{phase}-samples.json", directory / f"{phase}-samples.json.gz"]
+    present = [path for path in paths if path.is_file() and not path.is_symlink()]
+    if not present:
+        return ["raw measurement samples are missing"]
+    try:
+        def reject_constant(value):
+            raise ValueError(f"Non-finite sample number: {value}")
+
+        samples = []
+        for path in present:
+            if path.suffix == ".gz":
+                with gzip.open(path, "rt", encoding="utf-8-sig") as stream:
+                    rows = json.load(stream, parse_constant=reject_constant)
+            else:
+                rows = read_json(path)
+            samples.append(rows)
+        rows = samples[0]
+        if any(other != rows for other in samples[1:]):
+            raise ValueError("plain and compressed samples differ")
+        if not isinstance(rows, list) or len(rows) != 121:
+            raise ValueError("121 samples (baseline plus 120 intervals) are required")
+        application = outcome.get("desktop_integration", {}).get("application_process", {})
+        application_identity = (application.get("pid"), application.get("created")) if application else None
+        previous_time, previous_cpu = None, {}
+        for row in rows:
+            if not isinstance(row, dict) or not finite(row.get("monotonic")) or not finite(row.get("wall_time")):
+                raise ValueError("sample timestamps are missing or invalid")
+            if previous_time is not None and row["monotonic"] <= previous_time:
+                raise ValueError("sample timestamps are not strictly increasing")
+            previous_time = row["monotonic"]
+            processes = row.get("processes")
+            if not isinstance(processes, list) or not processes:
+                raise ValueError("sample process scope is missing or empty")
+            identities = set()
+            for process in processes:
+                if not isinstance(process, dict) or type(process.get("pid")) is not int or process["pid"] < 1 \
+                        or not finite(process.get("created")) or process["created"] <= 0:
+                    raise ValueError("invalid sampled process identity")
+                identity = process["pid"], process["created"]
+                if identity in identities:
+                    raise ValueError("duplicate process identity within a sample")
+                identities.add(identity)
+                for field in ("rss_bytes", "primary_bytes"):
+                    if type(process.get(field)) is not int or process[field] < 0:
+                        raise ValueError(f"invalid process {field}")
+                cpu = process.get("cpu_seconds")
+                if not finite(cpu) or cpu < 0 or cpu < previous_cpu.get(identity, 0):
+                    raise ValueError("invalid or decreasing process CPU counter")
+                previous_cpu[identity] = cpu
+            if application_identity and application_identity not in identities:
+                raise ValueError("accepted application process is absent from a resource sample")
+            for family_field, process_field in (("family_rss_bytes", "rss_bytes"),
+                                                ("family_primary_bytes", "primary_bytes")):
+                if type(row.get(family_field)) is not int or row[family_field] != sum(p[process_field] for p in processes):
+                    raise ValueError(f"{family_field} differs from the sampled process sum")
+        # Reuse the probe's published statistic definitions, not the reported
+        # aggregate values. This also verifies idle CPU identity accounting.
+        from native_probe import summarize
+        recomputed = summarize(rows)
+        if recomputed["late_discovered_preexisting_processes"]:
+            raise ValueError("pre-existing process was discovered after the CPU baseline")
+
+        def matches(actual, expected):
+            if isinstance(expected, dict):
+                return isinstance(actual, dict) and all(matches(actual.get(key), value) for key, value in expected.items())
+            if isinstance(expected, list):
+                return actual == expected
+            return finite(actual) and math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-7)
+
+        if not matches(data.get("summary"), recomputed):
+            raise ValueError("reported summary differs from recomputed raw samples")
+    except (OSError, EOFError, ValueError, KeyError, TypeError) as error:
+        return [f"raw measurement evidence invalid: {error}"]
+    return []
+
+
 def provenance_errors(outcome, run_id, repetition, source):
     """Normal/dark acceptance must retain, not overwrite, artifact identity."""
     errors = []
@@ -355,7 +442,7 @@ def rows_for(run_id: str, runner: str, repetition: int, source: Path):
             phases = [("comparison", {})]
         for phase, data in phases:
             summary = data.get("summary", {})
-            errors = desktop_errors + control_errors
+            errors = desktop_errors + control_errors + measurement_evidence_errors(outcome, path.parent, phase, data)
 
             def number(value, label, digits=3):
                 if not finite(value) or value < 0:

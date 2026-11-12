@@ -15,6 +15,7 @@ from unittest.mock import patch
 from PIL import Image
 
 import import_native_run as importer
+from native_probe import summarize
 
 
 class ImportNativeRunTests(unittest.TestCase):
@@ -31,15 +32,25 @@ class ImportNativeRunTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(value, ensure_ascii=False), encoding="utf-8")
 
+    def samples(self, primary=110):
+        # Match the current probe schema with one baseline plus 120 observations.
+        rows = []
+        for index in range(121):
+            process = dict(pid=42, created=1000.0, name="synthetic-test-process",
+                           rss_bytes=int((primary + 20) * 2**20),
+                           primary_bytes=int((primary + (index >= 111)) * 2**20),
+                           cpu_seconds=2 + index * 1.01 * .0002)
+            rows.append(dict(monotonic=2000 + index * 1.01, wall_time=3000 + index * 1.01,
+                             processes=[process], family_rss_bytes=process["rss_bytes"],
+                             family_primary_bytes=process["primary_bytes"]))
+        return rows
+
     def outcome(self, framework="egui", profile="desktop-integrated", primary=110):
         outcome = dict(
             name=framework, status="comparison_passed", cleanup_status="clean", comparison_requested=True,
             environment=dict(commit="a" * 40, run_id="123", repetition="1", image_version="image-1"),
             primary_memory_metric="Linux PSS", memory_metric="Linux RSS",
-            phases={"comparison": dict(status="passed", summary=dict(
-                family_primary_mib=dict(median=primary, p95=primary + 1),
-                family_rss_mib=dict(median=primary + 20), observed_cpu_percent_one_core=.02,
-                seconds=121.2, sample_intervals=120))})
+            phases={"comparison": dict(status="passed", summary=summarize(self.samples(primary)))})
         if profile is not None:
             outcome["measurement_profile"] = profile
         if profile == "diagnostic-reduced":
@@ -68,6 +79,9 @@ class ImportNativeRunTests(unittest.TestCase):
     def save(self, outcome, source=None):
         directory = (source or self.source) / outcome["name"]
         self.json(directory / "outcome.json", outcome)
+        for name, phase in outcome.get("phases", {}).items():
+            primary = phase.get("summary", {}).get("family_primary_mib", {}).get("median")
+            self.json(directory / f"{name}-samples.json", self.samples(primary if importer.finite(primary) else 110))
         if "desktop_integration" in outcome:
             desktop = outcome["desktop_integration"]
             self.json(directory / "desktop-integration.json", desktop)
@@ -207,6 +221,64 @@ class ImportNativeRunTests(unittest.TestCase):
                 outcome["phases"]["comparison"]["summary"].update(change)
                 self.save(outcome)
                 self.assertEqual(importer.aggregate(self.rows(), {}), [])
+
+    def test_reported_summary_without_raw_samples_is_excluded(self):
+        directory = self.save(self.outcome())
+        (directory / "comparison-samples.json").unlink()
+        row = self.rows()[0]
+        self.assertEqual(row["eligibility"], "excluded")
+        self.assertIn("raw measurement samples are missing", row["exclusion_reason"])
+
+    def test_missing_interval_or_nonmonotonic_raw_samples_are_excluded(self):
+        for mutate in (lambda rows: rows.pop(), lambda rows: rows[30].update(monotonic=rows[29]["monotonic"])):
+            with self.subTest(mutate=mutate):
+                directory = self.save(self.outcome())
+                rows = self.samples()
+                mutate(rows)
+                self.json(directory / "comparison-samples.json", rows)
+                self.assertEqual(self.rows()[0]["eligibility"], "excluded")
+
+    def test_inconsistent_process_sums_or_cpu_counters_are_excluded(self):
+        for mutate in (lambda rows: rows[30].update(family_primary_bytes=1),
+                       lambda rows: rows[30]["processes"].append(dict(rows[30]["processes"][0])),
+                       lambda rows: rows[30]["processes"][0].update(cpu_seconds=0)):
+            with self.subTest(mutate=mutate):
+                directory = self.save(self.outcome())
+                rows = self.samples()
+                mutate(rows)
+                self.json(directory / "comparison-samples.json", rows)
+                self.assertEqual(self.rows()[0]["eligibility"], "excluded")
+
+    def test_wrong_primary_or_cpu_summary_is_excluded(self):
+        for change in (dict(observed_cpu_percent_one_core=99),
+                       dict(family_primary_mib=dict(median=110, p95=112, observed_maximum=112))):
+            with self.subTest(change=change):
+                outcome = self.outcome()
+                outcome["phases"]["comparison"]["summary"].update(change)
+                self.save(outcome)
+                row = self.rows()[0]
+                self.assertEqual(row["eligibility"], "excluded")
+                self.assertIn("recomputed raw samples", row["exclusion_reason"])
+
+    def test_unrelated_process_samples_cannot_replace_the_accepted_app(self):
+        directory = self.save(self.outcome())
+        rows = self.samples()
+        for row in rows:
+            row["processes"][0]["pid"] = 99
+        self.json(directory / "comparison-samples.json", rows)
+        row = self.rows()[0]
+        self.assertEqual(row["eligibility"], "excluded")
+        self.assertIn("accepted application process", row["exclusion_reason"])
+
+    def test_compressed_raw_samples_can_be_reimported_and_must_agree(self):
+        directory = self.save(self.outcome())
+        raw = directory / "comparison-samples.json"
+        packed = directory / "comparison-samples.json.gz"
+        packed.write_bytes(gzip.compress(raw.read_bytes(), mtime=0))
+        raw.unlink()
+        self.assertEqual(self.rows()[0]["eligibility"], "primary")
+        self.json(raw, self.samples(primary=200))
+        self.assertEqual(self.rows()[0]["eligibility"], "excluded")
 
     def test_json_nan_is_rejected_instead_of_poisoning_statistics(self):
         outcome = self.outcome(profile=None)
