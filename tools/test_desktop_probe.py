@@ -182,6 +182,7 @@ class DesktopProbeTests(unittest.TestCase):
         responses = [Mock(stdout=""), Mock(stdout="7\n"), Mock(stdout="42\n")]
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", side_effect=responses) as command, \
+                patch.object(driver, "macos_activate", return_value={"request_accepted": True}) as activate, \
                 patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
             evidence = driver.focus(self.window)
         self.assertEqual(command.call_count, 3)
@@ -189,11 +190,14 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual(evidence["observed_pid"], "42")
         self.assertEqual(evidence["attempts"], 2)
         self.assertEqual(command.call_args.kwargs["timeout"], 1)
+        activate.assert_called_once_with(42)
+        self.assertEqual(evidence["activation_requests"], [{"request_accepted": True}])
 
     def test_macos_focus_failure_is_bounded_and_not_a_clipboard_capability_failure(self):
         driver = probe.DesktopInput()
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
+                patch.object(driver, "macos_activate", return_value={"request_accepted": True}), \
                 patch.object(probe.time, "monotonic", side_effect=[0, 4]), patch.object(probe.time, "sleep"):
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "frontmost PID"):
                 driver.focus(self.window)
@@ -203,10 +207,47 @@ class DesktopProbeTests(unittest.TestCase):
     def test_macos_focus_permission_error_is_not_retried_or_bypassed(self):
         driver = probe.DesktopInput()
         with patch.object(probe.sys, "platform", "darwin"), \
-                patch.object(probe, "command", side_effect=probe.DesktopEnvironmentError("Automation permission denied")) as command:
+                patch.object(probe, "command", side_effect=probe.DesktopEnvironmentError("Automation permission denied")) as command, \
+                patch.object(driver, "macos_activate") as activate:
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "permission denied"):
                 driver.focus(self.window)
         self.assertEqual(command.call_count, 1)
+        activate.assert_not_called()
+        self.assertEqual(driver.last_focus["status"], "environment_error")
+
+    def test_macos_native_activation_uses_exact_pid_and_records_request_not_focus(self):
+        application = Mock()
+        application.activationPolicy.return_value = 0
+        application.isFinishedLaunching.return_value = True
+        application.activateWithOptions_.return_value = False
+        appkit = Mock(NSApplicationActivateAllWindows=1, NSApplicationActivateIgnoringOtherApps=2)
+        appkit.NSRunningApplication.runningApplicationWithProcessIdentifier_.return_value = application
+        with patch.dict("sys.modules", AppKit=appkit):
+            evidence = probe.DesktopInput.macos_activate(42)
+        appkit.NSRunningApplication.runningApplicationWithProcessIdentifier_.assert_called_once_with(42)
+        application.activateWithOptions_.assert_called_once_with(3)
+        self.assertFalse(evidence["request_accepted"])
+        self.assertEqual(evidence["activation_policy"], 0)
+        self.assertTrue(evidence["finished_launching"])
+        self.assertNotIn("status", evidence)
+
+    def test_macos_native_activation_refuses_missing_pid_instead_of_matching_name(self):
+        appkit = Mock()
+        appkit.NSRunningApplication.runningApplicationWithProcessIdentifier_.return_value = None
+        with patch.dict("sys.modules", AppKit=appkit):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "No macOS running application for PID 42"):
+                probe.DesktopInput.macos_activate(42)
+
+    def test_macos_native_activation_retries_are_bounded_even_when_requests_succeed(self):
+        driver = probe.DesktopInput()
+        with patch.object(probe.sys, "platform", "darwin"), \
+                patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
+                patch.object(driver, "macos_activate", return_value={"request_accepted": True}) as activate, \
+                patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "frontmost PID"):
+                driver.focus(self.window)
+        self.assertEqual(activate.call_count, 3)
+        self.assertEqual(driver.last_focus["attempts"], 30)
         self.assertEqual(driver.last_focus["status"], "environment_error")
 
     def quartz(self, fail_key_down=False):
@@ -325,6 +366,46 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual(result["status"], "failed")
         self.assertEqual(result["mean_client_luma"], 32)
 
+    def test_cold_startup_waits_for_real_rendering_beyond_live_transition_budget(self):
+        checker = self.checks()
+        clock = [0]
+        captures = []
+        def capture(window, path):
+            captures.append(path)
+            if len(captures) == 1:
+                clock[0] = 9
+                raise RuntimeError("Capture is near-uniform; desktop rendering not established")
+            clock[0] = 10
+            Image.new("RGB", (960, 640), "white").save(path)
+        with patch.object(probe.time, "monotonic", side_effect=lambda: clock[0]), \
+                patch.object(probe.time, "sleep"):
+            result = checker.appearance(
+                "light", "startup", lambda: self.window, (42, 123), capture, timeout_seconds=30)
+        self.assertEqual(result["status"], "passed")
+        self.assertEqual(result["attempts"], 2)
+        self.assertEqual(result["timeout_seconds"], 30)
+        self.assertEqual(result["elapsed_seconds"], 10)
+
+    def test_startup_rendering_wait_is_bounded_and_does_not_accept_blank_content(self):
+        checker = self.checks()
+        capture = Mock(side_effect=RuntimeError("Capture is near-uniform"))
+        with patch.object(probe.time, "monotonic", side_effect=[0, 31]):
+            result = checker.appearance(
+                "light", "startup", lambda: self.window, (42, 123), capture, timeout_seconds=30)
+        self.assertEqual(result["status"], "failed")
+        self.assertIsNone(result["mean_client_luma"])
+        self.assertEqual(result["timeout_seconds"], 30)
+        self.assertEqual(result["elapsed_seconds"], 31)
+
+    def test_live_transition_retains_short_deadline_despite_longer_startup_budget(self):
+        checker = self.checks()
+        capture = Mock(side_effect=RuntimeError("Capture is near-uniform"))
+        with patch.object(probe.time, "monotonic", side_effect=[0, 9]):
+            result = checker.appearance("dark", "live-1-dark", lambda: self.window, (42, 123), capture)
+        self.assertEqual(result["status"], "failed")
+        self.assertEqual(result["timeout_seconds"], 8)
+        self.assertEqual(result["elapsed_seconds"], 9)
+
     def test_live_light_dark_light_records_both_transitions_and_reaps_helpers(self):
         checker = self.checks()
         state = {"theme": "light"}
@@ -340,6 +421,8 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual(result["status"], "passed")
         self.assertEqual([call.args[0] for call in checker.theme.set.call_args_list], ["dark", "light"])
         self.assertEqual(len(result["live_theme"]["transitions"]), 2)
+        self.assertEqual(result["startup_theme"]["timeout_seconds"], 30)
+        self.assertEqual([transition["timeout_seconds"] for transition in result["live_theme"]["transitions"]], [8, 8])
         self.assertTrue(result["clipboard"]["probe_helpers_reaped_before_idle"])
         self.assertEqual(result["startup_focus"]["status"], "passed")
         self.assertEqual(result["clipboard"]["focus"]["status"], "passed")

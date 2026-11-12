@@ -371,6 +371,29 @@ class Clipboard:
 class DesktopInput:
     """Real platform keyboard input into the focused native window."""
 
+    @staticmethod
+    def macos_activate(pid):
+        """Ask AppKit to activate this exact process, retaining diagnostic facts.
+
+        A successful request is not proof of focus. The caller independently
+        checks System Events' actual frontmost PID before sending any input.
+        """
+        try:
+            import AppKit
+            application = AppKit.NSRunningApplication.runningApplicationWithProcessIdentifier_(int(pid))
+            if application is None:
+                raise DesktopEnvironmentError(f"No macOS running application for PID {pid}")
+            evidence = dict(source="NSRunningApplication.activateWithOptions", requested_pid=int(pid),
+                            activation_policy=int(application.activationPolicy()),
+                            finished_launching=bool(application.isFinishedLaunching()))
+            options = AppKit.NSApplicationActivateAllWindows | AppKit.NSApplicationActivateIgnoringOtherApps
+            evidence["request_accepted"] = bool(application.activateWithOptions_(options))
+            return evidence
+        except DesktopEnvironmentError:
+            raise
+        except Exception as error:
+            raise DesktopEnvironmentError(f"macOS native activation unavailable: {error}") from error
+
     def focus(self, window):
         evidence = dict(status="not_run", requested_pid=window["pid"], requested_window=window["id"])
         self.last_focus = evidence
@@ -395,8 +418,15 @@ class DesktopInput:
             elif sys.platform == "darwin":
                 command(["osascript", "-e", 'tell application "System Events" to set frontmost of '
                          f'(first process whose unix id is {int(window["pid"])}) to true'], timeout=5)
+                # System Events can acknowledge its setter while a standalone
+                # GTK window still leaves Finder frontmost. Also use the native
+                # activation API, bounded and by PID, without changing the app.
+                # An Automation denial above is never retried via another path.
+                evidence["activation_requests"] = []
                 deadline = time.monotonic() + 3
                 for attempt in range(1, 31):
+                    if attempt in (1, 11, 21):
+                        evidence["activation_requests"].append(self.macos_activate(window["pid"]))
                     observed = command(["osascript", "-e", 'tell application "System Events" to get unix id '
                                         'of first process whose frontmost is true'], timeout=1).stdout.strip()
                     evidence.update(source="macOS frontmost process", observed_pid=observed, attempts=attempt)
@@ -548,9 +578,10 @@ class DesktopChecks:
             raise RuntimeError("Application window/PID changed during live desktop checks")
         return window
 
-    def appearance(self, theme, label, get_window, identity, capture):
+    def appearance(self, theme, label, get_window, identity, capture, *, timeout_seconds=8):
         path = self.output / f"desktop-{label}.png"
-        deadline = time.monotonic() + 8
+        started = time.monotonic()
+        deadline = started + timeout_seconds
         attempts, luma, last_error = 0, None, None
         while True:
             attempts += 1
@@ -558,20 +589,27 @@ class DesktopChecks:
                 window = self.stable_window(get_window, identity)
             except Exception as error:
                 return dict(status="failed", expected=theme, same_window_and_pid=False,
-                            attempts=attempts, reason=f"{type(error).__name__}: {error}")
+                            attempts=attempts, reason=f"{type(error).__name__}: {error}",
+                            timeout_seconds=timeout_seconds,
+                            elapsed_seconds=round(time.monotonic() - started, 3))
             try:
                 capture(window, path)
                 luma = content_luminance(path)
                 if matches_theme(luma, theme):
                     return dict(status="passed", expected=theme, mean_client_luma=luma,
-                                screenshot=path.name, attempts=attempts, same_window_and_pid=True)
+                                screenshot=path.name, attempts=attempts, same_window_and_pid=True,
+                                timeout_seconds=timeout_seconds,
+                                elapsed_seconds=round(time.monotonic() - started, 3))
                 last_error = f"Client luminance {luma} does not match {theme}"
             except Exception as error:
                 last_error = f"{type(error).__name__}: {error}"
-            if time.monotonic() >= deadline:
+            observed = time.monotonic()
+            if observed >= deadline:
                 return dict(status="failed", expected=theme, mean_client_luma=luma,
                             screenshot=path.name if path.exists() else None,
-                            attempts=attempts, same_window_and_pid=True, reason=last_error)
+                            attempts=attempts, same_window_and_pid=True, reason=last_error,
+                            timeout_seconds=timeout_seconds,
+                            elapsed_seconds=round(observed - started, 3))
             time.sleep(.2)
 
     def check_clipboard(self, get_window, identity, capture):
@@ -637,7 +675,12 @@ class DesktopChecks:
             self.result.update(status="environment_error", reason=f"Initial foreground activation failed: {error}")
             self.save()
             return self.result
-        self.result["startup_theme"] = self.appearance(self.initial, "startup", get_window, identity, capture)
+        # A mapped native window can precede a webview's first rendered page by
+        # several seconds on a cold runner. All candidates get the same bounded
+        # startup budget; live palette changes retain their separate 8s deadline.
+        # Blank captures, a wrong palette, and a replaced window/PID still fail.
+        self.result["startup_theme"] = self.appearance(
+            self.initial, "startup", get_window, identity, capture, timeout_seconds=30)
         self.save()
         transitions = []
         opposite = "dark" if self.initial == "light" else "light"

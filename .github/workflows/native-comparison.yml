@@ -18,7 +18,7 @@ on:
         type: boolean
         default: true
       appearance:
-        description: 'Also verify dark-startup and same-process transitions (first repetition)'
+        description: 'Also verify dark-startup and same-process transitions in every repetition'
         type: boolean
         default: true
       reduced_control:
@@ -58,7 +58,9 @@ jobs:
       DESKTOP_CHECKS: 'true'
       REDUCED_CONTROL: ${{ github.event_name == 'push' || inputs.reduced_control == true }}
       FRAMEWORK: ${{ inputs.framework || 'all' }}
-      APPEARANCE: ${{ (github.event_name == 'push' || inputs.appearance == true) && matrix.repetition == 1 }}
+      # Hosted image rollouts can split repetitions into different provenance groups.
+      # Qualify dark startup in each VM instead of borrowing another image's pass.
+      APPEARANCE: ${{ github.event_name == 'push' || inputs.appearance == true }}
       REPETITION: ${{ matrix.repetition }}
     defaults:
       run:

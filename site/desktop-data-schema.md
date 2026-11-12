@@ -9,6 +9,8 @@ Generate the file only from a real imported series:
 
 ```sh
 python3 tools/build_desktop_site_data.py measurements/SERIES
+# Check the committed site data against its source series without rewriting it:
+python3 tools/build_desktop_site_data.py measurements/SERIES --check
 # Or write a review copy elsewhere:
 python3 tools/build_desktop_site_data.py measurements/SERIES --output out/desktop-results.json
 ```

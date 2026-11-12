@@ -4,7 +4,7 @@ The [workflow](../.github/workflows/native-comparison.yml) builds release exampl
 and attempts real desktop acceptance and GUI sampling on Windows, macOS and
 Linux X11. Its defaults request all three operating systems, three independent
 repetitions, the desktop-integrated profiles, full memory/CPU sampling, a separate
-reduced egui control, and an additional dark-startup check in repetition 1.
+reduced egui control, and an additional dark-startup check in every repetition.
 This page describes the current procedure, not a claim that its newest runs passed.
 The [desktop-integrated baseline](desktop-integration.md) defines the profile;
 the [2026-11-09 results](full-native-results.md) retain the historical UI-only
@@ -27,6 +27,11 @@ memory, Rust compiler and native library versions. See the official
 [runner image inventory](https://github.com/actions/runner-images#available-images).
 Different operating systems, architectures, source revisions and build profiles
 must be analyzed separately. Image changes require fresh acceptance and sampling.
+A hosted image rollout can give repetitions of the **same workflow run** different
+image versions. Keep those groups separate and report each group's actual `n`;
+the requested repetition count is not an observed sample count. Every repetition
+includes its own dark-startup evidence so no group borrows acceptance from another
+image.
 The probe uses the captured Python 3.12 executable throughout the job, including
 child processes; tool installers can otherwise change which `python` is on `PATH`.
 
@@ -90,7 +95,7 @@ A setting label, painted titlebar or successful
 retained. A missing portal, permission or supported input driver is recorded as
 an environment/coverage problem, not proof that a framework lacks the feature.
 
-With `appearance` enabled, repetition 1 additionally launches each primary
+With `appearance` enabled, every repetition additionally launches each primary
 candidate under an already-dark OS setting in `artifacts/dark/`, then checks
 dark → light → dark and the same external clipboard path. This is a separate
 acceptance/diagnostic run, not another ranked idle sample. Both the normal and
@@ -107,6 +112,11 @@ previous private clipboard content/format ownership is not captured or restored.
 ## Run evidence and failure handling
 
 The probe waits up to 45 seconds for an owned window with the expected title.
+It then allows up to 30 seconds for a nonblank, correctly themed first client
+frame. A mapped webview window is not necessarily a rendered page. The same
+startup budget applies to every candidate; same-process live palette changes
+retain a separate eight-second deadline. Captures record attempts, elapsed time
+and the applied budget, without treating a blank window as a light-theme pass.
 After successful desktop acceptance, the short diagnostic settles for five
 seconds, waits up to 45 additional seconds for a nonblank client capture, records
 ten sampling intervals and captures the window again. Each candidate has a
@@ -216,7 +226,11 @@ pixel dimensions relative to logical window bounds.
 
 The driver establishes foreground state before startup captures and again before
 keyboard input; it records the actual macOS frontmost PID, not just the activation
-request. macOS shortcuts use physical Quartz key transitions, including Command's
+request. macOS first uses System Events, then makes bounded native
+`NSRunningApplication` activation requests for the exact process. The native API's
+return value is diagnostic only: the independently observed frontmost PID still
+has to match. An Automation permission failure stops the check before that path.
+macOS shortcuts use physical Quartz key transitions, including Command's
 keycode/flags-changed events and release attempts in `finally`. Event-posting access
 is preflighted without requesting a TCC grant or switching to a bypass route.
 Denied input permission is an environment blocker, not a failed toolkit capability.

@@ -118,6 +118,39 @@ class DesktopSiteDataTests(unittest.TestCase):
         self.assertTrue(all(experiment["acceptance"]["status"] == "incomplete"
                             for experiment in self.egui(self.build())["experiments"]))
 
+    def test_runner_image_drift_cannot_borrow_other_images_dark_startup(self):
+        self.summaries = [{**self.summary(), "repetitions": "1"},
+                          {**self.summary(image_version="image-b"), "repetitions": "2"}]
+        self.invocations = [self.invocation(), self.invocation("dark-startup"),
+                            self.invocation(repetition="2", image_version="image-b"),
+                            self.invocation(repetition="3", image_version="image-b")]
+        experiments = {entry["identity"]["image_version"]: entry
+                       for entry in self.egui(self.build())["experiments"]}
+        self.assertEqual(set(experiments), {"image-a", "image-b"})
+        self.assertEqual(experiments["image-a"]["acceptance"]["status"], "fully_verified")
+        self.assertEqual(experiments["image-b"]["acceptance"]["status"], "incomplete")
+        self.assertEqual(experiments["image-b"]["acceptance"]["startup_dark"], "not_run")
+        self.assertEqual(experiments["image-b"]["measurements"][0]["repetitions"], "2")
+
+    def test_dark_startup_each_repetition_qualifies_images_without_inflating_sample_n(self):
+        self.summaries = [{**self.summary(), "repetitions": "1"},
+                          {**self.summary(image_version="image-b"), "repetitions": "2"}]
+        for image, repetitions in (("image-a", ("1",)), ("image-b", ("2", "3"))):
+            for repetition in repetitions:
+                self.invocations.extend(self.invocation(case, repetition=repetition, image_version=image)
+                                        for case in ("normal", "dark-startup"))
+        experiments = {entry["identity"]["image_version"]: entry
+                       for entry in self.egui(self.build())["experiments"]}
+        self.assertEqual(set(experiments), {"image-a", "image-b"})
+        for image, count in (("image-a", 1), ("image-b", 2)):
+            with self.subTest(image=image):
+                experiment = experiments[image]
+                self.assertEqual(experiment["acceptance"]["status"], "fully_verified")
+                self.assertEqual(experiment["acceptance"]["normal_invocations"], count)
+                self.assertEqual(experiment["acceptance"]["dark_invocations"], count)
+                self.assertEqual(experiment["measurements"][0]["repetitions"], str(count))
+                self.assertEqual(len(experiment["invocations"]), 2 * count)
+
     def test_failed_clipboard_is_visible_despite_other_passed_fields(self):
         self.invocations = [self.invocation(clipboard_status="failed", status="failed"), self.invocation("dark-startup")]
         acceptance = self.egui(self.build())["experiments"][0]["acceptance"]
@@ -189,6 +222,26 @@ class DesktopSiteDataTests(unittest.TestCase):
         self.invocations = [self.invocation(evidence=False, run_id="../../escape")]
         with self.assertRaisesRegex(ValueError, "artifact identity"):
             self.build()
+
+    def test_check_accepts_reproducible_published_data_without_rewriting(self):
+        self.build()
+        self.assertEqual(builder.main([str(self.series)], root=self.root), 0)
+        output = self.root / "data/desktop-results.json"
+        before = output.stat().st_mtime_ns
+        self.assertEqual(builder.main([str(self.series), "--check"], root=self.root), 0)
+        self.assertEqual(output.stat().st_mtime_ns, before)
+
+    def test_check_rejects_stale_data_without_overwriting_it(self):
+        self.build()
+        output = self.root / "review.json"
+        output.write_text('{"schema_version": 0}\n', encoding="utf-8")
+        self.assertEqual(builder.main([str(self.series), "--output", str(output), "--check"], root=self.root), 1)
+        self.assertEqual(output.read_text(encoding="utf-8"), '{"schema_version": 0}\n')
+
+    def test_check_does_not_create_a_missing_output(self):
+        self.build()
+        self.assertEqual(builder.main([str(self.series), "--check"], root=self.root), 1)
+        self.assertFalse((self.root / "data/desktop-results.json").exists())
 
 
 if __name__ == "__main__":

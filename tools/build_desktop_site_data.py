@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build optional site data from a real imported series, without inventing results.
 
-Usage: python3 tools/build_desktop_site_data.py measurements/SERIES [--output PATH]
+Usage: python3 tools/build_desktop_site_data.py measurements/SERIES [--output PATH] [--check]
 Default output: data/desktop-results.json. Schema: site/desktop-data-schema.md.
 CSV values are preserved as strings; only presentation/evidence grouping is added.
 The importer remains responsible for checking raw captures and measurement scope.
@@ -198,14 +198,22 @@ def build(series, *, root=ROOT):
                     "Paired egui deltas measure the configured desktop profile after use minus the reduced diagnostic control, not clipboard-only allocation."])
 
 
-def main():
+def main(argv=None, *, root=ROOT):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("series", type=Path)
-    parser.add_argument("--output", type=Path, default=ROOT / "data/desktop-results.json")
-    args = parser.parse_args()
-    data = build(args.series)
+    parser.add_argument("--output", type=Path, default=Path(root) / "data/desktop-results.json")
+    parser.add_argument("--check", action="store_true", help="Check the published JSON without modifying it")
+    args = parser.parse_args(argv)
+    data = build(args.series, root=root)
+    rendered = json.dumps(data, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
+    if args.check:
+        if not args.output.is_file() or args.output.read_text(encoding="utf-8") != rendered:
+            print(f"Stale or missing {args.output}; regenerate it from {args.series}")
+            return 1
+        print(f"Verified {args.output} against {args.series}")
+        return 0
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(data, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+    args.output.write_text(rendered, encoding="utf-8")
     print(f"Wrote {args.output} from {args.series}; no historical data was changed")
     return 0
 
