@@ -36,8 +36,8 @@
       <ul>
         <li><a href="#desktop">Desktop baseline</a></li>
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#memory">Memory</a></li>
-        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#memory">Historical memory</a></li>
+        <li><a href="#screenshots">Historical captures</a></li>
         <li><a href="#features">Native features</a></li>
         <li><a href="#code">Code</a></li>
         <li><a href="#method">Method</a></li>
@@ -64,7 +64,9 @@
         </div>
       </div>
       <p class="note" id="desktop-evidence"><strong>Current profile and evidence:</strong> see the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-integration.md">desktop integration report</a> for enabled features, acceptance gates and measurement scope. The historical series below is preserved, not relabeled as the cost of these updated binaries. In particular, the old egui build disabled eframe's OS clipboard, link-opening and system-font features.</p>
-      <div id="desktop-results" aria-live="polite"></div>
+      <div id="desktop-results" aria-live="polite">
+        <p class="note desktop-fallback">Current desktop measurement tables load here. If they do not appear, open the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-results.md">desktop results report</a> for recorded outcomes and limitations. The historical figures below describe a different profile.</p>
+      </div>
     </section>
 
     <section id="overview" aria-labelledby="overview-title">

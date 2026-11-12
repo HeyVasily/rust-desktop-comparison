@@ -48,7 +48,7 @@ class ImportNativeRunTests(unittest.TestCase):
     def outcome(self, framework="egui", profile="desktop-integrated", primary=110):
         outcome = dict(
             name=framework, status="comparison_passed", cleanup_status="clean", comparison_requested=True,
-            environment=dict(commit="a" * 40, run_id="123", repetition="1", image_version="image-1"),
+            environment=dict(commit="a" * 40, run_id="123", repetition="1", image_version="image-1", os="Linux-synthetic-test"),
             primary_memory_metric="Linux PSS", memory_metric="Linux RSS",
             phases={"comparison": dict(status="passed", summary=summarize(self.samples(primary)))})
         if profile is not None:
@@ -65,12 +65,16 @@ class ImportNativeRunTests(unittest.TestCase):
             transitions = [appearance("dark", "desktop-live-1-dark.png"), appearance("light", "desktop-live-2-light.png")]
             for transition in transitions:
                 transition.update(luminance_delta=190, system_setting=dict(source="synthetic-test", theme=transition["expected"]))
+            focus = dict(status="passed", requested_pid=42, requested_window=123,
+                         source="X11 active window", observed_window="123")
             outcome["desktop_integration"] = dict(
                 schema_version=1, profile="desktop-acceptance-v1", status="passed",
                 application_process=dict(pid=42, created=1000.0), application_window=dict(pid=42, id=123),
+                startup_focus=dict(focus),
                 system_theme_setup=dict(status="passed", requested="light", observed=dict(theme="light")),
                 startup_theme=startup, live_theme=dict(status="passed", transitions=transitions),
                 clipboard=dict(status="passed", expected_utf8="München — Привет ✓", copied_utf8="München — Привет ✓",
+                               focus=dict(focus),
                                sentinel_utf8="unrelated-sentinel", sentinel_verified=True, probe_helpers_reaped_before_idle=True,
                                pasted_screenshot="desktop-clipboard-pasted.png", restored_fixture_screenshot="desktop-ready-for-idle.png"),
                 cleanup=dict(status="passed", errors=[]))
@@ -115,6 +119,71 @@ class ImportNativeRunTests(unittest.TestCase):
         self.assertEqual(summary["measurement_profile"], "")
         self.assertEqual(summary["desktop_status"], "")
         self.assertIs(summary["follows_dark_mode"], False)
+
+    def test_foreground_evidence_accepts_real_platform_identifier_representations(self):
+        for os_name, source, observed in (
+                ("Linux-synthetic-test", "X11 active window", dict(observed_window="123")),
+                ("Windows-synthetic-test", "Windows foreground window", dict(observed_window=123)),
+                ("macOS-synthetic-test", "macOS frontmost process", dict(observed_pid="42"))):
+            with self.subTest(os_name=os_name):
+                outcome = self.outcome()
+                outcome["environment"]["os"] = os_name
+                focus = dict(status="passed", requested_pid=42, requested_window=123, source=source, **observed)
+                outcome["desktop_integration"]["startup_focus"] = dict(focus)
+                outcome["desktop_integration"]["clipboard"]["focus"] = dict(focus)
+                self.save(outcome)
+                self.assertEqual(self.rows()[0]["eligibility"], "primary")
+
+    def test_missing_failed_or_wrong_target_focus_excludes_memory_and_acceptance(self):
+        changes = (None, {}, dict(status="environment_error"), dict(requested_pid=999),
+                   dict(requested_window=999), dict(observed_window="999"), dict(source="activation request"),
+                   dict(observed_window=None, activation_requests=[dict(request_accepted=True)]))
+        for location in ("startup", "clipboard"):
+            for change in changes:
+                with self.subTest(location=location, change=change):
+                    outcome = self.outcome()
+                    desktop = outcome["desktop_integration"]
+                    container, key = (desktop, "startup_focus") if location == "startup" else (desktop["clipboard"], "focus")
+                    if change is None:
+                        del container[key]
+                    elif not change:
+                        container[key] = change
+                    else:
+                        container[key].update(change)
+                    self.save(outcome)
+                    row = self.rows()[0]
+                    self.assertEqual(row["eligibility"], "excluded")
+                    self.assertIn(f"{location} foreground focus evidence", row["exclusion_reason"])
+                    accepted = list(importer.acceptance_rows("123", "ubuntu-24.04", 1, self.source))[0]
+                    self.assertEqual(accepted["desktop_evidence_status"], "incomplete")
+
+    def test_focus_source_must_match_recorded_os_and_macos_requires_observed_pid(self):
+        for change in (dict(source="X11 active window", observed_window=123),
+                       dict(source="macOS frontmost process", observed_pid=None),
+                       dict(source="macOS frontmost process", observed_pid="999")):
+            with self.subTest(change=change):
+                outcome = self.outcome()
+                outcome["environment"]["os"] = "macOS-synthetic-test"
+                for focus in (outcome["desktop_integration"]["startup_focus"],
+                              outcome["desktop_integration"]["clipboard"]["focus"]):
+                    focus.update(change, activation_requests=[dict(request_accepted=True)])
+                self.save(outcome)
+                self.assertEqual(self.rows()[0]["eligibility"], "excluded")
+
+    def test_focus_identifiers_cannot_be_booleans_fractions_or_missing(self):
+        for value in (None, True, 42.0, "42.0", "", -1, 0):
+            with self.subTest(value=value):
+                focus = dict(status="passed", requested_pid=value, requested_window=123,
+                             source="macOS frontmost process", observed_pid=value)
+                self.assertFalse(importer.desktop_focus_valid(focus, dict(pid=value, id=123), "macOS-synthetic-test"))
+
+    def test_missing_or_unknown_os_cannot_select_an_arbitrary_focus_protocol(self):
+        for os_name in (None, "unknown", ""):
+            with self.subTest(os_name=os_name):
+                outcome = self.outcome()
+                outcome["environment"]["os"] = os_name
+                self.save(outcome)
+                self.assertEqual(self.rows()[0]["eligibility"], "excluded")
 
     def test_new_explicit_ui_only_profile_is_not_full_desktop(self):
         self.save(self.outcome(profile="legacy-ui-only"))

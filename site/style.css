@@ -200,6 +200,7 @@ table.data td.num, table.data th.num { text-align: right; font-variant-numeric: 
 .desktop-table { min-width: 850px; }
 .desktop-table td, .desktop-table th { vertical-align: top; }
 .desktop-table small { display: block; color: var(--muted); font-weight: 400; margin-top: 3px; }
+#desktop-results .provenance { display: block; color: var(--muted); font-size: 0.75rem; font-weight: 400; margin-top: 3px; overflow-wrap: anywhere; }
 .desktop-table th[scope="row"] { min-width: 185px; }
 .acceptance-details { min-width: 210px; }
 .acceptance-details p, .acceptance-details ul { font-size: 0.8125rem; margin: 8px 0; }

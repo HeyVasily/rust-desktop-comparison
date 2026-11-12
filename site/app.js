@@ -112,6 +112,10 @@ function renderDesktop(data) {
   const link = (url, label) => typeof url === "string" && url.startsWith(`${REPO}/`)
     ? el("a", { href: url, text: label }) : el("span", { text: label });
   const value = (raw, digits = 2) => numberOrNull(raw) == null ? "—" : fmt(numberOrNull(raw), digits);
+  const provenance = (identity) => el("small", { class: "provenance" },
+    `Image ${identity.image_version || "not recorded"} · build `,
+    el("code", { title: identity.build_inputs_sha256 || "Build digest not recorded",
+      text: identity.build_inputs_sha256?.slice(0, 12) || "not recorded" }));
   const evidence = (experiment) => {
     const a = experiment?.acceptance ?? {};
     const detail = el("details", { class: "acceptance-details" }, el("summary", { text: acceptanceLabel(a) }));
@@ -143,7 +147,8 @@ function renderDesktop(data) {
           el("th", { scope: "row" }, candidate.name,
             experiment ? el("small", {}, experiment.identity.os, " · ",
               link(experiment.links.commit, experiment.identity.source_commit?.slice(0, 8) || "unknown commit"), " · ",
-              link(experiment.links.run, `run ${experiment.identity.run_id || "unknown"}`)) : null),
+              link(experiment.links.run, `run ${experiment.identity.run_id || "unknown"}`)) : null,
+            experiment ? provenance(experiment.identity) : null),
           el("td", {}, m ? el("b", { text: `${value(m.primary_median_mib)} MiB` }) : el("span", { text: "Not measured" }),
             el("small", { text: m ? `${m.primary_metric}; ${value(m.primary_min_mib)}–${value(m.primary_max_mib)} MiB` : "No eligible comparison result" })),
           el("td", { class: "num", text: m ? value(m.repetitions, 0) : "—" }),
@@ -165,7 +170,8 @@ function renderDesktop(data) {
       el("td", { class: "num", text: row ? `${numberOrNull(row.primary_delta_median_mib) > 0 ? "+" : ""}${value(row.primary_delta_median_mib, 3)}` : "Not measured" }),
       el("td", { class: "num", text: row ? `${value(row.primary_delta_min_mib, 3)}–${value(row.primary_delta_max_mib, 3)}` : "—" }),
       el("td", { class: "num", text: row ? value(row.paired_repetitions, 0) : "—" }),
-      el("td", {}, row ? link(row.source_url, `Run ${row.run_id} · ${(row.source_commit ?? "").slice(0, 8)} · paired raw data`) : "No eligible same-run pairs"),
+      el("td", {}, row ? link(row.source_url, `Run ${row.run_id} · ${(row.source_commit ?? "").slice(0, 8)} · paired raw data`) : "No eligible same-run pairs",
+        row ? provenance(row) : null),
     ));
   });
   host.replaceChildren(el("h3", { text: "Current desktop evidence" }),

@@ -1,0 +1,4 @@
+desktop_profile gtk4+libadwaita system_theme=true clipboard=gtk
+theme source=libadwaita dark=false
+project 1
+renderer source=gtk display_backend=GdkMacosDisplay gsk_type=GskGLRenderer

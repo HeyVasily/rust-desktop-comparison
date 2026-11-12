@@ -190,6 +190,35 @@ def captured_luminance_matches(directory, appearance):
         return False
 
 
+def desktop_focus_valid(focus, window, os_name):
+    """An activation request is not evidence that the target received focus."""
+    if not isinstance(focus, dict) or focus.get("status") != "passed" or not isinstance(os_name, str):
+        return False
+
+    def identifier(value):
+        # X11 reports window IDs as strings; macOS reports the observed PID as
+        # text. Permit those representations, but never booleans or fractions.
+        if isinstance(value, int) and not isinstance(value, bool) and value > 0:
+            return str(value)
+        if isinstance(value, str) and re.fullmatch(r"[1-9][0-9]*", value):
+            return value
+        return None
+
+    pid, window_id = identifier(window.get("pid")), identifier(window.get("id"))
+    if pid is None or window_id is None or identifier(focus.get("requested_pid")) != pid \
+            or identifier(focus.get("requested_window")) != window_id:
+        return False
+    if os_name.startswith("macOS-"):
+        return focus.get("source") == "macOS frontmost process" and identifier(focus.get("observed_pid")) == pid
+    if os_name.startswith("Windows-"):
+        source = "Windows foreground window"
+    elif os_name.startswith("Linux-"):
+        source = "X11 active window"
+    else:
+        return False
+    return focus.get("source") == source and identifier(focus.get("observed_window")) == window_id
+
+
 def desktop_metadata(outcome, directory):
     """Validate evidence structure, not just a top-level 'passed' label.
 
@@ -225,6 +254,11 @@ def desktop_metadata(outcome, directory):
     process, window = result.get("application_process", {}), result.get("application_window", {})
     if not finite(process.get("pid")) or not finite(process.get("created")) or not window.get("id") or not window.get("pid"):
         errors.append("application process/window identity is missing")
+    os_name = outcome.get("environment", {}).get("os")
+    if not desktop_focus_valid(result.get("startup_focus"), window, os_name):
+        errors.append("startup foreground focus evidence is incomplete or mismatched")
+    if not desktop_focus_valid(result.get("clipboard", {}).get("focus"), window, os_name):
+        errors.append("clipboard foreground focus evidence is incomplete or mismatched")
 
     def appearance_valid(appearance, expected):
         luma = appearance.get("mean_client_luma")

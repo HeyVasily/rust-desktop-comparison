@@ -88,6 +88,17 @@ test("historical hero data and method limits cannot be mistaken for current resu
   assert.match(html, /native-matrix-2026-11-09">Historical raw data<\/a>/);
   assert.match(html, /<h3>Historical series limits<\/h3>/);
   assert.match(html, /id="desktop-results"/, "current results retain a stable fragment target");
+  assert.match(html, /href="#memory">Historical memory<\/a>/);
+  assert.match(html, /href="#screenshots">Historical captures<\/a>/);
+});
+
+test("real page includes a useful fallback when current tables cannot load", () => {
+  const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
+  const fallback = html.match(/<div id="desktop-results"[^>]*>([\s\S]*?)<\/div>/)?.[1];
+  assert.ok(fallback, "current-results host must not be empty");
+  assert.match(fallback, /If they do not appear/);
+  assert.match(fallback, /href="https:\/\/github\.com\/HeyVasily\/rust-desktop-comparison\/blob\/main\/docs\/desktop-results\.md"/);
+  assert.match(fallback, /historical figures below describe a different profile/);
 });
 
 test("optional desktop data failures do not break the historical loader", async () => {
@@ -137,6 +148,7 @@ function rendererContext(data) {
     replaceChildren(...children) { this.children = children; this.ownText = ""; }
   }
   const host = new Node("div");
+  host.setAttribute("id", "desktop-results");
   host.textContent = "Static fallback";
   const scope = context({ data, document: { querySelector: () => host, createElement: (tag) => new Node(tag) } });
   return { scope, host };
@@ -185,4 +197,45 @@ test("renderer distinguishes measured n from acceptance invocations and keeps me
   assert.match(host.textContent, /Acceptance invocations: 3 normal \/ 0 dark-startup/);
   assert.match(host.textContent, /not the memory sample count/);
   assert.match(host.textContent, /configured profile difference, not a clipboard-only/);
+});
+
+test("renderer exposes image and build identity when one source has separate experiments", () => {
+  const data = desktopFixture();
+  data.platforms[0].candidates[0].experiments = [
+    ["20261108.1", "a".repeat(64)], ["20261109.2", "b".repeat(64)],
+  ].map(([image_version, build_inputs_sha256]) => ({
+    identity: { os: "ubuntu-24.04", run_id: "123", source_commit: "c".repeat(40), image_version, build_inputs_sha256 },
+    links: {}, measurements: [], invocations: [], acceptance: { status: "incomplete" },
+  }));
+  const { scope, host } = rendererContext(data);
+  vm.runInContext("renderDesktop(data)", scope);
+  assert.match(host.textContent, /Image 20261108\.1 · build\s+a{12}/);
+  assert.match(host.textContent, /Image 20261109\.2 · build\s+b{12}/);
+  const descendants = (node) => [node, ...node.children.filter((child) => typeof child !== "string").flatMap(descendants)];
+  const hashes = descendants(host).filter((node) => node.tag === "code");
+  assert.deepEqual(hashes.map((node) => node.attributes.title), ["a".repeat(64), "b".repeat(64)]);
+});
+
+test("paired A/B rows keep different image and build strata distinguishable", () => {
+  const data = desktopFixture();
+  data.paired_ab = [
+    ["20261108.1", "d".repeat(64), 1.25], ["20261109.2", "e".repeat(64), 2.5],
+  ].map(([image_version, build_inputs_sha256, delta]) => ({
+    platform: "linux", run_id: "123", source_commit: "c".repeat(40), image_version, build_inputs_sha256,
+    primary_metric: "Linux PSS", paired_repetitions: 1,
+    primary_delta_median_mib: delta, primary_delta_min_mib: delta, primary_delta_max_mib: delta,
+    source_url: "https://github.com/HeyVasily/rust-desktop-comparison/blob/main/measurements/test/paired-egui-ab.json",
+  }));
+  const { scope, host } = rendererContext(data);
+  vm.runInContext("renderDesktop(data)", scope);
+  const descendants = (node) => [node, ...node.children.filter((child) => typeof child !== "string").flatMap(descendants)];
+  const rows = descendants(host).filter((node) => node.tag === "tr" && node.textContent.includes("paired raw data"));
+  assert.equal(rows.length, 2);
+  assert.match(rows[0].textContent, /\+1\.250/);
+  assert.match(rows[0].textContent, /Image 20261108\.1 · build\s+d{12}/);
+  assert.match(rows[1].textContent, /\+2\.500/);
+  assert.match(rows[1].textContent, /Image 20261109\.2 · build\s+e{12}/);
+  assert.deepEqual(descendants(host).filter((node) => node.tag === "code").map((node) => node.attributes.title),
+    ["d".repeat(64), "e".repeat(64)]);
+  assert.equal(host.attributes.id, "desktop-results", "rendering must preserve the direct-current-results anchor");
 });

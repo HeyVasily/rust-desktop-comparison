@@ -18,11 +18,13 @@ import signal
 import subprocess
 import tempfile
 import threading
+import time
 
 ROOT = Path(__file__).resolve().parent.parent
 CHROME_FLAGS = ("--headless", "--no-first-run", "--no-default-browser-check",
                 "--disable-background-networking", "--force-device-scale-factor=1",
                 "--virtual-time-budget=5000")
+CHROME_TIMEOUT_SECONDS = 45
 
 
 def inspect_dom(html, dataset_present, expected_cards=5):
@@ -45,26 +47,47 @@ def inspect_dom(html, dataset_present, expected_cards=5):
     return checks
 
 
-def run_chrome(binary, profile, arguments, output, name):
+def run_chrome(binary, profile, arguments, output, name, *, dbus_session, invocations):
     """Bound each invocation and clean only the process group we created."""
-    with (output / f"{name}.html").open("wb") as stdout, (output / f"{name}.log").open("wb") as stderr:
-        process = subprocess.Popen([binary, *CHROME_FLAGS, f"--user-data-dir={profile}", *arguments],
-                                   stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, start_new_session=True)
-        try:
-            code = process.wait(timeout=30)
-            if code:
-                raise RuntimeError(f"Chrome {name} exited with status {code}; see {name}.log")
-        finally:
-            # An isolated group contains this launch only, never another job's browser.
+    evidence = dict(name=name, status="failed", timeout_seconds=CHROME_TIMEOUT_SECONDS,
+                    session="isolated D-Bus session; Chrome sandbox enabled")
+    invocations.append(evidence)
+    started = time.monotonic()
+    try:
+        with (output / f"{name}.html").open("wb") as stdout, (output / f"{name}.log").open("wb") as stderr:
+            # Hosted runners need not have a usable desktop session bus. Starting
+            # one for this invocation avoids Chromium waiting on a malformed or
+            # unavailable inherited address; no browser sandbox is disabled.
+            process = subprocess.Popen([dbus_session, "--", binary, *CHROME_FLAGS,
+                                        f"--user-data-dir={profile}", *arguments],
+                                       stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, start_new_session=True)
             try:
-                os.killpg(process.pid, signal.SIGTERM)
-            except ProcessLookupError:
-                pass
-            try:
-                process.wait(timeout=3)
-            except subprocess.TimeoutExpired:
-                os.killpg(process.pid, signal.SIGKILL)
-                process.wait(timeout=3)
+                code = process.wait(timeout=CHROME_TIMEOUT_SECONDS)
+                evidence["returncode"] = code
+                if code:
+                    raise RuntimeError(f"Chrome {name} exited with status {code}; see {name}.log")
+            finally:
+                # An isolated group contains this launch and its session bus,
+                # never another job's browser or the runner's desktop services.
+                try:
+                    os.killpg(process.pid, signal.SIGTERM)
+                except ProcessLookupError:
+                    pass
+                try:
+                    process.wait(timeout=3)
+                except subprocess.TimeoutExpired:
+                    os.killpg(process.pid, signal.SIGKILL)
+                    process.wait(timeout=3)
+        evidence["status"] = "passed"
+    except subprocess.TimeoutExpired as error:
+        evidence["timed_out"] = True
+        evidence["reason"] = str(error)
+        raise
+    except Exception as error:
+        evidence["reason"] = str(error)
+        raise
+    finally:
+        evidence["elapsed_seconds"] = round(time.monotonic() - started, 3)
 
 
 def main():
@@ -82,7 +105,12 @@ def main():
         binary = shutil.which("google-chrome") or shutil.which("google-chrome-stable")
         if not binary:
             raise RuntimeError("The runner's Google Chrome is missing; no browser will be installed")
+        dbus_session = shutil.which("dbus-run-session")
+        if not dbus_session:
+            raise RuntimeError("The runner's dbus-run-session is missing; cannot create an isolated browser session")
         report["chrome_binary"] = str(Path(binary).resolve())
+        report["dbus_session_binary"] = str(Path(dbus_session).resolve())
+        report["browser_invocations"] = []
         report["chrome_version"] = subprocess.check_output([binary, "--version"], text=True, timeout=10).strip()
         report["commit"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, timeout=10).strip()
         report["runner_image"] = os.environ.get("ImageVersion", "")
@@ -99,12 +127,14 @@ def main():
             try:
                 url = f"http://127.0.0.1:{server.server_port}/#desktop"
                 with tempfile.TemporaryDirectory(prefix="site-chrome-") as profile:
-                    run_chrome(binary, profile, ["--dump-dom", url], output, "rendered-dom")
+                    run_chrome(binary, profile, ["--dump-dom", url], output, "rendered-dom",
+                               dbus_session=dbus_session, invocations=report["browser_invocations"])
                     report["dom"] = inspect_dom((output / "rendered-dom.html").read_text(encoding="utf-8"), dataset_present, expected_cards)
                     report["screenshots"] = []
                     for name, width, height in (("desktop", 1440, 2400), ("narrow", 560, 2400)):
                         capture = output / f"{name}.png"
-                        run_chrome(binary, profile, [f"--window-size={width},{height}", f"--screenshot={capture}", url], output, name)
+                        run_chrome(binary, profile, [f"--window-size={width},{height}", f"--screenshot={capture}", url], output, name,
+                                   dbus_session=dbus_session, invocations=report["browser_invocations"])
                         header = capture.read_bytes()[:24]
                         if not header.startswith(b"\x89PNG\r\n\x1a\n") or len(header) < 24:
                             raise RuntimeError(f"Chrome did not produce a PNG: {capture.name}")

@@ -1,0 +1,42 @@
+{
+  "run_id": 43218424949,
+  "source_commit": "76bc29baa329bbc0843b2d294a45f7df04c824e3",
+  "scope": "Selected failed acceptance invocations only, not a ranked measurement series",
+  "artifacts": [
+    {
+      "id": 13947631201,
+      "name": "native-windows-2022-43218424949-r3",
+      "digest": "sha256:52e690b9da777c504ed818e30e298b638fdbdb87262bf8814c0eefb911b05fef",
+      "created_at": "2026-11-12T13:08:42Z",
+      "retained_case": "tauri"
+    },
+    {
+      "id": 13947395310,
+      "name": "native-macos-15-43218424949-r1",
+      "digest": "sha256:b538912cf18b10fc67f9bbedfcce3d7a846eec356f2aabbc4f9db869bbd8628d",
+      "created_at": "2026-11-12T13:00:03Z",
+      "retained_case": "gtk"
+    },
+    {
+      "id": 13947151003,
+      "name": "native-macos-15-43218424949-r3",
+      "digest": "sha256:7d5049b73b1fdec1b2205783bf99f05b09bb157b706aa7830bde4b9c355e9921",
+      "created_at": "2026-11-12T13:03:54Z",
+      "retained_case": "gtk"
+    },
+    {
+      "id": 13946868664,
+      "name": "native-windows-2022-43218424949-r1",
+      "digest": "sha256:0de0b4fb2c823c2ce5a93daa3faf3ad0fee4f1684abcce14d3f050f4f096624f",
+      "created_at": "2026-11-12T13:13:30Z",
+      "retained_case": "tauri"
+    },
+    {
+      "id": 13945374355,
+      "name": "native-macos-15-43218424949-r2",
+      "digest": "sha256:b0d07f3d6adf5ee65a7609bb710d1d631e0dc1c1cb5f54468f2192b6ef7e82d9",
+      "created_at": "2026-11-12T13:01:54Z",
+      "retained_case": "gtk"
+    }
+  ]
+}
