@@ -373,45 +373,6 @@ class DesktopInput:
     """Real platform keyboard input into the focused native window."""
 
     @staticmethod
-    def macos_activate(pid):
-        """Ask AppKit to activate this exact process, retaining diagnostic facts.
-
-        A successful request is not proof of focus. The caller independently
-        checks System Events' actual frontmost PID before sending any input.
-        """
-        try:
-            import AppKit
-            application = AppKit.NSRunningApplication.runningApplicationWithProcessIdentifier_(int(pid))
-            if application is None:
-                raise DesktopEnvironmentError(f"No macOS running application for PID {pid}")
-            evidence = dict(source="NSRunningApplication.activateWithOptions", requested_pid=int(pid),
-                            activation_policy=int(application.activationPolicy()),
-                            finished_launching=bool(application.isFinishedLaunching()))
-            options = AppKit.NSApplicationActivateAllWindows | AppKit.NSApplicationActivateIgnoringOtherApps
-            evidence["request_accepted"] = bool(application.activateWithOptions_(options))
-            return evidence
-        except DesktopEnvironmentError:
-            raise
-        except Exception as error:
-            raise DesktopEnvironmentError(f"macOS native activation unavailable: {error}") from error
-
-    @staticmethod
-    def macos_focus_snapshot(pid):
-        """Supplementary AppKit observations, never a substitute for the PID gate."""
-        try:
-            import AppKit
-            import Foundation
-            # AppKit documents time-varying NSRunningApplication properties as
-            # cached until the main run loop advances. Refresh before observing.
-            Foundation.NSRunLoop.currentRunLoop().runUntilDate_(Foundation.NSDate.dateWithTimeIntervalSinceNow_(.005))
-            front = AppKit.NSWorkspace.sharedWorkspace().frontmostApplication()
-            target = AppKit.NSRunningApplication.runningApplicationWithProcessIdentifier_(int(pid))
-            return dict(source="NSWorkspace.frontmostApplication", observed_pid=int(front.processIdentifier()) if front else None,
-                        target_is_active=bool(target.isActive()) if target else None)
-        except Exception as error:
-            return dict(source="NSWorkspace.frontmostApplication", error=f"{type(error).__name__}: {error}")
-
-    @staticmethod
     def macos_activation_click(window):
         """Make one normal titlebar click on a freshly verified, exposed window.
 
@@ -493,19 +454,16 @@ class DesktopInput:
                 command(["osascript", "-e", 'tell application "System Events" to set frontmost of '
                          f'(first process whose unix id is {int(window["pid"])}) to true'], timeout=5)
                 # System Events can acknowledge its setter while a standalone
-                # GTK window still leaves Finder frontmost. Also use the native
-                # activation API, bounded and by PID, without changing the app.
+                # GTK window still leaves Finder frontmost. Observe first; if
+                # needed, make one normal click on the exact owned titlebar.
+                # Avoid AppKit imports/activation in the probe process itself.
                 # An Automation denial above is never retried via another path.
-                evidence["activation_requests"] = []
                 evidence["activation_clicks"] = []
                 deadline = time.monotonic() + 3
                 for attempt in range(1, 31):
-                    if attempt in (1, 11, 21):
-                        evidence["activation_requests"].append(self.macos_activate(window["pid"]))
                     observed = command(["osascript", "-e", 'tell application "System Events" to get unix id '
                                         'of first process whose frontmost is true'], timeout=1).stdout.strip()
                     evidence.update(source="macOS frontmost process", observed_pid=observed, attempts=attempt)
-                    evidence["native_foreground"] = self.macos_focus_snapshot(window["pid"])
                     if observed == str(window["pid"]):
                         break
                     if time.monotonic() >= deadline or attempt == 30:

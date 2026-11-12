@@ -27,6 +27,11 @@ CHROME_FLAGS = ("--headless", "--no-first-run", "--no-default-browser-check",
 CHROME_TIMEOUT_SECONDS = 45
 
 
+def capture_fragment(dataset_present):
+    """Keep the actual result tables in view instead of the explanatory preamble."""
+    return "#desktop-results" if dataset_present else "#desktop"
+
+
 def inspect_dom(html, dataset_present, expected_cards=5):
     class Counts(HTMLParser):
         cards = tables = errors = 0
@@ -98,6 +103,7 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     dataset_present = (ROOT / "data/desktop-results.json").is_file()
     report = dict(schema_version=1, status="failed", dataset_present=dataset_present,
+                  target_fragment=capture_fragment(dataset_present),
                   scope="actual imported desktop evidence" if dataset_present else "baseline only; current-results table assertion skipped",
                   limitations=["Screenshots require human visual inspection; DOM readiness is not visual approval.",
                                "This checks the comparison website, not native application acceptance or memory."])
@@ -125,7 +131,7 @@ def main():
             thread = threading.Thread(target=server.serve_forever, daemon=True)
             thread.start()
             try:
-                url = f"http://127.0.0.1:{server.server_port}/#desktop"
+                url = f"http://127.0.0.1:{server.server_port}/{report['target_fragment']}"
                 with tempfile.TemporaryDirectory(prefix="site-chrome-") as profile:
                     run_chrome(binary, profile, ["--dump-dom", url], output, "rendered-dom",
                                dbus_session=dbus_session, invocations=report["browser_invocations"])

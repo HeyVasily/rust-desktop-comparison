@@ -99,6 +99,17 @@ class ImportNativeRunTests(unittest.TestCase):
     def rows(self, source=None, repetition=1):
         return list(importer.rows_for("123", "ubuntu-24.04", repetition, source or self.source))
 
+    def import_series(self, run_ids):
+        output_root = self.base / "repository"
+        with patch.object(importer, "ROOT", output_root), \
+                patch.object(importer.sys, "argv", ["import_native_run.py", run_ids, str(self.artifacts), "desktop-test"]):
+            status = importer.main()
+        return status, output_root
+
+    def csv_rows(self, path):
+        with path.open(encoding="utf-8", newline="") as stream:
+            return list(csv.DictReader(stream))
+
     def test_complete_desktop_evidence_qualifies_for_primary_summary(self):
         self.save(self.outcome())
         row = self.rows()[0]
@@ -542,9 +553,112 @@ class ImportNativeRunTests(unittest.TestCase):
             self.assertEqual(list(csv.DictReader(stream)), [])
         report = importer.read_json(series / "import-report.json")
         self.assertEqual(report["status"], "no_eligible_primary_rows")
+        self.assertEqual(report["requested_run_ids"], ["123"])
+        self.assertEqual(report["artifact_counts_by_run"], {"123": 1})
         self.assertEqual(len(report["exclusions"]), 1)
+        self.assertEqual(report["exclusions"][0]["run_id"], "123")
         self.assertTrue((output_root / "measurements" / "native-123" / "r1" / "ubuntu-24.04" / "egui" / "desktop-startup.png").exists())
         self.assertTrue((series / "SHA256SUMS").exists())
+
+    def test_multirun_same_source_never_pools_medians_or_paired_deltas(self):
+        for run_id, primary, reduced in (("123", 110, 100), ("456", 210, 190)):
+            source = self.artifacts / f"native-ubuntu-24.04-{run_id}-r1"
+            for framework, profile, value in (("egui", "desktop-integrated", primary),
+                                              ("egui_reduced", "diagnostic-reduced", reduced)):
+                outcome = self.outcome(framework, profile, value)
+                outcome["environment"]["run_id"] = run_id
+                self.save(outcome, source)
+        status, root = self.import_series("123,456")
+        self.assertEqual(status, 0)
+        series = root / "measurements" / "desktop-test"
+        summaries = self.csv_rows(series / "summary.csv")
+        self.assertEqual([(row["run_id"], row["repetitions"], row["primary_median_mib"]) for row in summaries],
+                         [("123", "1", "110.0"), ("456", "1", "210.0")])
+        pairs = importer.read_json(series / "paired-egui-ab.json")
+        self.assertEqual([(row["run_id"], row["paired_repetitions"], row["primary_delta_median_mib"])
+                          for row in pairs["summary"]], [("123", 1, 10.0), ("456", 1, 20.0)])
+        self.assertEqual(len(pairs["pairs"]), 2)
+        for pair in pairs["pairs"]:
+            self.assertEqual(pair["desktop"]["run_id"], pair["run_id"])
+            self.assertEqual(pair["reduced"]["run_id"], pair["run_id"])
+        report = importer.read_json(series / "import-report.json")
+        self.assertEqual(report["requested_run_ids"], ["123", "456"])
+        self.assertEqual(report["artifact_counts_by_run"], {"123": 1, "456": 1})
+        self.assertEqual(report["artifact_count"], 2)
+        self.assertEqual(report["exclusions"], [])
+
+    def test_multirun_missing_control_cannot_be_supplied_by_another_run(self):
+        self.save(self.outcome())
+        control = self.outcome("egui_reduced", "diagnostic-reduced", 100)
+        control["environment"]["run_id"] = "456"
+        self.save(control, self.artifacts / "native-ubuntu-24.04-456-r1")
+        status, root = self.import_series("123,456")
+        self.assertEqual(status, 0)
+        pairs = importer.read_json(root / "measurements" / "desktop-test" / "paired-egui-ab.json")
+        self.assertEqual(pairs["summary"], [])
+        self.assertEqual(len(pairs["pairs"]), 2)
+        self.assertTrue(all(pair["status"] == "not_paired" for pair in pairs["pairs"]))
+
+    def test_multirun_selected_platforms_keep_exact_source_and_artifact_paths(self):
+        self.save(self.outcome())
+        other = self.outcome(primary=210)
+        other["environment"].update(run_id="456", commit="b" * 40, os="macOS-synthetic-test")
+        other.update(primary_memory_metric="macOS physical footprint", memory_metric="macOS RSS")
+        for focus in (other["desktop_integration"]["startup_focus"], other["desktop_integration"]["clipboard"]["focus"]):
+            focus.update(source="macOS frontmost process", observed_pid="42")
+            focus.pop("observed_window")
+        self.save(other, self.artifacts / "native-macos-15-456-r1")
+        # Unrequested runs are not relabelled or copied into the selected series.
+        self.save(self.outcome(), self.artifacts / "native-ubuntu-24.04-999-r1")
+        status, root = self.import_series("123,456")
+        self.assertEqual(status, 0)
+        series = root / "measurements" / "desktop-test"
+        summaries = self.csv_rows(series / "summary.csv")
+        self.assertEqual({(row["os"], row["run_id"], row["source_commit"]) for row in summaries},
+                         {("ubuntu-24.04", "123", "a" * 40), ("macos-15", "456", "b" * 40)})
+        acceptance = self.csv_rows(series / "desktop-acceptance.csv")
+        self.assertTrue(all(row["desktop_evidence_status"] == "complete" for row in acceptance))
+        for runner, run_id in (("ubuntu-24.04", "123"), ("macos-15", "456")):
+            self.assertTrue((root / "measurements" / f"native-{run_id}" / "r1" / runner / "egui" / "outcome.json").exists())
+        self.assertFalse((root / "measurements" / "native-999").exists())
+
+    def test_multirun_rejects_misbound_outcome_run_and_recorded_source(self):
+        self.save(self.outcome())
+        source = self.artifacts / "native-ubuntu-24.04-456-r1"
+        self.save(self.outcome(), source)  # Wrong: this outcome still claims run 123.
+        build = source / "build"
+        build.mkdir()
+        (build / "source-commit.txt").write_text("b" * 40 + "\n", encoding="utf-8")
+        status, root = self.import_series("123,456")
+        self.assertEqual(status, 0)
+        series = root / "measurements" / "desktop-test"
+        report = importer.read_json(series / "import-report.json")
+        self.assertEqual(len(report["exclusions"]), 1)
+        exclusion = report["exclusions"][0]
+        self.assertEqual(exclusion["run_id"], "456")
+        self.assertEqual(exclusion["source_commit"], "a" * 40)
+        self.assertIn("outcome run_id differs from artifact", exclusion["exclusion_reason"])
+        self.assertIn("source commit differs from recorded build source", exclusion["exclusion_reason"])
+        self.assertEqual([row["run_id"] for row in self.csv_rows(series / "summary.csv")], ["123"])
+        acceptance = [row for row in self.csv_rows(series / "desktop-acceptance.csv") if row["run_id"] == "456"]
+        self.assertEqual(acceptance[0]["desktop_evidence_status"], "incomplete")
+
+    def test_cli_rejects_empty_duplicate_or_nonnumeric_run_ids_before_copy(self):
+        for run_ids in ("", "123,", ",123", "123,,456", "123,123", "123,abc", "123, 456", "123.0"):
+            with self.subTest(run_ids=run_ids), patch.object(importer, "copy_evidence") as copy_evidence:
+                status, root = self.import_series(run_ids)
+                self.assertEqual(status, 2)
+                copy_evidence.assert_not_called()
+                self.assertFalse(root.exists())
+
+    def test_missing_requested_run_fails_before_copying_any_available_run(self):
+        self.save(self.outcome())
+        for run_ids in ("123,456", "456,123"):
+            with self.subTest(run_ids=run_ids), patch.object(importer, "copy_evidence") as copy_evidence:
+                status, root = self.import_series(run_ids)
+                self.assertEqual(status, 1)
+                copy_evidence.assert_not_called()
+                self.assertFalse(root.exists())
 
     def test_cli_rejects_destination_traversal(self):
         with patch.object(importer.sys, "argv", ["import_native_run.py", "123", str(self.artifacts), "../escape"]):

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Import native-comparison artifacts without promoting incomplete desktop tests.
 
-Usage: import_native_run.py RUN_ID ARTIFACT_DIR SERIES_NAME
+Usage: import_native_run.py RUN_ID[,RUN_ID...] ARTIFACT_DIR SERIES_NAME
 
 ARTIFACT_DIR contains native-<runner>-<run-id>[-r<repetition>] directories.
+Every requested run must have artifacts. Multiple runs retain their own source,
+run and build identities; they are never pooled into one repetition group.
 Outcomes, deterministic gzipped samples, build provenance and all captures go to
 measurements/native-<run-id>/r<k>/<runner>. Repetition-one light/dark screenshots
 also retain the historical screenshots/native-<run-id>/<runner> layout.
@@ -652,16 +654,20 @@ def main() -> int:
     if len(sys.argv) != 4:
         print(__doc__, file=sys.stderr)
         return 2
-    run_id, base, series = sys.argv[1], Path(sys.argv[2]), sys.argv[3]
-    if not run_id.isdecimal() or not component(series):
-        print("RUN_ID must be numeric and SERIES_NAME must be one safe path component", file=sys.stderr)
+    run_ids, base, series = sys.argv[1].split(","), Path(sys.argv[2]), sys.argv[3]
+    if not all(run_id.isdecimal() for run_id in run_ids) or len(set(run_ids)) != len(run_ids) or not component(series):
+        print("RUN_IDs must be distinct numeric IDs separated by commas and SERIES_NAME must be one safe path component", file=sys.stderr)
         return 2
-    artifacts = list(artifact_dirs(base, run_id))
-    if not artifacts:
-        print("No artifacts found", file=sys.stderr)
+    # Preflight every requested run before copying anything. A typo or partial
+    # download must not silently publish only the subset that happened to exist.
+    artifacts_by_run = {run_id: list(artifact_dirs(base, run_id)) for run_id in run_ids}
+    missing = [run_id for run_id, artifacts in artifacts_by_run.items() if not artifacts]
+    if missing:
+        print("No artifacts found for requested run(s): " + ", ".join(missing), file=sys.stderr)
         return 1
+    artifacts = [(run_id, *artifact) for run_id, entries in artifacts_by_run.items() for artifact in entries]
     rows, dark, acceptance = [], {}, []
-    for runner, repetition, source in artifacts:
+    for run_id, runner, repetition, source in artifacts:
         target = ROOT / "measurements" / f"native-{run_id}" / f"r{repetition}" / runner
         shots = ROOT / "screenshots" / f"native-{run_id}" / runner
         copy_evidence(source, target, repetition, runner, shots)
@@ -686,9 +692,11 @@ def main() -> int:
     write_json(out / "paired-egui-ab.json", paired_egui(rows))
     write_json(out / "import-report.json", dict(
         schema_version=1, status="imported" if summary else "no_eligible_primary_rows",
+        requested_run_ids=run_ids,
+        artifact_counts_by_run={run_id: len(entries) for run_id, entries in artifacts_by_run.items()},
         artifact_count=len(artifacts), outcome_count=len(acceptance), requested_or_measured_phase_rows=len(rows),
         primary_summary_groups=len(summary), control_summary_groups=len(controls),
-        exclusions=[{key: row[key] for key in ("os", "framework", "phase", "repetition", "source_commit", "measurement_profile", "exclusion_reason")}
+        exclusions=[{key: row[key] for key in ("os", "framework", "phase", "repetition", "run_id", "source_commit", "measurement_profile", "exclusion_reason")}
                     for row in rows if row["eligibility"] == "excluded"]))
     names = ("runs.csv", "summary.csv", "controls.csv", "desktop-acceptance.csv", "paired-egui-ab.json", "import-report.json")
     (out / "SHA256SUMS").write_text("\n".join(f"{digest(out / name)}  {name}" for name in names) + "\n", encoding="utf-8")

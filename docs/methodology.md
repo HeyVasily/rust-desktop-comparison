@@ -4,7 +4,8 @@ There are separate datasets and build profiles in this repository. The current
 comparison is a **desktop-integrated baseline**; older measurements remain bound
 to their original source, features, runtime and workload. Adding an integration
 or changing a toolkit/plugin version does not retroactively change those results.
-See also the [desktop profile and acceptance contract](desktop-integration.md)
+See also the [desktop results](desktop-results.md),
+[desktop profile and acceptance contract](desktop-integration.md)
 and [native runner procedure](github-runners.md).
 
 ## Current desktop measurement contract
@@ -82,7 +83,9 @@ not evidence that the toolkit lacks the capability.
 ### Sampling, process scope and metrics
 
 After acceptance, the native probe performs a short diagnostic phase, then
-`--comparison` uses 30 seconds of settling and 120 one-second sample intervals.
+`--comparison` uses 30 seconds of settling and 120 sample intervals, each with
+one-second delays plus monitoring overhead. Actual elapsed time is retained;
+the phase is not assumed to last exactly 120 seconds.
 Candidates run sequentially, not simultaneously. Linux additionally records an
 explicitly separate minimized phase with X11 visibility/state verification.
 Repeat on fresh runners to expose run-to-run variance; publish each repetition,

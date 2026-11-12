@@ -5,6 +5,10 @@ just draw the fixture. Framework capability, enabled build features, exercised
 behavior and measured resource cost are four separate claims. This page defines
 the profile and the evidence needed to connect them.
 
+The [desktop results report](desktop-results.md) records the measurement revision,
+observed versions, actual acceptance outcomes and paired egui control; this page
+specifies what the profile requires, not which run passed it.
+
 The [2026-11-09 native matrix](full-native-results.md) remains a **historical
 UI-only baseline**. It measured the process family before an external clipboard
 check and used a relaunch-only system-theme check. Do not attribute those numbers

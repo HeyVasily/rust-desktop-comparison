@@ -182,7 +182,7 @@ class DesktopProbeTests(unittest.TestCase):
         responses = [Mock(stdout=""), Mock(stdout="7\n"), Mock(stdout="42\n")]
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", side_effect=responses) as command, \
-                patch.object(driver, "macos_activate", return_value={"request_accepted": True}) as activate, \
+                patch.object(driver, "macos_activation_click") as click, \
                 patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
             evidence = driver.focus(self.window)
         self.assertEqual(command.call_count, 3)
@@ -190,65 +190,40 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual(evidence["observed_pid"], "42")
         self.assertEqual(evidence["attempts"], 2)
         self.assertEqual(command.call_args.kwargs["timeout"], 1)
-        activate.assert_called_once_with(42)
-        self.assertEqual(evidence["activation_requests"], [{"request_accepted": True}])
+        click.assert_not_called()
+        self.assertEqual(evidence["activation_clicks"], [])
 
     def test_macos_focus_failure_is_bounded_and_not_a_clipboard_capability_failure(self):
         driver = probe.DesktopInput()
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
-                patch.object(driver, "macos_activate", return_value={"request_accepted": True}), \
+                patch.object(driver, "macos_activation_click") as click, \
                 patch.object(probe.time, "monotonic", side_effect=[0, 4]), patch.object(probe.time, "sleep"):
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "frontmost PID"):
                 driver.focus(self.window)
         self.assertEqual(driver.last_focus["status"], "environment_error")
         self.assertEqual(driver.last_focus["observed_pid"], "7")
+        click.assert_not_called()
 
     def test_macos_focus_permission_error_is_not_retried_or_bypassed(self):
         driver = probe.DesktopInput()
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", side_effect=probe.DesktopEnvironmentError("Automation permission denied")) as command, \
-                patch.object(driver, "macos_activate") as activate:
+                patch.object(driver, "macos_activation_click") as click:
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "permission denied"):
                 driver.focus(self.window)
         self.assertEqual(command.call_count, 1)
-        activate.assert_not_called()
+        click.assert_not_called()
         self.assertEqual(driver.last_focus["status"], "environment_error")
 
-    def test_macos_native_activation_uses_exact_pid_and_records_request_not_focus(self):
-        application = Mock()
-        application.activationPolicy.return_value = 0
-        application.isFinishedLaunching.return_value = True
-        application.activateWithOptions_.return_value = False
-        appkit = Mock(NSApplicationActivateAllWindows=1, NSApplicationActivateIgnoringOtherApps=2)
-        appkit.NSRunningApplication.runningApplicationWithProcessIdentifier_.return_value = application
-        with patch.dict("sys.modules", AppKit=appkit):
-            evidence = probe.DesktopInput.macos_activate(42)
-        appkit.NSRunningApplication.runningApplicationWithProcessIdentifier_.assert_called_once_with(42)
-        application.activateWithOptions_.assert_called_once_with(3)
-        self.assertFalse(evidence["request_accepted"])
-        self.assertEqual(evidence["activation_policy"], 0)
-        self.assertTrue(evidence["finished_launching"])
-        self.assertNotIn("status", evidence)
-
-    def test_macos_native_activation_refuses_missing_pid_instead_of_matching_name(self):
-        appkit = Mock()
-        appkit.NSRunningApplication.runningApplicationWithProcessIdentifier_.return_value = None
-        with patch.dict("sys.modules", AppKit=appkit):
-            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "No macOS running application for PID 42"):
-                probe.DesktopInput.macos_activate(42)
-
-    def test_macos_native_activation_retries_are_bounded_even_when_requests_succeed(self):
+    def test_macos_focus_observations_are_bounded_even_when_click_posts_successfully(self):
         driver = probe.DesktopInput()
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
-                patch.object(driver, "macos_activate", return_value={"request_accepted": True}) as activate, \
                 patch.object(driver, "macos_activation_click", return_value={"events_posted": True}) as click, \
-                patch.object(driver, "macos_focus_snapshot", return_value={"observed_pid": 42, "target_is_active": True}), \
                 patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "frontmost PID"):
                 driver.focus(self.window)
-        self.assertEqual(activate.call_count, 3)
         click.assert_called_once_with(self.window)
         self.assertEqual(driver.last_focus["attempts"], 30)
         self.assertEqual(driver.last_focus["status"], "environment_error")
@@ -258,16 +233,13 @@ class DesktopProbeTests(unittest.TestCase):
         responses = [Mock(stdout=value) for value in ("", "7\n", "7\n", "42\n")]
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", side_effect=responses), \
-                patch.object(driver, "macos_activate", return_value={"request_accepted": True}), \
                 patch.object(driver, "macos_activation_click", return_value={"events_posted": True}) as click, \
-                patch.object(driver, "macos_focus_snapshot", return_value={"observed_pid": 42, "target_is_active": True}), \
                 patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
             evidence = driver.focus(self.window)
         click.assert_called_once_with(self.window)
         self.assertEqual(evidence["status"], "passed")
         self.assertEqual(evidence["observed_pid"], "42")
         self.assertEqual(evidence["activation_clicks"], [{"events_posted": True}])
-        self.assertEqual(evidence["native_foreground"]["observed_pid"], 42)
 
     def mouse_quartz(self):
         target = {"kCGWindowNumber": 123, "kCGWindowOwnerPID": 42, "kCGWindowLayer": 0,
@@ -329,16 +301,6 @@ class DesktopProbeTests(unittest.TestCase):
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "posting failure"):
                 probe.DesktopInput.macos_activation_click(self.window)
         self.assertEqual([event["kind"] for event in events], [1, 2])
-
-    def test_macos_native_focus_snapshot_refreshes_run_loop_and_retains_independent_state(self):
-        appkit, foundation = Mock(), Mock()
-        appkit.NSWorkspace.sharedWorkspace.return_value.frontmostApplication.return_value.processIdentifier.return_value = 7
-        appkit.NSRunningApplication.runningApplicationWithProcessIdentifier_.return_value.isActive.return_value = False
-        with patch.dict("sys.modules", AppKit=appkit, Foundation=foundation):
-            evidence = probe.DesktopInput.macos_focus_snapshot(42)
-        foundation.NSRunLoop.currentRunLoop.return_value.runUntilDate_.assert_called_once()
-        self.assertEqual(evidence["observed_pid"], 7)
-        self.assertFalse(evidence["target_is_active"])
 
     def quartz(self, fail_key_down=False):
         events = []

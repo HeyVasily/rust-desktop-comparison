@@ -210,6 +210,15 @@ native versions, profile IDs, runner images and metrics. Missing historical
 profile metadata stays missing; old results are not retroactively labeled as
 desktop passes. Different revisions must not be combined into one median.
 
+When platform-specific runs provide the final evidence, pass comma-separated
+run IDs (for example `123,456`) and an artifact directory containing only the
+selected platform/repetition directories. Every requested run must be present.
+The importer validates each artifact against its own run and source, retains
+all run/source/build/image groups separately, and never pairs controls across
+runs. `import-report.json` lists the requested IDs and artifact counts per run.
+This collects multiple experiments in one report; it does not make them a
+single matched experiment or silently replace failed measurements.
+
 ## What the probes check
 
 Windows uses `EnumWindows`, process ownership, exact title, visible/non-minimized
@@ -229,16 +238,14 @@ pixel dimensions relative to logical window bounds.
 
 The driver establishes foreground state before startup captures and again before
 keyboard input; it records the actual macOS frontmost PID, not just the activation
-request. macOS first uses System Events, then makes bounded native
-`NSRunningApplication` activation requests for the exact process. The native API's
-return value is diagnostic only: the independently observed frontmost PID still
-has to match. An Automation permission failure stops the check before that path.
-If those requests leave another process foreground, the driver can make one
+request. macOS first uses System Events to request foreground for the exact
+process, then independently checks its actual foreground PID. An Automation
+permission failure stops the check. If that request leaves another process
+foreground, the driver can make one
 ordinary titlebar click. It re-reads the exact owned window and its bounds,
 refuses an occluding window, and requires existing event-posting permission.
 The click is not proof of activation: the actual foreground PID must still match.
-Supplementary AppKit observations are retained to distinguish conflicting API
-reports; they do not replace the acceptance gate.
+The probe does not initialize AppKit or register itself as another GUI application.
 macOS shortcuts use physical Quartz key transitions, including Command's
 keycode/flags-changed events and release attempts in `finally`. Event-posting access
 is preflighted without requesting a TCC grant or switching to a bypass route.

@@ -25,6 +25,10 @@ class SiteVisualSmokeTests(unittest.TestCase):
         self.assertEqual(result["desktop_tables"], 0)
         self.assertIn("skipped", result["desktop_table_assertion"])
 
+    def test_capture_target_follows_the_real_dataset_not_the_historical_section(self):
+        self.assertEqual(smoke.capture_fragment(False), "#desktop")
+        self.assertEqual(smoke.capture_fragment(True), "#desktop-results")
+
     def test_present_dataset_requires_all_three_os_tables(self):
         self.assertEqual(smoke.inspect_dom(self.html(3), True)["status"], "passed")
         self.assertEqual(smoke.inspect_dom(self.html(2), True)["status"], "failed")
@@ -105,6 +109,7 @@ class SiteVisualSmokeTests(unittest.TestCase):
         report = json.loads((self.output / "readiness.json").read_text())
         self.assertEqual(report["status"], "failed")
         self.assertIn("dbus-run-session is missing", report["reason"])
+        self.assertEqual(report["target_fragment"], smoke.capture_fragment(report["dataset_present"]))
 
 
 if __name__ == "__main__":
