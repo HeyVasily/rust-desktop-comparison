@@ -72,6 +72,17 @@ label. See the [GTK manifest](../examples/gtk/Cargo.toml),
 [startup integration](../examples/gtk/src/main.rs), and
 [StyleManager API](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/class.StyleManager.html).
 
+On macOS, the integrated GTK example additionally queues one window redraw on
+each real `AdwStyleManager::dark` notification, using a weak window reference.
+This addresses a stale-frame symptom observed with GTK 4.24.1/libadwaita 1.10.0:
+the OS and style manager changed back to light, while the captured client stayed
+dark until ordinary keyboard input. The application does not force a palette,
+poll the preference or continuously repaint; it uses GTK's
+[normal redraw invalidation](https://docs.gtk.org/gtk4/method.Widget.queue_draw.html).
+Theme notifications include monotonic elapsed timestamps for diagnosis. This
+workaround is part of the measured macOS desktop profile; only fresh external
+acceptance results can establish whether it resolves the observed failure.
+
 For egui and GTK, `--no-default-features` is an explicitly reduced diagnostic
 control, not the published normal desktop profile.
 
