@@ -43,20 +43,6 @@ fn build_ui(app: &Application) {
         .default_height(640)
         .build();
 
-    #[cfg(all(feature = "desktop", target_os = "macos"))]
-    {
-        // On the macOS 15 / GTK 4.24 runner, a system dark-to-light change
-        // updates StyleManager but can leave the previous frame until input.
-        // Invalidate once for that real notification, without forcing colors,
-        // selecting another renderer or adding polling/continuous repainting.
-        let weak_window = window.downgrade();
-        adw::StyleManager::default().connect_dark_notify(move |_| {
-            if let Some(window) = weak_window.upgrade() {
-                window.queue_draw();
-            }
-        });
-    }
-
     // The native renderer exists after realization. Report the selected backend
     // once on first map; do not select a renderer or add idle/background work.
     let renderer_reported = Cell::new(false);

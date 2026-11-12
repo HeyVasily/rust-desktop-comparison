@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rust Desktop GUI Comparison</title>
-  <meta name="description" content="egui, GTK4, Slint, Qt Widgets and Tauri: the same desktop interface measured on Windows, macOS and Linux, with screenshots, layout code and a sourced matrix of native OS features.">
+  <meta name="description" content="egui, GTK4, Slint, Qt Widgets and Tauri: desktop integration checks, idle memory after actual use, reproducible evidence and clearly separated historical results.">
   <meta property="og:title" content="Rust Desktop GUI Comparison">
-  <meta property="og:description" content="Five toolkits, three operating systems: idle memory, real screenshots and native OS integration.">
+  <meta property="og:description" content="Five toolkits: system theme and clipboard checks before idle memory, with real screenshots and open evidence.">
   <meta property="og:image" content="https://heyvasily.github.io/rust-desktop-comparison/screenshots/native-42420765503/ubuntu-24.04/slint.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='5' width='26' height='22' rx='4' fill='%232a78d6'/%3E%3Crect x='7' y='10' width='6' height='13' rx='1.5' fill='%23fff'/%3E%3Crect x='15' y='10' width='10' height='3' rx='1.5' fill='%23fff'/%3E%3Crect x='15' y='15' width='10' height='3' rx='1.5' fill='%23fff' opacity='.7'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="site/style.css">
@@ -16,16 +16,17 @@
     <div class="wrap">
       <p class="eyebrow">Open data · desktop integration and reproducible measurements · November 2026</p>
       <h1>Rust desktop GUI comparison</h1>
-      <p class="lede">The same small desktop interface built with <strong>egui</strong>, <strong>GTK4</strong>, <strong>Slint</strong>, <strong>Qt Widgets</strong> and <strong>Tauri</strong>, measured on Windows, macOS and Linux. Real screenshots, the layout code, idle memory and how much of each operating system the toolkit reaches.</p>
+      <p class="lede">The same small desktop interface built with <strong>egui</strong>, <strong>GTK4</strong>, <strong>Slint</strong>, <strong>Qt Widgets</strong> and <strong>Tauri</strong>. The current baseline exercises system theme and clipboard integration before measuring idle memory. Explore the evidence for Windows, macOS and Linux, with historical results kept separate.</p>
       <ul class="facts">
         <li><b>5</b>toolkits</li>
         <li><b>3</b>operating systems</li>
-        <li><b>5</b>runs per OS · historical UI-only series</li>
+        <li><b>100</b>synthetic projects</li>
         <li><b id="capability-count">…</b>capabilities and checks with sources</li>
       </ul>
       <div class="links">
-        <a class="button primary" href="https://github.com/HeyVasily/rust-desktop-comparison">View on GitHub</a>
-        <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison/tree/main/measurements/native-matrix-2026-11-09">Historical raw data</a>
+        <a class="button primary" href="#desktop-results">Current results</a>
+        <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-results.md">Results report</a>
+        <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison">View on GitHub</a>
         <a class="button" href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/methodology.md">Methodology</a>
       </div>
     </div>
@@ -34,8 +35,9 @@
   <nav class="nav" aria-label="Sections">
     <div class="wrap">
       <ul>
+        <li><a href="#desktop-results">Current results</a></li>
         <li><a href="#desktop">Desktop baseline</a></li>
-        <li><a href="#overview">Overview</a></li>
+        <li><a href="#overview">Historical overview</a></li>
         <li><a href="#memory">Historical memory</a></li>
         <li><a href="#screenshots">Historical captures</a></li>
         <li><a href="#features">Native features</a></li>
@@ -47,7 +49,7 @@
 
   <main class="wrap">
     <section id="desktop" aria-labelledby="desktop-title">
-      <h2 id="desktop-title">A desktop application, not a stripped-down window</h2>
+      <h2 id="desktop-title">Desktop integration before measurement</h2>
       <p class="section-lede">The default examples include desktop integration. Light and dark palettes, following the OS at startup, and reacting while the application stays open are separate checks. A failed integration check does not mean a toolkit cannot draw a dark theme.</p>
       <div class="method">
         <div class="card">
@@ -63,14 +65,14 @@
           <p>Exercise theme and clipboard before measuring idle. Keep system fonts, accessibility support and the selected renderer enabled; record features, process scope and backend. Optional tray and global shortcuts remain a separate profile.</p>
         </div>
       </div>
-      <p class="note" id="desktop-evidence"><strong>Current profile and evidence:</strong> see the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-integration.md">desktop integration report</a> for enabled features, acceptance gates and measurement scope. The historical series below is preserved, not relabeled as the cost of these updated binaries. In particular, the old egui build disabled eframe's OS clipboard, link-opening and system-font features.</p>
+      <p class="note" id="desktop-evidence"><strong>Read the current evidence:</strong> the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-results.md">results report</a> records outcomes and limitations; the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-integration.md">profile specification</a> explains enabled features and acceptance gates. Each current row keeps its run, source commit, image, build and sample count. Only compatible repetitions are combined. The historical series below is preserved, not relabeled as the cost of these updated binaries.</p>
       <div id="desktop-results" aria-live="polite">
         <p class="note desktop-fallback">Current desktop measurement tables load here. If they do not appear, open the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-results.md">desktop results report</a> for recorded outcomes and limitations. The historical figures below describe a different profile.</p>
       </div>
     </section>
 
     <section id="overview" aria-labelledby="overview-title">
-      <h2 id="overview-title">Overview</h2>
+      <h2 id="overview-title">Toolkit overview · historical measurements</h2>
       <p class="section-lede">What each toolkit is and where it is strong or limited. Memory and executable sizes in these cards are from the historical UI-only series, not the updated desktop profile. The outlined value is lowest on that system in that series. “Startup test (old)” means the old example was relaunched after changing the OS theme; it is not a dark-theme capability rating.</p>
       <div class="overview" id="overview-cards"><p>Loading…</p></div>
     </section>
@@ -217,20 +219,20 @@ document.getElementById("refresh").addEventListener("click", () =&gt; {
       <h2 id="method-title">Method and limits</h2>
       <div class="method">
         <div class="card">
-          <h3>Historical matrix workload</h3>
+          <h3>Current desktop workload</h3>
           <ul>
             <li>10 synthetic yards, 100 projects, filter and Refresh — no backend, no polling.</li>
             <li>960×640 visible content, release builds, one app at a time.</li>
-            <li>30&nbsp;s settling, then 120 samples; five runs, each on a fresh VM.</li>
-            <li>Theme startup only: the OS is switched to dark and every app relaunched.</li>
+            <li>Startup appearance, same-process theme changes and external Unicode clipboard acceptance before sampling.</li>
+            <li>Restore the fixture, settle for 30&nbsp;s, then measure 120 idle sampling intervals. Each row reports its compatible repetition count.</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Historical series limits</h3>
+          <h3>What this does not establish</h3>
           <ul>
-            <li>The cost of the current desktop-integrated builds or optional tray/shortcut integrations.</li>
-            <li>Live theme changes, external clipboard, screen-reader or IME acceptance in the historical series.</li>
-            <li>Startup time, interaction cost, frame rate or GPU rendering.</li>
+            <li>The footprint of a production backend or optional tray/shortcut integrations.</li>
+            <li>Screen-reader, IME or rich-text/file/image clipboard acceptance.</li>
+            <li>Startup performance, interaction cost, frame rate or hardware-GPU rendering.</li>
             <li>A controlled cross-OS ranking: runners, CPUs and toolkit builds differ.</li>
             <li>Rust bindings for Qt: the Qt example is C++.</li>
           </ul>
@@ -238,8 +240,9 @@ document.getElementById("refresh").addEventListener("click", () =&gt; {
         <div class="card">
           <h3>Read more</h3>
           <ul>
+            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-results.md">Current results and limitations</a>, measured outcomes and paired egui profile costs</li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/desktop-integration.md">Desktop-integrated baseline</a>, acceptance checks and footprint scope</li>
-            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/full-native-results.md">Full native results</a> with versions and run IDs</li>
+            <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/full-native-results.md">Historical UI-only results</a> and <a href="https://github.com/HeyVasily/rust-desktop-comparison/tree/main/measurements/native-matrix-2026-11-09">Historical raw data</a></li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/linux-display-comparison.md">Linux X11 vs Wayland</a> and the <a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/gtk-memory-investigation.md">GTK renderer experiment</a></li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/platform-support.md">Platform support per session</a> (Windows, macOS, X11, Wayland)</li>
             <li><a href="https://github.com/HeyVasily/rust-desktop-comparison/blob/main/docs/shell-integration.md">Tray, badge, shortcut and single-instance checks</a> on runners</li>

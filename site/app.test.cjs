@@ -82,11 +82,18 @@ test("page supplies each selector used by the data-driven sections", () => {
   assert.ok(ids.includes("desktop-evidence"), "current profile evidence must be prominent");
 });
 
-test("historical hero data and method limits cannot be mistaken for current results", () => {
+test("current results lead the page without reusing the historical run count", () => {
   const html = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
-  assert.match(html, /<b>5<\/b>runs per OS · historical UI-only series/);
+  const hero = html.match(/<header class="hero">([\s\S]*?)<\/header>/)?.[1];
+  assert.ok(hero);
+  assert.match(hero, /class="button primary" href="#desktop-results">Current results<\/a>/);
+  assert.match(hero, /<b>100<\/b>synthetic projects/);
+  assert.doesNotMatch(hero, /runs per OS/);
   assert.match(html, /native-matrix-2026-11-09">Historical raw data<\/a>/);
-  assert.match(html, /<h3>Historical series limits<\/h3>/);
+  assert.match(html, /<h3>Current desktop workload<\/h3>/);
+  assert.match(html, /<h3>What this does not establish<\/h3>/);
+  assert.match(html, /Each row reports its compatible repetition count/);
+  assert.match(html, /href="#overview">Historical overview<\/a>/);
   assert.match(html, /id="desktop-results"/, "current results retain a stable fragment target");
   assert.match(html, /href="#memory">Historical memory<\/a>/);
   assert.match(html, /href="#screenshots">Historical captures<\/a>/);

@@ -6,14 +6,15 @@ appearance changes and external text-clipboard use. The older
 dataset; its memory figures and startup-only observations do not describe these
 updated profiles.
 
-**Verification status: pending final artifact review.** The current full rerun is
-[Actions run 43251948886](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43251948886),
-measuring source
+**Verification status: Linux and Windows complete; macOS validation in progress.**
+The six Linux/Windows jobs in
+[Actions run 43251948886](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43251948886)
+passed, measuring source
 [`fe53a64d6759b17817d4cc1c5c995b43a8031d5c`](https://github.com/HeyVasily/rust-desktop-comparison/commit/fe53a64d6759b17817d4cc1c5c995b43a8031d5c).
-It requests three fresh runner VMs per operating system, all five primary
-candidates, a separate reduced egui control, and light- and dark-startup
-acceptance in every repetition. These are the **requested checks**, not a claim
-that every job passed or that each provenance group contains three samples.
+Each OS has three fresh runner VMs, all five primary candidates and a separately
+labeled reduced egui control. All 60 Linux/Windows light- and dark-startup
+acceptance invocations passed. The failed macOS jobs from that run are diagnostic
+history, not successful measurements or missing values replaced with zero.
 
 <!-- FINALIZE_STATUS: Replace the pending status only after reviewing all nine
 artifacts, import exclusions, provenance groups, screenshots and final CI gates.
@@ -37,11 +38,29 @@ resolved target-specific feature graphs, source-file checksums, executable hashe
 and sizes. The native libadwaita runtime, Linux Qt's GTK3/QtDBus mappings, and egui's
 in-process integration resources are included in their application footprints.
 
-<!-- FINALIZE_VERSIONS: Fill observed compiler, native GTK/libadwaita, Qt macOS,
-webview, renderer, architecture and runner-image versions from THIS run's build
-files and outcomes. Do not reuse versions from the previous failed run. -->
+### Observed runtime inventory
 
-**Observed runtime/version inventory: pending.**
+These are observed versions in the selected artifacts, not a promise that a
+future `stable`, Homebrew, MSYS2 or hosted-image install resolves identically.
+
+| Platform | Runner / compiler | Native toolkit and webview versions | Observed rendering details |
+| --- | --- | --- | --- |
+| Linux | Ubuntu 24.04 x86_64, image `20261101.360.1`; rustc/cargo **1.99.1**; four logical CPUs, approximately 16 GiB RAM | GTK **4.14.5**, libadwaita **1.5.0**, GTK3 **3.24.41**, Qt **6.8.3**, WebKitGTK **2.52.6**, Mesa **25.2.8** | egui reports **llvmpipe (LLVM 20.1.2, 256 bits)**; GTK reports `GdkX11Display` / `GskGLRenderer`; Qt reports `xcb` / Fusion and the shared GTK3 theme integration |
+| Windows | Windows Server 2022 x64, image `20261101.353.1`; rustc/cargo **1.99.1**; four logical CPUs, approximately 16 GiB RAM | GTK **4.24.1**, libadwaita **1.10.0**, Qt **6.8.3**, WebView2 **131.0.2903.86** | egui reports Dx12 **Microsoft Basic Render Driver**, CPU device, driver **10.0.20348.5756**; GTK reports `GdkWin32Display` / `GskCairoRenderer`; Qt reports its Windows platform plugin / Fusion |
+
+<!-- FINALIZE_MAC_VERSIONS: Add only the selected final macOS run's actual image,
+compiler, native package, architecture and renderer versions. -->
+
+Slint is configured for its winit/software-renderer backend. Tauri's system
+webview can use its own compositor; no unsupported claim about its GPU backend
+is inferred from the other candidates' logs. Windows r1 reports a different AMD
+CPU family from r2/r3 despite the same image. These are hosted-VM observations,
+not controlled identical hardware or hardware-GPU laptop measurements.
+
+The exact [Linux build evidence](../measurements/native-43251948886/r1/ubuntu-24.04/build/)
+and [Windows build evidence](../measurements/native-43251948886/r1/windows-2022/build/)
+include feature graphs, locks, versions and binary sizes; every repetition retains
+its own files. Equal executable sizes do not mean byte-identical executable hashes.
 
 ## Acceptance and sampling
 
@@ -121,18 +140,71 @@ literally no work. Tiny idle differences are not a useful performance ranking.
 Executable bytes are reported separately: they exclude required shared runtimes
 and do not predict warmed resident-memory cost.
 
-<!-- FINALIZE_PRIMARY_RESULTS: Insert the imported per-platform AND per-image
-tables here. For each candidate show acceptance, measured n, primary median and
-range, summed RSS/WS, and idle CPU. Keep failed/missing candidates explicit;
-never insert zero for a missing measurement. If images split, show both groups.
-Link the imported series summary.csv, runs.csv and desktop-acceptance.csv. -->
+## Primary visible-idle results
 
-**Primary visible-idle results: pending verified artifact import.**
+Memory is MiB; brackets are the min–max of the three per-run medians. CPU is the
+median observed percentage of one logical core. Each Linux/Windows candidate has
+**n=3 memory observations**, plus **3 light-start and 3 dark-start acceptance
+invocations**. Those six acceptance checks are not six independent memory samples.
 
-<!-- FINALIZE_MINIMIZED: Insert the separate Linux minimized results from the
-same imported source/image groups. Do not mix them into visible-idle medians. -->
+### Linux: X11 / Adwaita / llvmpipe
 
-**Linux minimized results: pending verified artifact import.**
+Image `20261101.360.1`, run `43251948886`, source `fe53a64`, build-input digest
+`afd67f4452df…`. All five desktop profiles are fully verified in this environment.
+
+| Candidate | n | PSS, median [range] | Summed RSS, median | Idle CPU, % |
+| --- | ---: | ---: | ---: | ---: |
+| egui / eframe | 3 | 89.69 [89.59–93.23] | 122.68 | 0.00811 |
+| GTK4 + libadwaita | 3 | 204.10 [203.82–204.15] | 245.25 | 0.00000 |
+| Slint | 3 | 17.47 [17.39–17.74] | 23.41 | 0.00814 |
+| Qt Widgets | 3 | 36.90 [36.83–36.90] | 54.85 | 0.00000 |
+| Tauri | 3 | 336.24 [336.19–336.33] | 511.74 | 0.02333 |
+
+GTK and egui use software OpenGL here; that cost is not a measurement of GTK's
+widget tree or Rust bindings alone. Qt's complete GNOME-like integration includes
+its GTK3/QtDBus dependencies. Shared session services are excluded for every app.
+
+### Windows: native desktop / software graphics adapter
+
+Image `20261101.353.1`, run `43251948886`, source `fe53a64`, build-input digest
+`79d478c768bc…`. All five desktop profiles are fully verified in this environment.
+
+| Candidate | n | Private working set, median [range] | Summed working set, median | Idle CPU, % |
+| --- | ---: | ---: | ---: | ---: |
+| egui / eframe | 3 | 31.99 [31.41–32.28] | 58.98 | 0.00000 |
+| GTK4 + libadwaita | 3 | 36.09 [35.93–36.34] | 79.12 | 0.00000 |
+| Slint | 3 | 10.11 [10.10–10.13] | 24.29 | 0.00000 |
+| Qt Widgets | 3 | 18.36 [18.30–18.36] | 36.74 | 0.00000 |
+| Tauri | 3 | 126.90 [126.70–126.93] | 283.75 | 0.17983 |
+
+The measured Tauri family includes attributable WebView2 helpers. Zero CPU ticks
+for the other candidates mean below the retained accounting resolution, not a
+claim of literally no work. Tauri's per-run CPU observations span 0.165–0.234%.
+
+### macOS
+
+<!-- FINALIZE_MAC_RESULTS: Insert selected full-run results and actual acceptance
+status. Keep failures explicit and separate source/image/build groups. -->
+
+Pending the corrected native run; no earlier macOS numbers are substituted here.
+
+### Linux minimized, separately measured
+
+Same source, image and build group as the visible Linux table. The minimized state
+was verified before and after each independent settling/sampling phase.
+
+| Candidate | n | PSS, median [range] | Summed RSS, median | Idle CPU, % |
+| --- | ---: | ---: | ---: | ---: |
+| egui / eframe | 3 | 89.69 [89.59–93.23] | 122.68 | 0.00000 |
+| GTK4 + libadwaita | 3 | 204.10 [203.81–204.15] | 245.25 | 0.00000 |
+| Slint | 3 | 17.47 [17.39–17.74] | 23.41 | 0.00809 |
+| Qt Widgets | 3 | 36.90 [36.83–36.90] | 54.85 | 0.00000 |
+| Tauri | 3 | 329.13 [329.07–329.22] | 502.29 | 0.01557 |
+
+Minimization did not release most retained allocations in this short observation.
+Tauri's PSS median is about 7.1 MiB lower; that is an observation on this profile,
+not a general lifetime-memory guarantee. Windows/macOS minimized phases were not
+run and must not be inferred from visible-idle data.
 
 ## Paired egui integration cost
 
@@ -160,12 +232,18 @@ count nor executable growth proves a large resident-memory increase. Three
 sequential pairs do not establish statistical significance or a general result
 for other machines, renderers or desktop environments.
 
-<!-- FINALIZE_PAIRED_AB: Insert each eligible OS/image group's pair count,
-primary-memory median delta and min/max individual deltas from paired-egui-ab.json.
-Include a restrained interpretation based on the actual values, not an assumed
-increase. Link the raw paired report and keep controls outside primary tables. -->
+| Environment | Paired n | Primary-memory delta, median [range], MiB |
+| --- | ---: | ---: |
+| Linux visible, image `20261101.360.1` | 3 | **+1.028 [+1.008–+8.201]** PSS |
+| Linux minimized, same image | 3 | **+1.028 [+1.008–+8.201]** PSS |
+| Windows visible, image `20261101.353.1` | 3 | **+4.926 [+4.859–+5.265]** private working set |
 
-**Paired integrated/reduced observations: pending verified artifact import.**
+<!-- FINALIZE_MAC_PAIRED_AB: Add only verified compatible pairs from final Mac run. -->
+
+These observations do **not** support an assumed very large resident-memory cost
+for enabling the desktop bundle. Linux's wide pair spread also prevents treating
+the +1.028 MiB median as a precise fixed overhead. The retained paired JSON uses
+the recorded per-run values and rounding; it is the authoritative delta source.
 
 ## Verification history
 
@@ -181,20 +259,37 @@ their review does not depend on the temporary Actions artifact retention period.
   `20261101.360.1`. The importer correctly kept n=1 and n=2 groups separate. At
   that revision only r1 had a separate dark-startup case; the older-image group
   could not borrow that acceptance result.
-- GTK compiled on macOS, but all three invocations were blocked at foreground
-  verification: the System Events request did not make the standalone GTK
-  process frontmost. The probe refused to send keyboard input or publish its
-  idle footprint. Native AppKit activation by exact PID was added while keeping
-  the independent foreground check and respecting Automation permission denials.
+- GTK compiled on macOS, but all three invocations were blocked by a disagreement
+  in foreground verification. The probe refused keyboard input and idle sampling.
+  Later diagnosis established that System Events could still report Finder while
+  the native `NSWorkspace.frontmostApplication` API reported the actual GTK
+  key-event recipient. This was not evidence that GTK could not become foreground.
 - Windows Tauri passed in r2, but r1/r3 failed appearance checks while the webview
   had not yet rendered its first usable frame. The uniform startup budget was
   separated from the live-change deadline; blank frames still fail rather than
   qualifying as a light palette.
 
-The current rerun includes those probe corrections and dark-startup checks in
-every repetition. It must supply its own outcomes; previous successful samples
-are not relabeled as measurements of the new source revision. The earlier GTK
-`display()` compile ambiguity was already resolved before run 43218424949.
+Run `43251948886` supplies the current Linux/Windows data and dark-startup checks
+in every repetition. Its experimental in-process macOS AppKit activation path
+was not retained: it did not fix the stale System Events observer and introduced
+additional foreground failures. Its macOS r3 never received a runner. Those
+failed/canceled jobs are not part of the current primary data.
+
+The GTK-only [run 43260869046](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43260869046)
+uses the canonical frontmost-application API from a fresh read-only JXA helper,
+without importing AppKit into the long-lived Python probe. GTK then passed real
+foreground ownership, both startup palettes and both external clipboard checks.
+It exposed a separate stale-frame problem: the dark-to-light notification reached
+libadwaita, but the client remained dark through the eight-second deadline and
+became light after ordinary keyboard input. A macOS-only, event-driven redraw
+invalidation was subsequently tested; no forced palette or polling was added.
+
+<!-- FINALIZE_MAC_HISTORY: Record the redraw smoke outcome and final selected
+native run, including failures if any. Do not describe an attempted fix as proven. -->
+
+Previous successful samples are not relabeled as measurements of another source
+revision. The earlier GTK `display()` compile ambiguity was already resolved
+before run `43218424949`.
 
 ## Evidence and reproduction
 

@@ -72,16 +72,24 @@ label. See the [GTK manifest](../examples/gtk/Cargo.toml),
 [startup integration](../examples/gtk/src/main.rs), and
 [StyleManager API](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/class.StyleManager.html).
 
-On macOS, the integrated GTK example additionally queues one window redraw on
-each real `AdwStyleManager::dark` notification, using a weak window reference.
-This addresses a stale-frame symptom observed with GTK 4.24.1/libadwaita 1.10.0:
-the OS and style manager changed back to light, while the captured client stayed
-dark until ordinary keyboard input. The application does not force a palette,
-poll the preference or continuously repaint; it uses GTK's
-[normal redraw invalidation](https://docs.gtk.org/gtk4/method.Widget.queue_draw.html).
-Theme notifications include monotonic elapsed timestamps for diagnosis. This
-workaround is part of the measured macOS desktop profile; only fresh external
-acceptance results can establish whether it resolves the observed failure.
+The macOS 15 / GTK 4.24.1 / libadwaita 1.10.0 smoke tests expose a remaining
+**dark-to-light live-update failure**, not an absence of dark-mode or clipboard
+support. Startup appearance, native foreground identity and the external Unicode
+clipboard round trip pass. During the light transition, the OS preference and
+`AdwStyleManager` change, but the captured client remains dark for the complete
+eight-second acceptance window; a later capture after ordinary clipboard input
+is light. Theme notifications carry monotonic elapsed timestamps: in the
+[redraw diagnostic](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43262165209),
+the light notification arrives at 10,406 ms and the next dark notification at
+18,731 ms, ruling out a missing light notification for that interval. The native
+renderer reports `GskGLRenderer` and emits a skipped-frame timing warning; a
+renderer/frame-scheduling cause is a hypothesis, not a confirmed upstream bug.
+
+A macOS-only, event-driven `queue_draw()` experiment did **not** fix this failure
+and was removed. No forced palette, renderer override, polling or additional
+probe input is used to manufacture a pass. These failing invocations must remain
+excluded from the primary desktop memory comparison; successful other-platform
+or historical GTK figures do not substitute for them.
 
 For egui and GTK, `--no-default-features` is an explicitly reduced diagnostic
 control, not the published normal desktop profile.

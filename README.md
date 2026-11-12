@@ -1,18 +1,20 @@
 # Rust desktop GUI comparison
 
-**[Open the interactive comparison →](https://heyvasily.github.io/rust-desktop-comparison/)**
+**[Open the current desktop results →](https://heyvasily.github.io/rust-desktop-comparison/#desktop-results)**
+&nbsp;·&nbsp; [Results and limitations](docs/desktop-results.md)
 &nbsp;·&nbsp; [Native features](docs/features.md)
-&nbsp;·&nbsp; [Desktop baseline](docs/desktop-integration.md)
+&nbsp;·&nbsp; [Desktop profile](docs/desktop-integration.md)
 &nbsp;·&nbsp; [Historical measurements](docs/full-native-results.md)
 &nbsp;·&nbsp; [Historical raw data](measurements/native-matrix-2026-11-09/summary.csv)
 &nbsp;·&nbsp; [Methodology](docs/methodology.md)
 
 The same small desktop interface built five times — **egui/eframe, GTK4 (gtk4-rs),
-Slint, Qt Widgets and Tauri** — with a sourced comparison of platform integration,
-reproducible probes and historical measurements on Windows, macOS and Linux.
-The current default builds target a **desktop-integrated baseline**. The five-run
-2026-11-09 series below is preserved as a **historical UI-only** profile, not
-reassigned to the updated binaries.
+Slint, Qt Widgets and Tauri** — with a sourced comparison of platform integration
+and reproducible probes for Windows, macOS and Linux.
+The current default builds use a **desktop-integrated baseline**: exercise real
+OS theme and clipboard integration before measuring idle memory. Current results
+and historical UI-only measurements are separate datasets, not interchangeable
+measurements of the same binaries.
 
 Every example shows 10 synthetic yards and 100 projects: navigation, selection,
 scrolling, an editable filter and a Refresh button that advances an in-memory
@@ -28,7 +30,25 @@ toolkit memory floors or the total cost of a production application.
 | Qt Widgets | C++17 | Retained widget tree, platform styles | [main.cpp](examples/qt/main.cpp) |
 | Tauri 2.12.5 | Rust + HTML/CSS/JS | System webview | [index.html](examples/tauri/frontend/index.html) |
 
-## Current desktop baseline
+## Start with the current results
+
+The **[desktop results report](docs/desktop-results.md)** and
+**[interactive current tables](https://heyvasily.github.io/rust-desktop-comparison/#desktop-results)**
+are the entry points for the updated builds. They keep acceptance outcomes,
+memory, paired egui profile costs and evidence links together. An unsuccessful or
+unrun check is not a zero-memory result or a passed feature test.
+
+Read each row's **OS, run, source commit, runner image, build identity and `n`**.
+Only compatible repetitions are combined; an image rollout or changed build can
+split one OS into smaller groups. Dark-start acceptance is separate from the
+light-state memory sample. Compare toolkits within the same environment, not
+memory-accounting numbers across operating systems.
+
+The five-run 2026-11-09 UI-only series remains below under **Historical
+measurements**. It did not exercise external clipboard or live theme changes and
+must not be read as the footprint of the current desktop defaults.
+
+## What the desktop baseline includes
 
 **Both egui and GTK support dark appearance.** Drawing a dark palette, selecting
 it from the OS at startup, and updating it while the same process remains open
@@ -77,7 +97,12 @@ There is no assumption that desktop integration adds either a large or a small
 amount of resident memory. Optional tray, global shortcuts and single-instance
 checks remain a [separate profile](docs/shell-integration.md).
 
-## Historical UI-only idle memory on three operating systems
+## Historical measurements
+
+<details>
+<summary><strong>2026-11-09 UI-only series: memory, executable sizes and old startup checks</strong></summary>
+
+### Historical UI-only idle memory on three operating systems
 
 These are the unchanged 2026-11-09 results. External clipboard and live theme
 changes were not exercised before these samples; they do **not** quantify the
@@ -114,7 +139,7 @@ outliers, executable sizes and versions.
 > [2026-11-07 single run with GTK in C](docs/native-matrix-2026-11-07.md) and the
 > [backend-connected Wayland measurements](docs/historical-comparison.md#why-the-current-linux-numbers-differ).
 
-## Historical executable size and system-theme startup check
+### Historical executable size and system-theme startup check
 
 | Framework | Historical executable, Linux / Windows / macOS | Historical startup check, Win / mac / Linux |
 | --- | --- | --- |
@@ -129,6 +154,8 @@ see the [captures](docs/full-native-results.md#system-dark-mode). Here ✅ means
 that stated test passed and ❌ means it failed. Neither symbol describes whether
 the toolkit can render dark colors or whether the updated desktop profile passes
 startup/live checks. The executable sizes likewise belong to the old builds.
+
+</details>
 
 ## Linux: X11 versus Wayland, and GTK's renderer
 
