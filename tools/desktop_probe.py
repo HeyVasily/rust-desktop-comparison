@@ -373,6 +373,23 @@ class DesktopInput:
     """Real platform keyboard input into the focused native window."""
 
     @staticmethod
+    def macos_frontmost_pid():
+        """Read the key-event recipient in an isolated, read-only native helper.
+
+        NSWorkspace.frontmostApplication is Apple's documented key-event
+        recipient. A fresh process avoids AppKit's run-loop-dependent caches
+        and does not initialize or activate an NSApplication in this probe.
+        https://developer.apple.com/documentation/appkit/nsworkspace/frontmostapplication
+        """
+        script = ("ObjC.import('AppKit'); "
+                  "var front = $.NSWorkspace.sharedWorkspace.frontmostApplication; "
+                  "front.isNil() ? 0 : front.processIdentifier")
+        observed = command(["osascript", "-l", "JavaScript", "-e", script], timeout=2).stdout.strip()
+        if not re.fullmatch(r"[1-9][0-9]*", observed):
+            raise DesktopEnvironmentError(f"Invalid NSWorkspace frontmost PID: {observed!r}")
+        return observed
+
+    @staticmethod
     def macos_activation_click(window):
         """Make one normal titlebar click on a freshly verified, exposed window.
 
@@ -407,7 +424,11 @@ class DesktopInput:
             if item.get("kCGWindowAlpha", 1) > 0 and all(key in other for key in ("X", "Y", "Width", "Height")) \
                     and other["X"] <= point[0] < other["X"] + other["Width"] \
                     and other["Y"] <= point[1] < other["Y"] + other["Height"]:
-                raise DesktopEnvironmentError("The macOS activation-click point is occluded by another window")
+                blocker = dict(window_id=item.get("kCGWindowNumber"), pid=item.get("kCGWindowOwnerPID"),
+                               owner_name=item.get("kCGWindowOwnerName"),
+                               bounds={key: other[key] for key in ("X", "Y", "Width", "Height")})
+                raise DesktopEnvironmentError(
+                    "The macOS activation-click point is occluded by another window: " + json.dumps(blocker, sort_keys=True))
 
         def post(kind):
             event = Quartz.CGEventCreateMouseEvent(None, kind, point, Quartz.kCGMouseButtonLeft)
@@ -453,17 +474,18 @@ class DesktopInput:
             elif sys.platform == "darwin":
                 command(["osascript", "-e", 'tell application "System Events" to set frontmost of '
                          f'(first process whose unix id is {int(window["pid"])}) to true'], timeout=5)
-                # System Events can acknowledge its setter while a standalone
-                # GTK window still leaves Finder frontmost. Observe first; if
-                # needed, make one normal click on the exact owned titlebar.
-                # Avoid AppKit imports/activation in the probe process itself.
+                # System Events' process list can disagree with the native
+                # key-event recipient for standalone GTK. Retain it only as a
+                # diagnostic; verify foreground through the documented API.
                 # An Automation denial above is never retried via another path.
+                evidence["system_events_frontmost_pids"] = command(
+                    ["osascript", "-e", 'tell application "System Events" to get unix id '
+                     'of every process whose frontmost is true'], timeout=1).stdout.strip()
                 evidence["activation_clicks"] = []
                 deadline = time.monotonic() + 3
                 for attempt in range(1, 31):
-                    observed = command(["osascript", "-e", 'tell application "System Events" to get unix id '
-                                        'of first process whose frontmost is true'], timeout=1).stdout.strip()
-                    evidence.update(source="macOS frontmost process", observed_pid=observed, attempts=attempt)
+                    observed = self.macos_frontmost_pid()
+                    evidence.update(source="macOS NSWorkspace frontmost application", observed_pid=observed, attempts=attempt)
                     if observed == str(window["pid"]):
                         break
                     if time.monotonic() >= deadline or attempt == 30:
@@ -709,6 +731,15 @@ class DesktopChecks:
         except DesktopEnvironmentError as error:
             self.result["startup_focus"] = getattr(self.input, "last_focus", dict(status="environment_error", reason=str(error)))
             self.result.update(status="environment_error", reason=f"Initial foreground activation failed: {error}")
+            # Diagnostic only: a failed focus gate must never become an
+            # appearance/clipboard pass, but preserve the actual owned window.
+            path = self.output / "desktop-startup-focus-failure.png"
+            try:
+                capture(self.stable_window(get_window, identity), path)
+                self.result["startup_focus"]["failure_capture"] = dict(status="captured", screenshot=path.name)
+            except Exception as capture_error:
+                self.result["startup_focus"]["failure_capture"] = dict(
+                    status="unavailable", reason=f"{type(capture_error).__name__}: {capture_error}")
             self.save()
             return self.result
         # A mapped native window can precede a webview's first rendered page by

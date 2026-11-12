@@ -135,7 +135,8 @@ class ImportNativeRunTests(unittest.TestCase):
         for os_name, source, observed in (
                 ("Linux-synthetic-test", "X11 active window", dict(observed_window="123")),
                 ("Windows-synthetic-test", "Windows foreground window", dict(observed_window=123)),
-                ("macOS-synthetic-test", "macOS frontmost process", dict(observed_pid="42"))):
+                ("macOS-synthetic-test", "macOS frontmost process", dict(observed_pid="42")),
+                ("macOS-synthetic-test", "macOS NSWorkspace frontmost application", dict(observed_pid="42"))):
             with self.subTest(os_name=os_name):
                 outcome = self.outcome()
                 outcome["environment"]["os"] = os_name
@@ -171,7 +172,9 @@ class ImportNativeRunTests(unittest.TestCase):
     def test_focus_source_must_match_recorded_os_and_macos_requires_observed_pid(self):
         for change in (dict(source="X11 active window", observed_window=123),
                        dict(source="macOS frontmost process", observed_pid=None),
-                       dict(source="macOS frontmost process", observed_pid="999")):
+                       dict(source="macOS frontmost process", observed_pid="999"),
+                       dict(source="macOS NSWorkspace frontmost application", observed_pid=None),
+                       dict(source="macOS NSWorkspace frontmost application", observed_pid="999")):
             with self.subTest(change=change):
                 outcome = self.outcome()
                 outcome["environment"]["os"] = "macOS-synthetic-test"

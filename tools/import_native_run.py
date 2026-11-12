@@ -211,7 +211,8 @@ def desktop_focus_valid(focus, window, os_name):
             or identifier(focus.get("requested_window")) != window_id:
         return False
     if os_name.startswith("macOS-"):
-        return focus.get("source") == "macOS frontmost process" and identifier(focus.get("observed_pid")) == pid
+        sources = {"macOS frontmost process", "macOS NSWorkspace frontmost application"}
+        return focus.get("source") in sources and identifier(focus.get("observed_pid")) == pid
     if os_name.startswith("Windows-"):
         source = "Windows foreground window"
     elif os_name.startswith("Linux-"):

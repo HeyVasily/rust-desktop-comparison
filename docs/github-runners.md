@@ -239,13 +239,19 @@ pixel dimensions relative to logical window bounds.
 The driver establishes foreground state before startup captures and again before
 keyboard input; it records the actual macOS frontmost PID, not just the activation
 request. macOS first uses System Events to request foreground for the exact
-process, then independently checks its actual foreground PID. An Automation
-permission failure stops the check. If that request leaves another process
-foreground, the driver can make one
+process, then independently reads Apple's documented key-event recipient,
+[`NSWorkspace.frontmostApplication`](https://developer.apple.com/documentation/appkit/nsworkspace/frontmostapplication),
+through a fresh read-only JXA helper. System Events' process list is retained
+diagnostically because it can disagree for standalone GTK. An Automation
+permission failure stops the check. If another process remains foreground,
+the driver can make one
 ordinary titlebar click. It re-reads the exact owned window and its bounds,
 refuses an occluding window, and requires existing event-posting permission.
 The click is not proof of activation: the actual foreground PID must still match.
-The probe does not initialize AppKit or register itself as another GUI application.
+The Python probe does not initialize AppKit or register itself as another GUI
+application; the isolated observer makes no application-activation requests.
+Failed startup focus retains an owned-window diagnostic capture when possible,
+without converting the failure into appearance or clipboard acceptance.
 macOS shortcuts use physical Quartz key transitions, including Command's
 keycode/flags-changed events and release attempts in `finally`. Event-posting access
 is preflighted without requesting a TCC grant or switching to a bypass route.

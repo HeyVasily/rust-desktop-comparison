@@ -179,15 +179,18 @@ class DesktopProbeTests(unittest.TestCase):
 
     def test_macos_focus_waits_for_actual_frontmost_pid_and_records_evidence(self):
         driver = probe.DesktopInput()
-        responses = [Mock(stdout=""), Mock(stdout="7\n"), Mock(stdout="42\n")]
         with patch.object(probe.sys, "platform", "darwin"), \
-                patch.object(probe, "command", side_effect=responses) as command, \
+                patch.object(probe, "command", return_value=Mock(stdout="7\n")) as command, \
+                patch.object(driver, "macos_frontmost_pid", side_effect=["7", "42"]) as frontmost, \
                 patch.object(driver, "macos_activation_click") as click, \
                 patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
             evidence = driver.focus(self.window)
-        self.assertEqual(command.call_count, 3)
+        self.assertEqual(command.call_count, 2)
+        self.assertEqual(frontmost.call_count, 2)
         self.assertEqual(evidence["status"], "passed")
+        self.assertEqual(evidence["source"], "macOS NSWorkspace frontmost application")
         self.assertEqual(evidence["observed_pid"], "42")
+        self.assertEqual(evidence["system_events_frontmost_pids"], "7")
         self.assertEqual(evidence["attempts"], 2)
         self.assertEqual(command.call_args.kwargs["timeout"], 1)
         click.assert_not_called()
@@ -197,6 +200,7 @@ class DesktopProbeTests(unittest.TestCase):
         driver = probe.DesktopInput()
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
+                patch.object(driver, "macos_frontmost_pid", return_value="7"), \
                 patch.object(driver, "macos_activation_click") as click, \
                 patch.object(probe.time, "monotonic", side_effect=[0, 4]), patch.object(probe.time, "sleep"):
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "frontmost PID"):
@@ -209,10 +213,12 @@ class DesktopProbeTests(unittest.TestCase):
         driver = probe.DesktopInput()
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", side_effect=probe.DesktopEnvironmentError("Automation permission denied")) as command, \
+                patch.object(driver, "macos_frontmost_pid") as frontmost, \
                 patch.object(driver, "macos_activation_click") as click:
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "permission denied"):
                 driver.focus(self.window)
         self.assertEqual(command.call_count, 1)
+        frontmost.assert_not_called()
         click.assert_not_called()
         self.assertEqual(driver.last_focus["status"], "environment_error")
 
@@ -220,6 +226,7 @@ class DesktopProbeTests(unittest.TestCase):
         driver = probe.DesktopInput()
         with patch.object(probe.sys, "platform", "darwin"), \
                 patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
+                patch.object(driver, "macos_frontmost_pid", return_value="7"), \
                 patch.object(driver, "macos_activation_click", return_value={"events_posted": True}) as click, \
                 patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
             with self.assertRaisesRegex(probe.DesktopEnvironmentError, "frontmost PID"):
@@ -230,9 +237,9 @@ class DesktopProbeTests(unittest.TestCase):
 
     def test_macos_focus_can_activate_by_one_real_click_but_still_checks_actual_pid(self):
         driver = probe.DesktopInput()
-        responses = [Mock(stdout=value) for value in ("", "7\n", "7\n", "42\n")]
         with patch.object(probe.sys, "platform", "darwin"), \
-                patch.object(probe, "command", side_effect=responses), \
+                patch.object(probe, "command", return_value=Mock(stdout="7\n")), \
+                patch.object(driver, "macos_frontmost_pid", side_effect=["7", "7", "42"]), \
                 patch.object(driver, "macos_activation_click", return_value={"events_posted": True}) as click, \
                 patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
             evidence = driver.focus(self.window)
@@ -240,6 +247,34 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual(evidence["status"], "passed")
         self.assertEqual(evidence["observed_pid"], "42")
         self.assertEqual(evidence["activation_clicks"], [{"events_posted": True}])
+
+    def test_macos_frontmost_uses_a_read_only_isolated_jxa_helper(self):
+        with patch.object(probe, "command", return_value=Mock(stdout="42\n")) as command:
+            self.assertEqual(probe.DesktopInput.macos_frontmost_pid(), "42")
+        args = command.call_args.args[0]
+        self.assertEqual(args[:4], ["osascript", "-l", "JavaScript", "-e"])
+        self.assertIn("NSWorkspace.sharedWorkspace.frontmostApplication", args[4])
+        self.assertIn("front.isNil()", args[4])
+        self.assertNotIn("activate", args[4])
+        self.assertNotIn("NSApplication", args[4])
+        self.assertEqual(command.call_args.kwargs["timeout"], 2)
+
+    def test_macos_frontmost_rejects_missing_or_invalid_pid_without_fallback(self):
+        for value in ("0", "null", "", "42.0", "true", "42, 7"):
+            with self.subTest(value=value), patch.object(probe, "command", return_value=Mock(stdout=value)):
+                with self.assertRaisesRegex(probe.DesktopEnvironmentError, "Invalid NSWorkspace"):
+                    probe.DesktopInput.macos_frontmost_pid()
+
+    def test_macos_frontmost_observer_failure_never_trusts_system_events_instead(self):
+        driver = probe.DesktopInput()
+        with patch.object(probe.sys, "platform", "darwin"), \
+                patch.object(probe, "command", return_value=Mock(stdout="42\n")), \
+                patch.object(driver, "macos_frontmost_pid", side_effect=probe.DesktopEnvironmentError("observer unavailable")), \
+                patch.object(driver, "macos_activation_click") as click:
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "observer unavailable"):
+                driver.focus(self.window)
+        click.assert_not_called()
+        self.assertEqual(driver.last_focus["status"], "environment_error")
 
     def mouse_quartz(self):
         target = {"kCGWindowNumber": 123, "kCGWindowOwnerPID": 42, "kCGWindowLayer": 0,
@@ -288,10 +323,15 @@ class DesktopProbeTests(unittest.TestCase):
 
     def test_macos_activation_click_refuses_an_occluding_window(self):
         api, events, target = self.mouse_quartz()
-        api.CGWindowListCopyWindowInfo.return_value.insert(0, {**target, "kCGWindowNumber": 999})
+        api.CGWindowListCopyWindowInfo.return_value.insert(0, {**target, "kCGWindowNumber": 999,
+                                                            "kCGWindowOwnerName": "Synthetic blocker"})
         with patch.dict("sys.modules", Quartz=api):
-            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "occluded"):
+            with self.assertRaisesRegex(probe.DesktopEnvironmentError, "occluded") as raised:
                 probe.DesktopInput.macos_activation_click(self.window)
+        self.assertIn('"window_id": 999', str(raised.exception))
+        self.assertIn('"pid": 42', str(raised.exception))
+        self.assertIn('"owner_name": "Synthetic blocker"', str(raised.exception))
+        self.assertIn('"Width": 960', str(raised.exception))
         self.assertEqual(events, [])
 
     def test_macos_activation_click_releases_button_after_posting_exception(self):
@@ -480,7 +520,7 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual(result["clipboard"]["focus"]["status"], "passed")
         self.assertEqual(checker.clipboard.events[-1], ("close",))
 
-    def test_startup_focus_failure_refuses_appearance_and_clipboard_testing(self):
+    def test_startup_focus_failure_preserves_diagnostic_but_refuses_acceptance(self):
         checker = self.checks()
         checker.input.focus = Mock(side_effect=probe.DesktopEnvironmentError("Wrong frontmost PID"))
         capture = Mock()
@@ -488,7 +528,18 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual(result["status"], "environment_error")
         self.assertEqual(result["startup_theme"]["status"], "not_run")
         self.assertEqual(result["clipboard"]["status"], "not_run")
-        capture.assert_not_called()
+        capture.assert_called_once_with(self.window, self.output / "desktop-startup-focus-failure.png")
+        self.assertEqual(result["startup_focus"]["failure_capture"]["status"], "captured")
+
+    def test_startup_focus_failure_preserves_original_failure_if_capture_is_unavailable(self):
+        checker = self.checks()
+        checker.input.focus = Mock(side_effect=probe.DesktopEnvironmentError("Wrong frontmost PID"))
+        result = checker.run(lambda: self.window, Mock(side_effect=RuntimeError("capture unavailable")))
+        self.assertEqual(result["status"], "environment_error")
+        self.assertIn("Wrong frontmost PID", result["reason"])
+        self.assertEqual(result["startup_theme"]["status"], "not_run")
+        self.assertEqual(result["clipboard"]["status"], "not_run")
+        self.assertEqual(result["startup_focus"]["failure_capture"]["status"], "unavailable")
 
     def test_prepare_refuses_native_wayland_instead_of_claiming_xwayland_coverage(self):
         checker = self.checks()
