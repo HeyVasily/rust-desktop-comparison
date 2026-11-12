@@ -53,7 +53,7 @@ fn build_ui(app: &Application) {
         let renderer = window.renderer();
         println!(
             "renderer source=gtk display_backend={} gsk_type={}",
-            window.display().type_().name(),
+            gtk::prelude::WidgetExt::display(window).type_().name(),
             renderer
                 .as_ref()
                 .map(|renderer| renderer.type_().name())
