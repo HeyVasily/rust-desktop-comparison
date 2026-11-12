@@ -1,0 +1,207 @@
+{
+  "name": "slint",
+  "status": "diagnostic_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "macOS-15.8.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "logical_cpus": 3,
+    "memory_bytes": 7516192768,
+    "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "runner_image": "macos15",
+    "image_version": "20261104.0514.1",
+    "commit": "fe53a64d6759b17817d4cc1c5c995b43a8031d5c",
+    "run_id": "43251948886",
+    "repetition": "2",
+    "renderer": "See each application.log; unknown unless reported by the app",
+    "cpu_model": "Apple M1 (Virtual)",
+    "system_webkit_version": "20621.3.11.11.3"
+  },
+  "comparison_requested": false,
+  "measurement_profile": "desktop-integrated",
+  "memory_metric": "macOS RSS",
+  "primary_memory_metric": "macOS physical footprint",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 104,
+        "pid": 40065,
+        "title": "Veranda Slint comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          32.0,
+          29.0,
+          992.0,
+          697.0
+        ]
+      },
+      "capture": {
+        "width": 960,
+        "height": 668,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 12.481684000000087,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 100.734375,
+          "p95": 100.734375,
+          "observed_maximum": 100.734375
+        },
+        "family_primary_mib": {
+          "median": 19.12701416015625,
+          "p95": 19.12701416015625,
+          "observed_maximum": 19.12701416015625
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "desktop_integration": {
+    "schema_version": 1,
+    "profile": "desktop-acceptance-v1",
+    "status": "passed",
+    "startup_theme": {
+      "status": "passed",
+      "expected": "dark",
+      "mean_client_luma": 46.397,
+      "screenshot": "desktop-startup.png",
+      "attempts": 1,
+      "same_window_and_pid": true,
+      "timeout_seconds": 30,
+      "elapsed_seconds": 0.152
+    },
+    "live_theme": {
+      "status": "passed",
+      "transitions": [
+        {
+          "status": "passed",
+          "expected": "light",
+          "mean_client_luma": 240.611,
+          "screenshot": "desktop-live-1-light.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.138,
+          "system_setting": {
+            "source": "NSGlobalDomain AppleInterfaceStyle",
+            "value": null,
+            "theme": "light"
+          },
+          "luminance_delta": 194.214
+        },
+        {
+          "status": "passed",
+          "expected": "dark",
+          "mean_client_luma": 56.876,
+          "screenshot": "desktop-live-2-dark.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.163,
+          "system_setting": {
+            "source": "NSGlobalDomain AppleInterfaceStyle",
+            "value": "Dark",
+            "theme": "dark"
+          },
+          "luminance_delta": 183.735
+        }
+      ]
+    },
+    "clipboard": {
+      "status": "passed",
+      "expected_utf8": "desktop-68daa37670fd M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "sentinel_utf8": "not-the-widget-68daa37670fd",
+      "protocol": "external Unicode seed \u2192 Ctrl/Cmd+V into filter \u2192 replace OS clipboard \u2192 Ctrl/Cmd+C \u2192 external read",
+      "focus": {
+        "status": "passed",
+        "requested_pid": 40065,
+        "requested_window": 104,
+        "activation_requests": [
+          {
+            "source": "NSRunningApplication.activateWithOptions",
+            "requested_pid": 40065,
+            "activation_policy": 0,
+            "finished_launching": true,
+            "request_accepted": true
+          }
+        ],
+        "source": "macOS frontmost process",
+        "observed_pid": "40065",
+        "attempts": 1
+      },
+      "pasted_screenshot": "desktop-clipboard-pasted.png",
+      "sentinel_verified": true,
+      "copied_utf8": "desktop-68daa37670fd M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+      "probe_helpers_reaped_before_idle": true
+    },
+    "cleanup": {
+      "status": "passed",
+      "errors": []
+    },
+    "limitations": [
+      "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+      "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+      "This driver verifies Linux X11 only, not native Wayland",
+      "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+    ],
+    "system_theme_setup": {
+      "status": "passed",
+      "requested": "dark",
+      "observed": {
+        "source": "NSGlobalDomain AppleInterfaceStyle",
+        "value": "Dark",
+        "theme": "dark"
+      }
+    },
+    "application_process": {
+      "pid": 40065,
+      "created": 1794500391.839761
+    },
+    "application_window": {
+      "pid": 40065,
+      "id": 104
+    },
+    "startup_focus": {
+      "status": "passed",
+      "requested_pid": 40065,
+      "requested_window": 104,
+      "activation_requests": [
+        {
+          "source": "NSRunningApplication.activateWithOptions",
+          "requested_pid": 40065,
+          "activation_policy": 0,
+          "finished_launching": true,
+          "request_accepted": true
+        }
+      ],
+      "source": "macOS frontmost process",
+      "observed_pid": "40065",
+      "attempts": 1
+    }
+  },
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 40065,
+      "name": "veranda-slint-comparison",
+      "created": 1794500391.839761
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

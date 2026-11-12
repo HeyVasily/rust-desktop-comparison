@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "profile": "desktop-acceptance-v1",
+  "status": "passed",
+  "startup_theme": {
+    "status": "passed",
+    "expected": "dark",
+    "mean_client_luma": 60.454,
+    "screenshot": "desktop-startup.png",
+    "attempts": 1,
+    "same_window_and_pid": true,
+    "timeout_seconds": 30,
+    "elapsed_seconds": 0.113
+  },
+  "live_theme": {
+    "status": "passed",
+    "transitions": [
+      {
+        "status": "passed",
+        "expected": "light",
+        "mean_client_luma": 234.921,
+        "screenshot": "desktop-live-1-light.png",
+        "attempts": 1,
+        "same_window_and_pid": true,
+        "timeout_seconds": 8,
+        "elapsed_seconds": 0.104,
+        "system_setting": {
+          "source": "org.freedesktop.portal.Settings",
+          "value": 2,
+          "theme": "light",
+          "gtk_theme": "Adwaita",
+          "gtk_theme_source": "gtk-query-settings via the session XSettings provider",
+          "session_profile": "gnome-adwaita-dual-preference-v1"
+        },
+        "luminance_delta": 174.467
+      },
+      {
+        "status": "passed",
+        "expected": "dark",
+        "mean_client_luma": 60.454,
+        "screenshot": "desktop-live-2-dark.png",
+        "attempts": 1,
+        "same_window_and_pid": true,
+        "timeout_seconds": 8,
+        "elapsed_seconds": 0.104,
+        "system_setting": {
+          "source": "org.freedesktop.portal.Settings",
+          "value": 1,
+          "theme": "dark",
+          "gtk_theme": "Adwaita-dark",
+          "gtk_theme_source": "gtk-query-settings via the session XSettings provider",
+          "session_profile": "gnome-adwaita-dual-preference-v1"
+        },
+        "luminance_delta": 174.467
+      }
+    ]
+  },
+  "clipboard": {
+    "status": "passed",
+    "expected_utf8": "desktop-cd97d9f062ec München — Привет ✓",
+    "sentinel_utf8": "not-the-widget-cd97d9f062ec",
+    "protocol": "external Unicode seed → Ctrl/Cmd+V into filter → replace OS clipboard → Ctrl/Cmd+C → external read",
+    "focus": {
+      "status": "passed",
+      "requested_pid": 27166,
+      "requested_window": "8388615",
+      "source": "X11 active window",
+      "observed_window": "8388615"
+    },
+    "pasted_screenshot": "desktop-clipboard-pasted.png",
+    "sentinel_verified": true,
+    "copied_utf8": "desktop-cd97d9f062ec München — Привет ✓",
+    "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+    "probe_helpers_reaped_before_idle": true
+  },
+  "cleanup": {
+    "status": "passed",
+    "errors": []
+  },
+  "limitations": [
+    "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+    "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+    "This driver verifies Linux X11 only, not native Wayland",
+    "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+  ],
+  "system_theme_setup": {
+    "status": "passed",
+    "requested": "dark",
+    "observed": {
+      "source": "org.freedesktop.portal.Settings",
+      "value": 1,
+      "theme": "dark",
+      "gtk_theme": "Adwaita-dark",
+      "gtk_theme_source": "gtk-query-settings via the session XSettings provider",
+      "session_profile": "gnome-adwaita-dual-preference-v1"
+    }
+  },
+  "application_process": {
+    "pid": 27166,
+    "created": 1794501472.52
+  },
+  "application_window": {
+    "pid": 27166,
+    "id": "8388615"
+  },
+  "startup_focus": {
+    "status": "passed",
+    "requested_pid": 27166,
+    "requested_window": "8388615",
+    "source": "X11 active window",
+    "observed_window": "8388615"
+  }
+}

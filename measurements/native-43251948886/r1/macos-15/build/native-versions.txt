@@ -1,0 +1,4 @@
+gtk4 4.24.1
+libadwaita 1.10.0
+pkgconf 3.0.10
+qtbase 6.12.0_2

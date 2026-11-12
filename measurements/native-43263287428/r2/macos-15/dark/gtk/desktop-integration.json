@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "profile": "desktop-acceptance-v1",
+  "status": "failed",
+  "startup_theme": {
+    "status": "passed",
+    "expected": "dark",
+    "mean_client_luma": 40.622,
+    "screenshot": "desktop-startup.png",
+    "attempts": 19,
+    "same_window_and_pid": true,
+    "timeout_seconds": 30,
+    "elapsed_seconds": 5.815
+  },
+  "live_theme": {
+    "status": "failed",
+    "transitions": [
+      {
+        "status": "failed",
+        "expected": "light",
+        "mean_client_luma": 40.622,
+        "screenshot": "desktop-live-1-light.png",
+        "attempts": 26,
+        "same_window_and_pid": true,
+        "reason": "Client luminance did not change by more than 60/255",
+        "timeout_seconds": 8,
+        "elapsed_seconds": 8.167,
+        "system_setting": {
+          "source": "NSGlobalDomain AppleInterfaceStyle",
+          "value": null,
+          "theme": "light"
+        },
+        "luminance_delta": 0.0
+      },
+      {
+        "status": "failed",
+        "expected": "dark",
+        "mean_client_luma": 40.622,
+        "screenshot": "desktop-live-2-dark.png",
+        "attempts": 1,
+        "same_window_and_pid": true,
+        "timeout_seconds": 8,
+        "elapsed_seconds": 0.101,
+        "system_setting": {
+          "source": "NSGlobalDomain AppleInterfaceStyle",
+          "value": "Dark",
+          "theme": "dark"
+        },
+        "luminance_delta": 0.0,
+        "reason": "Client luminance did not change by more than 60/255"
+      }
+    ]
+  },
+  "clipboard": {
+    "status": "passed",
+    "expected_utf8": "desktop-3e3ce5be820a München — Привет ✓",
+    "sentinel_utf8": "not-the-widget-3e3ce5be820a",
+    "protocol": "external Unicode seed → Ctrl/Cmd+V into filter → replace OS clipboard → Ctrl/Cmd+C → external read",
+    "focus": {
+      "status": "passed",
+      "requested_pid": 52443,
+      "requested_window": 93,
+      "system_events_frontmost_pids": "334",
+      "activation_clicks": [],
+      "source": "macOS NSWorkspace frontmost application",
+      "observed_pid": "52443",
+      "attempts": 1
+    },
+    "pasted_screenshot": "desktop-clipboard-pasted.png",
+    "sentinel_verified": true,
+    "copied_utf8": "desktop-3e3ce5be820a München — Привет ✓",
+    "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+    "probe_helpers_reaped_before_idle": true
+  },
+  "cleanup": {
+    "status": "passed",
+    "errors": []
+  },
+  "limitations": [
+    "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+    "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+    "This driver verifies Linux X11 only, not native Wayland",
+    "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+  ],
+  "system_theme_setup": {
+    "status": "passed",
+    "requested": "dark",
+    "observed": {
+      "source": "NSGlobalDomain AppleInterfaceStyle",
+      "value": "Dark",
+      "theme": "dark"
+    }
+  },
+  "application_process": {
+    "pid": 52443,
+    "created": 1794504567.24398
+  },
+  "application_window": {
+    "pid": 52443,
+    "id": 93
+  },
+  "startup_focus": {
+    "status": "passed",
+    "requested_pid": 52443,
+    "requested_window": 93,
+    "system_events_frontmost_pids": "334",
+    "activation_clicks": [],
+    "source": "macOS NSWorkspace frontmost application",
+    "observed_pid": "52443",
+    "attempts": 1
+  }
+}

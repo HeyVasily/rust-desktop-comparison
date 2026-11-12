@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "profile": "desktop-acceptance-v1",
+  "status": "environment_error",
+  "startup_theme": {
+    "status": "not_run"
+  },
+  "live_theme": {
+    "status": "not_run"
+  },
+  "clipboard": {
+    "status": "not_run"
+  },
+  "cleanup": {
+    "status": "passed",
+    "errors": []
+  },
+  "limitations": [
+    "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+    "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+    "This driver verifies Linux X11 only, not native Wayland",
+    "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+  ],
+  "system_theme_setup": {
+    "status": "passed",
+    "requested": "light",
+    "observed": {
+      "source": "NSGlobalDomain AppleInterfaceStyle",
+      "value": null,
+      "theme": "light"
+    }
+  },
+  "application_process": {
+    "pid": 33745,
+    "created": 1794500139.317462
+  },
+  "application_window": {
+    "pid": 33745,
+    "id": 52
+  },
+  "startup_focus": {
+    "status": "environment_error",
+    "requested_pid": 33745,
+    "requested_window": 52,
+    "activation_requests": [
+      {
+        "source": "NSRunningApplication.activateWithOptions",
+        "requested_pid": 33745,
+        "activation_policy": 0,
+        "finished_launching": true,
+        "request_accepted": true
+      },
+      {
+        "source": "NSRunningApplication.activateWithOptions",
+        "requested_pid": 33745,
+        "activation_policy": 0,
+        "finished_launching": true,
+        "request_accepted": true
+      }
+    ],
+    "source": "macOS frontmost process",
+    "observed_pid": "321",
+    "attempts": 12,
+    "reason": "macOS frontmost PID '321' differs from test PID 33745"
+  },
+  "reason": "Initial foreground activation failed: macOS frontmost PID '321' differs from test PID 33745"
+}

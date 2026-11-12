@@ -1,0 +1,122 @@
+[33mWarning:[0m pkgconf 3.0.10 is already installed and up-to-date.
+To reinstall 3.0.10, run:
+  brew reinstall pkgconf
+[32m==>[0m [1mDownloading bottle manifests[0m
+✔︎ Bottle Manifest qtbase (6.12.0_2)
+✔︎ Bottle Manifest gtk4 (4.24.1)
+✔︎ Bottle Manifest libadwaita (1.10.0)
+[34m==>[0m [1mWould install 3 formulae:[0m
+qtbase      6.12.0_2
+gtk4        4.24.1
+libadwaita  1.10.0
+[34m==>[0m [1mWould install 4 dependencies for qtbase:[0m
+dbus               1.16.2_1
+double-conversion  3.4.0
+libb2              0.98.1
+md4c               0.6.0
+[34m==>[0m [1mWould install 9 dependencies for gtk4:[0m
+fribidi             1.0.18
+gdk-pixbuf          2.44.8
+graphene            1.10.8
+hicolor-icon-theme  0.18
+libepoxy            1.5.10
+libdatrie           0.2.14
+libthai             0.1.30
+pango               1.58.2
+librsvg             2.63.4
+[34m==>[0m [1mWould install 10 dependencies for libadwaita:[0m
+fribidi             1.0.18
+graphene            1.10.8
+gdk-pixbuf          2.44.8
+hicolor-icon-theme  0.18
+libepoxy            1.5.10
+libdatrie           0.2.14
+libthai             0.1.30
+pango               1.58.2
+librsvg             2.63.4
+gtk4                4.24.1
+[32m==>[0m [1mFetching downloads for: [32mqtbase[39m, [32mgtk4[39m and [32mlibadwaita[39m[0m
+✔︎ Bottle Manifest dbus (1.16.2_1)
+✔︎ Bottle Manifest double-conversion (3.4.0)
+✔︎ Bottle Manifest libb2 (0.98.1)
+✔︎ Bottle Manifest md4c (0.6.0)
+✔︎ Bottle libadwaita (1.10.0)
+✔︎ Bottle dbus (1.16.2_1)
+✔︎ Bottle double-conversion (3.4.0)
+✔︎ Bottle gtk4 (4.24.1)
+✔︎ Bottle Manifest gdk-pixbuf (2.44.8)
+✔︎ Bottle Manifest graphene (1.10.8)
+✔︎ Bottle libb2 (0.98.1)
+✔︎ Bottle Manifest fribidi (1.0.18)
+✔︎ Bottle Manifest hicolor-icon-theme (0.18)
+✔︎ Bottle qtbase (6.12.0_2)
+✔︎ Bottle Manifest libepoxy (1.5.10)
+✔︎ Bottle md4c (0.6.0)
+✔︎ Bottle Manifest libdatrie (0.2.14)
+✔︎ Bottle Manifest libthai (0.1.30)
+✔︎ Bottle fribidi (1.0.18)
+✔︎ Bottle gdk-pixbuf (2.44.8)
+✔︎ Bottle graphene (1.10.8)
+✔︎ Bottle Manifest pango (1.58.2)
+✔︎ Bottle Manifest librsvg (2.63.4)
+✔︎ Bottle hicolor-icon-theme (0.18)
+✔︎ Bottle libepoxy (1.5.10)
+✔︎ Bottle libthai (0.1.30)
+✔︎ Bottle libdatrie (0.2.14)
+✔︎ Bottle pango (1.58.2)
+✔︎ Bottle librsvg (2.63.4)
+[32m==>[0m [1mInstalling dependencies for qtbase:[0m [32mdbus[39m, [32mdouble-conversion[39m, [32mlibb2[39m and [32mmd4c[39m[0m
+[32m==>[0m [1mInstalling qtbase dependency: [32mdbus[39m (1.16.2_1)[0m
+[34m==>[0m [1mPouring dbus--1.16.2_1.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/dbus/1.16.2_1: 79 files, 2MB
+[32m==>[0m [1mInstalling qtbase dependency: [32mdouble-conversion[39m (3.4.0)[0m
+[34m==>[0m [1mPouring double-conversion--3.4.0.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/double-conversion/3.4.0: 29 files, 256.1KB
+[32m==>[0m [1mInstalling qtbase dependency: [32mlibb2[39m (0.98.1)[0m
+[34m==>[0m [1mPouring libb2--0.98.1.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/libb2/0.98.1: 9 files, 112.7KB
+[32m==>[0m [1mInstalling qtbase dependency: [32mmd4c[39m (0.6.0)[0m
+[34m==>[0m [1mPouring md4c--0.6.0.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/md4c/0.6.0: 20 files, 307.1KB
+[32m==>[0m [1mInstalling [32mqtbase[39m[0m
+[34m==>[0m [1mPouring qtbase--6.12.0_2.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/qtbase/6.12.0_2: 5,965 files, 62.3MB
+[32m==>[0m [1mInstalling dependencies for gtk4:[0m [32mfribidi[39m, [32mgdk-pixbuf[39m, [32mgraphene[39m, [32mhicolor-icon-theme[39m, [32mlibepoxy[39m, [32mlibdatrie[39m, [32mlibthai[39m, [32mpango[39m and [32mlibrsvg[39m[0m
+[32m==>[0m [1mInstalling gtk4 dependency: [32mfribidi[39m (1.0.18)[0m
+[34m==>[0m [1mPouring fribidi--1.0.18.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/fribidi/1.0.18: 69 files, 763.6KB
+[32m==>[0m [1mInstalling gtk4 dependency: [32mgdk-pixbuf[39m (2.44.8)[0m
+[34m==>[0m [1mPouring gdk-pixbuf--2.44.8.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/gdk-pixbuf/2.44.8: 152 files, 4MB
+[32m==>[0m [1mInstalling gtk4 dependency: [32mgraphene[39m (1.10.8)[0m
+[34m==>[0m [1mPouring graphene--1.10.8.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/graphene/1.10.8: 37 files, 1MB
+[32m==>[0m [1mInstalling gtk4 dependency: [32mhicolor-icon-theme[39m (0.18)[0m
+[34m==>[0m [1mPouring hicolor-icon-theme--0.18.all.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/hicolor-icon-theme/0.18: 8 files, 81.3KB
+[32m==>[0m [1mInstalling gtk4 dependency: [32mlibepoxy[39m (1.5.10)[0m
+[34m==>[0m [1mPouring libepoxy--1.5.10.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/libepoxy/1.5.10: 11 files, 2.7MB
+[32m==>[0m [1mInstalling gtk4 dependency: [32mlibdatrie[39m (0.2.14)[0m
+[34m==>[0m [1mPouring libdatrie--0.2.14.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/libdatrie/0.2.14: 20 files, 276.1KB
+[32m==>[0m [1mInstalling gtk4 dependency: [32mlibthai[39m (0.1.30)[0m
+[34m==>[0m [1mPouring libthai--0.1.30.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/libthai/0.1.30: 30 files, 955KB
+[32m==>[0m [1mInstalling gtk4 dependency: [32mpango[39m (1.58.2)[0m
+[34m==>[0m [1mPouring pango--1.58.2.arm64_sequoia.bottle.1.tar.gz[0m
+🍺  /opt/homebrew/Cellar/pango/1.58.2: 69 files, 3.7MB
+[32m==>[0m [1mInstalling gtk4 dependency: [32mlibrsvg[39m (2.63.4)[0m
+[34m==>[0m [1mPouring librsvg--2.63.4.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/librsvg/2.63.4: 21 files, 13.3MB
+[32m==>[0m [1mInstalling [32mgtk4[39m[0m
+[34m==>[0m [1mPouring gtk4--4.24.1.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/gtk4/4.24.1: 640 files, 69MB
+[34m==>[0m [1mPouring libadwaita--1.10.0.arm64_sequoia.bottle.tar.gz[0m
+🍺  /opt/homebrew/Cellar/libadwaita/1.10.0: 164 files, 5.7MB
+[32m==>[0m [1mCaveats[0m
+[34m==>[0m [1mqtbase[0m
+You can add Homebrew's Qt to QtCreator's "Qt Versions" in:
+  Preferences > Qt Versions > Link with Qt...
+pressing "Choose..." and selecting as the Qt installation path:
+  /opt/homebrew

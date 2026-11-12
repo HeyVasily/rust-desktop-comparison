@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "imported",
+  "requested_run_ids": [
+    "43251948886",
+    "43263287428"
+  ],
+  "artifact_counts_by_run": {
+    "43251948886": 6,
+    "43263287428": 3
+  },
+  "artifact_count": 9,
+  "outcome_count": 89,
+  "requested_or_measured_phase_rows": 62,
+  "primary_summary_groups": 19,
+  "control_summary_groups": 4,
+  "exclusions": [
+    {
+      "os": "macos-15",
+      "framework": "gtk",
+      "phase": "comparison",
+      "repetition": 2,
+      "run_id": "43263287428",
+      "source_commit": "589a6111d79156d787471069aa9e26d5b289d5d7",
+      "measurement_profile": "desktop-integrated",
+      "exclusion_reason": "desktop_status=failed; live_theme_status=failed; live appearance transition 2 evidence is incomplete; raw measurement samples are missing; missing/invalid primary median; missing/invalid primary p95; missing/invalid RSS median; missing/invalid CPU; missing/invalid duration; outcome status=failed; 120 complete sample intervals are required; complete desktop acceptance is required; measurement phase did not pass; measurement duration is shorter than 120 seconds"
+    },
+    {
+      "os": "macos-15",
+      "framework": "egui_reduced",
+      "phase": "comparison",
+      "repetition": 1,
+      "run_id": "43263287428",
+      "source_commit": "589a6111d79156d787471069aa9e26d5b289d5d7",
+      "measurement_profile": "diagnostic-reduced",
+      "exclusion_reason": "outcome status=failed; process cleanup=unknown"
+    },
+    {
+      "os": "macos-15",
+      "framework": "egui_reduced",
+      "phase": "comparison",
+      "repetition": 3,
+      "run_id": "43263287428",
+      "source_commit": "589a6111d79156d787471069aa9e26d5b289d5d7",
+      "measurement_profile": "diagnostic-reduced",
+      "exclusion_reason": "outcome status=failed; process cleanup=unknown"
+    }
+  ]
+}

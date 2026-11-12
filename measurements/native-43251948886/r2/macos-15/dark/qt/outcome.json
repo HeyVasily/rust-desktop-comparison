@@ -1,0 +1,112 @@
+{
+  "name": "qt",
+  "status": "failed",
+  "build_mode": "release",
+  "environment": {
+    "os": "macOS-15.8.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "logical_cpus": 3,
+    "memory_bytes": 7516192768,
+    "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "runner_image": "macos15",
+    "image_version": "20261104.0514.1",
+    "commit": "fe53a64d6759b17817d4cc1c5c995b43a8031d5c",
+    "run_id": "43251948886",
+    "repetition": "2",
+    "renderer": "See each application.log; unknown unless reported by the app",
+    "cpu_model": "Apple M1 (Virtual)",
+    "system_webkit_version": "20621.3.11.11.3"
+  },
+  "comparison_requested": false,
+  "measurement_profile": "desktop-integrated",
+  "memory_metric": "macOS RSS",
+  "primary_memory_metric": "macOS physical footprint",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {},
+  "cleanup_status": "clean",
+  "desktop_integration": {
+    "schema_version": 1,
+    "profile": "desktop-acceptance-v1",
+    "status": "environment_error",
+    "startup_theme": {
+      "status": "not_run"
+    },
+    "live_theme": {
+      "status": "not_run"
+    },
+    "clipboard": {
+      "status": "not_run"
+    },
+    "cleanup": {
+      "status": "passed",
+      "errors": []
+    },
+    "limitations": [
+      "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+      "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+      "This driver verifies Linux X11 only, not native Wayland",
+      "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+    ],
+    "system_theme_setup": {
+      "status": "passed",
+      "requested": "dark",
+      "observed": {
+        "source": "NSGlobalDomain AppleInterfaceStyle",
+        "value": "Dark",
+        "theme": "dark"
+      }
+    },
+    "application_process": {
+      "pid": 40738,
+      "created": 1794500417.29625
+    },
+    "application_window": {
+      "pid": 40738,
+      "id": 112
+    },
+    "startup_focus": {
+      "status": "environment_error",
+      "requested_pid": 40738,
+      "requested_window": 112,
+      "activation_requests": [
+        {
+          "source": "NSRunningApplication.activateWithOptions",
+          "requested_pid": 40738,
+          "activation_policy": 0,
+          "finished_launching": true,
+          "request_accepted": true
+        },
+        {
+          "source": "NSRunningApplication.activateWithOptions",
+          "requested_pid": 40738,
+          "activation_policy": 0,
+          "finished_launching": true,
+          "request_accepted": true
+        }
+      ],
+      "source": "macOS frontmost process",
+      "observed_pid": "40730",
+      "attempts": 14,
+      "reason": "macOS frontmost PID '40730' differs from test PID 40738"
+    },
+    "reason": "Initial foreground activation failed: macOS frontmost PID '40730' differs from test PID 40738"
+  },
+  "reason": "RuntimeError: Desktop acceptance failed; inspect desktop-integration.json and screenshots; idle comparison refused",
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 40738,
+      "name": "veranda-qt-comparison",
+      "created": 1794500417.29625
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

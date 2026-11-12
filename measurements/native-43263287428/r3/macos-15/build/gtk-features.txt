@@ -1,0 +1,484 @@
+veranda-gtk-comparison v0.1.0 (/Users/runner/work/rust-desktop-comparison/rust-desktop-comparison/examples/gtk)
+[2m├──[0m gtk4 feature "default"
+[2m│[0m   [2m[35m└──[0m gtk4 v0.11.5
+[2m│[0m   [2m[35m [0m   [2m├──[0m cairo-rs feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m cairo-rs v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m├──[0m glib v0.22.10
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m futures-core v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m futures-task v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m glib-macros v0.22.9 (proc-macro)
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m├──[0m heck feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m heck v0.5.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m├──[0m proc-macro2 feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m proc-macro2 v1.0.107
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m└──[0m unicode-ident feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m[35m└──[0m unicode-ident v1.0.27
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m proc-macro2 feature "proc-macro"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m proc-macro2 v1.0.107 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m├──[0m quote feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m quote v1.0.47
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m└──[0m proc-macro2 v1.0.107 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m quote feature "proc-macro"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m quote v1.0.47 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m proc-macro2 feature "proc-macro" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m├──[0m syn feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m syn v3.0.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m├──[0m proc-macro2 v1.0.107 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m├──[0m quote v1.0.47 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m└──[0m unicode-ident feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m syn feature "clone-impls"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m syn v3.0.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m syn feature "derive"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m syn v3.0.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m syn feature "parsing"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m syn v3.0.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m syn feature "printing"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m syn v3.0.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m syn feature "proc-macro"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m syn v3.0.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m proc-macro2 feature "proc-macro" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m quote feature "proc-macro" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m└──[0m syn feature "full"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m [0m   [2m[35m└──[0m syn v3.0.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m bitflags feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m bitflags v2.13.2
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m glib-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m glib-sys v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m└──[0m libc feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m├──[0m libc v0.2.191
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m libc feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m└──[0m libc v0.2.191
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m└──[0m system-deps v9.0.1
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m cfg-expr feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m cfg-expr v0.20.10
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m smallvec feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m smallvec v1.16.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m target-lexicon feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m target-lexicon v0.13.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m cfg-expr feature "targets"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m cfg-expr v0.20.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m cfg-expr feature "target-lexicon"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m cfg-expr v0.20.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m heck feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m pkg-config feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m pkg-config v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m toml feature "parse"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m toml v1.2.1+spec-1.1.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m winnow v1.0.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m serde_spanned feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m serde_spanned v1.1.3
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m toml_datetime feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m toml_datetime v1.1.3+spec-1.1.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m toml_parser feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m toml_parser v1.1.5+spec-1.1.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m winnow v1.0.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m toml feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m toml v1.2.1+spec-1.1.0 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m serde_spanned feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m serde_spanned v1.1.3
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m serde_spanned feature "alloc" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m toml_datetime feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m toml_datetime v1.1.3+spec-1.1.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m toml_datetime feature "alloc" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m toml_parser feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m toml_parser v1.1.5+spec-1.1.0 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m toml_parser feature "alloc" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m└──[0m version-compare feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m version-compare v0.2.1
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m futures-channel feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m futures-channel v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m└──[0m futures-core v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m futures-channel feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m futures-channel v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m futures-channel feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m├──[0m futures-channel v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m└──[0m futures-core feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m futures-core v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m futures-core feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m futures-core v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m futures-core feature "alloc" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m futures-executor feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m futures-executor v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m├──[0m futures-core v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m├──[0m futures-task v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m└──[0m futures-util v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m├──[0m futures-core v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m├──[0m futures-macro v0.3.34 (proc-macro)
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m│[0m   [2m├──[0m proc-macro2 feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m│[0m   [2m├──[0m quote feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m│[0m   [2m├──[0m syn feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m│[0m   [2m└──[0m syn feature "full" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m├──[0m futures-task v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m├──[0m slab v0.4.12
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m└──[0m pin-project-lite feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m [0m   [2m [0m   [2m[35m└──[0m pin-project-lite v0.2.17
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m futures-executor feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m futures-executor v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m futures-core feature "std" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m futures-task feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m├──[0m futures-task v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m└──[0m futures-task feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m futures-task v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m futures-util feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m futures-util v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m futures-core feature "std" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m futures-task feature "std" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m futures-util feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m├──[0m futures-util v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m├──[0m futures-core feature "alloc" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m├──[0m futures-task feature "alloc" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m└──[0m futures-util feature "slab"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m futures-util v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m futures-util feature "slab" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m slab feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m slab v0.4.12
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m futures-util feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m futures-util v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m futures-util feature "async-await"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m futures-util v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m futures-util feature "async-await-macro"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m futures-util v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m futures-util feature "async-await" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m futures-util feature "futures-macro"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m futures-util v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m futures-util feature "std" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m gio-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m gio-sys v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m└──[0m gobject-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m gobject-sys v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m gobject-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m memchr feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m memchr v2.8.3
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m memchr feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m memchr v2.8.3
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m memchr feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m memchr v2.8.3
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m smallvec feature "const_generics"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m smallvec v1.16.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m smallvec feature "const_new"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m├──[0m smallvec v1.16.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m smallvec feature "const_generics" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m├──[0m smallvec feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m│[0m   [2m[35m└──[0m smallvec v1.16.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m└──[0m smallvec feature "union"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m [0m   [2m[35m└──[0m smallvec v1.16.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m├──[0m bitflags feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m├──[0m cairo-sys-rs feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m[35m└──[0m cairo-sys-rs v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m[35m [0m   [2m└──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m│[0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m└──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m cairo-rs feature "use_glib"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m cairo-rs v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m cairo-rs feature "glib"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m└──[0m cairo-rs v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m cairo-sys-rs feature "use_glib"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m cairo-sys-rs v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m cairo-sys-rs feature "glib-sys"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m cairo-sys-rs v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m cairo-rs feature "use_glib" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m glib feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m glib feature "futures"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m glib feature "futures-channel"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m│[0m   [2m[35m└──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m glib feature "futures-core"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m│[0m   [2m[35m└──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m glib feature "futures-executor"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m│[0m   [2m[35m└──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m glib feature "futures-task"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m│[0m   [2m[35m└──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m glib feature "futures-util"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m glib feature "gio"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m glib feature "futures" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m glib feature "gio-sys"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m glib feature "v2_66"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m glib-sys feature "v2_66"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m glib-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m glib-sys feature "v2_64"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m├──[0m glib-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m glib-sys feature "v2_62"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m glib-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m glib-sys feature "v2_60"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m glib-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m glib-sys feature "v2_58"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m glib-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m glib feature "v2_64"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m glib-sys feature "v2_64" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m glib feature "v2_62"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m├──[0m glib-sys feature "v2_62" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m├──[0m glib feature "v2_60"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m├──[0m glib-sys feature "v2_60" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m└──[0m glib feature "v2_58"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m├──[0m glib-sys feature "v2_58" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m gobject-sys feature "v2_58"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m gobject-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m gobject-sys feature "v2_62"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m gobject-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m gobject-sys feature "v2_58" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m gobject-sys feature "v2_66"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m gobject-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m gobject-sys feature "v2_62" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m futures-channel feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m field-offset feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m field-offset v0.3.6
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m memoffset feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m memoffset v0.9.1
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m└──[0m autocfg feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m└──[0m autocfg v1.5.1
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m└──[0m rustc_version feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m└──[0m rustc_version v0.4.1
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m└──[0m semver feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m [0m   [2m[35m├──[0m semver v1.0.28
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m semver feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m└──[0m semver v1.0.28
+[2m│[0m   [2m[35m [0m   [2m├──[0m gdk-pixbuf feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m gdk-pixbuf v0.22.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gdk-pixbuf-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m gdk-pixbuf-sys v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gio-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m gobject-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m gio feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m gio v0.22.10
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m futures-core v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m futures-util v0.3.34 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m glib feature "futures" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m futures-channel feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m pin-project-lite feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gio-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m smallvec feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m futures-io feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m├──[0m futures-io v0.3.34
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m futures-io feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m└──[0m futures-io v0.3.34
+[2m│[0m   [2m[35m [0m   [2m├──[0m gio feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m gio feature "v2_66"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m gio v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m glib feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m gio-sys feature "v2_66"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m gio-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m gio-sys feature "v2_64"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m├──[0m gio-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m gio-sys feature "v2_62"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m gio-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m gio-sys feature "v2_60"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m gio-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m gio-sys feature "v2_58"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m gio-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m gio feature "v2_64"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m gio v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m glib feature "v2_64" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m gio-sys feature "v2_64" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m gio feature "v2_62"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m gio v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m glib feature "v2_62" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m gio-sys feature "v2_62" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m gio feature "v2_60"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m gio v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m glib feature "v2_60" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m gio-sys feature "v2_60" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m gio feature "v2_58"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m gio v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m glib feature "v2_58" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m gio-sys feature "v2_58" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m gdk4 feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m gdk4 v0.11.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m cairo-rs feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m cairo-rs feature "use_glib" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gdk-pixbuf feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gio feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gio feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gdk4-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m gdk4-sys v0.11.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m cairo-sys-rs feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib-sys feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gio-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gio-sys feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gobject-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gobject-sys feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gdk-pixbuf-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m pango-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m pango-sys v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m gobject-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m pango-sys feature "v1_46"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m├──[0m pango-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m pango-sys feature "v1_44"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m├──[0m pango-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m└──[0m pango-sys feature "v1_42"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m pango-sys v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m├──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [1m[34m└──[0m pkg-config feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m pango feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m pango v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gio feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m pango-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m pango feature "v1_46"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m├──[0m pango v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m├──[0m pango-sys feature "v1_46" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m pango feature "v1_44"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m├──[0m pango v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m├──[0m pango-sys feature "v1_44" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m└──[0m pango feature "v1_42"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m├──[0m pango v0.22.9 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m pango-sys feature "v1_42" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m pango feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m pango feature "v1_46" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m graphene-rs feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m graphene-rs v0.22.8
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib v0.22.10 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m graphene-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m graphene-sys v0.22.9
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m gsk4 feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m gsk4 v0.11.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m cairo-rs feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m cairo-rs feature "use_glib" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m glib feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m gdk4 feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m pango feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m pango feature "v1_46" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m graphene-rs feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m gsk4-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m gsk4-sys v0.11.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m cairo-sys-rs feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m glib-sys feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gobject-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gobject-sys feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gdk4-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m pango-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m pango-sys feature "v1_46" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m graphene-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m├──[0m gtk4-macros feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m gtk4-macros v0.11.5 (proc-macro)
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m proc-macro2 feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m proc-macro2 feature "span-locations"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m proc-macro2 v1.0.107 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m quote feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m syn feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m├──[0m syn feature "full" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m└──[0m proc-macro-crate feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m proc-macro-crate v3.5.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m toml_edit feature "parse"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m toml_edit v0.25.19+spec-1.1.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m toml_datetime feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m toml_datetime v1.1.3+spec-1.1.0
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m toml_datetime feature "std" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m toml_parser feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m toml_parser v1.1.5+spec-1.1.0 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m toml_parser feature "std" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m winnow feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m winnow v1.0.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m winnow feature "ascii"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m winnow v1.0.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m winnow feature "parser"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m [0m   [2m[35m└──[0m winnow v1.0.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m winnow feature "binary"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m├──[0m winnow v1.0.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m[35m└──[0m winnow feature "parser" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m winnow feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m├──[0m winnow v1.0.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m winnow feature "alloc"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m [0m   [2m[35m└──[0m winnow v1.0.5
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m indexmap feature "default"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m├──[0m indexmap v2.14.2
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m├──[0m equivalent v1.0.3
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m│[0m   [2m└──[0m hashbrown v0.17.1
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m└──[0m indexmap feature "std"
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m[35m└──[0m indexmap v2.14.2 [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m indexmap feature "std" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m└──[0m gtk4-sys feature "default"
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m gtk4-sys v0.11.5
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m cairo-sys-rs feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m glib-sys feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gio-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gio-sys feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gobject-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gobject-sys feature "v2_66" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gdk-pixbuf-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gdk4-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m pango-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m pango-sys feature "v1_46" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m graphene-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m gsk4-sys feature "default" [33m[2m(*)[39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m│[0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default" [33m[2m(*)[39m[22m
+[2m└──[0m libadwaita feature "default"
+[2m [0m   [2m[35m└──[0m libadwaita v0.9.2
+[2m [0m   [2m[35m [0m   [2m├──[0m gtk4 feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m├──[0m glib feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m├──[0m gio feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m├──[0m gdk4 feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m├──[0m pango feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m└──[0m libadwaita-sys feature "default"
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m└──[0m libadwaita-sys v0.9.2
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m glib-sys feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m libc feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gio-sys feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gobject-sys feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m gdk4-sys feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m├──[0m pango-sys feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [2m└──[0m gtk4-sys feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [94m[1m[build-dependencies][39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m└──[0m system-deps feature "default"
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m└──[0m system-deps v7.0.8
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m cfg-expr feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m cfg-expr feature "targets" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m heck feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m pkg-config feature "default" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m toml feature "parse" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m├──[0m toml feature "std" [33m[2m(*)[39m[22m
+[2m [0m   [2m[35m [0m   [2m [0m   [2m[35m [0m   [1m[34m [0m   [2m[35m [0m   [2m└──[0m version-compare feature "default" [33m[2m(*)[39m[22m

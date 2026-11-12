@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "profile": "desktop-acceptance-v1",
+  "status": "environment_error",
+  "startup_theme": {
+    "status": "not_run"
+  },
+  "live_theme": {
+    "status": "not_run"
+  },
+  "clipboard": {
+    "status": "not_run"
+  },
+  "cleanup": {
+    "status": "passed",
+    "errors": []
+  },
+  "limitations": [
+    "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+    "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+    "This driver verifies Linux X11 only, not native Wayland",
+    "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+  ],
+  "system_theme_setup": {
+    "status": "passed",
+    "requested": "dark",
+    "observed": {
+      "source": "NSGlobalDomain AppleInterfaceStyle",
+      "value": "Dark",
+      "theme": "dark"
+    }
+  },
+  "application_process": {
+    "pid": 40053,
+    "created": 1794500390.625337
+  },
+  "application_window": {
+    "pid": 40053,
+    "id": 96
+  },
+  "startup_focus": {
+    "status": "environment_error",
+    "requested_pid": 40053,
+    "requested_window": 96,
+    "activation_requests": [],
+    "reason": "No macOS running application for PID 40053"
+  },
+  "reason": "Initial foreground activation failed: No macOS running application for PID 40053"
+}

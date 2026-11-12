@@ -1,0 +1,263 @@
+{
+  "name": "tauri",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Windows-2022Server-10.0.20348-SP0",
+    "architecture": "AMD64",
+    "processor": "AMD64 Family 25 Model 1 Stepping 1, AuthenticAMD",
+    "logical_cpus": 4,
+    "memory_bytes": 17174360064,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "runner_image": "win22",
+    "image_version": "20261101.353.1",
+    "commit": "fe53a64d6759b17817d4cc1c5c995b43a8031d5c",
+    "run_id": "43251948886",
+    "repetition": "2",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "comparison_requested": true,
+  "measurement_profile": "desktop-integrated",
+  "memory_metric": "Windows Working Set",
+  "primary_memory_metric": "Windows private working set",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 262730,
+        "pid": 4428,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 11.170999999999822,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 291.578125,
+          "p95": 291.65234375,
+          "observed_maximum": 291.65234375
+        },
+        "family_primary_mib": {
+          "median": 130.3984375,
+          "p95": 130.48828125,
+          "observed_maximum": 130.48828125
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 262730,
+        "pid": 4428,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 133.79700000000003,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.3125,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.23356278541372374,
+        "family_rss_mib": {
+          "median": 286.462890625,
+          "p95": 287.8125,
+          "observed_maximum": 287.953125
+        },
+        "family_primary_mib": {
+          "median": 126.701171875,
+          "p95": 127.43359375,
+          "observed_maximum": 127.5546875
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "desktop_integration": {
+    "schema_version": 1,
+    "profile": "desktop-acceptance-v1",
+    "status": "passed",
+    "startup_theme": {
+      "status": "passed",
+      "expected": "light",
+      "mean_client_luma": 242.552,
+      "screenshot": "desktop-startup.png",
+      "attempts": 25,
+      "same_window_and_pid": true,
+      "timeout_seconds": 30,
+      "elapsed_seconds": 6.0
+    },
+    "live_theme": {
+      "status": "passed",
+      "transitions": [
+        {
+          "status": "passed",
+          "expected": "dark",
+          "mean_client_luma": 46.616,
+          "screenshot": "desktop-live-1-dark.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.062,
+          "system_setting": {
+            "source": "HKCU AppsUseLightTheme",
+            "value": 0,
+            "theme": "dark"
+          },
+          "luminance_delta": 195.936
+        },
+        {
+          "status": "passed",
+          "expected": "light",
+          "mean_client_luma": 242.552,
+          "screenshot": "desktop-live-2-light.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.078,
+          "system_setting": {
+            "source": "HKCU AppsUseLightTheme",
+            "value": 1,
+            "theme": "light"
+          },
+          "luminance_delta": 195.936
+        }
+      ]
+    },
+    "clipboard": {
+      "status": "passed",
+      "expected_utf8": "desktop-4d47b160b7ae M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "sentinel_utf8": "not-the-widget-4d47b160b7ae",
+      "protocol": "external Unicode seed \u2192 Ctrl/Cmd+V into filter \u2192 replace OS clipboard \u2192 Ctrl/Cmd+C \u2192 external read",
+      "focus": {
+        "status": "passed",
+        "requested_pid": 4428,
+        "requested_window": 262730,
+        "source": "Windows foreground window",
+        "observed_window": 262730
+      },
+      "pasted_screenshot": "desktop-clipboard-pasted.png",
+      "sentinel_verified": true,
+      "copied_utf8": "desktop-4d47b160b7ae M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+      "probe_helpers_reaped_before_idle": true
+    },
+    "cleanup": {
+      "status": "passed",
+      "errors": []
+    },
+    "limitations": [
+      "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+      "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+      "This driver verifies Linux X11 only, not native Wayland",
+      "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+    ],
+    "system_theme_setup": {
+      "status": "passed",
+      "requested": "light",
+      "observed": {
+        "source": "HKCU AppsUseLightTheme",
+        "value": 1,
+        "theme": "light"
+      }
+    },
+    "application_process": {
+      "pid": 4428,
+      "created": 1794501124.4716015
+    },
+    "application_window": {
+      "pid": 4428,
+      "id": 262730
+    },
+    "startup_focus": {
+      "status": "passed",
+      "requested_pid": 4428,
+      "requested_window": 262730,
+      "source": "Windows foreground window",
+      "observed_window": 262730
+    }
+  },
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 4428,
+      "name": "veranda-tauri-comparison.exe",
+      "created": 1794501124.4716015
+    },
+    {
+      "pid": 4488,
+      "name": "msedgewebview2.exe",
+      "created": 1794501125.1515243
+    },
+    {
+      "pid": 4628,
+      "name": "msedgewebview2.exe",
+      "created": 1794501125.5657532
+    },
+    {
+      "pid": 3960,
+      "name": "msedgewebview2.exe",
+      "created": 1794501128.1974492
+    },
+    {
+      "pid": 6984,
+      "name": "msedgewebview2.exe",
+      "created": 1794501128.6457994
+    },
+    {
+      "pid": 2436,
+      "name": "msedgewebview2.exe",
+      "created": 1794501128.9205875
+    },
+    {
+      "pid": 3224,
+      "name": "msedgewebview2.exe",
+      "created": 1794501129.3234627
+    },
+    {
+      "pid": 6164,
+      "name": "msedgewebview2.exe",
+      "created": 1794501218.5184853
+    },
+    {
+      "pid": 4740,
+      "name": "msedgewebview2.exe",
+      "created": 1794501248.1396773
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}
