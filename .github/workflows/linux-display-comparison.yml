@@ -1,4 +1,4 @@
-name: Linux X11 and Wayland comparison
+name: Linux X11 and Wayland display diagnostic
 
 on:
   workflow_dispatch:
@@ -33,6 +33,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends build-essential pkg-config cmake libgtk-4-dev libwebkit2gtk-4.1-dev libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev qt6-base-dev qt6-wayland libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libgl1-mesa-dev libwayland-dev wayland-protocols xvfb openbox labwc grim xdotool x11-utils dbus-x11 at-spi2-core fonts-dejavu-core python3-psutil python3-pil python3-tk
           {
+            printf 'measurement_profile=display-diagnostic\ndesktop_acceptance=not_run\ngtk_fixture=bare-gtk-c-control\n'
             cat /etc/os-release
             uname -srmo
             rustc -Vv
@@ -54,13 +55,14 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
           key: ${{ runner.os }}-linux-display-v1-${{ hashFiles('examples/**/Cargo.lock') }}
-      - name: Resolve feature graphs and freeze exact build inputs
+      - name: Resolve current default feature graphs and freeze exact build inputs
         timeout-minutes: 10
         run: |
           for framework in egui slint tauri; do
             if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == "$framework" ]]; then
               cargo metadata --format-version 1 --manifest-path "examples/$framework/Cargo.toml" > "out/linux-display/build/$framework-metadata.json" 2> "out/linux-display/build/$framework-resolution.log"
               cp "examples/$framework/Cargo.lock" "out/linux-display/build/$framework-Cargo.lock"
+              cargo tree --locked -e features --manifest-path "examples/$framework/Cargo.toml" > "out/linux-display/build/$framework-features.txt"
             fi
           done
           /usr/bin/python3 - <<'PYTHON'
@@ -73,15 +75,19 @@ jobs:
           PYTHON
           git diff --binary -- examples > out/linux-display/build/source-resolution.patch
           git ls-files -z examples tools/linux_display_probe.py tools/test_linux_display_probe.py tools/test_native_probe.py tools/native_probe.py tools/gtk_memory_probe.py .github/workflows/linux-display-comparison.yml | xargs -0 sha256sum > out/linux-display/build/source-hashes.txt
-      - name: Build each selected binary once
+      - name: Build current defaults and the bare GTK C control once
         timeout-minutes: 45
         run: |
           for framework in egui slint tauri; do
             if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == "$framework" ]]; then
+              # Current desktop defaults stay enabled. This display diagnostic
+              # does not exercise/qualify external clipboard or live OS themes.
               cargo build --release --locked --manifest-path "examples/$framework/Cargo.toml" 2>&1 | tee "out/linux-display/build/$framework.log"
             fi
           done
           if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == gtk ]]; then
+            # Keep the historical renderer/display control as bare GTK C;
+            # this is deliberately not examples/gtk's libadwaita profile.
             cc -O2 -Wall -Wextra examples/gtk-c/main.c -o target/gtk-control $(pkg-config --cflags --libs gtk4) 2>&1 | tee out/linux-display/build/gtk.log
           fi
           if [[ "$FRAMEWORK" == all || "$FRAMEWORK" == qt ]]; then

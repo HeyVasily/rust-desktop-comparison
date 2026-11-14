@@ -11,6 +11,27 @@ import native_probe as probe
 
 
 class NativeProbeTests(unittest.TestCase):
+    def test_reduced_control_uses_same_foreground_driver_without_desktop_acceptance(self):
+        evidence = dict(status="passed", requested_pid=42, observed_pid="42")
+        driver = Mock(focus=Mock(return_value=evidence), last_focus=evidence)
+        result = dict(measurement_profile="diagnostic-reduced")
+        window = dict(pid=42, id=123)
+        with patch("desktop_probe.DesktopInput", return_value=driver):
+            probe.activate_reduced_control(window, result)
+        driver.focus.assert_called_once_with(window)
+        self.assertEqual(result["startup_focus"], evidence)
+        self.assertNotIn("desktop_integration", result)
+
+    def test_reduced_control_foreground_failure_is_preserved_and_propagates(self):
+        from desktop_probe import DesktopEnvironmentError
+        evidence = dict(status="environment_error", observed_pid="7")
+        driver = Mock(focus=Mock(side_effect=DesktopEnvironmentError("wrong foreground")), last_focus=evidence)
+        result = {}
+        with patch("desktop_probe.DesktopInput", return_value=driver):
+            with self.assertRaisesRegex(DesktopEnvironmentError, "wrong foreground"):
+                probe.activate_reduced_control(dict(pid=42, id=123), result)
+        self.assertEqual(result["startup_focus"], evidence)
+
     def test_linux_window_discovery_uses_explicit_case_display_for_every_command(self):
         case_env = dict(DISPLAY=':91')
         def output(command, **kwargs):
@@ -51,6 +72,22 @@ class NativeProbeTests(unittest.TestCase):
         with patch.object(probe, 'web_helpers', return_value=helpers):
             unassigned, _ = probe.scope_snapshot(family, {})
         self.assertEqual(unassigned, helpers)
+
+    def test_new_web_helper_is_recorded_not_unassigned_for_non_webview_candidate(self):
+        family = Mock(external_scope=None, observed={}, owns_web_helpers=False, foreign_web_helpers={})
+        helpers = {'20:2.0': dict(pid=20, create_time=2.0, name='WebKit')}
+        with patch.object(probe, 'web_helpers', return_value=helpers):
+            unassigned, _ = probe.scope_snapshot(family, {})
+        self.assertEqual(unassigned, {})
+        self.assertEqual(family.foreign_web_helpers, helpers)
+
+    def test_new_web_helper_stays_unassigned_for_webview_candidate(self):
+        family = Mock(external_scope=None, observed={}, owns_web_helpers=True, foreign_web_helpers={})
+        helpers = {'20:2.0': dict(pid=20, create_time=2.0, name='WebKit')}
+        with patch.object(probe, 'web_helpers', return_value=helpers):
+            unassigned, _ = probe.scope_snapshot(family, {})
+        self.assertEqual(unassigned, helpers)
+        self.assertEqual(family.foreign_web_helpers, {})
 
     def test_windows_csd_surface_is_not_accepted_as_requested_client(self):
         family = Mock()

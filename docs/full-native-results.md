@@ -1,5 +1,15 @@
 # Native memory, CPU and appearance comparison
 
+> **Historical UI-only baseline — not the current desktop-integrated configuration.**
+> These numbers and captures belong to source commit `f378db0` and run
+> `42538198685`. The egui build omitted the current desktop feature bundle; GTK
+> was bare GTK4 without libadwaita. No external clipboard workload preceded the
+> memory samples, and appearance was checked by relaunch, not live transitions.
+> Preserve these results as historical evidence; do not use them as the memory
+> cost or acceptance result of the current binaries. See the
+> [desktop-integrated baseline](desktop-integration.md) and
+> [current runner procedure](github-runners.md) for the new requirements.
+
 GitHub Actions run [42538198685](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/42538198685)
 (source commit `f378db0`), measured 2026-11-09. Five release examples — egui/eframe,
 **gtk4-rs**, Slint, Qt Widgets and Tauri — were measured on Windows Server 2022,
@@ -21,8 +31,8 @@ The [previous single-run matrix](native-matrix-2026-11-07.md) measured the GTK C
 
 ## Memory
 
-The primary metric counts shared pages proportionally or not at all, so it matches
-what each OS's own monitor shows:
+The primary metrics use different OS-specific accounting rules; they are not
+interchangeable cross-platform RAM totals:
 
 - **Linux PSS** — shared pages divided among the processes that map them.
 - **macOS physical footprint** (`phys_footprint`) — Activity Monitor's *Memory*.
@@ -109,10 +119,13 @@ webview.
 | Qt Widgets | 0.03 MiB | 0.05 MiB | 0.07 MiB |
 | Tauri | 6.6 MiB | 8.2 MiB | 6.3 MiB |
 
-## System dark mode
+<a id="system-dark-mode"></a>
 
-After the measurements, the first repetition on each OS switched the system to dark
-mode and relaunched every example without code changes:
+## Historical system-dark startup observation
+
+At the historical source revision, after the measurements the first repetition
+on each OS switched the system to dark mode and relaunched every example without
+code changes:
 
 - **Windows**: `AppsUseLightTheme=0` and `SystemUsesLightTheme=0` in the registry.
 - **macOS**: global `AppleInterfaceStyle=Dark`.
@@ -122,6 +135,11 @@ mode and relaunched every example without code changes:
 A capture counts as dark when its mean client luminance dropped below 110/255 and by
 more than 60 from the light capture; every capture was also inspected.
 
+The cells below describe what these old examples displayed on these runners.
+“Light” is a failed historical startup-following observation, **not an assertion
+that the framework cannot render dark themes**. This test did not exercise live
+changes in the same process or qualify the current egui/GTK integrations.
+
 | Framework | Windows | macOS | Linux |
 | --- | :---: | :---: | :---: |
 | egui / eframe | ✅ dark | ✅ dark | ❌ light |
@@ -130,8 +148,9 @@ more than 60 from the light capture; every capture was also inspected.
 | Qt Widgets | ❌ light | ✅ dark | ❌ light |
 | Tauri | ✅ dark | ✅ dark | ✅ dark |
 
-The egui example uses eframe's default `ThemePreference::System` with a light
-fallback; Tauri's CSS defines both palettes through `prefers-color-scheme`, because a
+The historical egui example used eframe's default `ThemePreference::System` with a light
+fallback and no Linux Settings portal bridge; GTK did not initialize libadwaita.
+Tauri's CSS defined both palettes through `prefers-color-scheme`, because a
 web UI must style dark mode itself. Qt on Windows used the Windows Server 2022 style
 with Qt 6.8.3; Linux Qt 6.4 predates `QStyleHints::colorScheme`.
 
@@ -173,6 +192,9 @@ window checks and process-scope rules are in the [runner guide](github-runners.m
 ## Limits
 
 - Idle, UI-only observations: no startup time, interaction, frame rate or GPU rendering.
+- No external clipboard exercise or same-process live-theme acceptance preceded
+  these samples. New desktop-profile measurements require their own source/build
+  provenance and cannot be merged with this historical series.
 - Runners, CPU architectures and toolkit builds differ between OSes; compare within an OS.
 - Summed process metrics depend on which helpers belong to the app; macOS WebKit
   helpers are attributed through the responsibility scope described in the runner guide.
