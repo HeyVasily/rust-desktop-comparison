@@ -1,0 +1,7 @@
+desktop_profile=desktop clipboard=os links=true system_fonts=true
+renderer llvmpipe (LLVM 20.1.2, 256 bits)
+system_theme source=portal scheme=dark value=1
+system_theme source=portal scheme=light value=2
+system_theme source=portal scheme=dark value=1
+filter "desktop-8aa16fbe01d4 München — Привет ✓"
+filter ""

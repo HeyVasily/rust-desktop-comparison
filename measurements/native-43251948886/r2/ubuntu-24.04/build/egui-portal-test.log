@@ -1,0 +1,8 @@
+[1m[92m    Finished[0m `release` profile [optimized] target(s) in 0.11s
+[1m[92m     Running[0m unittests src/main.rs (target/release/deps/veranda_egui_comparison-eb37f1d678cbe538)
+
+running 1 test
+test system_theme::tests::portal_round_trip_and_service_restart ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.06s
+

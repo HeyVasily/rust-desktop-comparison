@@ -1,0 +1,178 @@
+{
+  "name": "egui_reduced",
+  "status": "failed",
+  "build_mode": "release",
+  "environment": {
+    "os": "macOS-15.8.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "logical_cpus": 3,
+    "memory_bytes": 7516192768,
+    "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "runner_image": "macos15",
+    "image_version": "20261104.0514.1",
+    "commit": "589a6111d79156d787471069aa9e26d5b289d5d7",
+    "run_id": "43263287428",
+    "repetition": "1",
+    "renderer": "See each application.log; unknown unless reported by the app",
+    "cpu_model": "Apple M1 (Virtual)",
+    "system_webkit_version": "20621.3.11.11.3"
+  },
+  "comparison_requested": true,
+  "measurement_profile": "diagnostic-reduced",
+  "memory_metric": "macOS RSS",
+  "primary_memory_metric": "macOS physical footprint",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 24,
+        "pid": 21020,
+        "title": "Veranda egui comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          32.0,
+          29.0,
+          992.0,
+          697.0
+        ]
+      },
+      "capture": {
+        "width": 960,
+        "height": 668,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 14.208692250000013,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.021148415999999948,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.148841396716154,
+        "family_rss_mib": {
+          "median": 77.390625,
+          "p95": 77.4375,
+          "observed_maximum": 77.4375
+        },
+        "family_primary_mib": {
+          "median": 27.470703125,
+          "p95": 27.517578125,
+          "observed_maximum": 27.517578125
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 24,
+        "pid": 21020,
+        "title": "Veranda egui comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          32.0,
+          29.0,
+          992.0,
+          697.0
+        ]
+      },
+      "capture": {
+        "width": 960,
+        "height": 668,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 168.70021187500004,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.008189279999999854,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0048543388944097925,
+        "family_rss_mib": {
+          "median": 76.328125,
+          "p95": 77.390625,
+          "observed_maximum": 77.390625
+        },
+        "family_primary_mib": {
+          "median": 27.470703125,
+          "p95": 27.470703125,
+          "observed_maximum": 27.501953125
+        }
+      }
+    }
+  },
+  "cleanup_status": "unknown",
+  "startup_focus": {
+    "status": "passed",
+    "requested_pid": 21020,
+    "requested_window": 24,
+    "system_events_frontmost_pids": "21020",
+    "activation_clicks": [],
+    "source": "macOS NSWorkspace frontmost application",
+    "observed_pid": "21020",
+    "attempts": 1
+  },
+  "unassigned_new_web_helpers": [
+    {
+      "name": "com.apple.WebKit.WebContent",
+      "pid": 25670,
+      "create_time": 1794503642.799796
+    },
+    {
+      "name": "com.apple.WebKit.Networking",
+      "pid": 25671,
+      "create_time": 1794503643.106585
+    },
+    {
+      "name": "com.apple.WebKit",
+      "pid": 25902,
+      "create_time": 1794503648.292659
+    },
+    {
+      "name": "com.apple.WebKit",
+      "pid": 25903,
+      "create_time": 1794503648.318087
+    },
+    {
+      "name": "com.apple.WebKit.WebContent",
+      "pid": 25906,
+      "create_time": 1794503648.669531
+    }
+  ],
+  "observed_processes": [
+    {
+      "pid": 21020,
+      "name": "veranda-egui-reduced-comparison",
+      "created": 1794503435.723546
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": [],
+  "control_system_theme": {
+    "schema_version": 1,
+    "profile": "control-system-theme-v1",
+    "status": "passed",
+    "requested": "light",
+    "cleanup": {
+      "status": "passed"
+    },
+    "limitation": "OS preference prerequisite only; no application theme, live-change or clipboard acceptance is claimed",
+    "observed": {
+      "source": "NSGlobalDomain AppleInterfaceStyle",
+      "value": null,
+      "theme": "light"
+    },
+    "observed_after": {
+      "source": "NSGlobalDomain AppleInterfaceStyle",
+      "value": null,
+      "theme": "light"
+    }
+  },
+  "reason": "Process/desktop cleanup failed, unknown or missing; later candidates refused"
+}

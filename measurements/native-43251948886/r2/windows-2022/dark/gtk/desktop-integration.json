@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "profile": "desktop-acceptance-v1",
+  "status": "passed",
+  "startup_theme": {
+    "status": "passed",
+    "expected": "dark",
+    "mean_client_luma": 40.158,
+    "screenshot": "desktop-startup.png",
+    "attempts": 1,
+    "same_window_and_pid": true,
+    "timeout_seconds": 30,
+    "elapsed_seconds": 0.078
+  },
+  "live_theme": {
+    "status": "passed",
+    "transitions": [
+      {
+        "status": "passed",
+        "expected": "light",
+        "mean_client_luma": 244.17,
+        "screenshot": "desktop-live-1-light.png",
+        "attempts": 1,
+        "same_window_and_pid": true,
+        "timeout_seconds": 8,
+        "elapsed_seconds": 0.078,
+        "system_setting": {
+          "source": "HKCU AppsUseLightTheme",
+          "value": 1,
+          "theme": "light"
+        },
+        "luminance_delta": 204.012
+      },
+      {
+        "status": "passed",
+        "expected": "dark",
+        "mean_client_luma": 40.158,
+        "screenshot": "desktop-live-2-dark.png",
+        "attempts": 1,
+        "same_window_and_pid": true,
+        "timeout_seconds": 8,
+        "elapsed_seconds": 0.062,
+        "system_setting": {
+          "source": "HKCU AppsUseLightTheme",
+          "value": 0,
+          "theme": "dark"
+        },
+        "luminance_delta": 204.012
+      }
+    ]
+  },
+  "clipboard": {
+    "status": "passed",
+    "expected_utf8": "desktop-8ded5deafb54 München — Привет ✓",
+    "sentinel_utf8": "not-the-widget-8ded5deafb54",
+    "protocol": "external Unicode seed → Ctrl/Cmd+V into filter → replace OS clipboard → Ctrl/Cmd+C → external read",
+    "focus": {
+      "status": "passed",
+      "requested_pid": 7208,
+      "requested_window": 786504,
+      "source": "Windows foreground window",
+      "observed_window": 786504
+    },
+    "pasted_screenshot": "desktop-clipboard-pasted.png",
+    "sentinel_verified": true,
+    "copied_utf8": "desktop-8ded5deafb54 München — Привет ✓",
+    "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+    "probe_helpers_reaped_before_idle": true
+  },
+  "cleanup": {
+    "status": "passed",
+    "errors": []
+  },
+  "limitations": [
+    "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+    "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+    "This driver verifies Linux X11 only, not native Wayland",
+    "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+  ],
+  "system_theme_setup": {
+    "status": "passed",
+    "requested": "dark",
+    "observed": {
+      "source": "HKCU AppsUseLightTheme",
+      "value": 0,
+      "theme": "dark"
+    }
+  },
+  "application_process": {
+    "pid": 7208,
+    "created": 1794501336.652559
+  },
+  "application_window": {
+    "pid": 7208,
+    "id": 786504
+  },
+  "startup_focus": {
+    "status": "passed",
+    "requested_pid": 7208,
+    "requested_window": 786504,
+    "source": "Windows foreground window",
+    "observed_window": 786504
+  }
+}

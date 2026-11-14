@@ -1,0 +1,254 @@
+{
+  "name": "tauri",
+  "status": "diagnostic_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "macOS-15.8.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "processor": "arm",
+    "logical_cpus": 3,
+    "memory_bytes": 7516192768,
+    "python": "3.12.10 (v3.12.10:0cc81280367, Apr  8 2025, 08:46:59) [Clang 13.0.0 (clang-1300.0.29.30)]",
+    "runner_image": "macos15",
+    "image_version": "20261104.0514.1",
+    "commit": "589a6111d79156d787471069aa9e26d5b289d5d7",
+    "run_id": "43263287428",
+    "repetition": "3",
+    "renderer": "See each application.log; unknown unless reported by the app",
+    "cpu_model": "Apple M1 (Virtual)",
+    "system_webkit_version": "20621.3.11.11.3"
+  },
+  "comparison_requested": false,
+  "measurement_profile": "desktop-integrated",
+  "memory_metric": "macOS RSS",
+  "primary_memory_metric": "macOS physical footprint",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 68,
+        "pid": 28740,
+        "title": "Veranda Tauri comparison",
+        "bounds_kind": "window_including_titlebar",
+        "rectangle": [
+          32.0,
+          36.0,
+          992.0,
+          704.0
+        ]
+      },
+      "capture": {
+        "width": 960,
+        "height": 668,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 14.05334512499985,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.011713604000000197,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.08335100216931676,
+        "family_rss_mib": {
+          "median": 147.4375,
+          "p95": 147.640625,
+          "observed_maximum": 147.640625
+        },
+        "family_primary_mib": {
+          "median": 47.37994384765625,
+          "p95": 48.12994384765625,
+          "observed_maximum": 48.12994384765625
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "desktop_integration": {
+    "schema_version": 1,
+    "profile": "desktop-acceptance-v1",
+    "status": "passed",
+    "startup_theme": {
+      "status": "passed",
+      "expected": "dark",
+      "mean_client_luma": 47.804,
+      "screenshot": "desktop-startup.png",
+      "attempts": 3,
+      "same_window_and_pid": true,
+      "timeout_seconds": 30,
+      "elapsed_seconds": 1.566
+    },
+    "live_theme": {
+      "status": "passed",
+      "transitions": [
+        {
+          "status": "passed",
+          "expected": "light",
+          "mean_client_luma": 240.546,
+          "screenshot": "desktop-live-1-light.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.099,
+          "system_setting": {
+            "source": "NSGlobalDomain AppleInterfaceStyle",
+            "value": null,
+            "theme": "light"
+          },
+          "luminance_delta": 192.742
+        },
+        {
+          "status": "passed",
+          "expected": "dark",
+          "mean_client_luma": 47.804,
+          "screenshot": "desktop-live-2-dark.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.087,
+          "system_setting": {
+            "source": "NSGlobalDomain AppleInterfaceStyle",
+            "value": "Dark",
+            "theme": "dark"
+          },
+          "luminance_delta": 192.742
+        }
+      ]
+    },
+    "clipboard": {
+      "status": "passed",
+      "expected_utf8": "desktop-16b03e2b324b M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "sentinel_utf8": "not-the-widget-16b03e2b324b",
+      "protocol": "external Unicode seed \u2192 Ctrl/Cmd+V into filter \u2192 replace OS clipboard \u2192 Ctrl/Cmd+C \u2192 external read",
+      "focus": {
+        "status": "passed",
+        "requested_pid": 28740,
+        "requested_window": 68,
+        "system_events_frontmost_pids": "28740",
+        "activation_clicks": [],
+        "source": "macOS NSWorkspace frontmost application",
+        "observed_pid": "28740",
+        "attempts": 1
+      },
+      "pasted_screenshot": "desktop-clipboard-pasted.png",
+      "sentinel_verified": true,
+      "copied_utf8": "desktop-16b03e2b324b M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+      "probe_helpers_reaped_before_idle": true
+    },
+    "cleanup": {
+      "status": "passed",
+      "errors": []
+    },
+    "limitations": [
+      "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+      "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+      "This driver verifies Linux X11 only, not native Wayland",
+      "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+    ],
+    "system_theme_setup": {
+      "status": "passed",
+      "requested": "dark",
+      "observed": {
+        "source": "NSGlobalDomain AppleInterfaceStyle",
+        "value": "Dark",
+        "theme": "dark"
+      }
+    },
+    "application_process": {
+      "pid": 28740,
+      "created": 1794503761.699578
+    },
+    "application_window": {
+      "pid": 28740,
+      "id": 68
+    },
+    "startup_focus": {
+      "status": "passed",
+      "requested_pid": 28740,
+      "requested_window": 68,
+      "system_events_frontmost_pids": "28740",
+      "activation_clicks": [],
+      "source": "macOS NSWorkspace frontmost application",
+      "observed_pid": "28740",
+      "attempts": 1
+    }
+  },
+  "unassigned_new_web_helpers": [],
+  "macos_process_scope": {
+    "complete": true,
+    "method": "Ancestry plus macOS responsibility PID; coalitions recorded as evidence only",
+    "root_self_responsible": true,
+    "root": {
+      "pid": 28740,
+      "created": 1794503761.699578,
+      "responsible_pid": 28740,
+      "coalitions": {
+        "resource": 783,
+        "jetsam": 784
+      }
+    },
+    "attributed_helpers": [
+      {
+        "identity": "28742:1794503762.025876",
+        "pid": 28742,
+        "name": "com.apple.WebKit.WebContent",
+        "created": 1794503762.025876,
+        "responsible_pid": 28740,
+        "coalitions": {
+          "resource": 783,
+          "jetsam": 784
+        },
+        "attribution": "responsible_pid_equals_live_application_pid"
+      },
+      {
+        "identity": "28743:1794503762.110458",
+        "pid": 28743,
+        "name": "com.apple.WebKit.Networking",
+        "created": 1794503762.110458,
+        "responsible_pid": 28740,
+        "coalitions": {
+          "resource": 783,
+          "jetsam": 784
+        },
+        "attribution": "responsible_pid_equals_live_application_pid"
+      }
+    ],
+    "unrelated_helpers": [],
+    "pending_unattributed_helpers": [],
+    "vanished_unattributed_helpers": [],
+    "errors": [],
+    "coalition_metadata_errors": [],
+    "limitations": [
+      "Private macOS responsibility API; validated on each measured run",
+      "WebKit services are discovered by process name and attributed by responsible PID",
+      "Polling can miss short-lived services; shared system daemons are excluded",
+      "Summed per-process RSS can double-count shared pages"
+    ]
+  },
+  "observed_processes": [
+    {
+      "pid": 28740,
+      "name": "veranda-tauri-comparison",
+      "created": 1794503761.699578
+    },
+    {
+      "pid": 28742,
+      "name": "com.apple.WebKit.WebContent",
+      "created": 1794503762.025876
+    },
+    {
+      "pid": 28743,
+      "name": "com.apple.WebKit.Networking",
+      "created": 1794503762.110458
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

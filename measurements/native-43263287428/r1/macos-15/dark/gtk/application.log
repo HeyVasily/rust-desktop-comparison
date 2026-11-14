@@ -1,0 +1,10 @@
+desktop_profile gtk4+libadwaita system_theme=true clipboard=gtk
+theme source=libadwaita dark=true elapsed_ms=29
+project 1
+renderer source=gtk display_backend=GdkMacosDisplay gsk_type=GskGLRenderer
+theme source=libadwaita dark=false elapsed_ms=6885
+theme source=libadwaita dark=true elapsed_ms=15023
+
+(veranda-gtk-comparison:26922): Gdk-WARNING **: 17:15:00.972: gdk_frame_timings_presented() called on skipped frame.
+filter desktop-44bc0b3abc60 München — Привет ✓
+filter 
