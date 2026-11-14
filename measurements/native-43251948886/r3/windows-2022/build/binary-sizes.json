@@ -1,0 +1,33 @@
+{
+  "egui_reduced": {
+    "executable": "D:\\a\\rust-desktop-comparison\\rust-desktop-comparison\\target\\release\\veranda-egui-reduced-comparison.exe",
+    "executable_bytes": 13409280,
+    "sha256": "abd94752fe2a7f31dbaef8535a1e17447842f8eec71cf598979cf7c32f55e1b7"
+  },
+  "egui": {
+    "executable": "D:\\a\\rust-desktop-comparison\\rust-desktop-comparison\\target\\release\\veranda-egui-comparison.exe",
+    "executable_bytes": 14626304,
+    "sha256": "764095d539ef804d6d4ef68fe4c52887a7ddb8d0f325e65752d5b28d7b2060de"
+  },
+  "gtk": {
+    "executable": "target\\msys2\\release\\veranda-gtk-comparison.exe",
+    "executable_bytes": 2620416,
+    "sha256": "670f253670d0141ab7651620dfd4b145625c94e0a536a2305cd5dc1d7439b4df"
+  },
+  "slint": {
+    "executable": "D:\\a\\rust-desktop-comparison\\rust-desktop-comparison\\target\\release\\veranda-slint-comparison.exe",
+    "executable_bytes": 13468672,
+    "sha256": "d367f7f5610047abf02e8d3a883feceea0ae01ad634ec3ae7df2a83a7b647c4a"
+  },
+  "qt": {
+    "executable": "D:\\a\\rust-desktop-comparison\\rust-desktop-comparison\\target\\qt\\Release\\veranda-qt-comparison.exe",
+    "executable_bytes": 65024,
+    "sha256": "a6f474862fdc71cf7527351dfcb57fc25488704f7a738a66dc6a72ec85b38f12",
+    "deployed_directory_bytes": 51548536
+  },
+  "tauri": {
+    "executable": "D:\\a\\rust-desktop-comparison\\rust-desktop-comparison\\target\\release\\veranda-tauri-comparison.exe",
+    "executable_bytes": 8628224,
+    "sha256": "acc85a8faa950c603509d8d37f673907728fd53852da0b58ba48377bac8fa888"
+  }
+}

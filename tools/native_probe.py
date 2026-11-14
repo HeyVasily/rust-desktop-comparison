@@ -89,6 +89,8 @@ class Family:
         self.access_errors = set()
         self.external_scope = external_scope
         self.next_scope_refresh = 0.0
+        self.owns_web_helpers = True
+        self.foreign_web_helpers = {}
 
     def refresh(self):
         if self.external_scope and time.monotonic() >= self.next_scope_refresh:
@@ -261,6 +263,17 @@ def prepare_window(window):
     user32.SetForegroundWindow(window["id"])
 
 
+def activate_reduced_control(window, result):
+    """Match the desktop candidate's foreground state without claiming acceptance."""
+    from desktop_probe import DesktopInput
+    driver = DesktopInput()
+    try:
+        result["startup_focus"] = driver.focus(window)
+    finally:
+        if hasattr(driver, "last_focus"):
+            result["startup_focus"] = driver.last_focus
+
+
 def capture_once(window, path):
     if sys.platform == "darwin":
         import Quartz
@@ -386,6 +399,11 @@ def phase(family, title, output, name, settle, seconds, minimized_window=None, c
     return dict(status="passed", window=window, capture=evidence, summary=summary)
 
 
+# Only webview candidates can own WebKit/WebView2 helpers. A new helper during
+# another candidate belongs to the OS or another app: record it, do not fail.
+WEBVIEW_CANDIDATES = {"tauri"}
+
+
 def scope_snapshot(family, before_helpers):
     # Force a current responsibility query at phase boundaries. Global WebKit
     # services with a verified different owner are not application descendants.
@@ -396,6 +414,9 @@ def scope_snapshot(family, before_helpers):
                  if row["responsible_pid"] > 0 and row["responsible_pid"] != family.root.pid} if report else set()
     unassigned = {key: value for key, value in web_helpers().items()
                   if key not in before_helpers and key not in family.observed and key not in unrelated}
+    if not family.owns_web_helpers:
+        family.foreign_web_helpers.update(unassigned)
+        return {}, report
     return unassigned, report
 
 
@@ -417,12 +438,21 @@ def main():
     parser.add_argument("--executable", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--comparison", action="store_true")
+    parser.add_argument("--desktop-checks", action="store_true",
+                        help="DISPOSABLE DESKTOP ONLY: verify system-theme changes and external Unicode clipboard before idle sampling")
+    parser.add_argument("--startup-theme", choices=("light", "dark"), default="light",
+                        help="OS appearance to establish before launch when --desktop-checks is enabled")
     parser.add_argument("--client-size", type=int, nargs=2, metavar=("WIDTH", "HEIGHT"),
                         help="Require physical client dimensions on Windows/Linux; unavailable for Quartz titlebar captures")
     parser.add_argument("--unsupported-reason")
     args = parser.parse_args()
+    if args.name == "egui_reduced" and args.desktop_checks:
+        parser.error("egui_reduced is a diagnostic control, not a desktop-integrated candidate")
     args.output.mkdir(parents=True, exist_ok=True)
     result = dict(name=args.name, status="failed", build_mode="release", environment=environment(),
+                  comparison_requested=args.comparison,
+                  measurement_profile=("desktop-integrated" if args.desktop_checks else
+                                       "diagnostic-reduced" if args.name == "egui_reduced" else "legacy-ui-only"),
                   memory_metric="Windows Working Set" if sys.platform == "win32" else ("macOS RSS" if sys.platform == "darwin" else "Linux RSS"),
                   primary_memory_metric=primary_metric_name(),
                   limitations=["Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
@@ -432,6 +462,7 @@ def main():
                                "Screenshot content and occlusion require artifact inspection"], phases={})
     family = None
     app = None
+    desktop = None
     result["cleanup_status"] = "not_needed"
     try:
         if args.unsupported_reason:
@@ -441,6 +472,11 @@ def main():
             raise RuntimeError("Quartz exposes outer bounds; client-size validation is Windows/Linux only")
         if not args.executable.is_file():
             raise RuntimeError("Release executable missing; inspect build log")
+        if args.desktop_checks:
+            from desktop_probe import DesktopChecks
+            desktop = DesktopChecks(args.output, startup_theme=args.startup_theme)
+            result["desktop_integration"] = desktop.result
+            desktop.prepare()
         before_helpers = web_helpers()
         command = [str(args.executable.resolve())]
         if sys.platform == "darwin" and args.name == "tauri":
@@ -461,6 +497,7 @@ def main():
                 from macos_process_scope import MacOSProcessScope
                 external_scope = MacOSProcessScope(psutil.Process(app.pid))
             family = Family(app.pid, external_scope=external_scope)
+            family.owns_web_helpers = args.name in WEBVIEW_CANDIDATES
             deadline = time.monotonic() + 45
             while time.monotonic() < deadline:
                 if app.poll() is not None:
@@ -472,6 +509,18 @@ def main():
                 time.sleep(.2)
             else:
                 raise RuntimeError("No matching GUI window in 45s; GUI session/title visibility may be unavailable")
+            if desktop:
+                result["desktop_integration"]["application_process"] = dict(
+                    pid=family.root.pid, created=family.root.create_time())
+                def desktop_window():
+                    if app.poll() is not None or not family.root.is_running():
+                        raise RuntimeError("Application exited/restarted during desktop acceptance checks")
+                    return find_window({p.pid for p in family.refresh()}, args.title)
+                acceptance = desktop.run(desktop_window, capture)
+                if acceptance["status"] != "passed":
+                    raise RuntimeError(f"Desktop acceptance {acceptance['status']}; inspect desktop-integration.json and screenshots; idle comparison refused")
+            elif args.name == "egui_reduced":
+                activate_reduced_control(discovered, result)
             result["phases"]["diagnostic"] = phase(family, args.title, args.output, "diagnostic", 5, 10,
                                                    client_size=args.client_size)
             unassigned, report = scope_snapshot(family, before_helpers)
@@ -508,6 +557,7 @@ def main():
                 if result["status"] != "failed":
                     result.update(status="incomplete_process_scope", reason="Final process scope audit failed")
             result["observed_processes"] = list(family.observed.values())
+            result["foreign_new_web_helpers"] = list(family.foreign_web_helpers.values())
             try:
                 result["cleanup_survivors"] = family.cleanup()
             except Exception as error:
@@ -530,6 +580,8 @@ def main():
                 app.wait(timeout=3)
             except Exception:
                 result["cleanup_error"] = "Root cleanup failed after family tracker initialization failure"
+        if desktop and not desktop.close():
+            result.update(status="failed", reason="Desktop test environment cleanup failed")
         write_json(args.output / "outcome.json", result)
         print(json.dumps(dict(name=args.name, status=result["status"], reason=result.get("reason"))))
     return 0 if result["status"] in ("diagnostic_passed", "comparison_passed") else 1

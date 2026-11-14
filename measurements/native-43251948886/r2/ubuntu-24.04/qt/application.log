@@ -1,0 +1,40 @@
+
+(veranda-qt-comparison:25944): dbind-WARNING **: 16:24:11.202: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+project 1
+system_theme source=qt-platform scheme=dark palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#323232 palette_base=#323232 palette_text=#ffffff style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#faf9f8 palette_base=#faf9f8 palette_text=#000000 style=fusion platform=xcb qt_version=6.8.3 qpa_theme_request=auto
+filter desktop-99c6fa203734 München — Привет ✓
+filter 

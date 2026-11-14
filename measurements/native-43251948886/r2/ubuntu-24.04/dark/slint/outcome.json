@@ -1,0 +1,194 @@
+{
+  "name": "slint",
+  "status": "diagnostic_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "architecture": "x86_64",
+    "processor": "x86_64",
+    "logical_cpus": 4,
+    "memory_bytes": 16760344576,
+    "python": "3.12.16 (main, Oct 26 2026, 02:50:49) [GCC 13.3.0]",
+    "runner_image": "ubuntu24",
+    "image_version": "20261101.360.1",
+    "commit": "fe53a64d6759b17817d4cc1c5c995b43a8031d5c",
+    "run_id": "43251948886",
+    "repetition": "2",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "comparison_requested": false,
+  "measurement_profile": "desktop-integrated",
+  "memory_metric": "Linux RSS",
+  "primary_memory_metric": "Linux PSS",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": "8388611",
+        "pid": 26962,
+        "title": "Veranda Slint comparison",
+        "rectangle": [
+          321,
+          209,
+          1281,
+          849
+        ],
+        "bounds_kind": "X11 client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 10.188904481000009,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 23.70703125,
+          "p95": 23.70703125,
+          "observed_maximum": 23.70703125
+        },
+        "family_primary_mib": {
+          "median": 17.6748046875,
+          "p95": 17.6748046875,
+          "observed_maximum": 17.6748046875
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "desktop_integration": {
+    "schema_version": 1,
+    "profile": "desktop-acceptance-v1",
+    "status": "passed",
+    "startup_theme": {
+      "status": "passed",
+      "expected": "dark",
+      "mean_client_luma": 48.763,
+      "screenshot": "desktop-startup.png",
+      "attempts": 1,
+      "same_window_and_pid": true,
+      "timeout_seconds": 30,
+      "elapsed_seconds": 0.096
+    },
+    "live_theme": {
+      "status": "passed",
+      "transitions": [
+        {
+          "status": "passed",
+          "expected": "light",
+          "mean_client_luma": 241.548,
+          "screenshot": "desktop-live-1-light.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.093,
+          "system_setting": {
+            "source": "org.freedesktop.portal.Settings",
+            "value": 2,
+            "theme": "light",
+            "gtk_theme": "Adwaita",
+            "gtk_theme_source": "gtk-query-settings via the session XSettings provider",
+            "session_profile": "gnome-adwaita-dual-preference-v1"
+          },
+          "luminance_delta": 192.785
+        },
+        {
+          "status": "passed",
+          "expected": "dark",
+          "mean_client_luma": 84.148,
+          "screenshot": "desktop-live-2-dark.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.091,
+          "system_setting": {
+            "source": "org.freedesktop.portal.Settings",
+            "value": 1,
+            "theme": "dark",
+            "gtk_theme": "Adwaita-dark",
+            "gtk_theme_source": "gtk-query-settings via the session XSettings provider",
+            "session_profile": "gnome-adwaita-dual-preference-v1"
+          },
+          "luminance_delta": 157.4
+        }
+      ]
+    },
+    "clipboard": {
+      "status": "passed",
+      "expected_utf8": "desktop-efda53ced6ea M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "sentinel_utf8": "not-the-widget-efda53ced6ea",
+      "protocol": "external Unicode seed \u2192 Ctrl/Cmd+V into filter \u2192 replace OS clipboard \u2192 Ctrl/Cmd+C \u2192 external read",
+      "focus": {
+        "status": "passed",
+        "requested_pid": 26962,
+        "requested_window": "8388611",
+        "source": "X11 active window",
+        "observed_window": "8388611"
+      },
+      "pasted_screenshot": "desktop-clipboard-pasted.png",
+      "sentinel_verified": true,
+      "copied_utf8": "desktop-efda53ced6ea M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+      "probe_helpers_reaped_before_idle": true
+    },
+    "cleanup": {
+      "status": "passed",
+      "errors": []
+    },
+    "limitations": [
+      "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+      "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+      "This driver verifies Linux X11 only, not native Wayland",
+      "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+    ],
+    "system_theme_setup": {
+      "status": "passed",
+      "requested": "dark",
+      "observed": {
+        "source": "org.freedesktop.portal.Settings",
+        "value": 1,
+        "theme": "dark",
+        "gtk_theme": "Adwaita-dark",
+        "gtk_theme_source": "gtk-query-settings via the session XSettings provider",
+        "session_profile": "gnome-adwaita-dual-preference-v1"
+      }
+    },
+    "application_process": {
+      "pid": 26962,
+      "created": 1794501354.75
+    },
+    "application_window": {
+      "pid": 26962,
+      "id": "8388611"
+    },
+    "startup_focus": {
+      "status": "passed",
+      "requested_pid": 26962,
+      "requested_window": "8388611",
+      "source": "X11 active window",
+      "observed_window": "8388611"
+    }
+  },
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 26962,
+      "name": "veranda-slint-comparison",
+      "created": 1794501354.75
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

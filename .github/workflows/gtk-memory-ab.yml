@@ -1,4 +1,4 @@
-name: GTK Linux memory A/B
+name: Bare GTK Linux renderer diagnostic
 
 on:
   workflow_dispatch:
@@ -14,6 +14,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install diagnostic desktop
         run: |
+          # Intentionally the bare GTK C renderer control, not the default
+          # gtk4-rs + libadwaita desktop profile. Do not silently change this A/B.
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends build-essential pkg-config libgtk-4-dev xvfb openbox python3-psutil python3-pil python3-tk dbus-x11 at-spi2-core fonts-dejavu-core xauth
       - name: Preflight and build one binary
@@ -23,6 +25,7 @@ jobs:
           cc -O2 -Wall -Wextra examples/gtk-c/main.c -o out/gtk-memory-ab/gtk-control $(pkg-config --cflags --libs gtk4) 2>&1 | tee out/gtk-memory-ab/build/compile.log
           sha256sum examples/gtk-c/main.c tools/gtk_memory_probe.py out/gtk-memory-ab/gtk-control > out/gtk-memory-ab/build/hashes.txt
           {
+            printf 'measurement_profile=bare-gtk-renderer-diagnostic\ndesktop_acceptance=not_run\n'
             cat /etc/os-release
             uname -srmo
             pkg-config --modversion gtk4

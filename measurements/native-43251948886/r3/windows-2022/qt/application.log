@@ -1,0 +1,13 @@
+system_theme source=qt-platform scheme=light palette_window=#f0f0f0 palette_base=#ffffff palette_text=#000000 style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+project 1
+system_theme source=qt-platform scheme=dark palette_window=#f0f0f0 palette_base=#ffffff palette_text=#000000 style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#1e1e1e palette_base=#2d2d2d palette_text=#ffffff style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#1e1e1e palette_base=#2d2d2d palette_text=#ffffff style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#1e1e1e palette_base=#2d2d2d palette_text=#ffffff style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=dark palette_window=#1e1e1e palette_base=#2d2d2d palette_text=#ffffff style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#1e1e1e palette_base=#2d2d2d palette_text=#ffffff style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#f0f0f0 palette_base=#ffffff palette_text=#000000 style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#f0f0f0 palette_base=#ffffff palette_text=#000000 style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+system_theme source=qt-platform scheme=light palette_window=#f0f0f0 palette_base=#ffffff palette_text=#000000 style=fusion platform=windows qt_version=6.8.3 qpa_theme_request=auto
+filter desktop-743c0e288f92 München — Привет ✓
+filter 

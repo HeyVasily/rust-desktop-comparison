@@ -1,30 +1,119 @@
 # Rust desktop GUI comparison
 
-**[Open the interactive comparison →](https://heyvasily.github.io/rust-desktop-comparison/)**
+**[Open the current desktop results →](https://heyvasily.github.io/rust-desktop-comparison/#desktop-results)**
+&nbsp;·&nbsp; [Results and limitations](docs/desktop-results.md)
 &nbsp;·&nbsp; [Native features](docs/features.md)
-&nbsp;·&nbsp; [Full measurements](docs/full-native-results.md)
-&nbsp;·&nbsp; [Raw data](measurements/native-matrix-2026-11-09/summary.csv)
+&nbsp;·&nbsp; [Desktop profile](docs/desktop-integration.md)
+&nbsp;·&nbsp; [Historical measurements](docs/full-native-results.md)
+&nbsp;·&nbsp; [Historical raw data](measurements/native-matrix-2026-11-09/summary.csv)
 &nbsp;·&nbsp; [Methodology](docs/methodology.md)
 
 The same small desktop interface built five times — **egui/eframe, GTK4 (gtk4-rs),
-Slint, Qt Widgets and Tauri** — then measured five times on fresh GitHub-hosted
-Windows, macOS and Linux runners, with real screenshots in light and dark mode,
-the layout code and a sourced matrix of native OS features.
+Slint, Qt Widgets and Tauri** — with a sourced comparison of platform integration
+and reproducible probes for Windows, macOS and Linux.
+The current default builds use a **desktop-integrated baseline**: exercise real
+OS theme and clipboard integration before measuring idle memory. Current results
+and historical UI-only measurements are separate datasets, not interchangeable
+measurements of the same binaries.
+
+**2026-11-12 evidence:** Linux and Windows have three accepted repetitions per
+candidate. macOS remains partial: four candidates have one accepted visible-idle
+observation, while GTK failed live-theme acceptance. Failed and unrun cases stay
+visible. These hosted software-rendering results do not establish hardware-iGPU
+performance or the footprint of the real Veranda RPC client; see the
+[product-specific follow-up](docs/desktop-results.md#applicability-to-veranda).
 
 Every example shows 10 synthetic yards and 100 projects: navigation, selection,
 scrolling, an editable filter and a Refresh button that advances an in-memory
-snapshot. There is no backend or periodic work, so the numbers show what a toolkit
-costs before your application does anything.
+snapshot. There is no backend or periodic work. Measurements describe the stated
+fixture, enabled features and rendering environment; they are not universal
+toolkit memory floors or the total cost of a production application.
 
 | Framework | Language here | UI model | Example |
 | --- | --- | --- | --- |
 | egui/eframe 0.37.0 | Rust | Immediate mode, own drawing (OpenGL/wgpu) | [main.rs](examples/egui/src/main.rs) |
-| GTK4 via gtk4-rs 0.11.5 | Rust | Retained widget tree, GTK theme | [main.rs](examples/gtk/src/main.rs) |
+| GTK4 via gtk4-rs 0.11.5 + libadwaita | Rust | Retained widget tree, system-following libadwaita style | [main.rs](examples/gtk/src/main.rs) |
 | Slint 1.18.1 | Rust + `.slint` markup | Declarative, own renderer (software here) | [main.slint](examples/slint/ui/main.slint) |
 | Qt Widgets | C++17 | Retained widget tree, platform styles | [main.cpp](examples/qt/main.cpp) |
 | Tauri 2.12.5 | Rust + HTML/CSS/JS | System webview | [index.html](examples/tauri/frontend/index.html) |
 
-## Idle memory on three operating systems
+## Start with the current results
+
+The **[desktop results report](docs/desktop-results.md)** and
+**[interactive current tables](https://heyvasily.github.io/rust-desktop-comparison/#desktop-results)**
+are the entry points for the updated builds. They keep acceptance outcomes,
+memory, paired egui profile costs and evidence links together. An unsuccessful or
+unrun check is not a zero-memory result or a passed feature test.
+
+Read each row's **OS, run, source commit, runner image, build identity and `n`**.
+Only compatible repetitions are combined; an image rollout or changed build can
+split one OS into smaller groups. Dark-start acceptance is separate from the
+light-state memory sample. Compare toolkits within the same environment, not
+memory-accounting numbers across operating systems.
+
+The five-run 2026-11-09 UI-only series remains below under **Historical
+measurements**. It did not exercise external clipboard or live theme changes and
+must not be read as the footprint of the current desktop defaults.
+
+## What the desktop baseline includes
+
+**Both egui and GTK support dark appearance.** Drawing a dark palette, selecting
+it from the OS at startup, and updating it while the same process remains open
+are different capabilities. The old red crosses below record failures of the
+old example's startup integration, not an inability to render dark controls.
+
+The normal profile includes:
+
+- **egui:** eframe's real OS `clipboard`, browser `links` and `system_fonts`
+  features, in addition to the existing fonts, AccessKit and renderers; an
+  event-driven Linux Settings portal bridge; native winit theme input on
+  Windows/macOS. The old explicit feature list omitted those three default
+  eframe features. Without `clipboard`, internal copy/paste can work while
+  external clipboard interoperability is absent.
+- **GTK4 + libadwaita:** the normal `desktop` feature initializes libadwaita's
+  system-following style manager. Include the native libadwaita runtime and its
+  memory; the old bare-GTK numbers are not measurements of this profile.
+- **Qt:** modern Qt and the matching desktop platform-theme integration. The
+  Linux GNOME-like X11/Adwaita profile uses Qt 6.8.3 with its matching GTK3 theme
+  plugin, Settings portal and real XSettings daemon. Both modern color preference
+  and shared GTK3 theme are set and independently checked. GTK3 and QtDBus loaded
+  by that plugin belong in the measured app process. Do not substitute the old
+  Qt 6.4/generic-theme result or mix a
+  distribution plugin with a different Qt kit.
+  Windows uses the native platform plugin with Qt's built-in Fusion style,
+  which retains the OS light/dark palette instead of Vista-style light colors.
+  macOS retains its native Qt style.
+- **Every candidate:** actual text widgets and external clipboard acceptance,
+  system-theme startup and same-process light → dark → light transitions,
+  followed by restored fixture state and idle sampling.
+
+The [desktop report](docs/desktop-integration.md) describes the exact profile,
+acceptance evidence and remaining gaps. A primary desktop result requires all
+mandatory checks to pass **before** memory sampling. Missing portal support,
+failed clipboard checks, incomplete process scope and unrun tests remain visible;
+they are not green ticks or zero-memory observations.
+
+The `egui_reduced` build is a **separate diagnostic control**, built from the same
+source with `--no-default-features`. It is not eligible for the desktop ranking.
+Paired runs keep the host, toolchain, renderer, final palette and sampling fixed,
+but only the integrated build exercises external clipboard and theme changes.
+Their delta is the **whole profile's footprint after use**, not a clipboard-only
+allocation. Dependency count, executable size and comparisons with an old runner
+cannot establish that difference.
+There is no assumption that desktop integration adds either a large or a small
+amount of resident memory. Optional tray, global shortcuts and single-instance
+checks remain a [separate profile](docs/shell-integration.md).
+
+## Historical measurements
+
+<details>
+<summary><strong>2026-11-09 UI-only series: memory, executable sizes and old startup checks</strong></summary>
+
+### Historical UI-only idle memory on three operating systems
+
+These are the unchanged 2026-11-09 results. External clipboard and live theme
+changes were not exercised before these samples; they do **not** quantify the
+updated desktop profile above.
 
 Memory of the whole application process family (including webview helpers) with a
 960×640 window, as each OS's own monitor reports it: **Linux PSS**, **Windows
@@ -40,23 +129,26 @@ Monitor). Median of five runs on separate VMs, with the range in brackets.
 | Qt Widgets | 23.0 [22.9–23.0] | 15.0 [15.0–15.2] | 24.2 [24.1–24.5] |
 | Tauri | 338.2 [337.1–340.1] | 116.2 [115.9–116.4] | 40.8 [40.4–41.1] |
 
-Idle CPU stayed below 0.11 % of one core everywhere, too small to rank. The
+Idle CPU stayed below 0.11 % of one core in this series, too small to rank. The
 [full report](docs/full-native-results.md) adds summed RSS / Working Set, CPU,
 outliers, executable sizes and versions.
 
 > [!NOTE]
-> **How to read these numbers.** PSS and footprint count shared libraries
-> proportionally, so multi-process apps are no longer double-counted (Tauri on
-> Linux: 501 MiB summed RSS → 338 MiB PSS). Linux ran under Xvfb with Mesa llvmpipe;
+> **How to read these numbers.** The primary metrics are not interchangeable.
+> Linux PSS apportions shared pages; Windows private working set excludes shared
+> pages; macOS physical footprint is macOS memory-accounting data, not Linux PSS.
+> Summed RSS may double-count shared pages (Tauri on Linux: 501 MiB summed RSS →
+> 338 MiB PSS). Linux ran under X11/Xvfb with Mesa llvmpipe, not native Wayland
+> or a hardware GPU;
 > GL-based toolkits (GTK 4.14, egui) carry its private allocations there, and the GTK
 > renderer was not pinned. These are idle UI-only observations, not startup,
 > interaction or frame-rate measurements. Earlier series:
 > [2026-11-07 single run with GTK in C](docs/native-matrix-2026-11-07.md) and the
 > [backend-connected Wayland measurements](docs/historical-comparison.md#why-the-current-linux-numbers-differ).
 
-## Executable size and dark mode
+### Historical executable size and system-theme startup check
 
-| Framework | Executable, Linux / Windows / macOS | Follows system dark mode, Win / mac / Linux |
+| Framework | Historical executable, Linux / Windows / macOS | Historical startup check, Win / mac / Linux |
 | --- | --- | --- |
 | egui / eframe | 12.0 / 12.8 / 5.4 MiB | ✅ / ✅ / ❌ |
 | GTK4 (gtk4-rs) | 0.4 / 2.1 / 0.4 MiB + GTK runtime | ❌ / ❌ / ❌ |
@@ -64,12 +156,18 @@ outliers, executable sizes and versions.
 | Qt Widgets | 0.03 / 0.05 / 0.07 MiB + Qt runtime (49 MiB deployed on Windows) | ❌ / ✅ / ❌ |
 | Tauri | 6.6 / 8.2 / 6.3 MiB + system webview | ✅ / ✅ / ✅ (app CSS) |
 
-Dark mode was tested by switching the OS itself to dark and relaunching each example;
-see the [captures](docs/full-native-results.md#system-dark-mode).
+The old check switched the OS itself to dark and relaunched each example;
+see the [captures](docs/full-native-results.md#system-dark-mode). Here ✅ means
+that stated test passed and ❌ means it failed. Neither symbol describes whether
+the toolkit can render dark colors or whether the updated desktop profile passes
+startup/live checks. The executable sizes likewise belong to the old builds.
+
+</details>
 
 ## Linux: X11 versus Wayland, and GTK's renderer
 
-Two controlled Linux series explain most of the Linux differences above.
+Two historical controlled Linux series help explain the differences above. They
+do not replace desktop acceptance or measure the current integrated builds.
 
 **[GTK renderer experiment](docs/gtk-memory-investigation.md).** One GTK 4.14
 binary (the [C control](examples/gtk-c/main.c)) on one Ubuntu runner: the default
@@ -97,7 +195,9 @@ These are software-rendered idle runs; compositor memory is excluded.
 
 ## Native features and OS integration
 
-How much of the operating system each toolkit reaches without extra work.
+Framework APIs, required application integration and explicitly scoped test outcomes.
+An available API is not proof of passed acceptance, and a failed example test is
+not proof of absent toolkit support.
 Every cell links to its source in the [detailed matrix](docs/features.md); the
 [per-session platform notes](docs/platform-support.md) split Linux into X11 and Wayland.
 
@@ -106,10 +206,12 @@ Every cell links to its source in the [detailed matrix](docs/features.md); the
 | Capability | egui / eframe | GTK4 | Slint | Qt Widgets | Tauri |
 | --- | :---: | :---: | :---: | :---: | :---: |
 | Native-looking controls | ❌ | 🟡 Win<br>🟡 mac<br>✅ Linux | 🟡 | ✅ Win<br>✅ mac<br>🟡 Linux | 🟡 |
-| Follows system light/dark | ✅ Win<br>✅ mac<br>❌ Linux | ❌ | ✅ | ❌ Win<br>✅ mac<br>❌ Linux | ✅ |
+| Light and dark appearance | ✅ | ✅ | ✅ | ✅ | 🛠️ |
+| Historical system-theme startup test | ✔️ Win<br>✔️ mac<br>✖️ Linux | ✖️ | ✔️ | ✖️ Win<br>✔️ mac<br>✖️ Linux | ✔️ |
 | Native Wayland and X11 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Translucent window materials | 📦 Win<br>📦 mac<br>❌ Linux | ❌ | 📦 Win<br>📦 mac<br>❌ Linux | 🛠️ | ✅ Win<br>✅ mac<br>❌ Linux |
-| Screen readers | ✅ | 🟡 Win<br>🟡 mac<br>✅ Linux | ✅ | ✅ | ✅ |
+| System text clipboard | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Accessibility bridge | ✅ | 🟡 Win<br>🟡 mac<br>✅ Linux | ✅ | ✅ | ✅ |
 | Input methods (CJK, dead keys) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Right-to-left and bidi text | ❌ | ✅ | 🟡 | ✅ | ✅ |
 | Native menu bar | 📦 | 🟡 Win<br>✅ mac<br>🟡 Linux | ✅ Win<br>✅ mac<br>🟡 Linux | ✅ | ✅ |
@@ -131,28 +233,30 @@ Every cell links to its source in the [detailed matrix](docs/features.md); the
 | URL schemes and file associations | 🛠️ | 🟡 Win<br>❔ mac<br>✅ Linux | 🛠️ | 🟡 Win<br>✅ mac<br>🟡 Linux | 🧩 |
 | Installers and updates | 📦 | 🟡 Win<br>🟡 mac<br>✅ Linux | 📦 | 🟡 | ✅ |
 
-✅ Built in · 🟡 Partial · 🧩 Official plugin · 📦 Third-party crate · 🛠️ Own platform code · ❌ Not available · ❔ Not verified. Checked 2026-11-09.
+✅ Built in · 🟡 Partial · 🧩 Official plugin · 📦 Third-party crate · 🛠️ Application/platform code · ❌ Not available · ❔ Not verified · ✔️ Passed stated test · ✖️ Failed stated test. Checked 2026-11-09.
 <!-- features:end -->
 
 ### Tray, badge, shortcut and single instance, tested
 
-A [separate runner check](docs/shell-integration.md) built every example with an
+A [separate historical runner check](docs/shell-integration.md) built every example with an
 optional `shell-checks` feature and looked for the effect from outside the app.
 Tray icons appeared on all three systems for all five toolkits (GTK 4 through the
 tray-icon crate); tray clicks reached every app except Tauri on Linux. Qt and Tauri
 set Dock/taskbar badges; egui, GTK and Slint have no badge API. Global shortcuts
 fired everywhere except inside GTK on macOS, and GTK's built-in single-instance
 handling worked on Linux and Windows but not on macOS. Qt 6.4's attention request
-was not visible on X11.
+was not visible on X11. These checks were not enabled in the historical memory
+matrix; their success or failure is not a footprint measurement.
 
 ![Status items in the macOS menu bar, and the Windows taskbar with Qt's overlay badge, Tauri's overlay icon and the tray tooltip](screenshots/shell-checks-2026-11-09/menu-and-task-bars.png)
 
-## What the interfaces look like
+## What the historical interfaces look like
 
-Real **960×640 Linux client captures** from the measured runs: all projects,
+Real **960×640 Linux client captures** from the historical UI-only runs: all projects,
 project-001 selected, empty filter. The [interactive page](https://heyvasily.github.io/rust-desktop-comparison/#screenshots)
 and the [full gallery](docs/full-native-results.md#interfaces-captured-during-measurement)
-show Windows, macOS and dark mode.
+show Windows, macOS and the old relaunch-only dark-mode test. These are not
+screenshots of the current desktop-integrated builds.
 
 <table>
   <tr>
@@ -322,12 +426,17 @@ Read the [full methodology and verification](docs/methodology.md) or inspect the
 
 ## Build and run
 
-The commands below target Linux; the original `tools/measure.py` probe targets X11.
-The separate [native runner guide](docs/github-runners.md) covers Windows/macOS and
-the new examples. The original Debian measurements built the
+The commands below build the **current desktop defaults** on Linux. The original
+`tools/measure.py` targets the historical single-process X11 experiment; use
+`tools/native_probe.py --desktop-checks` for the current application-family and
+desktop-acceptance procedure. The [native runner guide](docs/github-runners.md)
+covers Windows/macOS. The original Debian measurements built the
 [C control](examples/gtk-c/main.c) with GTK4 4.18.6. You need Rust/Cargo, Python 3, a C compiler,
-`pkg-config`, GTK4 development libraries, and the X11/OpenGL development libraries.
-The [reproduction guide](docs/methodology.md#reproduce) lists the Debian packages.
+`pkg-config`, GTK4 **and libadwaita** development libraries, and the X11/OpenGL
+development libraries. On Linux, system appearance also needs the graphical
+session's Settings portal/backend. The old reproduction package list does not
+include every dependency of the new desktop profile; see the
+[current method](docs/methodology.md#current-desktop-profile-reproduction).
 
 From this repository's root:
 
@@ -348,9 +457,23 @@ Launch one example at a time in a graphical Linux session:
 ```
 
 The binary name and GTK application ID retain the original experiment's names.
-The examples require no Subyard installation, cache helper, account or service.
-To reproduce the recorded software-rendering environment and sampling procedure,
-follow [the measurement guide](docs/methodology.md#reproduce).
+The examples require no Subyard installation, cache helper or account. Desktop
+services such as the session bus and Settings portal are integration prerequisites,
+not an application backend.
+
+To build the reduced egui control without overwriting the desktop executable:
+
+```sh
+CARGO_TARGET_DIR="$PWD/target/egui-reduced" \
+  cargo build --release --locked --no-default-features \
+    --manifest-path examples/egui/Cargo.toml
+```
+
+This is the `egui_reduced` diagnostic candidate, not the normal application.
+For desktop acceptance and controlled sampling, follow the
+[current method](docs/methodology.md#current-desktop-profile-reproduction).
+For the original 2026-11-07 software-rendering experiment, use the recorded source
+revision and [historical commands](docs/methodology.md#reproduce).
 
 For the additional applications, follow their standalone instructions:
 [Slint](examples/slint/README.md), [Qt Widgets](examples/qt/README.md), and
@@ -360,7 +483,9 @@ checks are described in [the native runner guide](docs/github-runners.md).
 ## Adding another framework
 
 Use the same data and controls, include a real screenshot and short layout excerpt,
-and record the framework version, renderer, build mode and process scope. Compare
+and record the framework version, renderer, build mode and process scope. Enable
+normal desktop text/theme integration and pass the startup/live-theme and external
+clipboard gate before contributing primary desktop memory results. Compare
 candidates in the same environment. Publish raw samples and distinguish a UI-only
 experiment from an application with a real backend. Keep historical results separate
 when the workload or environment differs.

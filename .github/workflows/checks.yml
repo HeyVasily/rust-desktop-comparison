@@ -17,3 +17,34 @@ jobs:
         run: python3 tools/render_features.py --check
       - name: Page script parses
         run: node --check site/app.js
+      - name: Comparison labels and missing-evidence regressions
+        run: node --test site/app.test.cjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install probe test dependencies
+        run: python -m pip install psutil==7.0.0 Pillow==11.2.1
+      - name: Probe and desktop-integration regressions
+        run: python -m unittest discover -s tools -p 'test_*.py'
+      - name: Published desktop tables match imported evidence
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          output = Path('data/desktop-results.json')
+          if output.is_file():
+              series = json.loads(output.read_text(encoding='utf-8'))['series']
+              subprocess.run([sys.executable, 'tools/build_desktop_site_data.py', series, '--check'], check=True)
+          else:
+              print('No current desktop series published; historical data is unchanged.')
+          PY
+      - name: Render the site with the runner's sandboxed Google Chrome
+        timeout-minutes: 3
+        run: python tools/site_visual_smoke.py
+      - name: Preserve browser captures and readiness evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-visual-${{ github.run_id }}
+          path: artifacts/site-visual/
+          if-no-files-found: warn

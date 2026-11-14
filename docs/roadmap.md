@@ -55,3 +55,25 @@ result is flaky.
 - Verify GTK desktop notifications on Windows/macOS (currently "not verified").
 - Distribution size per OS including runtimes (Qt deploy directory, GTK MSYS2
   runtime closure, Homebrew dylibs), not only the executable.
+
+## Hardware-GPU product slice
+
+- A read-only egui fleet view on Veranda's existing Rust client/store and
+  unchanged RPC contract, beside the existing GTK view, with the real
+  20-yard / 200-project inventory. No polling or new authority.
+- Run on a user desktop with a verified hardware GPU (including integrated
+  graphics); the application must report the adapter it actually used.
+- Accept input, clipboard, accessibility and HiDPI first, then compare visible and
+  minimized idle, startup, event bursts, sleep/reconnect and 100 connection cycles.
+- The existing GTK harness (`dev/e2e/veranda-wayland-resources.py` in Subyard)
+  covers the GTK side; its readiness and input steps need an egui adapter.
+
+## Complete the macOS desktop baseline
+
+The 2026-11-12 macOS data is n=1 and excludes GTK. Needed: fix or explain GTK's
+stale frame after a live dark → light change, then rerun three repetitions. The
+probe no longer counts foreign WebKit helpers against non-webview candidates
+(the cause of the stopped r1/r3) and no longer runs dark-start checks after a
+stopped light-start sequence; that rerun is their first runner validation.
+`summary.csv` still counts only imported repetitions; requested-but-unrun
+repetitions are visible only through the acceptance coverage.

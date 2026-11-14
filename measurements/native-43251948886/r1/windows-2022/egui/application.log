@@ -1,0 +1,4 @@
+desktop_profile=desktop clipboard=os links=true system_fonts=true
+renderer wgpu backend=Dx12 adapter="Microsoft Basic Render Driver" device_type=Cpu driver="10.0.20348.5756" driver_info="" shader_compiler=Fxc
+filter "desktop-4b2460701768 München — Привет ✓"
+filter ""

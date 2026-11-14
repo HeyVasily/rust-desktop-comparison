@@ -1,6 +1,6 @@
 {
   "checked": "2026-11-09",
-  "about": "Native-integration capabilities of the framework versions used in this repository. 'docs' cells cite upstream documentation or release notes; 'repo' cells are backed by this repository's lockfiles, examples, captures or runner checks. Light/dark following was tested on GitHub runners by switching the OS to dark mode and relaunching each example. Other capabilities describe the current upstream release line; the Linux runs used Ubuntu 24.04's GTK 4.14 and Qt 6.4. The Dock, taskbar, tray, shortcut and launch rows come from documentation and crate sources; the tray, badge, attention, shortcut and single-instance rows were also checked on runners (docs/shell-integration.md).",
+  "about": "Framework capabilities, enabled example integrations and observed test outcomes are different kinds of evidence. 'docs' cells cite upstream documentation or release notes; 'repo' cells cite this repository's source, feature configuration, captures or checks. A Cargo.lock entry alone does not prove a feature was enabled. The historical UI-only series tested system-theme startup by relaunching an example after changing the OS setting; it did not test live theme changes or external clipboard interoperability. Its Linux jobs used GTK 4.14 and Qt 6.4. The current desktop profile and its acceptance/footprint evidence are described in docs/desktop-integration.md. Optional tray, badge, shortcut and single-instance checks remain a separate build and dataset (docs/shell-integration.md); their cost is not included in the historical idle figures.",
   "levels": {
     "yes": {
       "label": "Built in",
@@ -19,7 +19,7 @@
       "symbol": "📦"
     },
     "manual": {
-      "label": "Own platform code",
+      "label": "Application/platform code",
       "symbol": "🛠️"
     },
     "no": {
@@ -29,6 +29,14 @@
     "unknown": {
       "label": "Not verified",
       "symbol": "❔"
+    },
+    "pass": {
+      "label": "Passed stated test",
+      "symbol": "✔️"
+    },
+    "fail": {
+      "label": "Failed stated test",
+      "symbol": "✖️"
     }
   },
   "os": {
@@ -40,6 +48,7 @@
     {
       "id": "egui",
       "name": "egui / eframe",
+      "desktop_profile": "eframe desktop features + Linux Settings portal",
       "version": "0.37.0",
       "language": "Rust",
       "model": "Immediate mode; draws its own widgets with OpenGL or wgpu",
@@ -48,18 +57,19 @@
       "home": "https://github.com/emilk/egui",
       "strengths": [
         "Very little code for tool-style UIs; state lives in plain Rust fields",
-        "Screen-reader support through AccessKit on all three systems"
+        "Accessibility bridge through AccessKit on all three systems"
       ],
       "limits": [
         "Same custom look on every OS",
         "Menus, tray, dialogs and notifications come from separate crates",
         "No right-to-left text in 0.37",
-        "Did not follow dark mode on Linux X11"
+        "Linux system-theme following needs the desktop profile's portal integration"
       ]
     },
     {
       "id": "gtk",
       "name": "GTK4",
+      "desktop_profile": "GTK4 + libadwaita (system appearance)",
       "version": "4.14.5 Linux · 4.24.1 Windows/macOS",
       "language": "Rust (gtk4-rs 0.11.5)",
       "model": "Retained widget tree styled by the GTK theme (Adwaita)",
@@ -69,11 +79,11 @@
       "strengths": [
         "Native look and system integration on GNOME/Linux",
         "Mature text stack (Pango) with bidi and IME",
-        "Smallest executables here; the GTK runtime is separate"
+        "Smallest executables in the historical series; native libraries are separate"
       ],
       "limits": [
         "Looks like GTK, not like Windows or macOS",
-        "Did not follow system dark mode on any runner",
+        "System-theme following depends on the GTK version and application integration",
         "Windows/macOS screen-reader backend is new and opt-in",
         "No tray icon API; runtime must be bundled on Windows/macOS"
       ]
@@ -88,8 +98,8 @@
       "source": "examples/slint/ui/main.slint",
       "home": "https://slint.dev/",
       "strengths": [
-        "Smallest measured memory on every system",
-        "Followed system dark mode on all three runners",
+        "Smallest measured memory in the historical series on every system",
+        "Passed the historical system-theme startup check on all three runners",
         "Built-in tray icon and native menu bar on Windows/macOS"
       ],
       "limits": [
@@ -110,10 +120,10 @@
       "strengths": [
         "Closest to native controls on Windows and macOS",
         "Broadest built-in OS integration: dialogs, tray, menus, accessibility",
-        "Low measured memory on all three systems"
+        "Low measured memory in the historical series on all three systems"
       ],
       "limits": [
-        "C++ API; Rust bindings target QML rather than Widgets",
+        "The measured example is C++, not a measured Rust binding",
         "LGPL obligations or a commercial licence"
       ]
     },
@@ -132,7 +142,7 @@
         "Native menus and tray icon"
       ],
       "limits": [
-        "Highest measured memory on Linux and Windows: the webview runs extra processes",
+        "Highest historical measured memory on Linux and Windows; includes webview helpers",
         "Different browser engine on each OS",
         "Dark mode needs the app’s own CSS"
       ]
@@ -191,34 +201,71 @@
           }
         },
         {
+          "id": "color-palettes",
+          "title": "Light and dark appearance",
+          "description": "Can the interface use light and dark colors? This does not by itself establish automatic following of the OS or live changes.",
+          "support": {
+            "egui": {
+              "level": "yes",
+              "note": "ThemePreference has Dark, Light and System variants; dark and light visuals are built in. The historical Linux startup failure was an integration result, not missing dark rendering.",
+              "evidence": "docs",
+              "source": "https://docs.rs/egui/0.37.0/egui/enum.ThemePreference.html"
+            },
+            "gtk": {
+              "level": "yes",
+              "note": "GTK themes can supply a dark variant. GTK 4.20 deprecates gtk-application-prefer-dark-theme in favor of CssProvider properties; libadwaita has a StyleManager. A plain GTK app still needs the appropriate system-preference integration.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gtk4/property.Settings.gtk-application-prefer-dark-theme.html"
+            },
+            "slint": {
+              "level": "yes",
+              "note": "The standard widget styles provide light and dark appearance. The exact style and backend affect how the system preference reaches the palette.",
+              "evidence": "docs",
+              "source": "https://docs.slint.dev/latest/docs/slint/reference/std-widgets/style/"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "Qt Widgets uses palettes and styles, including dark palettes. Following the system color scheme depends on the Qt version and platform theme; it is not the same as the ability to render a dark UI.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qpalette.html"
+            },
+            "tauri": {
+              "level": "manual",
+              "note": "The app supplies both CSS palettes. This example uses color-scheme and prefers-color-scheme; the webview alone does not author the application's dark styling.",
+              "evidence": "repo",
+              "source": "examples/tauri/frontend/style.css"
+            }
+          }
+        },
+        {
           "id": "dark-mode",
-          "title": "Follows system light/dark",
-          "description": "Tested: the OS was switched to dark mode and each example relaunched.",
+          "title": "Historical system-theme startup test",
+          "description": "Observed in the 2026-11-09 UI-only series: switch the OS to dark and relaunch the old example. A failed test is not an unsupported framework capability. It does not qualify the current desktop profile or live theme changes.",
           "support": {
             "egui": {
               "level": "partial",
               "os": {
-                "windows": "yes",
-                "macos": "yes",
-                "linux": "no"
+                "windows": "pass",
+                "macos": "pass",
+                "linux": "fail"
               },
-              "note": "Followed the OS on Windows and macOS (ThemePreference::System). On Linux X11 it stayed light although the Settings portal reported prefer-dark.",
+              "note": "The old example followed the OS on Windows and macOS. On Linux X11 winit did not report a system theme, and the example explicitly used a light fallback although the Settings portal reported prefer-dark. Retained as historical evidence, not the current integration result.",
               "evidence": "repo",
               "source": "docs/full-native-results.md#system-dark-mode"
             },
             "gtk": {
-              "level": "no",
+              "level": "fail",
               "os": {
-                "windows": "no",
-                "macos": "no",
-                "linux": "no"
+                "windows": "fail",
+                "macos": "fail",
+                "linux": "fail"
               },
-              "note": "Stayed light on every runner: GTK 4.24 on Windows/macOS and GTK 4.14 with the Linux portal set to prefer-dark. GTK 4.20+ documents gtk-interface-color-scheme for Linux; libadwaita apps follow the portal.",
+              "note": "The old plain-GTK example stayed light on these runners (GTK 4.24 on Windows/macOS, GTK 4.14 on Linux). It had no explicit theme bridge or libadwaita. GTK's ability to render a dark theme is a separate capability.",
               "evidence": "repo",
               "source": "docs/full-native-results.md#system-dark-mode"
             },
             "slint": {
-              "level": "yes",
+              "level": "pass",
               "note": "The std-widgets style switched to dark on Windows, macOS and Linux (portal).",
               "evidence": "repo",
               "source": "docs/full-native-results.md#system-dark-mode"
@@ -226,16 +273,16 @@
             "qt": {
               "level": "partial",
               "os": {
-                "windows": "no",
-                "macos": "yes",
-                "linux": "no"
+                "windows": "fail",
+                "macos": "pass",
+                "linux": "fail"
               },
               "note": "Switched on macOS (Qt 6.12). Stayed light on Windows Server 2022 with Qt 6.8.3 and on Linux with Qt 6.4, which predates QStyleHints::colorScheme (6.5).",
               "evidence": "repo",
               "source": "docs/full-native-results.md#system-dark-mode"
             },
             "tauri": {
-              "level": "yes",
+              "level": "pass",
               "note": "All three webviews reported prefers-color-scheme: dark. The app must style dark mode itself; the example defines both palettes in CSS.",
               "evidence": "repo",
               "source": "docs/full-native-results.md#system-dark-mode"
@@ -249,7 +296,7 @@
           "support": {
             "egui": {
               "level": "yes",
-              "note": "Through winit. The measured example enables only the x11 feature on Linux.",
+              "note": "Through winit. The current example explicitly enables both x11 and wayland. The historical repeated native matrix used X11; its results must not be relabeled as Wayland acceptance.",
               "evidence": "repo",
               "source": "examples/egui/Cargo.toml"
             },
@@ -338,15 +385,52 @@
       "title": "Accessibility and text",
       "features": [
         {
-          "id": "screen-reader",
-          "title": "Screen readers",
-          "description": "Exposes the UI to Narrator/NVDA, VoiceOver and Orca.",
+          "id": "clipboard-text",
+          "title": "System text clipboard",
+          "description": "Text copy/paste between the app's editable controls and another process. API availability is separate from the desktop acceptance test; images, arbitrary MIME data and primary selection are not implied.",
           "support": {
             "egui": {
               "level": "yes",
-              "note": "AccessKit adapters for Windows, macOS and AT-SPI are in the pinned lockfile (eframe feature accesskit).",
+              "note": "eframe 0.37 has a clipboard feature, now explicitly enabled in this repository's desktop profile. The historical defaults=false example omitted that flag; a clipboard package in Cargo.lock did not prove active OS clipboard integration. See the desktop report for feature-tree and external-process evidence.",
               "evidence": "repo",
-              "source": "examples/egui/Cargo.lock"
+              "source": "docs/desktop-integration.md#feature-configuration"
+            },
+            "gtk": {
+              "level": "yes",
+              "note": "GdkClipboard and GTK editable widgets integrate with the platform clipboard. Content formats and primary selection are separate capabilities; backend/session interoperability still needs runtime checks.",
+              "evidence": "docs",
+              "source": "https://docs.gtk.org/gdk4/class.Clipboard.html"
+            },
+            "slint": {
+              "level": "yes",
+              "note": "TextInput exposes cut/copy/paste, used by LineEdit. The selected backend implements access to the system clipboard; an external Unicode round-trip must still pass for the deployed backend.",
+              "evidence": "docs",
+              "source": "https://docs.slint.dev/latest/docs/slint/reference/keyboard-input/textinput/"
+            },
+            "qt": {
+              "level": "yes",
+              "note": "QClipboard and standard editable widgets support system text copy/paste. X11 clipboard ownership requires a running event loop; clipboard and primary selection are different modes.",
+              "evidence": "docs",
+              "source": "https://doc.qt.io/qt-6/qclipboard.html"
+            },
+            "tauri": {
+              "level": "yes",
+              "note": "Copy/paste in the HTML input comes from the system webview. Arbitrary programmatic clipboard access from Rust/JavaScript is a different requirement and can use the clipboard-manager plugin; that plugin is not needed just to edit the filter.",
+              "evidence": "repo",
+              "source": "docs/platform-support.md#tauri-2"
+            }
+          }
+        },
+        {
+          "id": "screen-reader",
+          "title": "Accessibility bridge",
+          "description": "Provides an accessibility tree/backend for screen readers. This is not a claim that Narrator, NVDA, VoiceOver or Orca completed an end-to-end acceptance suite.",
+          "support": {
+            "egui": {
+              "level": "yes",
+              "note": "The example explicitly enables eframe's accesskit feature, which connects platform adapters. An enabled bridge does not establish correct labels, focus order or screen-reader behavior for every widget.",
+              "evidence": "repo",
+              "source": "examples/egui/Cargo.toml"
             },
             "gtk": {
               "level": "partial",
@@ -361,9 +445,9 @@
             },
             "slint": {
               "level": "yes",
-              "note": "AccessKit adapters for all three systems are in the pinned lockfile (feature accessibility).",
+              "note": "The example enables Slint's accessibility feature and platform adapters. Complete reader workflows and application semantics remain outside this comparison's acceptance coverage.",
               "evidence": "repo",
-              "source": "examples/slint/Cargo.lock"
+              "source": "examples/slint/Cargo.toml"
             },
             "qt": {
               "level": "yes",
@@ -382,7 +466,7 @@
         {
           "id": "ime",
           "title": "Input methods (CJK, dead keys)",
-          "description": "Composes text through the OS input method.",
+          "description": "API/backend support for composing text through the OS input method. The Unicode clipboard check is not an IME, CJK composition or dead-key acceptance test.",
           "support": {
             "egui": {
               "level": "yes",

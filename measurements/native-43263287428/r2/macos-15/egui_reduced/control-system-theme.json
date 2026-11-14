@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "profile": "control-system-theme-v1",
+  "status": "passed",
+  "requested": "light",
+  "cleanup": {
+    "status": "passed"
+  },
+  "limitation": "OS preference prerequisite only; no application theme, live-change or clipboard acceptance is claimed",
+  "observed": {
+    "source": "NSGlobalDomain AppleInterfaceStyle",
+    "value": null,
+    "theme": "light"
+  },
+  "observed_after": {
+    "source": "NSGlobalDomain AppleInterfaceStyle",
+    "value": null,
+    "theme": "light"
+  }
+}

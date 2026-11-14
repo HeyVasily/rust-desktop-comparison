@@ -1,5 +1,8 @@
 """Host-free regressions for native footprint accounting and blank-client refusal."""
+import json
 import os
+import shutil
+import sys
 import tempfile
 from pathlib import Path
 import unittest
@@ -11,6 +14,27 @@ import native_probe as probe
 
 
 class NativeProbeTests(unittest.TestCase):
+    def test_reduced_control_uses_same_foreground_driver_without_desktop_acceptance(self):
+        evidence = dict(status="passed", requested_pid=42, observed_pid="42")
+        driver = Mock(focus=Mock(return_value=evidence), last_focus=evidence)
+        result = dict(measurement_profile="diagnostic-reduced")
+        window = dict(pid=42, id=123)
+        with patch("desktop_probe.DesktopInput", return_value=driver):
+            probe.activate_reduced_control(window, result)
+        driver.focus.assert_called_once_with(window)
+        self.assertEqual(result["startup_focus"], evidence)
+        self.assertNotIn("desktop_integration", result)
+
+    def test_reduced_control_foreground_failure_is_preserved_and_propagates(self):
+        from desktop_probe import DesktopEnvironmentError
+        evidence = dict(status="environment_error", observed_pid="7")
+        driver = Mock(focus=Mock(side_effect=DesktopEnvironmentError("wrong foreground")), last_focus=evidence)
+        result = {}
+        with patch("desktop_probe.DesktopInput", return_value=driver):
+            with self.assertRaisesRegex(DesktopEnvironmentError, "wrong foreground"):
+                probe.activate_reduced_control(dict(pid=42, id=123), result)
+        self.assertEqual(result["startup_focus"], evidence)
+
     def test_linux_window_discovery_uses_explicit_case_display_for_every_command(self):
         case_env = dict(DISPLAY=':91')
         def output(command, **kwargs):
@@ -51,6 +75,62 @@ class NativeProbeTests(unittest.TestCase):
         with patch.object(probe, 'web_helpers', return_value=helpers):
             unassigned, _ = probe.scope_snapshot(family, {})
         self.assertEqual(unassigned, helpers)
+
+    def test_new_web_helper_is_recorded_not_unassigned_for_non_webview_candidate(self):
+        family = Mock(external_scope=None, observed={}, owns_web_helpers=False, foreign_web_helpers={})
+        helpers = {'20:2.0': dict(pid=20, create_time=2.0, name='WebKit')}
+        with patch.object(probe, 'web_helpers', return_value=helpers):
+            unassigned, _ = probe.scope_snapshot(family, {})
+        self.assertEqual(unassigned, {})
+        self.assertEqual(family.foreign_web_helpers, helpers)
+
+    def test_new_web_helper_stays_unassigned_for_webview_candidate(self):
+        family = Mock(external_scope=None, observed={}, owns_web_helpers=True, foreign_web_helpers={})
+        helpers = {'20:2.0': dict(pid=20, create_time=2.0, name='WebKit')}
+        with patch.object(probe, 'web_helpers', return_value=helpers):
+            unassigned, _ = probe.scope_snapshot(family, {})
+        self.assertEqual(unassigned, helpers)
+        self.assertEqual(family.foreign_web_helpers, {})
+
+    def run_main_with_new_web_helper(self, name):
+        # A real child stands in for the application so Family tracking and
+        # cleanup run unmodified; only window discovery and sampling are faked.
+        directory = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, directory, ignore_errors=True)
+        executable = directory / "fake-app"
+        executable.write_text("#!/bin/sh\nexec sleep 60\n", encoding="utf-8")
+        executable.chmod(0o755)
+        helper = {'99:9.0': dict(pid=99, create_time=9.0, name='com.apple.WebKit.WebContent')}
+        window = dict(id=5, pid=0, rectangle=[0, 0, 10, 10])
+        argv = ["native_probe.py", "--name", name, "--title", "T", "--executable", str(executable),
+                "--output", str(directory / "out")]
+        with patch.object(probe.sys, "argv", argv), patch.object(probe.sys, "platform", "linux"), \
+                patch.object(probe, "environment", return_value={}), \
+                patch.object(probe, "web_helpers", side_effect=[{}] + [helper] * 10), \
+                patch.object(probe, "find_window", return_value=window), patch.object(probe, "prepare_window"), \
+                patch.object(probe, "activate_reduced_control"), \
+                patch.object(probe, "phase", return_value=dict(status="passed", window=window, summary={})):
+            code = probe.main()
+        return code, json.loads((directory / "out" / "outcome.json").read_text(encoding="utf-8"))
+
+    @unittest.skipIf(sys.platform == "win32", "uses a POSIX shell script as the application")
+    def test_foreign_web_helper_during_non_webview_run_keeps_cleanup_clean(self):
+        code, outcome = self.run_main_with_new_web_helper("egui_reduced")
+        self.assertEqual(code, 0)
+        self.assertEqual(outcome["status"], "diagnostic_passed")
+        self.assertEqual(outcome["cleanup_status"], "clean")
+        self.assertEqual(outcome["unassigned_new_web_helpers"], [])
+        self.assertEqual([h["pid"] for h in outcome["foreign_new_web_helpers"]], [99])
+        self.assertEqual(outcome["cleanup_survivors"], [])
+
+    @unittest.skipIf(sys.platform == "win32", "uses a POSIX shell script as the application")
+    def test_new_web_helper_during_webview_run_stays_an_unknown_scope(self):
+        code, outcome = self.run_main_with_new_web_helper("tauri")
+        self.assertEqual(code, 1)
+        self.assertEqual(outcome["status"], "incomplete_process_scope")
+        self.assertEqual(outcome["cleanup_status"], "unknown")
+        self.assertEqual([h["pid"] for h in outcome["unassigned_new_web_helpers"]], [99])
+        self.assertEqual(outcome["foreign_new_web_helpers"], [])
 
     def test_windows_csd_surface_is_not_accepted_as_requested_client(self):
         family = Mock()

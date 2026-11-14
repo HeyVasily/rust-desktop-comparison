@@ -1,0 +1,223 @@
+{
+  "name": "qt",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Windows-2022Server-10.0.20348-SP0",
+    "architecture": "AMD64",
+    "processor": "AMD64 Family 25 Model 1 Stepping 1, AuthenticAMD",
+    "logical_cpus": 4,
+    "memory_bytes": 17174360064,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "runner_image": "win22",
+    "image_version": "20261101.353.1",
+    "commit": "fe53a64d6759b17817d4cc1c5c995b43a8031d5c",
+    "run_id": "43251948886",
+    "repetition": "2",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "comparison_requested": true,
+  "measurement_profile": "desktop-integrated",
+  "memory_metric": "Windows Working Set",
+  "primary_memory_metric": "Windows private working set",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 197174,
+        "pid": 3780,
+        "title": "Veranda Qt Widgets comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 10.219000000000051,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 37.02734375,
+          "p95": 37.02734375,
+          "observed_maximum": 37.02734375
+        },
+        "family_primary_mib": {
+          "median": 18.65234375,
+          "p95": 18.65234375,
+          "observed_maximum": 18.65234375
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 197174,
+        "pid": 3780,
+        "title": "Veranda Qt Widgets comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 122.78099999999995,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 36.7421875,
+          "p95": 36.93359375,
+          "observed_maximum": 36.93359375
+        },
+        "family_primary_mib": {
+          "median": 18.359375,
+          "p95": 18.55078125,
+          "observed_maximum": 18.55078125
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "desktop_integration": {
+    "schema_version": 1,
+    "profile": "desktop-acceptance-v1",
+    "status": "passed",
+    "startup_theme": {
+      "status": "passed",
+      "expected": "light",
+      "mean_client_luma": 240.146,
+      "screenshot": "desktop-startup.png",
+      "attempts": 1,
+      "same_window_and_pid": true,
+      "timeout_seconds": 30,
+      "elapsed_seconds": 0.078
+    },
+    "live_theme": {
+      "status": "passed",
+      "transitions": [
+        {
+          "status": "passed",
+          "expected": "dark",
+          "mean_client_luma": 47.187,
+          "screenshot": "desktop-live-1-dark.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.094,
+          "system_setting": {
+            "source": "HKCU AppsUseLightTheme",
+            "value": 0,
+            "theme": "dark"
+          },
+          "luminance_delta": 192.959
+        },
+        {
+          "status": "passed",
+          "expected": "light",
+          "mean_client_luma": 240.146,
+          "screenshot": "desktop-live-2-light.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.078,
+          "system_setting": {
+            "source": "HKCU AppsUseLightTheme",
+            "value": 1,
+            "theme": "light"
+          },
+          "luminance_delta": 192.959
+        }
+      ]
+    },
+    "clipboard": {
+      "status": "passed",
+      "expected_utf8": "desktop-210ae4f97e53 M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "sentinel_utf8": "not-the-widget-210ae4f97e53",
+      "protocol": "external Unicode seed \u2192 Ctrl/Cmd+V into filter \u2192 replace OS clipboard \u2192 Ctrl/Cmd+C \u2192 external read",
+      "focus": {
+        "status": "passed",
+        "requested_pid": 3780,
+        "requested_window": 197174,
+        "source": "Windows foreground window",
+        "observed_window": 197174
+      },
+      "pasted_screenshot": "desktop-clipboard-pasted.png",
+      "sentinel_verified": true,
+      "copied_utf8": "desktop-210ae4f97e53 M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+      "probe_helpers_reaped_before_idle": true
+    },
+    "cleanup": {
+      "status": "passed",
+      "errors": []
+    },
+    "limitations": [
+      "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+      "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+      "This driver verifies Linux X11 only, not native Wayland",
+      "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+    ],
+    "system_theme_setup": {
+      "status": "passed",
+      "requested": "light",
+      "observed": {
+        "source": "HKCU AppsUseLightTheme",
+        "value": 1,
+        "theme": "light"
+      }
+    },
+    "application_process": {
+      "pid": 3780,
+      "created": 1794500951.5804832
+    },
+    "application_window": {
+      "pid": 3780,
+      "id": 197174
+    },
+    "startup_focus": {
+      "status": "passed",
+      "requested_pid": 3780,
+      "requested_window": 197174,
+      "source": "Windows foreground window",
+      "observed_window": 197174
+    }
+  },
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 3780,
+      "name": "veranda-qt-comparison.exe",
+      "created": 1794500951.5804832
+    }
+  ],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

@@ -1,0 +1,10 @@
+
+(gsd-xsettings:26525): dbind-WARNING **: 16:35:17.093: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(gsd-xsettings:26525): xsettings-plugin-WARNING **: 16:35:17.097: Failed to get current display configuration state: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Name "org.gnome.Mutter.DisplayConfig" does not exist
+
+(gsd-xsettings:26525): xsettings-plugin-WARNING **: 16:35:17.102: Unable to register client: GDBus.Error:org.freedesktop.DBus.Error.ServiceUnknown: The name org.gnome.SessionManager was not provided by any .service files
+
+(gsd-xsettings:26525): accountsservice-WARNING **: 16:35:17.103: ActUserManager: user (null) has no username (uid: -1)
+
+(gsd-xsettings:26525): accountsservice-CRITICAL **: 16:35:17.103: act_user_set_input_sources: assertion 'ACCOUNTS_IS_USER (user->accounts_proxy)' failed

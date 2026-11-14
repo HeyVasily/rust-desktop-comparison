@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "profile": "control-system-theme-v1",
+  "status": "passed",
+  "requested": "light",
+  "cleanup": {
+    "status": "passed"
+  },
+  "limitation": "OS preference prerequisite only; no application theme, live-change or clipboard acceptance is claimed",
+  "observed": {
+    "source": "org.freedesktop.portal.Settings",
+    "value": 2,
+    "theme": "light",
+    "gtk_theme": "Adwaita",
+    "gtk_theme_source": "gtk-query-settings via the session XSettings provider",
+    "session_profile": "gnome-adwaita-dual-preference-v1"
+  },
+  "observed_after": {
+    "source": "org.freedesktop.portal.Settings",
+    "value": 2,
+    "theme": "light",
+    "gtk_theme": "Adwaita",
+    "gtk_theme_source": "gtk-query-settings via the session XSettings provider",
+    "session_profile": "gnome-adwaita-dual-preference-v1"
+  }
+}
