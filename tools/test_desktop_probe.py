@@ -1,5 +1,6 @@
 """Host-free regressions for external desktop acceptance and false-pass refusal."""
 import ctypes
+import itertools
 import os
 from pathlib import Path
 import tempfile
@@ -531,6 +532,51 @@ class DesktopProbeTests(unittest.TestCase):
         self.assertEqual(result["startup_focus"]["status"], "passed")
         self.assertEqual(result["clipboard"]["focus"]["status"], "passed")
         self.assertEqual(checker.clipboard.events[-1], ("close",))
+
+    def test_host_error_during_live_transition_makes_whole_run_an_environment_error(self):
+        checker = self.checks()
+        state = {"theme": "light"}
+        def set_theme(theme):
+            if theme == "light":
+                raise probe.DesktopEnvironmentError("defaults timed out")
+            state["theme"] = theme
+            return dict(source="fake-os", theme=theme)
+        checker.theme = Mock(set=Mock(side_effect=set_theme))
+        def capture(window, path):
+            Image.new("RGB", (960, 640), "white" if state["theme"] == "light" else "#202020").save(path)
+        with patch.object(probe.time, "sleep"):
+            result = checker.run(lambda: self.window, capture)
+        self.assertEqual([t["status"] for t in result["live_theme"]["transitions"]], ["passed", "environment_error"])
+        self.assertEqual(result["live_theme"]["status"], "environment_error")
+        self.assertEqual(result["clipboard"]["status"], "passed")
+        self.assertEqual(result["status"], "environment_error")
+
+    def test_framework_failure_is_not_masked_by_a_later_host_error(self):
+        checker = self.checks()
+        def set_theme(theme):
+            if theme == "light":
+                raise probe.DesktopEnvironmentError("defaults timed out")
+            return dict(source="fake-os", theme=theme)
+        checker.theme = Mock(set=Mock(side_effect=set_theme))
+        # The application never repaints dark, so the first transition fails.
+        capture = lambda window, path: Image.new("RGB", (960, 640), "white").save(path)
+        with patch.object(probe.time, "sleep"), patch.object(probe.time, "monotonic", side_effect=itertools.count(0, 5)):
+            result = checker.run(lambda: self.window, capture)
+        self.assertEqual(result["live_theme"]["transitions"][0]["status"], "failed")
+        self.assertEqual(result["live_theme"]["status"], "failed")
+        self.assertEqual(result["status"], "failed")
+
+    def test_macos_system_events_diagnostic_timeout_does_not_fail_focus(self):
+        driver = probe.DesktopInput()
+        diagnostic_error = probe.DesktopEnvironmentError("osascript unavailable or timed out")
+        with patch.object(probe.sys, "platform", "darwin"), \
+                patch.object(probe, "command", side_effect=[Mock(stdout=""), diagnostic_error]) as command, \
+                patch.object(driver, "macos_frontmost_pid", return_value="42"), \
+                patch.object(probe.time, "monotonic", return_value=0), patch.object(probe.time, "sleep"):
+            evidence = driver.focus(self.window)
+        self.assertEqual(evidence["status"], "passed")
+        self.assertTrue(evidence["system_events_frontmost_pids"].startswith("unavailable: osascript"))
+        self.assertIs(command.call_args.kwargs["check"], False)
 
     def test_startup_focus_failure_preserves_diagnostic_but_refuses_acceptance(self):
         checker = self.checks()

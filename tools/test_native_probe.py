@@ -1,5 +1,8 @@
 """Host-free regressions for native footprint accounting and blank-client refusal."""
+import json
 import os
+import shutil
+import sys
 import tempfile
 from pathlib import Path
 import unittest
@@ -88,6 +91,46 @@ class NativeProbeTests(unittest.TestCase):
             unassigned, _ = probe.scope_snapshot(family, {})
         self.assertEqual(unassigned, helpers)
         self.assertEqual(family.foreign_web_helpers, {})
+
+    def run_main_with_new_web_helper(self, name):
+        # A real child stands in for the application so Family tracking and
+        # cleanup run unmodified; only window discovery and sampling are faked.
+        directory = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, directory, ignore_errors=True)
+        executable = directory / "fake-app"
+        executable.write_text("#!/bin/sh\nexec sleep 60\n", encoding="utf-8")
+        executable.chmod(0o755)
+        helper = {'99:9.0': dict(pid=99, create_time=9.0, name='com.apple.WebKit.WebContent')}
+        window = dict(id=5, pid=0, rectangle=[0, 0, 10, 10])
+        argv = ["native_probe.py", "--name", name, "--title", "T", "--executable", str(executable),
+                "--output", str(directory / "out")]
+        with patch.object(probe.sys, "argv", argv), patch.object(probe.sys, "platform", "linux"), \
+                patch.object(probe, "environment", return_value={}), \
+                patch.object(probe, "web_helpers", side_effect=[{}] + [helper] * 10), \
+                patch.object(probe, "find_window", return_value=window), patch.object(probe, "prepare_window"), \
+                patch.object(probe, "activate_reduced_control"), \
+                patch.object(probe, "phase", return_value=dict(status="passed", window=window, summary={})):
+            code = probe.main()
+        return code, json.loads((directory / "out" / "outcome.json").read_text(encoding="utf-8"))
+
+    @unittest.skipIf(sys.platform == "win32", "uses a POSIX shell script as the application")
+    def test_foreign_web_helper_during_non_webview_run_keeps_cleanup_clean(self):
+        code, outcome = self.run_main_with_new_web_helper("egui_reduced")
+        self.assertEqual(code, 0)
+        self.assertEqual(outcome["status"], "diagnostic_passed")
+        self.assertEqual(outcome["cleanup_status"], "clean")
+        self.assertEqual(outcome["unassigned_new_web_helpers"], [])
+        self.assertEqual([h["pid"] for h in outcome["foreign_new_web_helpers"]], [99])
+        self.assertEqual(outcome["cleanup_survivors"], [])
+
+    @unittest.skipIf(sys.platform == "win32", "uses a POSIX shell script as the application")
+    def test_new_web_helper_during_webview_run_stays_an_unknown_scope(self):
+        code, outcome = self.run_main_with_new_web_helper("tauri")
+        self.assertEqual(code, 1)
+        self.assertEqual(outcome["status"], "incomplete_process_scope")
+        self.assertEqual(outcome["cleanup_status"], "unknown")
+        self.assertEqual([h["pid"] for h in outcome["unassigned_new_web_helpers"]], [99])
+        self.assertEqual(outcome["foreign_new_web_helpers"], [])
 
     def test_windows_csd_surface_is_not_accepted_as_requested_client(self):
         family = Mock()

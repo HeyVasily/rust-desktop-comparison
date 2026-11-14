@@ -6,11 +6,13 @@ Usage: import_native_run.py RUN_ID[,RUN_ID...] ARTIFACT_DIR SERIES_NAME
 ARTIFACT_DIR contains native-<runner>-<run-id>[-r<repetition>] directories.
 Every requested run must have artifacts. Multiple runs retain their own source,
 run and build identities; they are never pooled into one repetition group.
-Outcomes, deterministic gzipped samples, build provenance and all captures go to
-measurements/native-<run-id>/r<k>/<runner>. Repetition-one light/dark screenshots
-also retain the historical screenshots/native-<run-id>/<runner> layout.
+Outcomes, deterministic gzipped samples and build provenance go to
+measurements/native-<run-id>/r<k>/<runner>; captures are verified in the archive
+and only repetition-one light/dark screenshots are kept, under
+screenshots/native-<run-id>/<runner>.
 
-The series directory receives runs.csv (including failed requested comparisons),
+The series directory receives runs.csv (including failed requested comparisons
+and selected candidates a stopped sequence never started),
 summary.csv (eligible primary/historical results only), controls.csv (reduced
 diagnostic controls, never primary rankings), desktop-acceptance.csv (including
 separate dark-startup runs), paired-egui-ab.json and import-report.json.
@@ -59,7 +61,8 @@ SUMMARY_FIELDS = ("os", "framework", "phase", "repetitions", "failed_repetitions
                   "cpu_median_percent", "cpu_max_percent", "executable_bytes", "follows_dark_mode",
                   "run_id", "source_commit", "measurement_profile", "desktop_profile", "desktop_status",
                   *CONTROL_FIELDS, "image_version", "source_hash", "source_manifest_sha256", "build_inputs_sha256", "scope")
-ACCEPTANCE_FIELDS = ("os", "framework", "repetition", "case", "status", "cleanup_status", "measurement_profile",
+ACCEPTANCE_FIELDS = ("os", "framework", "repetition", "case", "status", "cleanup_status", "foreign_new_web_helpers",
+                     "measurement_profile",
                      *DESKTOP_FIELDS, *CONTROL_FIELDS, "startup_theme", "run_id", "source_commit", "source_hash",
                      "source_manifest_sha256", "build_inputs_sha256", "image_version", "evidence_errors", "reason")
 
@@ -474,18 +477,80 @@ def provenance_errors(outcome, run_id, repetition, source):
     return errors
 
 
+def not_run_outcome(fw, source, base, startup_theme):
+    """Placeholder for a selected candidate that the runner refused to start.
+
+    Without it a stopped sequence silently shrinks n. Profile, metric and image
+    identity are borrowed from a candidate measured on the same VM so the
+    placeholder joins its framework's provenance group as a failed repetition.
+    """
+    stopped_path = base / "stopped-after.json"
+    stopped = read_json(stopped_path) if stopped_path.is_file() else {}
+    def outcomes(directory):
+        return [read_json(directory / name / "outcome.json") for name in FRAMEWORKS
+                if (directory / name / "outcome.json").is_file()]
+    # Measurement mode comes from this sequence; profile and image identity may
+    # come from the other sequence on the same VM when only the control ran.
+    same_case = outcomes(base) or [{}]
+    siblings = same_case + outcomes(source / "dark" if base == source else source)
+    desktop = [o for o in siblings if o.get("measurement_profile") == "desktop-integrated"]
+    template = (siblings if fw == "egui_reduced" else desktop or siblings)[0]
+    mode = same_case[0]
+    env = {key: value for key, value in template.get("environment", {}).items()
+           if key in ("os", "commit", "image_version", "source_hash", "run_id", "repetition")}
+    commit_path = source / "build" / "source-commit.txt"
+    if not env.get("commit") and commit_path.is_file():
+        env["commit"] = commit_path.read_text(encoding="utf-8-sig").strip()
+    reason = f"Not run: stopped after {stopped.get('name', 'an earlier candidate')}: {stopped.get('reason', 'no outcome recorded')}"
+    outcome = dict(name=fw, status="not_run", cleanup_status="not_needed", environment=env, reason=reason,
+                   comparison_requested=mode.get("comparison_requested", ""),
+                   primary_memory_metric=mode.get("primary_memory_metric", ""),
+                   memory_metric=mode.get("memory_metric", ""),
+                   phases={name: {} for name in mode.get("phases", {}) if name != "diagnostic"})
+    if fw == "egui_reduced":
+        outcome.update(measurement_profile="diagnostic-reduced",
+                       control_system_theme=dict(schema_version=1, profile="control-system-theme-v1", status="not_run"))
+    elif desktop:
+        outcome.update(measurement_profile="desktop-integrated", desktop_integration=dict(
+            schema_version=1, profile=desktop[0].get("desktop_integration", {}).get("profile", ""),
+            status="not_run", startup_theme=dict(expected=startup_theme)))
+    return outcome
+
+
+def case_outcomes(source, base, startup_theme):
+    """Yield (framework, outcome, directory, measured) for one sequence."""
+    selected_path = base / "selected-candidates.json"
+    selected = read_json(selected_path) if selected_path.is_file() else []
+    for fw in FRAMEWORKS:
+        path = base / fw / "outcome.json"
+        if path.is_file():
+            yield fw, read_json(path), path.parent, True
+        elif fw in selected:
+            yield fw, not_run_outcome(fw, source, base, startup_theme), path.parent, False
+
+
+def outcome_metadata(outcome, directory, measured):
+    if measured:
+        desktop, desktop_errors = desktop_metadata(outcome, directory)
+        control, control_errors = control_metadata(outcome, directory)
+        return desktop, control, desktop_errors + control_errors
+    desktop, control = dict.fromkeys(DESKTOP_FIELDS, ""), dict.fromkeys(CONTROL_FIELDS, "")
+    if "desktop_integration" in outcome:
+        desktop.update(desktop_profile=outcome["desktop_integration"]["profile"], desktop_status="not_run",
+                       desktop_evidence_status="not_run")
+    if "control_system_theme" in outcome:
+        control.update(control_theme_profile="control-system-theme-v1", control_theme_status="not_run",
+                       control_theme_evidence_status="not_run")
+    return desktop, control, ["candidate was selected but not run"]
+
+
 def rows_for(run_id: str, runner: str, repetition: int, source: Path):
     sizes_path = source / "build" / "binary-sizes.json"
     sizes = read_json(sizes_path) if sizes_path.exists() else {}
     identity = build_identity(source)
-    for fw in FRAMEWORKS:
-        path = source / fw / "outcome.json"
-        if not path.exists():
-            continue
-        outcome = read_json(path)
+    for fw, outcome, directory, measured in case_outcomes(source, source, "light"):
         env = outcome.get("environment", {})
-        desktop, desktop_errors = desktop_metadata(outcome, path.parent)
-        control, control_errors = control_metadata(outcome, path.parent)
+        desktop, control, metadata_errors = outcome_metadata(outcome, directory, measured)
         phases = [(name, data) for name, data in outcome.get("phases", {}).items() if name != "diagnostic"]
         if not phases and (outcome.get("comparison_requested") is True or outcome.get("status") == "comparison_passed"):
             # A failed desktop gate has no samples, but is still a failed requested
@@ -493,7 +558,7 @@ def rows_for(run_id: str, runner: str, repetition: int, source: Path):
             phases = [("comparison", {})]
         for phase, data in phases:
             summary = data.get("summary", {})
-            errors = desktop_errors + control_errors + measurement_evidence_errors(outcome, path.parent, phase, data)
+            errors = metadata_errors + (measurement_evidence_errors(outcome, directory, phase, data) if measured else [])
 
             def number(value, label, digits=3):
                 if not finite(value) or value < 0:
@@ -528,15 +593,11 @@ def rows_for(run_id: str, runner: str, repetition: int, source: Path):
 
 def acceptance_rows(run_id, runner, repetition, source):
     identity = build_identity(source)
-    for case, base in (("normal", source), ("dark-startup", source / "dark")):
-        for fw in FRAMEWORKS:
-            path = base / fw / "outcome.json"
-            if not path.is_file():
-                continue
-            outcome = read_json(path)
+    for case, base, theme in (("normal", source, "light"), ("dark-startup", source / "dark", "dark")):
+        for fw, outcome, directory, measured in case_outcomes(source, base, theme):
             env = outcome.get("environment", {})
-            desktop, errors = desktop_metadata(outcome, path.parent)
-            control, control_errors = control_metadata(outcome, path.parent)
+            desktop, control, errors = outcome_metadata(outcome, directory, measured)
+            foreign = outcome.get("foreign_new_web_helpers")
             provenance = provenance_errors(outcome, run_id, repetition, source)
             if provenance:
                 # Downstream report builders use this field as a gate; an error
@@ -547,10 +608,11 @@ def acceptance_rows(run_id, runner, repetition, source):
                     control["control_theme_evidence_status"] = "incomplete"
             yield dict(os=runner, framework=fw, repetition=repetition, case=case, status=outcome.get("status", ""),
                        cleanup_status=outcome.get("cleanup_status", ""),
+                       foreign_new_web_helpers=len(foreign) if isinstance(foreign, list) else "",
                        measurement_profile=outcome.get("measurement_profile", ""), **desktop, **control,
                        startup_theme=outcome.get("desktop_integration", {}).get("startup_theme", {}).get("expected", ""),
                        run_id=run_id, source_commit=env.get("commit") or "", source_hash=env.get("source_hash") or "",
-                       **identity, image_version=env.get("image_version") or "", evidence_errors="; ".join(errors + control_errors + provenance),
+                       **identity, image_version=env.get("image_version") or "", evidence_errors="; ".join(errors + provenance),
                        reason=outcome.get("reason", ""))
 
 

@@ -1,5 +1,6 @@
 """Test readiness and browser lifecycle without starting a browser or server."""
 import json
+import os
 from pathlib import Path
 import signal
 import subprocess
@@ -10,6 +11,7 @@ from unittest.mock import Mock, patch
 import site_visual_smoke as smoke
 
 
+@unittest.skipUnless(hasattr(os, "killpg"), "the site smoke check runs only on POSIX CI (process-group cleanup)")
 class SiteVisualSmokeTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()

@@ -507,6 +507,48 @@ class ImportNativeRunTests(unittest.TestCase):
         self.assertEqual(archives[0].read_bytes(), archives[1].read_bytes())
         self.assertEqual(json.loads(gzip.decompress(archives[0].read_bytes())), [{"synthetic": True}])
 
+    def test_selected_but_unrun_candidates_count_as_failed_repetitions(self):
+        control = self.outcome("egui_reduced", "diagnostic-reduced")
+        control.update(status="failed", cleanup_status="unknown")
+        self.save(control)
+        self.save(self.outcome(), self.source / "dark")
+        self.json(self.source / "selected-candidates.json", ["egui_reduced", "egui", "gtk"])
+        self.json(self.source / "stopped-after.json", dict(name="egui_reduced", reason="cleanup unknown"))
+        second = self.artifacts / "native-ubuntu-24.04-123-r2"
+        passed = self.outcome()
+        passed["environment"]["repetition"] = "2"
+        self.save(passed, second)
+        self.json(second / "selected-candidates.json", ["egui"])
+        status, root = self.import_series("123")
+        self.assertEqual(status, 0)
+        series = root / "measurements" / "desktop-test"
+        summary = [row for row in self.csv_rows(series / "summary.csv") if row["framework"] == "egui"]
+        self.assertEqual([(row["repetitions"], row["failed_repetitions"]) for row in summary], [("1", "1")])
+        unrun = {(row["framework"], row["repetition"]): row for row in self.csv_rows(series / "runs.csv")
+                 if row["status"] == "not_run"}
+        self.assertEqual(sorted(unrun), [("egui", "1"), ("gtk", "1")])
+        self.assertEqual(unrun["egui", "1"]["eligibility"], "excluded")
+        self.assertIn("stopped after egui_reduced: cleanup unknown", unrun["egui", "1"]["reason"])
+        acceptance = [row for row in self.csv_rows(series / "desktop-acceptance.csv") if row["status"] == "not_run"]
+        self.assertEqual([(row["framework"], row["case"], row["startup_theme"], row["desktop_profile"]) for row in acceptance],
+                         [("egui", "normal", "light", "desktop-acceptance-v1"), ("gtk", "normal", "light", "desktop-acceptance-v1")])
+        self.assertEqual(acceptance[0]["desktop_evidence_status"], "not_run")
+
+    def test_unselected_missing_candidate_is_not_invented(self):
+        self.save(self.outcome())
+        self.json(self.source / "selected-candidates.json", ["egui"])
+        self.assertEqual([row["framework"] for row in self.rows()], ["egui"])
+
+    def test_foreign_web_helper_count_is_exported_with_acceptance(self):
+        outcome = self.outcome()
+        outcome["foreign_new_web_helpers"] = [dict(pid=7, name="com.apple.WebKit.WebContent")]
+        self.save(outcome)
+        self.save(self.outcome("slint"))
+        rows = {row["framework"]: row for row in importer.acceptance_rows("123", "ubuntu-24.04", 1, self.source)}
+        self.assertEqual(rows["egui"]["foreign_new_web_helpers"], 1)
+        self.assertEqual(rows["slint"]["foreign_new_web_helpers"], "")
+        self.assertEqual(rows["egui"]["desktop_evidence_status"], "complete")
+
     def test_dark_screenshot_copy_does_not_require_a_successful_light_capture(self):
         directory = self.save(self.outcome(), self.source / "dark")
         (directory / "diagnostic.png").write_bytes((directory / "desktop-startup.png").read_bytes())
