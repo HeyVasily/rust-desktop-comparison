@@ -1,0 +1,8 @@
+[
+  "egui_reduced",
+  "egui",
+  "gtk",
+  "slint",
+  "qt",
+  "tauri"
+]

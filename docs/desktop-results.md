@@ -1,4 +1,4 @@
-# Desktop-integrated results — 2026-11-12
+# Desktop-integrated results — 2026-11-14
 
 This report covers the normal **desktop-integrated** profiles, after real system
 appearance changes and external text-clipboard use. The older
@@ -6,29 +6,26 @@ appearance changes and external text-clipboard use. The older
 dataset; its memory figures and startup-only observations do not describe these
 updated profiles.
 
-**Verification status: Linux and Windows complete for the stated profile;
-macOS partial, with failures retained. No hardware-iGPU or production Veranda
-20/200 result is claimed.**
-The six Linux/Windows jobs in
-[Actions run 43251948886](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43251948886)
-passed, measuring source
-[`fe53a64d6759b17817d4cc1c5c995b43a8031d5c`](https://github.com/HeyVasily/rust-desktop-comparison/commit/fe53a64d6759b17817d4cc1c5c995b43a8031d5c).
+**Verification status: 14 of 15 platform/candidate profiles fully verified.
+GTK4 + libadwaita on macOS failed live-theme acceptance in all six invocations.
+No hardware-iGPU or production Veranda 20/200 result is claimed.**
+
+| Platform | Run | Measured source | Jobs | Result |
+| --- | --- | --- | --- | --- |
+| Linux | [43579539989](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989) | [`52b840e`](https://github.com/HeyVasily/rust-desktop-comparison/commit/52b840ef822f4af41d713b5541fb49ba2cab5923) | 3 of 3 passed | All five profiles fully verified; repetitions split across two runner images (n=1 + n=2) |
+| Windows | [43580078566](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43580078566) | [`d1b3951`](https://github.com/HeyVasily/rust-desktop-comparison/commit/d1b3951dde8d17761509f8d5b383fa1c153a9a43) | 3 of 3 passed | All five profiles fully verified, n=3 |
+| macOS | [43579539989](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989) | `52b840e` | 0 of 3 passed | egui, Slint, Qt, Tauri fully verified, n=3; GTK failed |
+
 Each OS has three fresh runner VMs, all five primary candidates and a separately
-labeled reduced egui control. All 60 Linux/Windows light- and dark-startup
-acceptance invocations passed. The failed macOS jobs from that run are diagnostic
-history, not successful measurements or missing values replaced with zero.
+labeled reduced egui control. The macOS jobs fail only on the strict gate that
+requires every configured candidate to pass; the four passing candidates are
+reported at their actual scope, GTK's failure is retained, not replaced by zero.
 
-The final selected macOS [run 43263287428](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43263287428),
-source [`589a6111d79156d787471069aa9e26d5b289d5d7`](https://github.com/HeyVasily/rust-desktop-comparison/commit/589a6111d79156d787471069aa9e26d5b289d5d7),
-provides one eligible visible-idle observation each for egui, Slint, Qt and Tauri.
-GTK failed live-theme acceptance. Two repetitions stopped before the integrated
-light-start candidates because the reduced control's process cleanup was unknown.
-Both complete workflow runs therefore concluded **failure**; the successful
-Linux/Windows jobs and individual eligible macOS observations are reported at
-their actual scope, not promoted to an all-platform pass.
-
-[Retained evidence and archive checksums](../measurements/desktop-integrated-2026-11-12/README.md)
+[Retained evidence and archive checksums](../measurements/desktop-integrated-2026-11-14/README.md)
 make every selected result, failed invocation and selection decision reviewable.
+The earlier 2026-11-12 import (runs 43251948886 and 43263287428: Linux/Windows
+complete, macOS n=1) is preserved at tag
+[`evidence/desktop-import-2026-11-12`](https://github.com/HeyVasily/rust-desktop-comparison/tree/evidence/desktop-import-2026-11-12/measurements).
 
 ## What was built
 
@@ -40,13 +37,11 @@ make every selected result, failed invocation and selection decision reviewable.
 | Qt Widgets | C++17; Qt **6.8.3** kits on Linux and Windows; Homebrew Qt on macOS | Linux uses the matching Qt GTK3 platform-theme plugin; Windows uses Fusion with the native platform palette; macOS retains its native style |
 | Tauri | Tauri **2.12.5**, tauri-build **2.7.4**; embedded static HTML/CSS/JS and normal editable controls | WebKitGTK on Linux, WebView2 on Windows, system WKWebView on macOS; their attributable helper processes are included |
 
-**Source drift.** Linux/Windows were measured at `fe53a64`. Later commits
-changed only GTK's theme log lines (`elapsed_ms`) and `tools/desktop_probe.py`
-(macOS foreground verification and an initial focus step); they were exercised
-by the macOS run at `589a611`, which matches the final `examples/`. The final
-probe also changes failure handling only (foreign WebKit helpers, host errors
-during live transitions, dark-start after a stopped sequence); no measured
-value depends on it, and no runner has executed it yet.
+**Source drift.** Windows was re-run at `d1b3951` because its first jobs in
+43579539989 stopped in the regression-test step (POSIX-only site smoke tests)
+before building anything. `d1b3951` differs from `52b840e` only in
+`tools/import_native_run.py` and tests; examples, probes and the workflow are
+identical, and the importer does not run on the runners.
 
 Cargo lockfiles are committed and builds use `--locked`. Rust's `stable` channel,
 Homebrew/MSYS2 packages and hosted runner contents are not immutable version
@@ -63,20 +58,23 @@ future `stable`, Homebrew, MSYS2 or hosted-image install resolves identically.
 
 | Platform | Runner / compiler | Native toolkit and webview versions | Observed rendering details |
 | --- | --- | --- | --- |
-| Linux | Ubuntu 24.04 x86_64, image `20261101.360.1`; rustc/cargo **1.99.1**; four logical CPUs, approximately 16 GiB RAM | GTK **4.14.5**, libadwaita **1.5.0**, GTK3 **3.24.41**, Qt **6.8.3**, WebKitGTK **2.52.6**, Mesa **25.2.8** | egui reports **llvmpipe (LLVM 20.1.2, 256 bits)**; GTK reports `GdkX11Display` / `GskGLRenderer`; Qt reports `xcb` / Fusion and the shared GTK3 theme integration |
-| Windows | Windows Server 2022 x64, image `20261101.353.1`; rustc/cargo **1.99.1**; four logical CPUs, approximately 16 GiB RAM | GTK **4.24.1**, libadwaita **1.10.0**, Qt **6.8.3**, WebView2 **131.0.2903.86** | egui reports Dx12 **Microsoft Basic Render Driver**, CPU device, driver **10.0.20348.5756**; GTK reports `GdkWin32Display` / `GskCairoRenderer`; Qt reports its Windows platform plugin / Fusion |
-| macOS | macOS **15.8.2 arm64**, image `20261104.0514.1`; rustc/cargo **1.99.1**; **Apple M1 (Virtual)**, three logical CPUs, 7 GiB RAM | GTK **4.24.1**, libadwaita **1.10.0**, Qt **6.12.0** (Homebrew `qtbase 6.12.0_2`), system WebKit **20621.3.11.11.3** | egui Glow reports **Apple Software Renderer**; GTK reports `GdkMacosDisplay` / `GskGLRenderer`; Qt reports `cocoa` / `macos` style |
+| Linux | Ubuntu 24.04 x86_64, images `20261111.127.1` (r1) and `20261111.370.1` (r2/r3); rustc/cargo **1.100.0**; four logical CPUs, approximately 16 GiB RAM | GTK **4.14.5**, libadwaita **1.5.0**, GTK3 **3.24.41**, Qt **6.8.3**, WebKitGTK **2.52.6**, Mesa **25.2.8** | egui reports **llvmpipe (LLVM 20.1.2, 256 bits)**; GTK reports `GdkX11Display` / `GskGLRenderer`; Qt reports `xcb` / Fusion and the shared GTK3 theme integration |
+| Windows | Windows Server 2022 x64, image `20261112.366.7`; rustc/cargo **1.100.0**; four logical CPUs, approximately 16 GiB RAM | GTK **4.24.1**, libadwaita **1.10.0**, Qt **6.8.3**, WebView2 **131.0.2903.86** | egui reports Dx12 **Microsoft Basic Render Driver**, CPU device, driver **10.0.20348.5756**; GTK reports `GdkWin32Display` / `GskCairoRenderer`; Qt reports its Windows platform plugin / Fusion |
+| macOS | macOS **15.8.2 arm64**, image `20261104.0514.1`; rustc/cargo **1.100.0**; **Apple M1 (Virtual)**, three logical CPUs, 7 GiB RAM | GTK **4.24.1**, libadwaita **1.10.0**, Qt **6.12.0** (Homebrew `qtbase 6.12.0_2`), system WebKit **20621.3.11.11.3** | egui Glow reports **Apple Software Renderer**; GTK reports `GdkMacosDisplay` / `GskGLRenderer`; Qt reports `cocoa` / `macos` style |
 
 Slint is configured for its winit/software-renderer backend. Tauri's system
 webview can use its own compositor; no unsupported claim about its GPU backend
-is inferred from the other candidates' logs. Windows r1 reports a different AMD
-CPU family from r2/r3 despite the same image. These are hosted-VM observations,
-not controlled identical hardware or hardware-GPU laptop measurements.
+is inferred from the other candidates' logs. The three Windows VMs reported
+three different CPU models (two AMD models, one Intel) on the same image.
+These are hosted-VM observations, not controlled identical hardware or
+hardware-GPU laptop measurements.
 
-The exact [Linux build evidence](../measurements/native-43251948886/r1/ubuntu-24.04/build/)
-and [Windows build evidence](../measurements/native-43251948886/r1/windows-2022/build/)
+The exact [Linux build evidence](../measurements/native-43579539989/r1/ubuntu-24.04/build/),
+[Windows build evidence](../measurements/native-43580078566/r1/windows-2022/build/)
+and [macOS build evidence](../measurements/native-43579539989/r1/macos-15/build/)
 include versions, build logs and binary sizes; every repetition retains its own
-files. Resolved feature graphs are in the [complete import](https://github.com/HeyVasily/rust-desktop-comparison/tree/6edec975f61eae88cb2c85d2da2f756fd4af190d/measurements). Equal executable sizes do not mean byte-identical executable hashes.
+files. Resolved feature graphs are not copied; `build/inputs-sha256.json` keeps
+their digests. Equal executable sizes do not mean byte-identical executable hashes.
 
 ## Acceptance and sampling
 
@@ -107,8 +105,11 @@ extra ranked memory sample. A light-state sample does not disappear merely
 because another invocation fails, but the overall desktop profile must not be
 marked fully verified when its required dark-startup evidence failed or is missing.
 The site also requires matching light/dark repetition coverage within one source
-and build group. Three dark-start checks and one light-start check remain partial;
-the successful light-state memory observation is still retained as **n=1**.
+and build group. A selected candidate without a probe outcome is imported as a
+failed repetition: `not_run` when a stopped sequence never started it, `failed`
+with unknown cleanup when the runner's watchdog or launcher stopped it. Without
+any probe outcome on the VM it keeps the artifact's run, repetition and source,
+with its measurement mode recorded as unknown, so it cannot silently shrink n.
 
 Startup permits up to 30 seconds for a correctly themed nonblank first frame
 after the owned window is found; live transitions retain an eight-second budget.
@@ -143,15 +144,15 @@ The primary metrics are **not interchangeable across operating systems**.
 Compare candidates within one OS, runner image and rendering environment.
 Summed RSS/Working Set can double-count shared pages. Webview helpers are part of
 Tauri's application family; macOS also verifies WKWebView responsibility ownership
-because ancestry alone can miss helpers managed by the OS.
+because ancestry alone can miss helpers managed by the OS. A WebKit helper that
+appears while a non-webview candidate runs is recorded as foreign
+(`foreign_new_web_helpers`) and does not block it; none appeared in this run.
 
 Each repetition first produces its median across the 120 post-baseline samples.
 An aggregate reports the median and min–max range of those repetition medians,
 with the actual accepted **n**, failures and outlier flags retained. The range is
 not a confidence interval. Aggregation does not combine different workflow runs,
 source revisions, source/build hashes, profiles, memory metrics or runner images.
-A requested three-repetition matrix can therefore legitimately yield separate
-n=1 and n=2 groups during a hosted image rollout.
 
 CPU is observed process user+system time as a percentage of **one logical core**.
 Zero recorded ticks means below accounting resolution over that interval, not
@@ -161,94 +162,86 @@ and do not predict warmed resident-memory cost.
 
 ## Primary visible-idle results
 
-Memory is MiB; brackets are the min–max of the three per-run medians. CPU is the
-median observed percentage of one logical core. Each Linux/Windows candidate has
-**n=3 memory observations**, plus **3 light-start and 3 dark-start acceptance
-invocations**. Those six acceptance checks are not six independent memory samples.
+Memory is MiB; brackets are the min–max of the per-run medians. CPU is the
+median observed percentage of one logical core. Each memory observation follows
+its own light-start acceptance; each repetition also has a dark-start acceptance
+invocation, which is not an extra memory sample.
 
 ### Linux: X11 / Adwaita / llvmpipe
 
-Image `20261101.360.1`, run `43251948886`, source `fe53a64`, build-input digest
-`afd67f4452df…`. All five desktop profiles are fully verified in this environment.
+Run `43579539989`, source `52b840e`, build-input digest `73353e74650a…`. The
+hosted image rollout placed r1 on `20261111.127.1` and r2/r3 on `20261111.370.1`,
+so each candidate has two provenance groups. Both groups are fully verified.
+A Linux-only rerun ([43583529539](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43583529539))
+was meant to put all three repetitions on one image; it split as well (r1/r2
+`…370.1`, r3 `…127.1`), so this run was kept and runs are never pooled. That
+rerun disagrees with this run for Qt; see below.
 
-| Candidate | n | PSS, median [range] | Summed RSS, median | Idle CPU, % |
+| Candidate | PSS, r2/r3 `…370.1` (n=2) median [range] | PSS, r1 `…127.1` (n=1) | Summed RSS, r2/r3 median | Idle CPU, r2/r3 % |
 | --- | ---: | ---: | ---: | ---: |
-| egui / eframe | 3 | 89.69 [89.59–93.23] | 122.68 | 0.00811 |
-| GTK4 + libadwaita | 3 | 204.10 [203.82–204.15] | 245.25 | 0.00000 |
-| Slint | 3 | 17.47 [17.39–17.74] | 23.41 | 0.00814 |
-| Qt Widgets | 3 | 36.90 [36.83–36.90] | 54.85 | 0.00000 |
-| Tauri | 3 | 336.24 [336.19–336.33] | 511.74 | 0.02333 |
+| egui / eframe | 91.64 [89.82–93.46] | 89.78 | 124.76 | 0.00406 |
+| GTK4 + libadwaita | 203.91 [203.89–203.92] | 204.45 | 245.00 | 0.00000 |
+| Slint | 17.61 [17.34–17.88] | 17.16 | 23.54 | 0.00407 |
+| Qt Widgets | 42.58 [42.56–42.59] | 42.55 | 60.72 | 0.00000 |
+| Tauri | 336.03 [335.72–336.33] | 335.45 | 511.66 | 0.02353 |
 
 GTK and egui use software OpenGL here; that cost is not a measurement of GTK's
 widget tree or Rust bindings alone. Qt's complete GNOME-like integration includes
 its GTK3/QtDBus dependencies. Shared session services are excluded for every app.
+**Qt's Linux figure is run-dependent, not image-dependent.** The not-selected
+rerun 43583529539 used the same two images, the same Qt executable
+(`beed48d9018f…`) and the same package versions, and measured Qt PSS of
+36.75 / 37.20 / 36.84 MiB (r1/r2 `…370.1`, r3 `…127.1`), close to the 36.90 of
+the 2026-11-12 run. All three repetitions of this run sit at 42.55–42.59 MiB.
+The other four candidates agree between the two runs within 2 MiB. Treat Linux
+Qt as about 37–43 MiB PSS; the cause of the 5.7 MiB run-level shift is not
+isolated.
 
 ### Windows: native desktop / software graphics adapter
 
-Image `20261101.353.1`, run `43251948886`, source `fe53a64`, build-input digest
-`79d478c768bc…`. All five desktop profiles are fully verified in this environment.
+Run `43580078566`, image `20261112.366.7`, source `d1b3951`, build-input digest
+`29a2d2339dbb…`. All five desktop profiles are fully verified, n=3.
 
 | Candidate | n | Private working set, median [range] | Summed working set, median | Idle CPU, % |
 | --- | ---: | ---: | ---: | ---: |
-| egui / eframe | 3 | 31.99 [31.41–32.28] | 58.98 | 0.00000 |
-| GTK4 + libadwaita | 3 | 36.09 [35.93–36.34] | 79.12 | 0.00000 |
-| Slint | 3 | 10.11 [10.10–10.13] | 24.29 | 0.00000 |
-| Qt Widgets | 3 | 18.36 [18.30–18.36] | 36.74 | 0.00000 |
-| Tauri | 3 | 126.90 [126.70–126.93] | 283.75 | 0.17983 |
+| egui / eframe | 3 | 31.68 [31.32–34.35] | 58.73 | 0.00000 |
+| GTK4 + libadwaita | 3 | 36.25 [36.13–36.27] | 79.24 | 0.00000 |
+| Slint | 3 | 10.07 [10.05–10.20] | 24.30 | 0.00000 |
+| Qt Widgets | 3 | 18.38 [18.27–18.45] | 36.85 | 0.00000 |
+| Tauri | 3 | 125.72 [125.39–126.41] | 281.69 | 0.10708 |
 
 The measured Tauri family includes attributable WebView2 helpers. Zero CPU ticks
 for the other candidates mean below the retained accounting resolution, not a
-claim of literally no work. Tauri's per-run CPU observations span 0.165–0.234%.
+claim of literally no work. Tauri's per-run CPU observations span 0.093–0.118%.
 
 ### macOS
 
-Image `20261104.0514.1`, run `43263287428`, source `589a611`, build-input digest
-`1b5ccfe2dd84…`. These are **single observations from r2**, not a completed
-three-repetition matrix. Every reported sample followed successful light-start,
-live-theme and clipboard acceptance; the separate dark-start checks passed for
-these four candidates in r1/r2/r3. Missing light-start repetitions keep their
-overall series status **incomplete**.
+Run `43579539989`, image `20261104.0514.1`, source `52b840e`, build-input digest
+`7850d4cd0f3c…`.
 
-| Candidate | Eligible n | Physical footprint, MiB | Summed RSS, MiB | Idle CPU, % | Remaining evidence |
-| --- | ---: | ---: | ---: | ---: | --- |
-| egui / eframe | 1 | 31.55 | 97.92 | 0.01081 | Light-start r1/r3 not run |
-| GTK4 + libadwaita | 0 | — | — | — | Live-theme failure; idle refused |
-| Slint | 1 | 16.60 | 97.83 | 0.00109 | Light-start r1/r3 not run |
-| Qt Widgets | 1 | 28.05 | 101.30 | 0.00040 | Light-start r1/r3 not run |
-| Tauri | 1 | 45.07 | 146.66 | 0.00954 | Light-start r1/r3 not run |
-
-The r1/r3 dark-start checks ran on the same VM after its light-start sequence
-had stopped; they are acceptance evidence only and supply no memory sample.
-
-The reduced control in r1/r3 completed sampling, but newly observed WebKit helpers
-could not be assigned to an application owner. The process gate recorded
-`cleanup_status=unknown` and stopped subsequent light-start candidates. Its
-`cleanup_survivors` list was empty: this is **unresolved ownership**, not evidence
-that egui created WebKit processes or leaked an owned child. The reduced numbers
-are excluded, and no paired delta is computed for those repetitions.
-
-GTK's system setting and libadwaita state changed, but the dark client frame
-remained dark through the eight-second light-transition deadline. Ordinary input
-later caused a light redraw. This limits the tested GTK/macOS profile; it does
-not establish that GTK lacks dark appearance or clipboard support.
-
-### Linux minimized, separately measured
-
-Same source, image and build group as the visible Linux table. The minimized state
-was verified before and after each independent settling/sampling phase.
-
-| Candidate | n | PSS, median [range] | Summed RSS, median | Idle CPU, % |
+| Candidate | n | Physical footprint, median [range] | Summed RSS, median | Idle CPU, % |
 | --- | ---: | ---: | ---: | ---: |
-| egui / eframe | 3 | 89.69 [89.59–93.23] | 122.68 | 0.00000 |
-| GTK4 + libadwaita | 3 | 204.10 [203.81–204.15] | 245.25 | 0.00000 |
-| Slint | 3 | 17.47 [17.39–17.74] | 23.41 | 0.00809 |
-| Qt Widgets | 3 | 36.90 [36.83–36.90] | 54.85 | 0.00000 |
-| Tauri | 3 | 329.13 [329.07–329.22] | 502.29 | 0.01557 |
+| egui / eframe | 3 | 31.66 [29.35–32.38] | 98.89 | 0.00091 |
+| GTK4 + libadwaita | 0 | — live-theme failure; idle refused | — | — |
+| Slint | 3 | 16.27 [16.25–16.83] | 97.47 | 0.00105 |
+| Qt Widgets | 3 | 28.13 [28.05–29.13] | 101.55 | 0.00067 |
+| Tauri | 3 | 44.32 [44.30–44.94] | 147.25 | 0.00938 |
 
-Minimization did not release most retained allocations in this short observation.
-Tauri's PSS median is about 7.1 MiB lower; that is an observation on this profile,
-not a general lifetime-memory guarantee. Windows/macOS minimized phases were not
-run and must not be inferred from visible-idle data.
+**GTK on macOS.** In all three light-start invocations the light → dark change
+repainted within about 2 s, but the following dark → light change did not: the
+captured client stayed at luma 40.6 through the eight-second deadline. All three
+dark-start invocations failed the same way on their first dark → light change.
+In every invocation the application log shows libadwaita's `StyleManager`
+reporting the change (`dark=false`), so the application received it; GDK also
+logs `gdk_frame_timings_presented() called on skipped frame`, although in the
+light-start invocations that warning precedes `dark=false` and accompanies the
+change that did repaint. The example uses the standard `connect_dark_notify`
+path with no forced palette or timer; in the earlier GTK-only runs listed under
+the verification history, an explicit `queue_draw()` did not change the result.
+The evidence is consistent with GTK 4.24.1's macOS backend not presenting a
+frame after the light-direction style change on this hosted VM, rather than with
+a probe fault; the cause is not isolated beyond that. It does not establish that GTK lacks dark appearance
+or clipboard support: clipboard acceptance passed in all six invocations.
 
 ## Paired egui integration cost
 
@@ -271,36 +264,38 @@ workload. Thus the delta describes the **whole configured profile after use**,
 including retained caches and allocations, not clipboard-only or theme-only
 memory. It is not derived by subtracting unrelated historical medians.
 
-Negative or inconsistent small deltas remain visible. Neither added dependency
-count nor executable growth proves a large resident-memory increase. Three
-sequential pairs do not establish statistical significance or a general result
-for other machines, renderers or desktop environments.
-
 | Environment | Paired n | Primary-memory delta, median [range], MiB |
 | --- | ---: | ---: |
-| Linux visible, image `20261101.360.1` | 3 | **+1.028 [+1.008–+8.201]** PSS |
-| Linux minimized, same image | 3 | **+1.028 [+1.008–+8.201]** PSS |
-| Windows visible, image `20261101.353.1` | 3 | **+4.926 [+4.859–+5.265]** private working set |
-| macOS visible, image `20261104.0514.1` | 1 | **+1.969** physical footprint; r2 only |
+| Linux visible, image `20261111.370.1` | 2 | **+4.928 [+1.317–+8.540]** PSS |
+| Linux visible, image `20261111.127.1` | 1 | **+0.909** PSS |
+| Linux minimized | — | identical to visible per image |
+| Windows visible, image `20261112.366.7` | 3 | **+4.641 [+4.480–+4.930]** private working set |
+| macOS visible, image `20261104.0514.1` | 3 | **+3.250 [+1.907–+3.938]** physical footprint |
 
 These observations do **not** support an assumed very large resident-memory cost
-for enabling the desktop bundle. Linux's wide pair spread also prevents treating
-the +1.028 MiB median as a precise fixed overhead. The retained paired JSON uses
-the recorded per-run values and rounding; it is the authoritative delta source.
+for enabling the desktop bundle. Linux's wide pair spread (as in the 2026-11-12
+run) prevents treating any Linux median as a precise fixed overhead. Three
+sequential pairs do not establish statistical significance or a general result
+for other machines, renderers or desktop environments. The retained paired JSON
+is the authoritative delta source.
 
 ## Verification history
 
-Earlier attempts are diagnostic history, not current data. [Run 43218424949](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43218424949)
-split Linux repetitions across two runner images, blocked GTK/macOS on a
-foreground-verification disagreement and failed Windows Tauri before its webview
-rendered a first frame; its [five failed cases](https://github.com/HeyVasily/rust-desktop-comparison/tree/6edec975f61eae88cb2c85d2da2f756fd4af190d/measurements/desktop-validation-2026-11-12)
-are kept with the complete import. The probe fixes from that run are in the measured source of
-`43251948886`, whose macOS jobs failed and are excluded. GTK-only macOS runs
+[Run 43218424949](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43218424949)
+split Linux across images, blocked GTK/macOS on a foreground-verification
+disagreement and failed Windows Tauri before its first frame. Runs
+[43251948886](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43251948886)
+and [43263287428](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43263287428)
+completed Linux/Windows but stopped macOS r1/r3 when foreign WebKit helpers left
+the reduced control's cleanup unknown. GTK-only macOS runs
 [43260869046](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43260869046)
 and [43262165209](https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43262165209)
-isolated the stale dark frame described above; a `queue_draw()` experiment did
-not fix it and was removed before the selected run. Excluded archives are listed
-in [archives.json](../measurements/desktop-integrated-2026-11-12/archives.json).
+isolated the GTK stale frame. All of that evidence is kept at the
+`evidence/desktop-import-2026-11-12` tag. The current probe records foreign
+helpers instead of stopping. In this run no macOS sequence stopped, but no
+foreign helper appeared either (every acceptance row records 0), so the recording
+path itself is covered only by host-free tests, not yet by a runner. Selection decisions for all 15 downloaded archives are in
+[archives.json](../measurements/desktop-integrated-2026-11-14/archives.json).
 
 ## Evidence and reproduction
 
@@ -311,38 +306,33 @@ run it only in **disposable test desktops**, not an active personal session.
 Original appearance is restored, but private clipboard formats and ownership
 are not backed up or restored.
 
-After downloading and verifying all selected artifact archives, an import is
+After downloading and verifying the selected artifact archives, an import is
 reproducible with:
 
 ```sh
-python3 tools/import_native_run.py 43251948886,43263287428 out/artifacts-current desktop-integrated-2026-11-12
-python3 tools/build_desktop_site_data.py measurements/desktop-integrated-2026-11-12
-python3 tools/build_desktop_site_data.py measurements/desktop-integrated-2026-11-12 --check
+python3 tools/import_native_run.py 43579539989,43580078566 out/artifacts-current desktop-integrated-2026-11-14
+python3 tools/build_desktop_site_data.py measurements/desktop-integrated-2026-11-14
+python3 tools/build_desktop_site_data.py measurements/desktop-integrated-2026-11-14 --check
 ```
 
-`out/artifacts-current` must contain the **nine selected archives** listed as
-`selection: current` in [archives.json](../measurements/desktop-integrated-2026-11-12/archives.json):
-six Linux/Windows directories from `43251948886` and three macOS directories from
-`43263287428`, named `native-<runner>-<run-id>-r<repetition>`. The importer
+`out/artifacts-current` must contain the **nine archives** listed as
+`selection: current` in [archives.json](../measurements/desktop-integrated-2026-11-14/archives.json):
+six Linux/macOS directories from `43579539989` and three Windows directories from
+`43580078566`, named `native-<runner>-<run-id>-r<repetition>`. The importer
 retains build versions, outcomes, acceptance records and deterministic compressed
 samples under `measurements/native-<run-id>/r<repetition>/<runner>/`, plus r1
-light/dark images (where r1 produced them) under `screenshots/`; series CSV/JSON
-files record eligibility, exclusions, provenance groups and the paired control.
-`--check` verifies that the site's published JSON matches those imported records
-without rewriting it. A successful import alone is not an all-jobs-passed claim:
-review `import-report.json`, all expected artifacts, acceptance and actual counts.
+light/dark images under `screenshots/`; series CSV/JSON files record eligibility,
+exclusions, provenance groups and the paired control. `--check` verifies that the
+site's published JSON matches those imported records without rewriting it. A
+successful import alone is not an all-jobs-passed claim: review
+`import-report.json`, all expected artifacts, acceptance and actual counts.
 
-The [series README](../measurements/desktop-integrated-2026-11-12/README.md) links
-the verified original ZIP digests, selected and diagnostic evidence, summaries,
-acceptance records, paired controls and retained-file checksums. The import
-contains **89 outcome records**, **62 requested/measured phase rows**, **19 primary
-summary groups** and **4 diagnostic-control groups**. These are data-record counts,
-not 89 successful GUI tests or 62 independent runner VMs.
-
-The importer checked the retained samples against their summaries and, while
-reading the archives, captured luminance against the PNGs. Representative light/dark/restored captures, kept in the [complete import](https://github.com/HeyVasily/rust-desktop-comparison/tree/6edec975f61eae88cb2c85d2da2f756fd4af190d/measurements), were also
-visually reviewed. The Python/JavaScript checks validate the evidence pipeline
-and report; they do not constitute new native application runs.
+The [series README](../measurements/desktop-integrated-2026-11-14/README.md) links
+the verified original ZIP digests, summaries, acceptance records, paired controls
+and retained-file checksums. The import contains **99 outcome records**, **72
+requested/measured phase rows**, **29 primary summary groups** and **6
+diagnostic-control groups**. These are data-record counts, not 99 successful GUI
+tests or 72 independent runner VMs.
 
 ## Applicability to Veranda
 

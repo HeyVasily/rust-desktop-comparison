@@ -68,12 +68,10 @@ result is flaky.
 - The existing GTK harness (`dev/e2e/veranda-wayland-resources.py` in Subyard)
   covers the GTK side; its readiness and input steps need an egui adapter.
 
-## Complete the macOS desktop baseline
+## GTK live light repaint on macOS
 
-The 2026-11-12 macOS data is n=1 and excludes GTK. Needed: fix or explain GTK's
-stale frame after a live dark → light change, then rerun three repetitions. The
-probe no longer counts foreign WebKit helpers against non-webview candidates
-(the cause of the stopped r1/r3) and no longer runs dark-start checks after a
-stopped light-start sequence; that rerun is their first runner validation.
-`summary.csv` still counts only imported repetitions; requested-but-unrun
-repetitions are visible only through the acceptance coverage.
+The 2026-11-14 run fails GTK 4.24.1 on macOS in all six invocations: libadwaita
+reports the dark → light change, GDK logs a skipped frame, and the window stays
+dark until input. Reduce it to a plain GTK4 sample without libadwaita, report it
+upstream if it reproduces, and rerun GTK-only macOS acceptance on the next GTK
+release. No app-side repaint workaround: it would no longer test the system path.

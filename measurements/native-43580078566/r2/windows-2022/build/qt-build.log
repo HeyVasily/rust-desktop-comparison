@@ -1,0 +1,7 @@
+MSBuild version 17.14.60+43b635718 for .NET Framework
+
+  1>Checking Build System
+  Building Custom Rule D:/a/rust-desktop-comparison/rust-desktop-comparison/examples/qt/CMakeLists.txt
+  main.cpp
+  veranda-qt-comparison.vcxproj -> D:\a\rust-desktop-comparison\rust-desktop-comparison\target\qt\Release\veranda-qt-comparison.exe
+  Building Custom Rule D:/a/rust-desktop-comparison/rust-desktop-comparison/examples/qt/CMakeLists.txt

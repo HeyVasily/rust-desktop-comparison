@@ -16,9 +16,12 @@ OS theme and clipboard integration before measuring idle memory. Current results
 and historical UI-only measurements are separate datasets, not interchangeable
 measurements of the same binaries.
 
-**2026-11-12 evidence:** Linux and Windows have three accepted repetitions per
-candidate. macOS remains partial: four candidates have one accepted visible-idle
-observation, while GTK failed live-theme acceptance. Failed and unrun cases stay
+**2026-11-14 evidence:** all five candidates are fully verified on Linux and
+Windows, and egui, Slint, Qt and Tauri on macOS, each with three accepted
+repetitions (Linux split n=1 + n=2 by a runner-image rollout). GTK on macOS
+failed live-theme acceptance: its window does not repaint after a dark → light
+system change. Linux Qt PSS differed by about 5.7 MiB between two runs of the
+same executable, so treat it as run-dependent. Failed and unrun cases stay
 visible. These hosted software-rendering results do not establish hardware-iGPU
 performance or the footprint of the real Veranda RPC client; see the
 [product-specific follow-up](docs/desktop-results.md#applicability-to-veranda).

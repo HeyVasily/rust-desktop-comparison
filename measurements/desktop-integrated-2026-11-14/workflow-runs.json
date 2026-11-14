@@ -1,0 +1,2693 @@
+{
+ "checked_on": "2026-11-14",
+ "runs": [
+  {
+   "run_id": 43579539989,
+   "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989",
+   "source_commit": "52b840ef822f4af41d713b5541fb49ba2cab5923",
+   "status": "completed",
+   "conclusion": "failure",
+   "created_at": "2026-11-14T09:13:36Z",
+   "updated_at": "2026-11-14T10:02:14Z",
+   "jobs": [
+    {
+     "id": 132401105176,
+     "name": "native (1, macos-15)",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401105176",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "failure"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132401105107,
+     "name": "native (1, ubuntu-24.04)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401105107",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132401105214,
+     "name": "native (1, windows-2022)",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401105214",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "failure"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132401105072,
+     "name": "native (2, macos-15)",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401105072",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "failure"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132401105146,
+     "name": "native (2, ubuntu-24.04)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401105146",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132401104907,
+     "name": "native (2, windows-2022)",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401104907",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "failure"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132401105099,
+     "name": "native (3, macos-15)",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401105099",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "failure"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132401105231,
+     "name": "native (3, ubuntu-24.04)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401105231",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132401105183,
+     "name": "native (3, windows-2022)",
+     "status": "completed",
+     "conclusion": "failure",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43579539989/job/132401105183",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "failure"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "run_id": 43580078566,
+   "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43580078566",
+   "source_commit": "d1b3951dde8d17761509f8d5b383fa1c153a9a43",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-11-14T09:20:22Z",
+   "updated_at": "2026-11-14T10:06:37Z",
+   "jobs": [
+    {
+     "id": 132402724400,
+     "name": "native (1, windows-2022)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43580078566/job/132402724400",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132402724101,
+     "name": "native (2, windows-2022)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43580078566/job/132402724101",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132402724402,
+     "name": "native (3, windows-2022)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43580078566/job/132402724402",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "run_id": 43583529539,
+   "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43583529539",
+   "source_commit": "d1b3951dde8d17761509f8d5b383fa1c153a9a43",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-11-14T10:04:37Z",
+   "updated_at": "2026-11-14T10:55:58Z",
+   "jobs": [
+    {
+     "id": 132413115705,
+     "name": "native (1, ubuntu-24.04)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43583529539/job/132413115705",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132413115944,
+     "name": "native (2, ubuntu-24.04)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43583529539/job/132413115944",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    },
+    {
+     "id": 132413115993,
+     "name": "native (3, ubuntu-24.04)",
+     "status": "completed",
+     "conclusion": "success",
+     "url": "https://github.com/HeyVasily/rust-desktop-comparison/actions/runs/43583529539/job/132413115993",
+     "steps": [
+      {
+       "name": "Set up job",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Validate selected frameworks",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run dtolnay/rust-toolchain@stable",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Prepare probe and source evidence",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Probe and importer regression tests",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Linux build and X11 runtime libraries",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify Linux Qt deployment",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Qt 6.8.3 for Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "GTK4 and libadwaita Windows toolchain",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Build gtk4-rs and libadwaita on Windows",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Native macOS libraries",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Record Windows WebView2 installation",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Preserve exact Cargo features and locks without mutating source",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build reduced egui diagnostic control",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build egui desktop release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Test egui Settings portal transport on an isolated bus",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Slint release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Tauri release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build Qt Widgets release",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Build GTK4 plus libadwaita on Unix",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify build did not mutate benchmark sources",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Run desktop profiles and reduced control sequentially",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Verify dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Upload evidence, including failures",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require every configured desktop footprint result",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Require Settings portal transport test",
+       "status": "completed",
+       "conclusion": "skipped"
+      },
+      {
+       "name": "Require dark startup and live transitions",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Qt 6.8.3 for Linux with matching GNOME platform theme",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/setup-python@v5",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Post Run actions/checkout@v4",
+       "status": "completed",
+       "conclusion": "success"
+      },
+      {
+       "name": "Complete job",
+       "status": "completed",
+       "conclusion": "success"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
