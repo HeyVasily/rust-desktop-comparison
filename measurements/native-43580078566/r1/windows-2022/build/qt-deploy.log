@@ -1,0 +1,41 @@
+D:\a\rust-desktop-comparison\rust-desktop-comparison\target\qt\Release\veranda-qt-comparison.exe 64 bit, release executable
+Adding in plugin type generic for module: Qt6Gui
+Adding Qt6Network for qtuiotouchplugin.dll from plugin type: generic
+Adding in plugin type iconengines for module: Qt6Gui
+Adding Qt6Svg for qsvgicon.dll from plugin type: iconengines
+Adding in plugin type imageformats for module: Qt6Gui
+Adding in plugin type networkinformation for module: Qt6Network
+Adding in plugin type platforms for module: Qt6Gui
+Adding in plugin type styles for module: Qt6Widgets
+Adding in plugin type tls for module: Qt6Network
+Skipping plugin qopensslbackend.dll. Use -force-openssl or specify -openssl-root if you want to use it.
+Direct dependencies: Qt6Core Qt6Gui Qt6Widgets
+All dependencies   : Qt6Core Qt6Gui Qt6Widgets
+To be deployed     : Qt6Core Qt6Gui Qt6Network Qt6Svg Qt6Widgets
+Warning: Cannot find any version of the dxcompiler.dll and dxil.dll.
+Warning: Cannot find Visual Studio installation directory, VCINSTALLDIR is not set.
+Updating Qt6Core.dll.
+Updating Qt6Gui.dll.
+Updating Qt6Network.dll.
+Updating Qt6Svg.dll.
+Updating Qt6Widgets.dll.
+Updating opengl32sw.dll.
+Updating D3Dcompiler_47.dll.
+Creating directory D:/a/rust-desktop-comparison/rust-desktop-comparison/target/qt/Release/generic.
+Updating qtuiotouchplugin.dll.
+Creating directory D:/a/rust-desktop-comparison/rust-desktop-comparison/target/qt/Release/iconengines.
+Updating qsvgicon.dll.
+Creating directory D:/a/rust-desktop-comparison/rust-desktop-comparison/target/qt/Release/imageformats.
+Updating qgif.dll.
+Updating qico.dll.
+Updating qjpeg.dll.
+Updating qsvg.dll.
+Creating directory D:/a/rust-desktop-comparison/rust-desktop-comparison/target/qt/Release/networkinformation.
+Updating qnetworklistmanager.dll.
+Creating directory D:/a/rust-desktop-comparison/rust-desktop-comparison/target/qt/Release/platforms.
+Updating qwindows.dll.
+Creating directory D:/a/rust-desktop-comparison/rust-desktop-comparison/target/qt/Release/styles.
+Updating qmodernwindowsstyle.dll.
+Creating directory D:/a/rust-desktop-comparison/rust-desktop-comparison/target/qt/Release/tls.
+Updating qcertonlybackend.dll.
+Updating qschannelbackend.dll.

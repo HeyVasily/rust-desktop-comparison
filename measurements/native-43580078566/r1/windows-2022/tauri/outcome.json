@@ -1,0 +1,259 @@
+{
+  "name": "tauri",
+  "status": "comparison_passed",
+  "build_mode": "release",
+  "environment": {
+    "os": "Windows-2022Server-10.0.20348-SP0",
+    "architecture": "AMD64",
+    "processor": "AMD64 Family 25 Model 1 Stepping 1, AuthenticAMD",
+    "logical_cpus": 4,
+    "memory_bytes": 17174360064,
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "runner_image": "win22",
+    "image_version": "20261112.366.7",
+    "commit": "d1b3951dde8d17761509f8d5b383fa1c153a9a43",
+    "run_id": "43580078566",
+    "repetition": "1",
+    "renderer": "See each application.log; unknown unless reported by the app"
+  },
+  "comparison_requested": true,
+  "measurement_profile": "desktop-integrated",
+  "memory_metric": "Windows Working Set",
+  "primary_memory_metric": "Windows private working set",
+  "limitations": [
+    "Summed RSS can double-count shared pages; the primary metric (PSS, physical footprint or private working set) does not count shared pages in full",
+    "Ancestry polled at 5 Hz; macOS responsibility scope at 1 Hz; short-lived children may escape",
+    "CPU may omit an exiting process's final interval; no system-service allocation",
+    "Idle UI only; minimized state measured only in an explicitly labeled Linux phase",
+    "Screenshot content and occlusion require artifact inspection"
+  ],
+  "phases": {
+    "diagnostic": {
+      "status": "passed",
+      "window": {
+        "id": 393850,
+        "pid": 6180,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 11.108999999999924,
+        "sample_intervals": 10,
+        "observed_cpu_seconds": 0.0,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.0,
+        "family_rss_mib": {
+          "median": 286.587890625,
+          "p95": 286.671875,
+          "observed_maximum": 286.671875
+        },
+        "family_primary_mib": {
+          "median": 129.23046875,
+          "p95": 129.33203125,
+          "observed_maximum": 129.33203125
+        }
+      }
+    },
+    "comparison": {
+      "status": "passed",
+      "window": {
+        "id": 393850,
+        "pid": 6180,
+        "title": "Veranda Tauri comparison",
+        "rectangle": [
+          16,
+          39,
+          976,
+          679
+        ],
+        "bounds_kind": "client"
+      },
+      "capture": {
+        "width": 960,
+        "height": 640,
+        "inspection": "Nonuniform capture only; inspect PNG to confirm correct UI and no occlusion",
+        "readiness_attempts": 1
+      },
+      "summary": {
+        "seconds": 132.92200000000003,
+        "sample_intervals": 120,
+        "observed_cpu_seconds": 0.15625,
+        "late_discovered_preexisting_processes": [],
+        "observed_cpu_percent_one_core": 0.11755014218865197,
+        "family_rss_mib": {
+          "median": 281.689453125,
+          "p95": 282.78515625,
+          "observed_maximum": 282.80859375
+        },
+        "family_primary_mib": {
+          "median": 125.72265625,
+          "p95": 126.28515625,
+          "observed_maximum": 126.29296875
+        }
+      }
+    }
+  },
+  "cleanup_status": "clean",
+  "desktop_integration": {
+    "schema_version": 1,
+    "profile": "desktop-acceptance-v1",
+    "status": "passed",
+    "startup_theme": {
+      "status": "passed",
+      "expected": "light",
+      "mean_client_luma": 242.552,
+      "screenshot": "desktop-startup.png",
+      "attempts": 30,
+      "same_window_and_pid": true,
+      "timeout_seconds": 30,
+      "elapsed_seconds": 7.172
+    },
+    "live_theme": {
+      "status": "passed",
+      "transitions": [
+        {
+          "status": "passed",
+          "expected": "dark",
+          "mean_client_luma": 46.616,
+          "screenshot": "desktop-live-1-dark.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.078,
+          "system_setting": {
+            "source": "HKCU AppsUseLightTheme",
+            "value": 0,
+            "theme": "dark"
+          },
+          "luminance_delta": 195.936
+        },
+        {
+          "status": "passed",
+          "expected": "light",
+          "mean_client_luma": 242.552,
+          "screenshot": "desktop-live-2-light.png",
+          "attempts": 1,
+          "same_window_and_pid": true,
+          "timeout_seconds": 8,
+          "elapsed_seconds": 0.078,
+          "system_setting": {
+            "source": "HKCU AppsUseLightTheme",
+            "value": 1,
+            "theme": "light"
+          },
+          "luminance_delta": 195.936
+        }
+      ]
+    },
+    "clipboard": {
+      "status": "passed",
+      "expected_utf8": "desktop-8fa6dd0732f3 M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "sentinel_utf8": "not-the-widget-8fa6dd0732f3",
+      "protocol": "external Unicode seed \u2192 Ctrl/Cmd+V into filter \u2192 replace OS clipboard \u2192 Ctrl/Cmd+C \u2192 external read",
+      "focus": {
+        "status": "passed",
+        "requested_pid": 6180,
+        "requested_window": 393850,
+        "source": "Windows foreground window",
+        "observed_window": 393850
+      },
+      "pasted_screenshot": "desktop-clipboard-pasted.png",
+      "sentinel_verified": true,
+      "copied_utf8": "desktop-8fa6dd0732f3 M\u00fcnchen \u2014 \u041f\u0440\u0438\u0432\u0435\u0442 \u2713",
+      "restored_fixture_screenshot": "desktop-ready-for-idle.png",
+      "probe_helpers_reaped_before_idle": true
+    },
+    "cleanup": {
+      "status": "passed",
+      "errors": []
+    },
+    "limitations": [
+      "Appearance is verified by OS preference plus client-luminance heuristics; inspect screenshots for occlusion and custom styling",
+      "Clipboard tests cover Unicode text via standard widget shortcuts, not images, files, rich text or X11 primary selection",
+      "This driver verifies Linux X11 only, not native Wayland",
+      "Synthetic clipboard content replaces existing content; run only in a disposable desktop session"
+    ],
+    "system_theme_setup": {
+      "status": "passed",
+      "requested": "light",
+      "observed": {
+        "source": "HKCU AppsUseLightTheme",
+        "value": 1,
+        "theme": "light"
+      }
+    },
+    "application_process": {
+      "pid": 6180,
+      "created": 1794650497.183986
+    },
+    "application_window": {
+      "pid": 6180,
+      "id": 393850
+    },
+    "startup_focus": {
+      "status": "passed",
+      "requested_pid": 6180,
+      "requested_window": 393850,
+      "source": "Windows foreground window",
+      "observed_window": 393850
+    }
+  },
+  "unassigned_new_web_helpers": [],
+  "observed_processes": [
+    {
+      "pid": 6180,
+      "name": "veranda-tauri-comparison.exe",
+      "created": 1794650497.183986
+    },
+    {
+      "pid": 5144,
+      "name": "msedgewebview2.exe",
+      "created": 1794650497.859697
+    },
+    {
+      "pid": 6984,
+      "name": "msedgewebview2.exe",
+      "created": 1794650498.3432677
+    },
+    {
+      "pid": 2740,
+      "name": "msedgewebview2.exe",
+      "created": 1794650501.5309775
+    },
+    {
+      "pid": 5240,
+      "name": "msedgewebview2.exe",
+      "created": 1794650502.0340564
+    },
+    {
+      "pid": 2692,
+      "name": "msedgewebview2.exe",
+      "created": 1794650502.3468385
+    },
+    {
+      "pid": 7972,
+      "name": "msedgewebview2.exe",
+      "created": 1794650502.7164748
+    },
+    {
+      "pid": 1784,
+      "name": "msedgewebview2.exe",
+      "created": 1794650675.2445853
+    }
+  ],
+  "foreign_new_web_helpers": [],
+  "cleanup_survivors": [],
+  "process_access_denied_pids": []
+}

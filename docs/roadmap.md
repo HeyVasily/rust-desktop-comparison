@@ -55,3 +55,23 @@ result is flaky.
 - Verify GTK desktop notifications on Windows/macOS (currently "not verified").
 - Distribution size per OS including runtimes (Qt deploy directory, GTK MSYS2
   runtime closure, Homebrew dylibs), not only the executable.
+
+## Hardware-GPU product slice
+
+- A read-only egui fleet view on Veranda's existing Rust client/store and
+  unchanged RPC contract, beside the existing GTK view, with the real
+  20-yard / 200-project inventory. No polling or new authority.
+- Run on a user desktop with a verified hardware GPU (including integrated
+  graphics); the application must report the adapter it actually used.
+- Accept input, clipboard, accessibility and HiDPI first, then compare visible and
+  minimized idle, startup, event bursts, sleep/reconnect and 100 connection cycles.
+- The existing GTK harness (`dev/e2e/veranda-wayland-resources.py` in Subyard)
+  covers the GTK side; its readiness and input steps need an egui adapter.
+
+## GTK live light repaint on macOS
+
+The 2026-11-14 run fails GTK 4.24.1 on macOS in all six invocations: libadwaita
+reports the dark → light change, GDK logs a skipped frame, and the window stays
+dark until input. Reduce it to a plain GTK4 sample without libadwaita, report it
+upstream if it reproduces, and rerun GTK-only macOS acceptance on the next GTK
+release. No app-side repaint workaround: it would no longer test the system path.

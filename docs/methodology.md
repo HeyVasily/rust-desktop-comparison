@@ -1,11 +1,230 @@
 # Measurement method
 
-This page describes the original egui/GTK Linux pair. The new Slint, Qt Widgets
-and Tauri implementations use the separate [native runner procedure](github-runners.md).
-Their build and measurement outcomes must be recorded per run; they do not inherit
-the historical results below.
+There are separate datasets and build profiles in this repository. The current
+comparison is a **desktop-integrated baseline**; older measurements remain bound
+to their original source, features, runtime and workload. Adding an integration
+or changing a toolkit/plugin version does not retroactively change those results.
+See also the [desktop results](desktop-results.md),
+[desktop profile and acceptance contract](desktop-integration.md)
+and [native runner procedure](github-runners.md).
 
-## Recorded environment
+## Current desktop measurement contract
+
+All five applications show the same synthetic ten-yard, 100-project interface,
+with selection, scrolling, an editable filter and an in-memory Refresh counter.
+There is no backend, disk inventory or periodic data refresh. The intended
+window is 960×640 logical pixels; Linux/Windows probes also verify the requested
+physical client dimensions. macOS captures include the titlebar and must not be
+described as equivalent client-only geometry.
+
+The primary build must include normal desktop text and appearance integration:
+
+| Candidate | Current profile | Important cost/scope distinction |
+| --- | --- | --- |
+| egui | eframe `desktop` default: OS clipboard, link opening, system-font fallback, AccessKit, existing renderers/backends, Linux Settings portal observer | Its former explicit feature list disabled OS clipboard, links and system fonts; a lockfile entry alone does not prove an enabled feature |
+| GTK | GTK4 + libadwaita, initialized with system-following StyleManager | Native libadwaita is a real dependency; this is not the historical bare-GTK build |
+| Slint | Existing winit/software widget setup and accessibility integration | Keep these enabled; validate the actual widget/backend rather than infer behavior from the API |
+| Qt Widgets | Modern Qt with native platform integration; Linux uses Qt 6.8.3 and its matching GTK3 theme plugin; Windows uses the built-in Fusion style with the native platform palette; macOS retains its native style | GTK3 and QtDBus loaded in the Linux Qt process count toward memory; old Qt 6.4/generic-theme or Windows Vista-style measurements do not describe this setup |
+| Tauri | System webview with the application's light/dark CSS and normal editable control | Attribute webview helper processes; do not compare only the launcher process |
+
+Qt's GTK3 theme plugin and its Qt kit must match. A distribution plugin must not
+be inserted into a different downloaded kit. The Linux profile must have a
+working Settings portal/backend in the same graphical session. It is explicitly
+**GNOME-like X11/Adwaita**: `gsd-xsettings` also publishes the GTK3 widget theme,
+and the probe changes both the portal color preference and the shared
+`Adwaita` / `Adwaita-dark` theme. It verifies the portal value and effective GTK3
+settings independently. A portal-only Openbox session can report dark while
+still supplying light GTK3 brushes to Qt; that is not the configured baseline.
+This named profile does not claim that every stock GNOME UI changes both keys.
+KDE or other desktop integrations are separate environments with their own matching plugins,
+not evidence of a universal GNOME result. Record the exact native library and
+plugin versions as well as Rust crate versions.
+
+### Acceptance comes before idle sampling
+
+Run `tools/native_probe.py` with `--desktop-checks` in a **disposable desktop
+session**. The check changes OS appearance and overwrites the system clipboard
+with synthetic text. It restores the appearance setting and stops its helpers;
+it does not restore arbitrary original clipboard formats or ownership. Do not
+run it unattended on a user's working desktop.
+
+For a primary result, the probe must:
+
+1. Set and independently read the OS appearance preference before launching the
+   app; on Linux verify the Settings portal value, not just `gsettings` success.
+2. Capture the actual client after startup and establish the requested palette.
+3. Keep the same application process and window alive through light → dark →
+   light, or the reverse for a dark-start supplemental check. Capture both
+   transitions and verify a substantial change in client luminance. No forced
+   application palette, process relaunch or periodic application polling is an
+   acceptable substitute for system-driven integration.
+4. Seed Unicode text from an external process, paste it into the ordinary filter
+   with Ctrl/Cmd+F and Ctrl/Cmd+V, replace the OS clipboard with a different
+   sentinel, then copy the filter back and compare the externally read text
+   exactly. The sentinel prevents an ignored copy operation from passing on the
+   old clipboard contents.
+5. Clear the filter, move focus away from the editor, park the pointer, return to
+   the initial appearance and stop probe-owned clipboard helpers. Retain the
+   restored-fixture screenshot before settling and measuring.
+
+The acceptance gate writes `desktop-integration.json`, screenshots and an embedded
+`desktop_integration` outcome. It distinguishes `passed`, `failed`, `not_run` and
+`environment_error`. Missing evidence is never a pass. A primary idle comparison
+is refused when mandatory checks fail; cleanup and process-scope failures also
+exclude the result from a primary summary. Nonuniform screenshots and luminance
+thresholds are automated checks, not complete visual proof: inspect the captures
+for a wrong UI, titlebar-only changes or occlusion.
+
+The Linux automated keyboard/clipboard driver currently covers **X11**, not
+native Wayland. An XWayland window is not native-Wayland acceptance. A missing
+driver, graphical session, portal or permission is an environment/coverage gap,
+not evidence that the toolkit lacks the capability.
+
+### Sampling, process scope and metrics
+
+After acceptance, the native probe performs a short diagnostic phase, then
+`--comparison` uses 30 seconds of settling and 120 sample intervals, each with
+one-second delays plus monitoring overhead. Actual elapsed time is retained;
+the phase is not assumed to last exactly 120 seconds.
+Candidates run sequentially, not simultaneously. Linux additionally records an
+explicitly separate minimized phase with X11 visibility/state verification.
+Repeat on fresh runners to expose run-to-run variance; publish each repetition,
+not only the best result or an average with failures removed silently.
+
+The process-family scope includes the application and attributable helpers,
+including webview subprocesses. macOS WKWebView attribution uses the recorded
+responsibility scope in addition to ancestry. Preserve process identity and
+report access failures, unattributed helpers, late-discovered processes and
+cleanup survivors. An incomplete scope is not a valid small memory result.
+
+| OS | Primary memory metric | Interpretation |
+| --- | --- | --- |
+| Linux | PSS from process accounting | Shared pages apportioned by mapping count |
+| Windows | Private working set | Resident private pages; shared pages excluded |
+| macOS | Physical footprint | macOS's attributable memory-accounting metric; not Linux PSS |
+
+Also publish summed RSS/Working Set and the metric name. Summed resident sets can
+double-count shared pages. These primary metrics are **not directly comparable
+across operating systems**; compare candidates within the same OS, runtime and
+rendering environment. CPU is observed process user+system time normalized to one
+logical core. Zero ticks means below the interval's accounting resolution, not
+zero work, and tiny tick differences do not justify a CPU ranking.
+
+Threads, font caches and in-process libraries for the integration are part of
+the application measurement. The compositor/X server, session bus, shared
+Settings portal, XSettings daemon and probe are outside that process family. Name these required
+services and any newly started helpers instead of treating their exclusion as a
+claim of zero system cost. This remains a small backend-free desktop baseline,
+not a production application's total resource budget.
+
+### Reduced control and attribution
+
+`egui_reduced` is an explicit **diagnostic-reduced** candidate, built from the same
+source and lockfile with `--no-default-features` and retained as a separate
+executable. CI builds it first and renames it before building the desktop profile;
+the manual recipe below uses a separate target directory to avoid overwriting it.
+It is not the normal desktop application and must never replace `egui` in a
+primary ranking. Its missing external clipboard/portal path is deliberate; do
+not waive primary acceptance and then silently present it as an equivalent app.
+
+For an integration delta, pair reduced and integrated runs on the **same runner,
+repetition, source revision, compiler, display session and renderer**. Keep font
+installation, final light palette, fixture state, geometry and sampling policy
+fixed, alternate run order, and publish the paired raw medians/ranges and idle
+CPU. Verify the reduced control's light OS preference before and after sampling;
+this prerequisite does not claim application-theme or clipboard acceptance.
+
+The warmed workloads are **not identical**. The integrated candidate is measured
+after external clipboard and live system-theme use; the reduced candidate cannot
+exercise those capabilities. The delta measures the whole configured profile
+after use, including retained caches/allocations, not a clipboard-only or
+theme-only allocation. This is a controlled profile comparison, not a fully
+equivalent-product contest or a feature-isolation experiment.
+
+Retain diagnostic controls separately from the primary summary. An old hosted
+runner result and a new local build do not form a matched pair. Enabling more
+dependencies can change code, caches, threads and shared pages, but neither the
+dependency count nor executable-size growth determines the resident-memory
+delta. Report what was measured without assuming either a large increase or a
+negligible one.
+
+### Provenance and interpretation limits
+
+Retain source commit, Cargo.lock, target-specific enabled feature tree,
+toolchain/native-library/plugin versions, binary SHA-256 and size, runner image,
+display backend and actual renderer, acceptance evidence, process scope and raw
+samples. Feature configuration, build success, API availability and behavioral
+acceptance are distinct claims. Historical rows missing modern profile/evidence
+fields stay historical; an importer must not upgrade them to desktop passes.
+
+The Linux CI display is **X11/Xvfb with software rendering (Mesa llvmpipe)**, not
+a real native-Wayland session or hardware-GPU benchmark. The pinned/profile
+changes do not make old software-rendered data representative of a laptop GPU.
+The [historical X11/Wayland series](linux-display-comparison.md) and
+[GTK renderer experiment](gtk-memory-investigation.md) remain separate datasets.
+Startup latency, interactive frame rate, full IME/font/screen-reader behavior,
+tray/global-shortcut integrations, clipboard images/MIME/persistence and
+backend-connected production load require additional checks/profiles.
+
+## Current desktop-profile reproduction
+
+Use the [native comparison workflow](../.github/workflows/native-comparison.yml)
+as the complete platform/dependency recipe. On Linux, build dependencies now
+include GTK4 **and libadwaita**, plus the chosen Qt kit and matching GTK3 theme
+plugin when testing Qt. The graphical session needs an X11 display/window
+manager, session D-Bus, Settings portal/backend, `gsd-xsettings`, the Adwaita
+light/dark GTK themes, GNOME settings schemas, `gsettings`/`gdbus`,
+`gtk-query-settings`, `xdotool`, X11 utilities and an external clipboard helper.
+The probe requires the pinned Python packages recorded in the workflow.
+
+Build the normal egui profile and capture its resolved feature graph:
+
+```sh
+export CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-$PWD/target}"
+mkdir -p out/desktop-build
+cargo build --release --locked --manifest-path examples/egui/Cargo.toml
+cargo tree --locked --manifest-path examples/egui/Cargo.toml -e features \
+  > out/desktop-build/egui-features.txt
+```
+
+Inside a prepared **disposable X11 desktop session**, from the repository root:
+
+```sh
+python3 tools/native_probe.py \
+  --name egui --title 'Veranda egui comparison' \
+  --executable "$CARGO_TARGET_DIR/release/veranda-egui-comparison" \
+  --output out/desktop-egui-light \
+  --desktop-checks --startup-theme light --comparison --client-size 960 640
+```
+
+This launches and cleans up the app itself. Use a separate output directory and
+`--startup-theme dark` for the supplemental dark-start case. For macOS omit
+`--client-size`; the probe cannot validate a client-only size from Quartz outer
+bounds. Use the matching executable/title and platform prerequisites for another
+candidate; see the workflow rather than inventing a wrapper or title match.
+
+Build the egui control without overwriting the normal executable:
+
+```sh
+CARGO_TARGET_DIR="$PWD/target/egui-reduced" \
+  cargo build --release --locked --no-default-features \
+    --manifest-path examples/egui/Cargo.toml
+```
+
+Keep its run labeled `egui_reduced` and diagnostic-only, with separate evidence
+and the same-host pair identity. A command without `--desktop-checks` does not
+qualify as a desktop-integrated result. Do not compare it to unrelated historical
+medians to claim integration overhead.
+
+## Historical baseline: original 2026-11-07 Linux pair
+
+Everything below describes the archived original egui/GTK experiment, not the
+current defaults. Check out the recorded revision before using its commands.
+The five-candidate 2026-11-09 matrix is documented separately in
+[full native results](full-native-results.md); that series also predates the
+desktop acceptance profile.
+
+### Recorded environment
 
 The 2026-11-07 matched comparison used one disposable Debian 13 amd64 VM with four
 logical CPUs, a 4 GiB RAM allocation and 20 GiB disk. Xvfb `2:21.1.16-1.3+deb13u4`
@@ -22,7 +241,7 @@ checked-in lockfile. Enabled eframe features are `accesskit`, `default_fonts`,
 `glow` and `x11`; `wgpu`, `wayland` and `persistence` are disabled. Dependencies are
 unpatched. The GTK4 C control used `cc -O2 -Wall -Wextra -Werror`.
 
-## Workload and process scope
+### Workload and process scope
 
 Both examples contain 10 synthetic yards and 100 project rows. Selection, filtering,
 scrolling and Refresh operate only on in-memory data. Refresh advances a snapshot
@@ -49,7 +268,7 @@ Across the four phases, guest CPU idle time was 99.915–99.925%, steal was
 absence of external physical-host load. This is one bounded run, not an estimate of
 variance across machines or renderers.
 
-## Verification and provenance
+### Verification and provenance
 
 Release/locked Rust builds, formatting and the C warning-as-error build passed.
 Real pointer/keyboard navigation, selection, scrolling, filter editing/restoration,
@@ -79,7 +298,7 @@ Hardware GPU behavior, other platforms, gtk4-rs integration, production accessib
 IME, real-backend costs, startup latency and full application acceptance are not
 established by this small comparison.
 
-## Reproduce
+### Reproduce
 
 Use a quiet disposable Linux VM for graphical workloads. On Debian 13, the packages are:
 
@@ -89,8 +308,8 @@ libgl1-mesa-dev libx11-dev libxi-dev libxrandr-dev libxcursor-dev xvfb openbox
 xdotool x11-utils imagemagick mesa-utils dbus
 ```
 
-Build using the [root instructions](../README.md#build-and-run), then, from the repository
-root, export paths before starting the session bus:
+At the archived `d1a45eb` source, build using that revision's root instructions,
+then, from the repository root, export paths before starting the session bus:
 
 ```sh
 export COMPARISON_ROOT="$PWD"

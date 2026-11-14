@@ -2,6 +2,7 @@
 
 const REPO = "https://github.com/HeyVasily/rust-desktop-comparison";
 const CSV_PATH = "measurements/native-matrix-2026-11-09/summary.csv";
+const DESKTOP_PATH = "data/desktop-results.json";
 const OS_RUNNER = { windows: "windows-2022", macos: "macos-15", linux: "ubuntu-24.04" };
 const OS_ORDER = ["linux", "windows", "macos"];
 const OS_NAME = { windows: "Windows", macos: "macOS", linux: "Linux" };
@@ -33,6 +34,14 @@ const fmtSize = (bytes) => {
   return mib >= 1 ? `${fmt(mib)} MiB` : `${Math.round(bytes / 1024)} KiB`;
 };
 const fmt = (n, d = 1) => n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+// Missing or unrecognized evidence is not a failed test.
+const parseBoolean = (value) => value === "True" ? true : value === "False" ? false : null;
+const startupLabel = (value) => value === true ? "passed" : value === false ? "failed" : "not tested";
+const numberOrNull = (value) => {
+  if ((typeof value !== "number" && typeof value !== "string") || String(value).trim() === "") return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+};
 
 function parseCsv(text) {
   const [head, ...rows] = text.trim().split(/\r?\n/);
@@ -65,7 +74,7 @@ async function load() {
       cpu: Number(row.cpu_median_percent),
       metric: row.primary_metric,
       bytes: Number(row.executable_bytes),
-      dark: row.follows_dark_mode === "True",
+      dark: parseBoolean(row.follows_dark_mode),
       run: row.run_id,
       commit: row.source_commit,
       runner: row.os,
@@ -74,14 +83,127 @@ async function load() {
   return { features, memory };
 }
 
+/* ---------- Optional current desktop evidence (independent of history) ---------- */
+async function loadDesktop() {
+  try {
+    const response = await fetch(DESKTOP_PATH);
+    if (!response.ok) return null;
+    const data = await response.json();
+    if (data?.schema_version !== 1 || !Array.isArray(data.platforms)
+        || !Array.isArray(data.paired_ab) || !Array.isArray(data.sources) || !Array.isArray(data.limitations)) return null;
+    return data;
+  } catch {
+    // Missing, malformed or unavailable optional data must not affect history.
+    return null;
+  }
+}
+
+function acceptanceLabel(acceptance = {}) {
+  if (acceptance.status === "fully_verified") {
+    return ["startup_light", "startup_dark", "repetition_coverage", "live_theme", "clipboard", "cleanup", "process_cleanup", "evidence", "provenance"].every((key) => acceptance[key] === "passed")
+      ? "Fully verified" : "Incomplete evidence";
+  }
+  return { failed: "Failed invocation(s)", environment_error: "Environment blocked", incomplete: "Incomplete evidence", not_run: "Not run" }[acceptance.status] ?? "Not run";
+}
+
+function renderDesktop(data) {
+  const host = $("#desktop-results");
+  if (!data || !host) return;
+  const link = (url, label) => typeof url === "string" && url.startsWith(`${REPO}/`)
+    ? el("a", { href: url, text: label }) : el("span", { text: label });
+  const value = (raw, digits = 2) => numberOrNull(raw) == null ? "—" : fmt(numberOrNull(raw), digits);
+  const provenance = (identity) => el("small", { class: "provenance" },
+    `Image ${identity.image_version || "not recorded"} · build `,
+    el("code", { title: identity.build_inputs_sha256 || "Build digest not recorded",
+      text: identity.build_inputs_sha256?.slice(0, 12) || "not recorded" }));
+  const evidence = (experiment) => {
+    const a = experiment?.acceptance ?? {};
+    const detail = el("details", { class: "acceptance-details" }, el("summary", { text: acceptanceLabel(a) }));
+    const labels = { startup_light: "Light startup", startup_dark: "Separate dark startup", live_theme: "Live transitions",
+      clipboard: "External clipboard", cleanup: "Settings cleanup", process_cleanup: "Process cleanup",
+      evidence: "Evidence", provenance: "Source/build provenance", repetition_coverage: "Matching startup repetitions" };
+    detail.append(el("ul", {}, Object.entries(labels).map(([key, label]) => el("li", { text: `${label}: ${a[key] ?? "not_run"}` }))));
+    detail.append(el("p", { text: `Acceptance invocations: ${a.normal_invocations ?? 0} normal / ${a.dark_invocations ?? 0} dark-startup. These are not the memory sample count.` }));
+    for (const missing of a.missing_cases ?? []) {
+      detail.append(el("p", { text: `Missing case: ${missing.case}, r${missing.repetition}.` }));
+    }
+    for (const duplicate of a.duplicate_cases ?? []) {
+      detail.append(el("p", { text: `Duplicate case: ${duplicate.case}, r${duplicate.repetition} (${duplicate.count} invocations).` }));
+    }
+    for (const invocation of experiment?.invocations ?? []) {
+      const links = invocation.links ?? {};
+      detail.append(el("p", { class: "invocation" },
+        el("b", { text: `${invocation.case}, r${invocation.repetition}: ${invocation.status || "not_run"}` }),
+        el("span", { text: `Startup ${invocation.startup_theme_status || "not_run"} · live ${invocation.live_theme_status || "not_run"} · clipboard ${invocation.clipboard_status || "not_run"}` }),
+        invocation.reason || invocation.evidence_errors ? el("span", { text: invocation.reason || invocation.evidence_errors }) : null,
+        el("span", { class: "evidence-links" },
+          links.outcome ? link(links.outcome, "Outcome") : null,
+          links.desktop ? link(links.desktop, "Checks") : null,
+          (links.screenshots ?? []).map((shot) => link(shot.url, shot.label))),
+      ));
+    }
+    return detail;
+  };
+  const panels = data.platforms.map((platform) => {
+    const rows = platform.candidates.flatMap((candidate) => {
+      const experiments = candidate.experiments.length ? candidate.experiments : [null];
+      return experiments.flatMap((experiment) => {
+        const measurements = experiment?.measurements?.length ? experiment.measurements : [null];
+        return measurements.map((m) => el("tr", {},
+          el("th", { scope: "row" }, candidate.name,
+            experiment ? el("small", {}, experiment.identity.os, " · ",
+              link(experiment.links.commit, experiment.identity.source_commit?.slice(0, 8) || "unknown commit"), " · ",
+              link(experiment.links.run, `run ${experiment.identity.run_id || "unknown"}`)) : null,
+            experiment ? provenance(experiment.identity) : null),
+          el("td", {}, m ? el("b", { text: `${value(m.primary_median_mib)} MiB` }) : el("span", { text: "Not measured" }),
+            el("small", { text: m ? `${m.primary_metric}; ${value(m.primary_min_mib)}–${value(m.primary_max_mib)} MiB` : "No eligible comparison result" })),
+          el("td", { class: "num", text: m ? value(m.repetitions, 0) : "—" }),
+          el("td", { class: "num", text: m ? numberOrNull(m.cpu_median_percent) === 0 ? "0 recorded" : value(m.cpu_median_percent, 5) : "—" }),
+          el("td", {}, evidence(experiment)),
+        ));
+      });
+    });
+    return el("article", { class: "desktop-panel" }, el("h3", { text: platform.name }),
+      el("div", { class: "scroll-x" }, el("table", { class: "data desktop-table" },
+        el("thead", {}, el("tr", {}, ["Desktop profile / source", "Memory median; repetition range", "n", "Idle CPU, % of one core", "Acceptance and snapshots"].map((text) => el("th", { text })))),
+        el("tbody", {}, rows))));
+  });
+  const abRows = OS_ORDER.flatMap((os) => {
+    const summaries = data.paired_ab.filter((row) => row.platform === os);
+    return (summaries.length ? summaries : [null]).map((row) => el("tr", {},
+      el("th", { scope: "row", text: OS_NAME[os] }),
+      el("td", { text: row?.primary_metric ?? "—" }),
+      el("td", { class: "num", text: row ? `${numberOrNull(row.primary_delta_median_mib) > 0 ? "+" : ""}${value(row.primary_delta_median_mib, 3)}` : "Not measured" }),
+      el("td", { class: "num", text: row ? `${value(row.primary_delta_min_mib, 3)}–${value(row.primary_delta_max_mib, 3)}` : "—" }),
+      el("td", { class: "num", text: row ? value(row.paired_repetitions, 0) : "—" }),
+      el("td", {}, row ? link(row.source_url, `Run ${row.run_id} · ${(row.source_commit ?? "").slice(0, 8)} · paired raw data`) : "No eligible same-run pairs",
+        row ? provenance(row) : null),
+    ));
+  });
+  host.replaceChildren(el("h3", { text: "Current desktop evidence" }),
+    el("p", { class: "section-lede", text: `Imported series: ${data.series}. Eligible measured invocations are separate from acceptance checks. A separate dark-startup failure remains visible even when a light-start measured invocation passed.` }),
+    ...panels,
+    el("h3", { text: "egui matched profile difference" }),
+    el("p", { text: "Desktop-integrated after use minus diagnostic-reduced, paired on the same runner/repetition/source. This is the configured profile difference, not a clipboard-only or theme-only allocation. A small sample does not establish statistical significance." }),
+    el("div", { class: "scroll-x" }, el("table", { class: "data" },
+      el("thead", {}, el("tr", {}, ["OS", "Metric", "Median Δ, MiB", "Paired Δ range, MiB", "Pairs", "Evidence"].map((text) => el("th", { text })))),
+      el("tbody", {}, abRows))),
+    el("ul", { class: "desktop-limits" }, data.limitations.map((text) => el("li", { text }))),
+    el("p", { class: "evidence-links" }, data.sources.map((source) => link(source.url, source.label))),
+  );
+}
+
 /* ---------- Overview ---------- */
 function renderOverview({ features, memory }) {
+  const palettes = features.groups.flatMap((group) => group.features).find((feature) => feature.id === "color-palettes");
   const best = {};
   for (const os of OS_ORDER) {
     best[os] = Math.min(...features.frameworks.map((fw) => memory[fw.id]?.[os]?.median ?? Infinity));
   }
   const cards = features.frameworks.map((fw) => {
-    const strip = el("div", { class: "mem-strip", "aria-label": "Idle memory in MiB" },
+    const paletteLevel = palettes?.support[fw.id]?.level ?? "unknown";
+    const paletteLabel = paletteLevel === "yes" ? "Supported" : features.levels[paletteLevel].label;
+    const strip = el("div", { class: "mem-strip", "aria-label": "Historical UI-only idle memory in MiB" },
       OS_ORDER.map((os) => {
         const m = memory[fw.id]?.[os];
         const value = m ? fmt(m.median) : "—";
@@ -92,18 +214,22 @@ function renderOverview({ features, memory }) {
         );
       }));
     return el("article", { class: "card fw" },
-      el("header", {}, el("h3", { text: fw.name }), el("span", { class: "ver", text: fw.version })),
+      el("header", {}, el("h3", { text: fw.name }), el("span", { class: "ver", title: "Versions in the historical matrix", text: fw.version })),
       el("p", { class: "model", text: fw.model }),
+      el("p", { class: "profile-label", text: "Historical UI-only profile · 2026-11-09" }),
       strip,
       el("dl", {},
         el("dt", { text: "Language" }), el("dd", { text: fw.language }),
         el("dt", { text: "Licence" }), el("dd", { text: fw.license }),
-        el("dt", { text: "Executable" }), el("dd", { text: OS_ORDER.map((os) => {
+        fw.desktop_profile ? el("dt", { text: "Default build" }) : null,
+        fw.desktop_profile ? el("dd", { text: fw.desktop_profile }) : null,
+        el("dt", { text: "Executable (old)" }), el("dd", { text: OS_ORDER.map((os) => {
           const b = memory[fw.id]?.[os]?.bytes;
           return b ? `${fmtSize(b)} ${OS_NAME[os]}` : null;
         }).filter(Boolean).join(" · ") }),
-        el("dt", { text: "Dark mode" }), el("dd", { text: OS_ORDER.map((os) =>
-          `${OS_NAME[os]} ${memory[fw.id]?.[os]?.dark ? "✓" : "✗"}`).join(" · ") }),
+        el("dt", { text: "Light/dark palette" }), el("dd", { text: paletteLabel }),
+        el("dt", { text: "Startup test (old)" }), el("dd", { text: OS_ORDER.map((os) =>
+          `${OS_NAME[os]} ${startupLabel(memory[fw.id]?.[os]?.dark)}`).join(" · ") }),
       ),
       el("ul", { class: "pros", "aria-label": "Strengths" }, fw.strengths.map((s) => el("li", { text: s }))),
       el("ul", { class: "cons", "aria-label": "Limits" }, fw.limits.map((s) => el("li", { text: s }))),
@@ -142,7 +268,7 @@ function renderMemory({ features, memory }) {
     const best = Math.min(...fws.map((fw) => memory[fw.id]?.[os]?.median ?? Infinity));
     const panel = el("div", { class: "card panel" },
       el("h3", {}, OS_NAME[os], el("small", { text: `${metric}, MiB` })));
-    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${OS_NAME[os]} idle memory by toolkit` });
+    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${OS_NAME[os]} historical UI-only idle memory by toolkit` });
 
     for (const t of ticks) {
       svg.append(svgEl("line", { class: t === 0 ? "baseline" : "gridline", x1: x(t), x2: x(t), y1: top - 2, y2: top + fws.length * rowH }));
@@ -231,7 +357,7 @@ function renderMemory({ features, memory }) {
   $("#memory-table").replaceChildren(table,
     el("p", { style: "font-size:.875rem;color:var(--muted)" },
       "Source: ", el("a", { href: repoLink(CSV_PATH), text: "summary.csv" }),
-      ". Medians of five runs on fresh VMs; RSS is the summed resident set or Working Set. Per-run rows are in runs.csv."));
+      ". Historical UI-only profile, 2026-11-09; medians of five runs on fresh VMs. RSS is the summed resident set or Working Set. Per-run rows are in runs.csv. These are not measurements of the current desktop-integrated builds."));
 }
 
 /* ---------- Screenshots ---------- */
@@ -278,7 +404,7 @@ function renderScreenshots({ features, memory }) {
   const show = (os) => {
     current = features.frameworks.map((fw) => ({
       src: shotPath(fw.id, os),
-      alt: `${fw.name} on ${OS_NAME[os]}${scheme === "dark" ? " with the system in dark mode" : ""}`,
+      alt: `${fw.name} on ${OS_NAME[os]}, historical UI-only build${scheme === "dark" ? " relaunched with the system in dark mode" : " in the light run"}`,
       name: fw.name,
       mem: memory[fw.id]?.[os],
     })).filter((s) => s.src);
@@ -286,12 +412,12 @@ function renderScreenshots({ features, memory }) {
       el("button", { type: "button", "aria-label": `Open ${s.alt} at full size`, onclick: () => open(i) },
         el("img", { src: s.src, alt: s.alt, loading: "lazy", width: 960, height: 640 })),
       el("figcaption", {}, s.name, el("span", { text: !s.mem ? "" : scheme === "dark"
-        ? (s.mem.dark ? "follows dark mode" : "stays light") : `${fmt(s.mem.median)} MiB` })),
+        ? `Startup test: ${startupLabel(s.mem.dark)}` : `${fmt(s.mem.median)} MiB · old profile` })),
     )));
   };
   const redraw = () => show(currentOs);
   segmented($("#shot-os"), OS_ORDER.map((os) => [os, OS_NAME[os]]), "linux", (os) => { currentOs = os; redraw(); });
-  segmented($("#shot-scheme"), [["light", "Light"], ["dark", "System dark mode"]], "light", (v) => { scheme = v; redraw(); });
+  segmented($("#shot-scheme"), [["light", "Light run"], ["dark", "Relaunched in dark mode"]], "light", (v) => { scheme = v; redraw(); });
   show("linux");
 }
 
@@ -316,6 +442,7 @@ function renderFeatures({ features }) {
   let selected = null;
 
   $("#features-lede").textContent += ` Checked ${features.checked}.`;
+  $("#capability-count").textContent = groups.reduce((sum, group) => sum + group.features.filter((feat) => feat.kind !== "text").length, 0);
   $("#legend").replaceChildren(...Object.keys(levels).map((k) => el("li", {}, levelDot(k, levels, true))));
 
   const showDetail = (fw, feat) => {
@@ -336,7 +463,7 @@ function renderFeatures({ features }) {
 
   const draw = () => {
     const head = el("thead", {}, el("tr", {},
-      el("th", { scope: "col", text: "Capability" }),
+      el("th", { scope: "col", text: "Capability or scoped check" }),
       frameworks.map((fw) => el("th", { scope: "col", text: fw.name }))));
     const body = el("tbody");
     for (const group of groups) {
@@ -427,3 +554,5 @@ load().then((data) => {
   const msg = el("p", { class: "error" }, `Could not load data (${err.message}). Browse it on `, el("a", { href: REPO, text: "GitHub" }), ".");
   $("#overview-cards").replaceChildren(msg);
 });
+// Fetch/render separately: optional fresh results never block the historical page.
+loadDesktop().then(renderDesktop).catch(() => {});

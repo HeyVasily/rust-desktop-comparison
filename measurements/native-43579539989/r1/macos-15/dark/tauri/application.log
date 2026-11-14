@@ -1,0 +1,3 @@
+geometry phase=created desired_visible_logical=960x640 scale_factor=1 inner_physical=960x640 outer_physical=960x640 inner_logical=960x640 outer_logical=960x640 native_frame_logical=960x640 native_visible_content_logical=960x612
+geometry requested_tauri_inner_logical=960x668
+geometry phase=resized desired_visible_logical=960x640 scale_factor=1 inner_physical=960x668 outer_physical=960x668 inner_logical=960x668 outer_logical=960x668 native_frame_logical=960x668 native_visible_content_logical=960x640

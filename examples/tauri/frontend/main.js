@@ -8,6 +8,15 @@ const filter = document.getElementById("filter");
 const projectRows = [];
 const yardButtons = [];
 
+// Platform-standard filter focus; native copy/paste remains the webview's job.
+document.addEventListener("keydown", (event) => {
+  if ((event.ctrlKey || event.metaKey) && !event.altKey && event.key.toLowerCase() === "f") {
+    event.preventDefault();
+    filter.focus();
+    filter.select();
+  }
+});
+
 function selectProject(project) {
   state.project = project;
   document.getElementById("project-name").textContent = projectName(project);

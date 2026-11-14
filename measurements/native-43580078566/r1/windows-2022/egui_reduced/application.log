@@ -1,0 +1,2 @@
+desktop_profile=diagnostic-core clipboard=internal-only links=false system_fonts=false
+renderer wgpu backend=Dx12 adapter="Microsoft Basic Render Driver" device_type=Cpu driver="10.0.20348.5756" driver_info="" shader_compiler=Fxc

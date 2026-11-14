@@ -11,7 +11,7 @@ from linux_display_probe import display_environment, read_diagnostic, summary, r
 
 class DisplayProbeTests(unittest.TestCase):
     def exercise_preflight_failure(self, cleanup):
-        with tempfile.TemporaryDirectory(dir='/tmp') as directory:
+        with tempfile.TemporaryDirectory() as directory:
             output = Path(directory)
             args = SimpleNamespace(output=output, target=output, user='fixture',
                                    framework='egui', backend='both', settle=2, intervals=1, keep_going=True)
@@ -50,7 +50,7 @@ class DisplayProbeTests(unittest.TestCase):
         self.assertEqual(env['LIBGL_ALWAYS_SOFTWARE'], '1')
 
     def test_actual_backend_and_content_size_are_required(self):
-        with tempfile.TemporaryDirectory(dir='/tmp') as directory:
+        with tempfile.TemporaryDirectory() as directory:
             path = Path(directory)/'app.log'
             data = dict(name='egui', backend='x11', ready=True, content_width=960, content_height=640)
             path.write_text('DISPLAY_DIAGNOSTIC '+json.dumps(data))

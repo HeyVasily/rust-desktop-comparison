@@ -1,0 +1,323 @@
+[
+ {
+  "id": 14108468131,
+  "name": "native-macos-15-43579539989-r1",
+  "size_in_bytes": 7603177,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108468131",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108468131/zip",
+  "expired": false,
+  "created_at": "2026-11-14T09:49:33Z",
+  "expires_at": "2026-11-28T09:49:31Z",
+  "updated_at": "2026-11-14T09:49:33Z",
+  "digest": "sha256:5802f9d9079a8ae97cdef0e197ee3c295c455d0b55b967fca881ce257b1b27ec",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "current"
+ },
+ {
+  "id": 14109225236,
+  "name": "native-macos-15-43579539989-r2",
+  "size_in_bytes": 7616435,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14109225236",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14109225236/zip",
+  "expired": false,
+  "created_at": "2026-11-14T09:47:51Z",
+  "expires_at": "2026-11-28T09:47:50Z",
+  "updated_at": "2026-11-14T09:47:51Z",
+  "digest": "sha256:af4f40ca71975a47947e56330d34403b6e196dacdadf919499f532f410034211",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "current"
+ },
+ {
+  "id": 14108897051,
+  "name": "native-macos-15-43579539989-r3",
+  "size_in_bytes": 7628306,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108897051",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108897051/zip",
+  "expired": false,
+  "created_at": "2026-11-14T09:49:07Z",
+  "expires_at": "2026-11-28T09:49:04Z",
+  "updated_at": "2026-11-14T09:49:07Z",
+  "digest": "sha256:c9da9d676b484eaf17b750995a6b196fa4dda610f7f80c0c0c00883a810fe330",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "current"
+ },
+ {
+  "id": 14108964188,
+  "name": "native-ubuntu-24.04-43579539989-r1",
+  "size_in_bytes": 6999642,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108964188",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108964188/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:02:00Z",
+  "expires_at": "2026-11-28T10:01:59Z",
+  "updated_at": "2026-11-14T10:02:00Z",
+  "digest": "sha256:3c09f11e6ab59955adb89a95c35efe8810c64c0fa2d6b4ab33b1f4699df9b682",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "current"
+ },
+ {
+  "id": 14108853558,
+  "name": "native-ubuntu-24.04-43579539989-r2",
+  "size_in_bytes": 7016018,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108853558",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108853558/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:02:11Z",
+  "expires_at": "2026-11-28T10:02:10Z",
+  "updated_at": "2026-11-14T10:02:11Z",
+  "digest": "sha256:4620a1ce74dd936ec5132d12cabe0f8b0dc36f1604433b54f2ea7db1f99cd2ab",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "current"
+ },
+ {
+  "id": 14108469193,
+  "name": "native-ubuntu-24.04-43579539989-r3",
+  "size_in_bytes": 7013409,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108469193",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108469193/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:00:01Z",
+  "expires_at": "2026-11-28T10:00:00Z",
+  "updated_at": "2026-11-14T10:00:01Z",
+  "digest": "sha256:639ea830e2384032f2e1b57475329a578a502b4956428540ca39c6cd6703052e",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "current"
+ },
+ {
+  "id": 14107728005,
+  "name": "native-windows-2022-43579539989-r1",
+  "size_in_bytes": 4325,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14107728005",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14107728005/zip",
+  "expired": false,
+  "created_at": "2026-11-14T09:14:25Z",
+  "expires_at": "2026-11-28T09:14:24Z",
+  "updated_at": "2026-11-14T09:14:25Z",
+  "digest": "sha256:50b8937b7dc6479d6e3b1b6eaaefaa54eb8d0508eeb856273000faf45ad978b6",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "superseded",
+  "reason": "Probe/importer regression tests failed before any build (POSIX-only site smoke tests on Windows); replaced by run 43580078566"
+ },
+ {
+  "id": 14107579502,
+  "name": "native-windows-2022-43579539989-r2",
+  "size_in_bytes": 4325,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14107579502",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14107579502/zip",
+  "expired": false,
+  "created_at": "2026-11-14T09:14:21Z",
+  "expires_at": "2026-11-28T09:14:21Z",
+  "updated_at": "2026-11-14T09:14:21Z",
+  "digest": "sha256:437bbaa4fd8941cbcbb5cb1f41841bcef6307789e062c719eca776027f13d9da",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "superseded",
+  "reason": "Probe/importer regression tests failed before any build (POSIX-only site smoke tests on Windows); replaced by run 43580078566"
+ },
+ {
+  "id": 14107674123,
+  "name": "native-windows-2022-43579539989-r3",
+  "size_in_bytes": 4325,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14107674123",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14107674123/zip",
+  "expired": false,
+  "created_at": "2026-11-14T09:14:22Z",
+  "expires_at": "2026-11-28T09:14:22Z",
+  "updated_at": "2026-11-14T09:14:22Z",
+  "digest": "sha256:f9e2fe182399f4c0fd48f42794832fd23debc0f824e138848e7dca83a3e4faa0",
+  "workflow_run": {
+   "id": 43579539989,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "52b840ef822f4af41d713b5541fb49ba2cab5923"
+  },
+  "run_id": 43579539989,
+  "selection": "superseded",
+  "reason": "Probe/importer regression tests failed before any build (POSIX-only site smoke tests on Windows); replaced by run 43580078566"
+ },
+ {
+  "id": 14109148247,
+  "name": "native-windows-2022-43580078566-r1",
+  "size_in_bytes": 4734045,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14109148247",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14109148247/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:06:30Z",
+  "expires_at": "2026-11-28T10:06:28Z",
+  "updated_at": "2026-11-14T10:06:30Z",
+  "digest": "sha256:c332608ee1bc781a4d10dbc06255496a8986c2957d1dd5875a3652bf97b12579",
+  "workflow_run": {
+   "id": 43580078566,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "d1b3951dde8d17761509f8d5b383fa1c153a9a43"
+  },
+  "run_id": 43580078566,
+  "selection": "current"
+ },
+ {
+  "id": 14109401793,
+  "name": "native-windows-2022-43580078566-r2",
+  "size_in_bytes": 4724967,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14109401793",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14109401793/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:01:26Z",
+  "expires_at": "2026-11-28T10:01:25Z",
+  "updated_at": "2026-11-14T10:01:26Z",
+  "digest": "sha256:86554f9c296ad84e8c6ffde32aa8544e7a9368b75d89c4ca69a6682ef6428227",
+  "workflow_run": {
+   "id": 43580078566,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "d1b3951dde8d17761509f8d5b383fa1c153a9a43"
+  },
+  "run_id": 43580078566,
+  "selection": "current"
+ },
+ {
+  "id": 14108664344,
+  "name": "native-windows-2022-43580078566-r3",
+  "size_in_bytes": 4733258,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108664344",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14108664344/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:04:14Z",
+  "expires_at": "2026-11-28T10:04:12Z",
+  "updated_at": "2026-11-14T10:04:14Z",
+  "digest": "sha256:c25bf967f4bdfd22d18942a71b86b6b344aa66485732c0fcae4906fec93840af",
+  "workflow_run": {
+   "id": 43580078566,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "d1b3951dde8d17761509f8d5b383fa1c153a9a43"
+  },
+  "run_id": 43580078566,
+  "selection": "current"
+ },
+ {
+  "id": 14110669814,
+  "name": "native-ubuntu-24.04-43583529539-r1",
+  "size_in_bytes": 6986246,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14110669814",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14110669814/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:55:55Z",
+  "expires_at": "2026-11-28T10:55:54Z",
+  "updated_at": "2026-11-14T10:55:55Z",
+  "digest": "sha256:c046e83a16780fde71ab2c5afcabdc768470c2458e02095a445ad2e437841973",
+  "workflow_run": {
+   "id": 43583529539,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "d1b3951dde8d17761509f8d5b383fa1c153a9a43"
+  },
+  "run_id": 43583529539,
+  "selection": "not-selected",
+  "reason": "Linux rerun intended to obtain all three repetitions on one runner image; it also split (r1/r2 20261111.370.1, r3 20261111.127.1), so run 43579539989 was kept; runs are never pooled. Its Qt PSS (36.75-37.20 MiB) disagrees with the selected run (42.55-42.59 MiB) for the same executable; see docs/desktop-results.md"
+ },
+ {
+  "id": 14111165246,
+  "name": "native-ubuntu-24.04-43583529539-r2",
+  "size_in_bytes": 7020644,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14111165246",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14111165246/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:55:30Z",
+  "expires_at": "2026-11-28T10:55:29Z",
+  "updated_at": "2026-11-14T10:55:30Z",
+  "digest": "sha256:01b0b31372209e07ce545634893fa7c7fb06995f7fb658ca94a8dd239df2ca1d",
+  "workflow_run": {
+   "id": 43583529539,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "d1b3951dde8d17761509f8d5b383fa1c153a9a43"
+  },
+  "run_id": 43583529539,
+  "selection": "not-selected",
+  "reason": "Linux rerun intended to obtain all three repetitions on one runner image; it also split (r1/r2 20261111.370.1, r3 20261111.127.1), so run 43579539989 was kept; runs are never pooled. Its Qt PSS (36.75-37.20 MiB) disagrees with the selected run (42.55-42.59 MiB) for the same executable; see docs/desktop-results.md"
+ },
+ {
+  "id": 14110113940,
+  "name": "native-ubuntu-24.04-43583529539-r3",
+  "size_in_bytes": 7024654,
+  "url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14110113940",
+  "archive_download_url": "https://api.github.com/repos/HeyVasily/rust-desktop-comparison/actions/artifacts/14110113940/zip",
+  "expired": false,
+  "created_at": "2026-11-14T10:52:47Z",
+  "expires_at": "2026-11-28T10:52:46Z",
+  "updated_at": "2026-11-14T10:52:47Z",
+  "digest": "sha256:8f7be01cf08a59578b971ff58f13f4aef7014bc40da23faedc8275e418ebb0b0",
+  "workflow_run": {
+   "id": 43583529539,
+   "repository_id": 1449693943,
+   "head_repository_id": 1449693943,
+   "head_branch": "desktop-integration-baseline",
+   "head_sha": "d1b3951dde8d17761509f8d5b383fa1c153a9a43"
+  },
+  "run_id": 43583529539,
+  "selection": "not-selected",
+  "reason": "Linux rerun intended to obtain all three repetitions on one runner image; it also split (r1/r2 20261111.370.1, r3 20261111.127.1), so run 43579539989 was kept; runs are never pooled. Its Qt PSS (36.75-37.20 MiB) disagrees with the selected run (42.55-42.59 MiB) for the same executable; see docs/desktop-results.md"
+ }
+]

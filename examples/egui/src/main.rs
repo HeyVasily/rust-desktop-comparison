@@ -7,12 +7,16 @@ use eframe::glow::HasContext;
 include!("../../linux_display_diagnostics.rs");
 #[cfg(feature = "shell-checks")]
 mod shell;
+#[cfg(all(target_os = "linux", feature = "desktop"))]
+mod system_theme;
 
 struct Demo {
     #[cfg(feature = "shell-checks")]
     _shell: Option<shell::Shell>,
     #[cfg(target_os = "linux")]
     reported_display: bool,
+    #[cfg(all(target_os = "linux", feature = "desktop"))]
+    system_theme: Option<system_theme::SystemTheme>,
     yard: usize,
     project: usize,
     filter: String,
@@ -26,6 +30,8 @@ impl Default for Demo {
             _shell: None,
             #[cfg(target_os = "linux")]
             reported_display: false,
+            #[cfg(all(target_os = "linux", feature = "desktop"))]
+            system_theme: None,
             yard: 0,
             project: 0,
             filter: String::new(),
@@ -35,7 +41,18 @@ impl Default for Demo {
 }
 
 impl eframe::App for Demo {
+    fn raw_input_hook(&mut self, _ctx: &egui::Context, input: &mut egui::RawInput) {
+        #[cfg(all(target_os = "linux", feature = "desktop"))]
+        if let Some(theme) = &self.system_theme {
+            theme.apply(input);
+        }
+        #[cfg(not(all(target_os = "linux", feature = "desktop")))]
+        let _ = input;
+    }
+
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        let focus_filter =
+            ui.input_mut(|input| input.consume_key(egui::Modifiers::COMMAND, egui::Key::F));
         #[cfg(target_os = "linux")]
         if !self.reported_display && std::env::var_os("COMPARISON_DISPLAY_DIAGNOSTICS").is_some() {
             let size = ui.max_rect().size() * ui.ctx().pixels_per_point();
@@ -53,10 +70,15 @@ impl eframe::App for Demo {
                 }
                 ui.label(format!("Snapshot {} · local fixture", self.refreshes));
                 ui.label("Filter:");
-                if ui
-                    .add(egui::TextEdit::singleline(&mut self.filter).desired_width(240.0))
-                    .changed()
-                {
+                let filter = ui.add(
+                    egui::TextEdit::singleline(&mut self.filter)
+                        .id(egui::Id::unique("project-filter"))
+                        .desired_width(240.0),
+                );
+                if focus_filter {
+                    filter.request_focus();
+                }
+                if filter.changed() {
                     println!("filter {:?}", self.filter);
                 }
             });
@@ -134,6 +156,21 @@ impl eframe::App for Demo {
 }
 
 fn main() -> eframe::Result {
+    println!(
+        "desktop_profile={} clipboard={} links={} system_fonts={}",
+        if cfg!(feature = "desktop") {
+            "desktop"
+        } else {
+            "diagnostic-core"
+        },
+        if cfg!(feature = "desktop") {
+            "os"
+        } else {
+            "internal-only"
+        },
+        cfg!(feature = "desktop"),
+        cfg!(feature = "desktop"),
+    );
     #[cfg(feature = "shell-checks")]
     let _instance = shell::single_instance();
     #[cfg(target_os = "windows")]
@@ -187,13 +224,28 @@ fn main() -> eframe::Result {
             // when the OS reports none, use light instead of egui's dark fallback.
             cc.egui_ctx
                 .options_mut(|options| options.fallback_theme = egui::Theme::Light);
+            cc.egui_ctx.set_theme(egui::ThemePreference::System);
+            #[cfg(all(target_os = "linux", feature = "desktop"))]
+            let system_theme = match system_theme::SystemTheme::start(cc.egui_ctx.clone()) {
+                Ok(theme) => Some(theme),
+                Err(error) => {
+                    eprintln!("system_theme portal worker unavailable: {error}");
+                    None
+                }
+            };
             #[cfg(feature = "shell-checks")]
             return Ok(Box::new(Demo {
                 _shell: shell::start(&cc.egui_ctx),
+                #[cfg(all(target_os = "linux", feature = "desktop"))]
+                system_theme,
                 ..Demo::default()
             }));
             #[cfg(not(feature = "shell-checks"))]
-            Ok(Box::new(Demo::default()))
+            Ok(Box::new(Demo {
+                #[cfg(all(target_os = "linux", feature = "desktop"))]
+                system_theme,
+                ..Demo::default()
+            }))
         }),
     )
 }

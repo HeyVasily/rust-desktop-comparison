@@ -1,5 +1,6 @@
-//! Matched synthetic UI-only GTK4 example written with gtk4-rs.
-//! It mirrors the earlier C control (examples/gtk-c/main.c) widget for widget.
+//! Matched synthetic GTK4 desktop example written with gtk4-rs.
+//! The default profile includes libadwaita's system-appearance integration.
+//! No backend, filesystem inventory or production actions are simulated.
 
 use std::cell::Cell;
 use std::rc::Rc;
@@ -42,6 +43,24 @@ fn build_ui(app: &Application) {
         .default_height(640)
         .build();
 
+    // The native renderer exists after realization. Report the selected backend
+    // once on first map; do not select a renderer or add idle/background work.
+    let renderer_reported = Cell::new(false);
+    window.connect_map(move |window| {
+        if renderer_reported.replace(true) {
+            return;
+        }
+        let renderer = window.renderer();
+        println!(
+            "renderer source=gtk display_backend={} gsk_type={}",
+            gtk::prelude::WidgetExt::display(window).type_().name(),
+            renderer
+                .as_ref()
+                .map(|renderer| renderer.type_().name())
+                .unwrap_or("unavailable")
+        );
+    });
+
     let root = GtkBox::new(Orientation::Vertical, 12);
     root.set_margin_start(12);
     root.set_margin_end(12);
@@ -62,6 +81,25 @@ fn build_ui(app: &Application) {
     toolbar.append(&Label::new(Some("Filter:")));
     toolbar.append(&filter);
     root.append(&toolbar);
+
+    // A normal desktop accelerator, also used by the external clipboard probe.
+    let focus_filter = gtk::gio::SimpleAction::new("focus-filter", None);
+    let weak_filter = filter.downgrade();
+    focus_filter.connect_activate(move |_, _| {
+        if let Some(entry) = weak_filter.upgrade() {
+            entry.grab_focus();
+            entry.select_region(0, -1);
+        }
+    });
+    window.add_action(&focus_filter);
+    // GTK4 no longer maps <Primary> to Command on macOS: it always means
+    // Control. Use the platform's normal find shortcut explicitly.
+    let find_shortcut = if cfg!(target_os = "macos") {
+        "<Meta>f"
+    } else {
+        "<Control>f"
+    };
+    app.set_accels_for_action("win.focus-filter", &[find_shortcut]);
 
     {
         let refreshes = refreshes.clone();
@@ -166,6 +204,28 @@ fn build_ui(app: &Application) {
 
 fn main() -> glib::ExitCode {
     let app = Application::builder().application_id(APP_ID).build();
+    #[cfg(feature = "desktop")]
+    app.connect_startup(|_| {
+        let started = std::time::Instant::now();
+        adw::init().expect("initialize libadwaita desktop integration");
+        let style = adw::StyleManager::default();
+        // Follow the desktop preference, including changes while the app runs.
+        // No GTK_THEME override, forced dark palette or polling timer is used.
+        style.set_color_scheme(adw::ColorScheme::Default);
+        println!("desktop_profile gtk4+libadwaita system_theme=true clipboard=gtk");
+        println!(
+            "theme source=libadwaita dark={} elapsed_ms={}",
+            style.is_dark(),
+            started.elapsed().as_millis()
+        );
+        style.connect_dark_notify(move |style| {
+            println!(
+                "theme source=libadwaita dark={} elapsed_ms={}",
+                style.is_dark(),
+                started.elapsed().as_millis()
+            );
+        });
+    });
     app.connect_activate(build_ui);
     app.run()
 }

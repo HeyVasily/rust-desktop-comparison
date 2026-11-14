@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "imported",
+  "requested_run_ids": [
+    "43579539989",
+    "43580078566"
+  ],
+  "artifact_counts_by_run": {
+    "43579539989": 6,
+    "43580078566": 3
+  },
+  "artifact_count": 9,
+  "outcome_count": 99,
+  "requested_or_measured_phase_rows": 72,
+  "primary_summary_groups": 29,
+  "control_summary_groups": 6,
+  "unattributed_failed_repetitions": [],
+  "exclusions": [
+    {
+      "os": "macos-15",
+      "framework": "gtk",
+      "phase": "comparison",
+      "repetition": 1,
+      "run_id": "43579539989",
+      "source_commit": "52b840ef822f4af41d713b5541fb49ba2cab5923",
+      "measurement_profile": "desktop-integrated",
+      "exclusion_reason": "desktop_status=failed; live_theme_status=failed; live appearance transition 2 evidence is incomplete; raw measurement samples are missing; missing/invalid primary median; missing/invalid primary p95; missing/invalid RSS median; missing/invalid CPU; missing/invalid duration; outcome status=failed; 120 complete sample intervals are required; complete desktop acceptance is required; measurement phase did not pass; measurement duration is shorter than 120 seconds"
+    },
+    {
+      "os": "macos-15",
+      "framework": "gtk",
+      "phase": "comparison",
+      "repetition": 2,
+      "run_id": "43579539989",
+      "source_commit": "52b840ef822f4af41d713b5541fb49ba2cab5923",
+      "measurement_profile": "desktop-integrated",
+      "exclusion_reason": "desktop_status=failed; live_theme_status=failed; live appearance transition 2 evidence is incomplete; raw measurement samples are missing; missing/invalid primary median; missing/invalid primary p95; missing/invalid RSS median; missing/invalid CPU; missing/invalid duration; outcome status=failed; 120 complete sample intervals are required; complete desktop acceptance is required; measurement phase did not pass; measurement duration is shorter than 120 seconds"
+    },
+    {
+      "os": "macos-15",
+      "framework": "gtk",
+      "phase": "comparison",
+      "repetition": 3,
+      "run_id": "43579539989",
+      "source_commit": "52b840ef822f4af41d713b5541fb49ba2cab5923",
+      "measurement_profile": "desktop-integrated",
+      "exclusion_reason": "desktop_status=failed; live_theme_status=failed; live appearance transition 2 evidence is incomplete; raw measurement samples are missing; missing/invalid primary median; missing/invalid primary p95; missing/invalid RSS median; missing/invalid CPU; missing/invalid duration; outcome status=failed; 120 complete sample intervals are required; complete desktop acceptance is required; measurement phase did not pass; measurement duration is shorter than 120 seconds"
+    }
+  ]
+}

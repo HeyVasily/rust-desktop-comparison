@@ -6,7 +6,6 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import pwd
 import signal
 import statistics
 import subprocess
@@ -118,6 +117,10 @@ def capture(path, backend, env, user):
 
 
 def run_case(args):
+    # Only the real Linux session launcher needs the Unix account database.
+    # Keeping this local lets host-independent accounting tests run on Windows.
+    import pwd
+
     name, backend = args.case.split('-')
     output = args.output / args.case
     output.mkdir(parents=True)

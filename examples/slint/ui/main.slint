@@ -21,7 +21,21 @@ export component Demo inherits Window {
     callback filter-changed(string);
     callback refresh();
 
-    VerticalBox {
+    FocusScope {
+      width: parent.width;
+      height: parent.height;
+      // This shortcut scope must not add an invisible stop to tab navigation
+      // or steal focus when the user clicks empty layout space.
+      focus-on-tab-navigation: false;
+      focus-on-click: false;
+      KeyBinding {
+        // Slint maps Control to Command on macOS.
+        keys: @keys(Control + F);
+        activated => { filter-input.focus(); filter-input.select-all(); }
+      }
+      VerticalBox {
+        width: parent.width;
+        height: parent.height;
         padding: 12px;
         spacing: 12px;
         Text { text: "Veranda / Slint"; font-size: 22px; font-weight: 700; }
@@ -31,7 +45,7 @@ export component Demo inherits Window {
             refresh-button := Button { text: "Refresh"; clicked => { root.refresh(); } }
             Text { text: "Snapshot " + root.snapshot + " · local fixture"; }
             Text { text: "Filter:"; }
-            LineEdit {
+            filter-input := LineEdit {
                 preferred-width: 240px;
                 text <=> root.filter;
                 edited(value) => { root.filter-changed(value); }
@@ -92,5 +106,6 @@ export component Demo inherits Window {
                 Rectangle { vertical-stretch: 1; }
             }
         }
+      }
     }
 }

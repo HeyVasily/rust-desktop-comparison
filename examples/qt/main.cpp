@@ -1,11 +1,16 @@
 // Synthetic Qt Widgets UI only: no Qt Quick, WebEngine, backend, or polling.
 #include <QApplication>
 #include <QButtonGroup>
+#include <QEvent>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
 #include <QListWidget>
+#include <QPalette>
 #include <QPushButton>
+#include <QShortcut>
+#include <QStyle>
+#include <QStyleHints>
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QTimer>
@@ -14,6 +19,39 @@
 #ifdef VERANDA_SHELL_CHECKS
 #include "shell_checks.h"
 #endif
+
+// Leave colors entirely to Qt's platform integration. Observe actual palette
+// changes rather than treating a requested OS scheme as rendering evidence.
+static void reportSystemTheme() {
+    const auto palette = QApplication::palette();
+    const char *scheme = "not-exposed-by-this-qt-version";
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+    switch (QGuiApplication::styleHints()->colorScheme()) {
+    case Qt::ColorScheme::Dark: scheme = "dark"; break;
+    case Qt::ColorScheme::Light: scheme = "light"; break;
+    case Qt::ColorScheme::Unknown: scheme = "unknown"; break;
+    }
+#endif
+    std::cout << "system_theme source=qt-platform scheme=" << scheme
+              << " palette_window=" << palette.color(QPalette::Window).name().toStdString()
+              << " palette_base=" << palette.color(QPalette::Base).name().toStdString()
+              << " palette_text=" << palette.color(QPalette::Text).name().toStdString()
+              << " style=" << QApplication::style()->objectName().toStdString()
+              << " platform=" << QGuiApplication::platformName().toStdString()
+              << " qt_version=" << qVersion()
+              << " qpa_theme_request="
+              << qEnvironmentVariable("QT_QPA_PLATFORMTHEME", "auto").toStdString()
+              << std::endl;
+}
+
+class PlatformThemeDiagnostics final : public QObject {
+protected:
+    bool eventFilter(QObject *object, QEvent *event) override {
+        if (object == qApp && event->type() == QEvent::ApplicationPaletteChange)
+            reportSystemTheme();
+        return false;
+    }
+};
 
 static QString projectName(int project) {
     return QStringLiteral("project-%1").arg(project + 1, 3, 10, QLatin1Char('0'));
@@ -25,7 +63,20 @@ static QString yardName(int yard) {
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
+#ifdef Q_OS_WIN
+    // Qt's legacy Windows Vista style always replaces dark system palettes
+    // with light colors. Fusion supports both palettes without hand-written
+    // colors; the native Windows platform plugin still supplies OS settings.
+    app.setStyle(QStringLiteral("Fusion"));
+#endif
     QApplication::setApplicationName("Veranda Qt Widgets comparison");
+    PlatformThemeDiagnostics themeDiagnostics;
+    app.installEventFilter(&themeDiagnostics);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+    QObject::connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged,
+                     &app, [](Qt::ColorScheme) { reportSystemTheme(); });
+#endif
+    reportSystemTheme();
 #ifdef VERANDA_SHELL_CHECKS
     if (shell::handedToRunningInstance()) return 0;
 #endif
@@ -59,6 +110,11 @@ int main(int argc, char **argv) {
     toolbar->addWidget(filter);
     toolbar->addStretch();
     root->addLayout(toolbar);
+    auto *findShortcut = new QShortcut(QKeySequence::Find, &window);
+    QObject::connect(findShortcut, &QShortcut::activated, filter, [filter] {
+        filter->setFocus(Qt::ShortcutFocusReason);
+        filter->selectAll();
+    });
 
     auto *body = new QHBoxLayout;
     body->setSpacing(12);

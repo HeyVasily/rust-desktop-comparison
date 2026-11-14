@@ -17,6 +17,10 @@ global-hotkey = { version = "=0.9.0", optional = true }
 single-instance = { version = "=0.3.3", optional = true }
 
 [features]
+default = ["desktop"]
+# The normal comparison is a desktop application, not a renderer-only build.
+# --no-default-features is kept only as an explicitly labelled diagnostic A/B.
+desktop = ["eframe/clipboard", "eframe/links", "eframe/system_fonts", "dep:async-channel", "dep:futures-lite", "dep:zbus"]
 shell-checks = ["dep:tray-icon", "dep:global-hotkey", "dep:single-instance"]
 
 [profile.release]
@@ -24,3 +28,8 @@ strip = true
 
 [target.'cfg(target_os = "linux")'.dependencies]
 raw-window-handle = "=0.6.2"
+# zbus is already used by AccessKit; the portal does not require GTK or a
+# periodic settings poll. The worker and its resources are part of app memory.
+async-channel = { version = "=2.5.0", optional = true }
+futures-lite = { version = "=2.6.1", optional = true }
+zbus = { version = "=5.19.0", default-features = false, features = ["async-io"], optional = true }
