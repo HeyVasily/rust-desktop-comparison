@@ -14,6 +14,7 @@
   "requested_or_measured_phase_rows": 72,
   "primary_summary_groups": 29,
   "control_summary_groups": 6,
+  "unattributed_failed_repetitions": [],
   "exclusions": [
     {
       "os": "macos-15",

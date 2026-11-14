@@ -545,17 +545,67 @@ class ImportNativeRunTests(unittest.TestCase):
         self.json((source or self.source) / "stopped-after.json",
                   dict(name="egui_reduced", reason="Probe exceeded 540s watchdog"))
 
+    def repetition(self, number, image="image-1", frameworks=("egui", "gtk")):
+        source = self.artifacts / f"native-ubuntu-24.04-123-r{number}"
+        for framework in frameworks:
+            outcome = self.outcome(framework)
+            outcome["environment"].update(repetition=str(number), image_version=image)
+            self.save(outcome, source)
+        self.json(source / "selected-candidates.json", list(frameworks))
+        return source
+
     def test_runner_written_control_failure_still_counts_later_candidates(self):
+        # Realistic stop: the control fails first and the dark step is skipped,
+        # so nothing on this VM has probe identity; r2 supplies it.
         self.runner_fallback_control()
-        self.save(self.outcome(), self.source / "dark")
         self.json(self.source / "selected-candidates.json", ["egui_reduced", "egui", "gtk"])
-        rows = {row["framework"]: row for row in self.rows()}
-        self.assertEqual(sorted(rows), ["egui", "egui_reduced", "gtk"])
-        for row in rows.values():
-            self.assertEqual((row["phase"], row["image_version"], row["source_commit"]), ("comparison", "image-1", "a" * 40))
-            self.assertEqual(row["eligibility"], "excluded")
+        self.repetition(2)
+        status, root = self.import_series("123")
+        self.assertEqual(status, 0)
+        series = root / "measurements" / "desktop-test"
+        summary = {row["framework"]: row for row in self.csv_rows(series / "summary.csv") if row["phase"] == "comparison"}
+        self.assertEqual({fw: (row["repetitions"], row["failed_repetitions"]) for fw, row in summary.items()},
+                         {"egui": ("1", "1"), "gtk": ("1", "1")})
+        rows = {row["framework"]: row for row in self.csv_rows(series / "runs.csv") if row["repetition"] == "1"}
         self.assertEqual((rows["egui_reduced"]["status"], rows["egui_reduced"]["cleanup"]), ("failed", "unknown"))
-        self.assertEqual(rows["gtk"]["desktop_profile"], "desktop-acceptance-v1")
+        self.assertEqual(rows["gtk"]["image_version"], "image-1")
+        self.assertEqual(rows["gtk"]["comparison_requested"], "True")
+        self.assertEqual(json.loads((series / "import-report.json").read_text())["unattributed_failed_repetitions"], [])
+
+    def test_image_rollout_leaves_unrun_repetition_unattributed_and_reported(self):
+        self.runner_fallback_control()
+        self.json(self.source / "selected-candidates.json", ["egui_reduced", "egui"])
+        self.repetition(2, "image-1", ("egui",))
+        self.repetition(3, "image-2", ("egui",))
+        status, root = self.import_series("123")
+        self.assertEqual(status, 0)
+        series = root / "measurements" / "desktop-test"
+        summary = [(row["image_version"], row["repetitions"], row["failed_repetitions"])
+                   for row in self.csv_rows(series / "summary.csv") if row["phase"] == "comparison"]
+        self.assertEqual(sorted(summary), [("image-1", "1", "0"), ("image-2", "1", "0")])
+        report = json.loads((series / "import-report.json").read_text())
+        self.assertIn(dict(os="ubuntu-24.04", framework="egui", phase="comparison", repetition=1, run_id="123",
+                           status="not_run"), report["unattributed_failed_repetitions"])
+
+    def test_outcome_without_probe_environment_is_not_given_borrowed_identity(self):
+        self.save(self.outcome("gtk"))
+        stripped = self.outcome()
+        del stripped["environment"]
+        self.save(stripped)
+        rows = {row["framework"]: row for row in self.rows()}
+        self.assertEqual(rows["egui"]["eligibility"], "excluded")
+        self.assertEqual(rows["egui"]["source_commit"], "")
+        self.assertIn("run_id is missing", rows["egui"]["exclusion_reason"])
+
+    def test_light_placeholder_mode_is_not_taken_from_the_dark_sequence(self):
+        self.runner_fallback_control()
+        self.json(self.source / "selected-candidates.json", ["egui_reduced", "egui"])
+        diagnostic = self.outcome()
+        diagnostic.update(comparison_requested=False, phases={})
+        self.save(diagnostic, self.source / "dark")
+        rows = {row["framework"]: row for row in self.rows()}
+        self.assertEqual(sorted(rows), ["egui", "egui_reduced"])
+        self.assertEqual((rows["egui"]["comparison_requested"], rows["egui"]["image_version"]), ("unknown", "image-1"))
 
     def test_candidate_killed_by_runner_is_failed_with_unknown_cleanup(self):
         self.save(self.outcome())

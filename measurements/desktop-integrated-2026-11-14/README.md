@@ -42,7 +42,8 @@ verified at their own n; they are never pooled.
 - [paired-egui-ab.json](paired-egui-ab.json): same-run/source/repetition paired
   deltas, with missing or ineligible counterparts retained as unpaired.
 - [import-report.json](import-report.json): 9 selected artifacts, 29 primary
-  summary groups, 6 control groups and explicit exclusions.
+  summary groups, 6 control groups, explicit exclusions and the (here empty)
+  list of failed repetitions that could not be attributed to an image.
 - [archives.json](archives.json): original artifact IDs, download endpoints,
   GitHub SHA-256 digests and the selection decision for all 15 downloaded ZIPs.
 - [workflow-runs.json](workflow-runs.json): fetched workflow/job conclusions,

@@ -184,7 +184,10 @@ not copied; `build/inputs-sha256.json` keeps their per-file digests, from which
   measurement/acceptance profiles and exclusion reasons. A selected candidate
   without a probe outcome is a failed repetition: `not_run` if a stopped sequence
   never started it, `failed` with unknown cleanup if the runner's watchdog or
-  launcher stopped it (`watchdog.json` / `runner-error.json`).
+  launcher stopped it (`watchdog.json` / `runner-error.json`). Its image and
+  metric identity come from the same VM, or else from what the run's other
+  repetitions on that runner agree on. When they disagree, the row cannot join a
+  group and is listed in `import-report.json` as an unattributed failed repetition.
 - `summary.csv`: eligible primary desktop results and separately identified
   historical rows; no reduced controls. Medians of repetition medians, min/max,
   spreads and repetitions more than 10% from the median remain available.

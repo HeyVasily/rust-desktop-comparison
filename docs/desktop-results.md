@@ -108,8 +108,11 @@ The site also requires matching light/dark repetition coverage within one source
 and build group. A selected candidate without a probe outcome is imported as a
 failed repetition: `not_run` when a stopped sequence never started it, `failed`
 with unknown cleanup when the runner's watchdog or launcher stopped it. Without
-any probe outcome on the VM it keeps the artifact's run, repetition and source,
-with its measurement mode recorded as unknown, so it cannot silently shrink n.
+any probe outcome on the VM it takes the image and metric identity that every
+other repetition of that run on that runner shares, so it still counts as a
+failed repetition of that group. If those repetitions disagree (an image
+rollout), it is listed under `unattributed_failed_repetitions` in
+`import-report.json` instead. Either way it cannot silently shrink n.
 
 Startup permits up to 30 seconds for a correctly themed nonblank first frame
 after the owned window is found; live transitions retain an eight-second budget.
