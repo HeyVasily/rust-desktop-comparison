@@ -104,7 +104,23 @@ class NativeProbeTests(unittest.TestCase):
         window = dict(id=5, pid=0, rectangle=[0, 0, 10, 10])
         argv = ["native_probe.py", "--name", name, "--title", "T", "--executable", str(executable),
                 "--output", str(directory / "out")]
+        spawned = []
+        popen = probe.subprocess.Popen
+
+        def spawn(*args, **kwargs):
+            spawned.append(popen(*args, **kwargs))
+            return spawned[-1]
+
+        def reap():
+            # The probe's cleanup stops the child; reaping it here avoids a
+            # zombie and a ResourceWarning in the test process.
+            for child in spawned:
+                if child.poll() is None:
+                    child.kill()
+                child.wait(timeout=5)
+        self.addCleanup(reap)
         with patch.object(probe.sys, "argv", argv), patch.object(probe.sys, "platform", "linux"), \
+                patch.object(probe.subprocess, "Popen", side_effect=spawn), \
                 patch.object(probe, "environment", return_value={}), \
                 patch.object(probe, "web_helpers", side_effect=[{}] + [helper] * 10), \
                 patch.object(probe, "find_window", return_value=window), patch.object(probe, "prepare_window"), \

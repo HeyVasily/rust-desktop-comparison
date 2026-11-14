@@ -534,6 +534,82 @@ class ImportNativeRunTests(unittest.TestCase):
                          [("egui", "normal", "light", "desktop-acceptance-v1"), ("gtk", "normal", "light", "desktop-acceptance-v1")])
         self.assertEqual(acceptance[0]["desktop_evidence_status"], "not_run")
 
+    def runner_fallback_control(self, source=None):
+        # What run_native_candidates.py writes when the control's prerequisite
+        # fails or its probe is killed: no environment, mode or metrics.
+        directory = (source or self.source) / "egui_reduced"
+        self.json(directory / "outcome.json", dict(
+            name="egui_reduced", status="failed", measurement_profile="diagnostic-reduced", phases={},
+            cleanup_status="unknown", reason="Probe exceeded 540s watchdog",
+            control_system_theme=dict(schema_version=1, profile="control-system-theme-v1", status="failed")))
+        self.json((source or self.source) / "stopped-after.json",
+                  dict(name="egui_reduced", reason="Probe exceeded 540s watchdog"))
+
+    def test_runner_written_control_failure_still_counts_later_candidates(self):
+        self.runner_fallback_control()
+        self.save(self.outcome(), self.source / "dark")
+        self.json(self.source / "selected-candidates.json", ["egui_reduced", "egui", "gtk"])
+        rows = {row["framework"]: row for row in self.rows()}
+        self.assertEqual(sorted(rows), ["egui", "egui_reduced", "gtk"])
+        for row in rows.values():
+            self.assertEqual((row["phase"], row["image_version"], row["source_commit"]), ("comparison", "image-1", "a" * 40))
+            self.assertEqual(row["eligibility"], "excluded")
+        self.assertEqual((rows["egui_reduced"]["status"], rows["egui_reduced"]["cleanup"]), ("failed", "unknown"))
+        self.assertEqual(rows["gtk"]["desktop_profile"], "desktop-acceptance-v1")
+
+    def test_candidate_killed_by_runner_is_failed_with_unknown_cleanup(self):
+        self.save(self.outcome())
+        self.json(self.source / "gtk" / "watchdog.json", dict(
+            name="gtk", status="failed", cleanup_status="unknown", reason="Probe exceeded 540s watchdog"))
+        self.json(self.source / "stopped-after.json", dict(name="gtk", reason="Probe exceeded 540s watchdog"))
+        self.json(self.source / "selected-candidates.json", ["egui", "gtk", "slint"])
+        rows = {row["framework"]: row for row in self.rows()}
+        self.assertEqual((rows["gtk"]["status"], rows["gtk"]["cleanup"], rows["gtk"]["desktop_status"]),
+                         ("failed", "unknown", "failed"))
+        self.assertIn("watchdog", rows["gtk"]["reason"])
+        self.assertEqual((rows["slint"]["status"], rows["slint"]["cleanup"]), ("not_run", "not_needed"))
+
+    def test_vm_without_any_probe_outcome_keeps_failed_records(self):
+        self.runner_fallback_control()
+        (self.source / "build").mkdir()
+        (self.source / "build" / "source-commit.txt").write_text("b" * 40 + "\n", encoding="utf-8")
+        self.json(self.source / "selected-candidates.json", ["egui_reduced", "egui"])
+        rows = {row["framework"]: row for row in self.rows()}
+        self.assertEqual(sorted(rows), ["egui", "egui_reduced"])
+        egui = rows["egui"]
+        self.assertEqual((egui["phase"], egui["status"], egui["source_commit"], egui["run_id"], egui["image_version"]),
+                         ("comparison", "not_run", "b" * 40, "123", ""))
+        self.assertEqual(egui["comparison_requested"], "unknown")
+        self.assertIn("measurement mode unknown", egui["exclusion_reason"])
+
+    def test_dark_sequence_placeholder_borrows_light_identity(self):
+        self.save(self.outcome())
+        self.save(self.outcome("gtk"))
+        dark = self.source / "dark"
+        self.json(dark / "selected-candidates.json", ["egui", "gtk"])
+        self.json(dark / "stopped-after.json", dict(name="egui", reason="cleanup unknown"))
+        failed = self.outcome()
+        failed.update(status="failed", cleanup_status="unknown")
+        self.save(failed, dark)
+        rows = [row for row in importer.acceptance_rows("123", "ubuntu-24.04", 1, self.source)
+                if row["case"] == "dark-startup"]
+        self.assertEqual([(row["framework"], row["status"], row["startup_theme"], row["image_version"]) for row in rows],
+                         [("egui", "failed", "light", "image-1"), ("gtk", "not_run", "dark", "image-1")])
+
+    def test_unrun_candidate_stays_visible_and_unverified_on_the_site(self):
+        import build_desktop_site_data as builder
+        self.save(self.outcome())
+        self.save(self.outcome(), self.source / "dark")
+        self.json(self.source / "selected-candidates.json", ["egui", "gtk"])
+        self.json(self.source / "stopped-after.json", dict(name="egui", reason="cleanup unknown"))
+        status, root = self.import_series("123")
+        self.assertEqual(status, 0)
+        data = builder.build(root / "measurements" / "desktop-test", root=root)
+        linux = next(platform for platform in data["platforms"] if platform["id"] == "linux")
+        gtk = next(candidate for candidate in linux["candidates"] if candidate["framework"] == "gtk")
+        self.assertEqual(len(gtk["experiments"]), 1)
+        self.assertNotEqual(gtk["experiments"][0]["acceptance"]["status"], "fully_verified")
+
     def test_unselected_missing_candidate_is_not_invented(self):
         self.save(self.outcome())
         self.json(self.source / "selected-candidates.json", ["egui"])

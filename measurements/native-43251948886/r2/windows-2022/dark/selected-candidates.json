@@ -1,7 +1,0 @@
-[
-  "egui",
-  "gtk",
-  "slint",
-  "qt",
-  "tauri"
-]

@@ -181,12 +181,16 @@ not copied; `build/inputs-sha256.json` keeps their per-file digests, from which
 `build_inputs_sha256` is recomputed. Under `measurements/<series>/` it writes:
 
 - `runs.csv`: measured phases and failed requested comparisons, including
-  measurement/acceptance profiles and exclusion reasons.
+  measurement/acceptance profiles and exclusion reasons. A selected candidate
+  without a probe outcome is a failed repetition: `not_run` if a stopped sequence
+  never started it, `failed` with unknown cleanup if the runner's watchdog or
+  launcher stopped it (`watchdog.json` / `runner-error.json`).
 - `summary.csv`: eligible primary desktop results and separately identified
   historical rows; no reduced controls. Medians of repetition medians, min/max,
   spreads and repetitions more than 10% from the median remain available.
 - `controls.csv`: eligible reduced diagnostic controls only.
-- `desktop-acceptance.csv`: normal and separate dark-startup outcomes.
+- `desktop-acceptance.csv`: normal and separate dark-startup outcomes, including
+  these placeholders and each invocation's `foreign_new_web_helpers` count.
 - `paired-egui-ab.json`: raw matched desktop/control rows and deltas for the same
   run, runner, repetition, source/build identity, image and memory metrics.
 - `import-report.json` and `SHA256SUMS`: import status, exclusions and report checksums.

@@ -477,56 +477,94 @@ def provenance_errors(outcome, run_id, repetition, source):
     return errors
 
 
-def not_run_outcome(fw, source, base, startup_theme):
-    """Placeholder for a selected candidate that the runner refused to start.
+RUNNER_MARKERS = ("watchdog.json", "runner-error.json")
 
-    Without it a stopped sequence silently shrinks n. Profile, metric and image
-    identity are borrowed from a candidate measured on the same VM so the
-    placeholder joins its framework's provenance group as a failed repetition.
+
+def probe_written(outcome):
+    """True for an outcome written by native_probe.py, not a runner fallback."""
+    return "environment" in outcome
+
+
+def placeholder_outcome(fw, source, base, startup_theme, run_id, repetition):
+    """Stand-in for a selected candidate without a probe-written outcome.
+
+    The runner either refused to start it after an earlier stop (not_run), or
+    killed or lost it (watchdog.json / runner-error.json: failed, cleanup
+    unknown). Without a row a stopped sequence silently shrinks n. Profile,
+    metric and image identity are borrowed from a probe-written outcome on the
+    same VM; with none, build/ and the artifact identity are used and the
+    measurement mode is recorded as unknown, so the record still joins its
+    framework's runs as a failed repetition.
     """
+    directory = base / fw
+    marker = next((read_json(directory / name) for name in RUNNER_MARKERS if (directory / name).is_file()), None)
     stopped_path = base / "stopped-after.json"
     stopped = read_json(stopped_path) if stopped_path.is_file() else {}
-    def outcomes(directory):
-        return [read_json(directory / name / "outcome.json") for name in FRAMEWORKS
-                if (directory / name / "outcome.json").is_file()]
-    # Measurement mode comes from this sequence; profile and image identity may
-    # come from the other sequence on the same VM when only the control ran.
-    same_case = outcomes(base) or [{}]
+    def outcomes(case):
+        found = (read_json(case / name / "outcome.json") for name in FRAMEWORKS
+                 if (case / name / "outcome.json").is_file())
+        return [outcome for outcome in found if probe_written(outcome)]
+    # Measurement mode prefers this sequence; profile and image identity may
+    # come from the other sequence on the same VM.
+    same_case = outcomes(base)
     siblings = same_case + outcomes(source / "dark" if base == source else source)
     desktop = [o for o in siblings if o.get("measurement_profile") == "desktop-integrated"]
-    template = (siblings if fw == "egui_reduced" else desktop or siblings)[0]
-    mode = same_case[0]
+    template = (desktop if fw != "egui_reduced" and desktop else siblings or [{}])[0]
+    mode = (same_case or siblings or [{}])[0]
     env = {key: value for key, value in template.get("environment", {}).items()
            if key in ("os", "commit", "image_version", "source_hash", "run_id", "repetition")}
     commit_path = source / "build" / "source-commit.txt"
     if not env.get("commit") and commit_path.is_file():
         env["commit"] = commit_path.read_text(encoding="utf-8-sig").strip()
-    reason = f"Not run: stopped after {stopped.get('name', 'an earlier candidate')}: {stopped.get('reason', 'no outcome recorded')}"
-    outcome = dict(name=fw, status="not_run", cleanup_status="not_needed", environment=env, reason=reason,
-                   comparison_requested=mode.get("comparison_requested", ""),
-                   primary_memory_metric=mode.get("primary_memory_metric", ""),
-                   memory_metric=mode.get("memory_metric", ""),
-                   phases={name: {} for name in mode.get("phases", {}) if name != "diagnostic"})
+    env.setdefault("run_id", str(run_id))
+    env.setdefault("repetition", str(repetition))
+    if marker is not None:
+        status, cleanup = "failed", marker.get("cleanup_status", "unknown")
+        reason = f"No probe outcome: {marker.get('reason', 'runner stopped the probe')}"
+    else:
+        status, cleanup = "not_run", "not_needed"
+        reason = f"Not run: stopped after {stopped.get('name', 'an earlier candidate')}: {stopped.get('reason', 'no outcome recorded')}"
+    outcome = dict(name=fw, status=status, cleanup_status=cleanup, environment=env, reason=reason)
+    if mode:
+        outcome.update(comparison_requested=mode.get("comparison_requested", ""),
+                       primary_memory_metric=mode.get("primary_memory_metric", ""),
+                       memory_metric=mode.get("memory_metric", ""),
+                       phases={name: {} for name in mode.get("phases", {}) if name != "diagnostic"})
+    else:
+        outcome.update(comparison_requested="unknown", phases={"comparison": {}})
     if fw == "egui_reduced":
         outcome.update(measurement_profile="diagnostic-reduced",
-                       control_system_theme=dict(schema_version=1, profile="control-system-theme-v1", status="not_run"))
-    elif desktop:
+                       control_system_theme=dict(schema_version=1, profile="control-system-theme-v1", status=status))
+    elif desktop or not siblings:
+        # The native workflow always enables desktop checks; existing siblings
+        # without them (legacy UI-only runs) keep the placeholder out of this profile.
+        profile = desktop[0].get("desktop_integration", {}).get("profile", "") if desktop else "desktop-acceptance-v1"
         outcome.update(measurement_profile="desktop-integrated", desktop_integration=dict(
-            schema_version=1, profile=desktop[0].get("desktop_integration", {}).get("profile", ""),
-            status="not_run", startup_theme=dict(expected=startup_theme)))
+            schema_version=1, profile=profile, status=status, startup_theme=dict(expected=startup_theme)))
     return outcome
 
 
-def case_outcomes(source, base, startup_theme):
-    """Yield (framework, outcome, directory, measured) for one sequence."""
+def case_outcomes(source, base, startup_theme, run_id, repetition):
+    """Yield (framework, outcome, directory, measured) for one sequence.
+
+    A runner-written fallback (failed reduced control) is kept as measured, but
+    gains the artifact identity and measurement mode it lacks.
+    """
     selected_path = base / "selected-candidates.json"
     selected = read_json(selected_path) if selected_path.is_file() else []
     for fw in FRAMEWORKS:
         path = base / fw / "outcome.json"
         if path.is_file():
-            yield fw, read_json(path), path.parent, True
+            outcome = read_json(path)
+            if not probe_written(outcome):
+                filler = placeholder_outcome(fw, source, base, startup_theme, run_id, repetition)
+                for key in ("environment", "comparison_requested", "primary_memory_metric", "memory_metric"):
+                    outcome.setdefault(key, filler.get(key, ""))
+                if not outcome.get("phases"):
+                    outcome["phases"] = filler["phases"]
+            yield fw, outcome, path.parent, True
         elif fw in selected:
-            yield fw, not_run_outcome(fw, source, base, startup_theme), path.parent, False
+            yield fw, placeholder_outcome(fw, source, base, startup_theme, run_id, repetition), path.parent, False
 
 
 def outcome_metadata(outcome, directory, measured):
@@ -535,20 +573,25 @@ def outcome_metadata(outcome, directory, measured):
         control, control_errors = control_metadata(outcome, directory)
         return desktop, control, desktop_errors + control_errors
     desktop, control = dict.fromkeys(DESKTOP_FIELDS, ""), dict.fromkeys(CONTROL_FIELDS, "")
+    status = outcome["status"]
+    evidence = "not_run" if status == "not_run" else "missing"
     if "desktop_integration" in outcome:
-        desktop.update(desktop_profile=outcome["desktop_integration"]["profile"], desktop_status="not_run",
-                       desktop_evidence_status="not_run")
+        desktop.update(desktop_profile=outcome["desktop_integration"]["profile"], desktop_status=status,
+                       desktop_evidence_status=evidence)
     if "control_system_theme" in outcome:
-        control.update(control_theme_profile="control-system-theme-v1", control_theme_status="not_run",
-                       control_theme_evidence_status="not_run")
-    return desktop, control, ["candidate was selected but not run"]
+        control.update(control_theme_profile="control-system-theme-v1", control_theme_status=status,
+                       control_theme_evidence_status=evidence)
+    errors = ["candidate was selected but not run" if status == "not_run" else "candidate has no probe outcome"]
+    if outcome.get("comparison_requested") == "unknown":
+        errors.append("measurement mode unknown: no probe outcome on this VM")
+    return desktop, control, errors
 
 
 def rows_for(run_id: str, runner: str, repetition: int, source: Path):
     sizes_path = source / "build" / "binary-sizes.json"
     sizes = read_json(sizes_path) if sizes_path.exists() else {}
     identity = build_identity(source)
-    for fw, outcome, directory, measured in case_outcomes(source, source, "light"):
+    for fw, outcome, directory, measured in case_outcomes(source, source, "light", run_id, repetition):
         env = outcome.get("environment", {})
         desktop, control, metadata_errors = outcome_metadata(outcome, directory, measured)
         phases = [(name, data) for name, data in outcome.get("phases", {}).items() if name != "diagnostic"]
@@ -594,7 +637,7 @@ def rows_for(run_id: str, runner: str, repetition: int, source: Path):
 def acceptance_rows(run_id, runner, repetition, source):
     identity = build_identity(source)
     for case, base, theme in (("normal", source, "light"), ("dark-startup", source / "dark", "dark")):
-        for fw, outcome, directory, measured in case_outcomes(source, base, theme):
+        for fw, outcome, directory, measured in case_outcomes(source, base, theme, run_id, repetition):
             env = outcome.get("environment", {})
             desktop, control, errors = outcome_metadata(outcome, directory, measured)
             foreign = outcome.get("foreign_new_web_helpers")
